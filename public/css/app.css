@@ -1,0 +1,314 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+
+/*!
+ * Bootstrap v4.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+:root {
+  --blue: #3490dc;
+  --indigo: #6574cd;
+  --purple: #9561e2;
+  --pink: #f66d9b;
+  --red: #e3342f;
+  --orange: #f6993f;
+  --yellow: #ffed4a;
+  --green: #38c172;
+  --teal: #4dc0b5;
+  --cyan: #6cb2eb;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #3490dc;
+  --secondary: #6c757d;
+  --success: #38c172;
+  --info: #6cb2eb;
+  --warning: #ffed4a;
+  --danger: #e3342f;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  color: gray;
+  opacity: 1;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+div,
+nav,
+section {
+  display: block;
+}
+
+.element.style {
+  word-break: break-all;
+  position: relative;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+/* 真似したとこ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+main {
+  padding-bottom: 60px;
+
+}
+
+a {
+  text-decoration: none;
+  text-decoration-line: none;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+  background-color: transparent;
+}
+/* 真似したとこ */
+
+
+
+
+/* ここから追加 */
+.header {
+  position: relative !important;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  word-break: break-all;
+}
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  text-align: center !important;
+  width: 131px;
+  height: 31px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.link-header {
+  text-align: center !important;
+}
+
+.bg-gray {
+  background-color: #ececec !important;
+}
+
+.bg-white {
+  background-color: #fff !important;
+}
+
+
+
+/* home画面 */
+.slide {
+  padding: 0 !important;
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  margin-bottom: 0 !important;
+  position: relative;
+}
+
+/* 下部固定メニュー */
+.bg-fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding-top: .75rem;
+  padding-bottom: 1rem !important;
+  background-color: #ececec !important;
+}
+
+.container-fixed-bottom {
+  position: relative;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.items-center-fixed-bottom {
+  align-items: center !important;
+  justify-content: space-between !important;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  list-style-position: initial;
+  list-style-image: initial;
+  list-style-type: none;
+}
+
+.li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.item-fixed-bottom {
+  /*padding-left: 1rem !important;
+  padding-right: 1rem !important;*/
+  position: relative !important;
+}
+
+.fas,
+.far {
+  font-size: 30px;
+  height: 32px;
+  width: 32px;
+  color: #e3342f !important;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  vertical-align: middle;
+  text-align: center;
+  
+}
+
+.link-itmem-fixed-bottom {
+  /*transform: translate(-1.945, -2.004);*/
+  text-align: center;
+}
+
+.text-item-fixed-bttom {
+  display: block;
+  margin-top: 6px;
+  color: rgba(0, 0, 0, 0.24);
+  text-align: center;
+  font-size: 10px;
+}
+
+.footer {
+  padding-bottom: 150px;
+  padding-top: 1rem !important;
+  background-color: #ececec !important;
+}
+
+.container-footer {
+  padding: 0 15px 48px 15px !important;
+  position: relative;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.heading-footer {
+  margin-bottom: 24px;
+  margin-top: 0;
+  color: black;
+  font-size: 1.125rem;
+  font-family: HiraKakuProN-W6;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.items-footer {
+  flex-direction: column !important;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  list-style-position: initial;
+  list-style-image: initial;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.item-footer {
+  border-bottom: 1px solid #dee2e6 !important;
+  border-bottom-width: 1px !important;
+  border-bottom-style: solid !important;
+  border-bottom-color: rgb(222, 226, 230) !important;
+}
+
+.link-item-footer {
+  color: rgba(0, 0, 0, 0.54) !important;
+  padding-left: 0 !important;
+  display: block;
+  padding: 0.5rem 1rem;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+  
+}
+
