@@ -1,3 +1,15 @@
+
+$(".slider-inner").slick({
+  autoplay:true,
+  autoplaySpeed:4000,
+  dots:true,
+    
+    
+});
+
+
+
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

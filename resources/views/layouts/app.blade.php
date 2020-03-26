@@ -10,110 +10,104 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="js/slick.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/slick.min.js"></script>
+	<script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
+	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 </head>
 <body style="word-break: break-all;">
-	<div id="app" style="height: auto !important">
-		<div id="boxed" style="height: auto !important">
+	<div id="app">
+		<div class="boxed" style="height: auto !important">
 			
-			<header id="header">
+			<header id="header" class="position-relative container col-lg-6 col-md-6">
 				<div class="container">
-					<div class="header-logo">
+					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
-							つなげーと
+							<div class="logo">つなげーと</div>
 						</a>
-					</div>
-
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<!-- Left Side Of Navbar -->
-						<ul class="navbar-nav mr-auto">
-
-						</ul>
-												
-
-						<!-- Right Side Of Navbar -->
-						<ul class="navbar-nav ml-auto">
-							<!-- Authentication Links -->
-							
-						</ul>
-					</div>
+					</div>				
 				</div>
 			</header>
 			
 		
 
-			<main class="bg-gray" style="height: auto !important"> 
+			<main class="bg-gray h-100"> 
 				@yield('content')
 			</main>
 			<!-- 画面下部固定のメニュー -->
-			<nav class="bg-fixed-bottom">
-					<div class="container-fixed-bottom">
-						<ul class="items-center-fixed-bottom" style="list-style: none; padding-left: 0;">
+			<nav class="bg-gray fixed-bottom pt-2_5 pb-3">
+					<div class="container col-md-8 col-lg-6">
+						<ul class="nav align-items-center justify-content-between">
 							@guest
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="fas fa-home fa-large"></i>
-										<span class="text-item-fixed-bttom">ホーム</span>
+								<li class="pr-3 pl-3 postion-relative active">
+									<a href="/" class="nav-link nav-link_sp -home">
+										<i class="fas fa-home" ></i>
+										<span class="nav-item_text">ホーム</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="fas fa-search"></i>
-										<span class="text-item-fixed-bttom">検索</span>
+								<li class="pr-1 pl-1 postion-relative">
+									<a href="/" class="nav-link nav-link_sp -aleart">
+										<i class="fas fa-search" ></i>
+										<span class="nav-item_text">検索</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="{{ route('login') }}" class="link-item-fixed-bottom">
-										<i class="fas fa-sign-in-alt"></i>
-										<span class="text-item-fixed-bttom">ログイン</span>
+								<li class="postion-relative">
+									<a href="{{ route('login') }}" class="nav-link nav-link_sp -message">
+										<i class="fas fa-sign-in-alt" style="font-size:35px;
+										color:rgba(0,0,0,0.24);"></i>
+										<span class="nav-item_text">ログイン</span>
 									</a>
 								</li>
-								
-								<li class="item-fixed-bottom">
-									<a href="{{ route('register') }}" class="link-item-fixed-bottom">
-										<i class="far fa-user"></i>
-										<span class="text-item-fixed-bttom">新規登録</span>
+								<li class="postion-relative">
+									<a href="{{ route('register') }}" class="nav-link nav-link_sp -mypage">
+										<i class="far fa-user" ></i>
+										<span class="nav-item_text">新規登録</span>
 									</a>
 								</li>
 							@else
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="fas fa-home"></i>
-										<span class="text-item-fixed-bttom">ホーム</span>
+								<li class="pr-3 pl-3 postion-relative active">
+									<a href="/" class="nav-link nav-link_sp -home">
+										<i class="fas fa-home" ></i>
+										<span class="nav-item_text">ホーム</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="far fa-bell"></i>
-										<span class="text-item-fixed-bttom">お知らせ</span>
+								<li class="pr-1 pl-1 postion-relative">
+									<a href="/" class="nav-link nav-link_sp -aleart">
+										<i class="fas fa-bell" ></i>
+										<span class="nav-item_text">お知らせ</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="fas fa-ticket-alt"></i>
-										<span class="text-item-fixed-bttom">チケット</span>
+								<li class="postion-relative">
+									<a href="{{ route('login') }}" class="nav-link nav-link_sp -aleart">
+										<i class="fas fa-ticket-alt" style="font-size:35px;
+										color:rgba(0,0,0,0.24);"></i>
+										<span class="nav-item_text">チケット</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="far fa-comment-alt"></i>
-										<span class="text-item-fixed-bttom">メッセージ</span>
+								<li class="postion-relative">
+									<a href="{{ route('register') }}" class="nav-link nav-link_sp -message">
+										<i class="far fa-comment-alt" ></i>
+										<span class="nav-item_text">メッセージ</span>
 									</a>
 								</li>
-								<li class="item-fixed-bottom">
-									<a href="/" class="link-item-fixed-bottom">
-										<i class="far fa-user"></i>
-										<span class="text-item-fixed-bttom">マイページ</span>
+								<li class="postion-relative">
+									<a href="/" class="nav-link nav-link_sp -mypage">
+										<i class="fas fa-user" ></i>
+										<span class="nav-item_text">マイページ</span>
 									</a>
 								</li>
 							@endguest
@@ -123,35 +117,38 @@
 				</nav>
 			
 			
-			<footer id="footer" class="footer">
-				<div class="container-footer">
-					<h2 class="heading-footer">つなげーとについて</h2>
-					<ul class="items-footer" style="list-style: none; padding-left: 0;">
+			<footer id="footer" class="bg-gray pt-3" 
+					style="padding-bottom: 150px;">
+				<div class="container col-md-6 col-lg-6 pb-5">
+					<h2 class="h2 h2--extend h2--extend--notion">
+						つなげーとについて
+					</h2>
+					<ul class="nav flex-column">
 						@guest
-							<li class="item-footer">
-								<a href="{{ route('register') }}" class="link-item-footer">新規登録</a>
+							<li class="nav-item">
+								<a href="{{ route('register') }}" class="nav-link pl-0 nav-link--gray">新規登録</a>
 							</li>
-							<li class="item-footer">
-								<a href="{{ route('login') }}" class="link-item-footer">ログイン</a>
+							<li class="nav-item">
+								<a href="{{ route('login') }}" class="nav-link pl-0 nav-link--gray">ログイン</a>
 							</li>
 						@endguest
-						<li class="item-footer">
-							<a href="" class="link-item-footer">利用規約</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">利用規約</a>
 						</li>
-						<li class="item-footer">
-							<a href="" class="link-item-footer">コンテンツクオリティガイドライン</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">コンテンツクオリティガイドライン</a>
 						</li>
-						<li class="item-footer">
-							<a href="" class="link-item-footer">プライバシーポリシー</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">プライバシーポリシー</a>
 						</li>
-						<li class="item-footer">
-							<a href="" class="link-item-footer">よくある質問</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">よくある質問</a>
 						</li>
-						<li class="item-footer">
-							<a href="" class="link-item-footer">お問い合わせ</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">お問い合わせ</a>
 						</li>
-						<li class="item-footer">
-							<a href="" class="link-item-footer">サイトマップ</a>
+						<li class="nav-item">
+							<a href="" class="nav-link pl-0 nav-link--gray">サイトマップ</a>
 						</li>
 					</ul>
 				</div>
