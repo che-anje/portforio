@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,75 +50,73 @@
 			</main>
 			<!-- 画面下部固定のメニュー -->
 			<nav class="bg-gray fixed-bottom pt-2_5 pb-3">
-					<div class="container col-md-8 col-lg-6">
-						<ul class="nav align-items-center justify-content-between">
-							@guest
-								<li class="pr-3 pl-3 postion-relative active">
-									<a href="/" class="nav-link nav-link_sp -home">
-										<i class="fas fa-home" ></i>
-										<span class="nav-item_text">ホーム</span>
-									</a>
-								</li>
-								<li class="pr-1 pl-1 postion-relative">
-									<a href="/" class="nav-link nav-link_sp -aleart">
-										<i class="fas fa-search" ></i>
-										<span class="nav-item_text">検索</span>
-									</a>
-								</li>
-								<li class="postion-relative">
-									<a href="{{ route('login') }}" class="nav-link nav-link_sp -message">
-										<i class="fas fa-sign-in-alt" style="font-size:35px;
-										color:rgba(0,0,0,0.24);"></i>
-										<span class="nav-item_text">ログイン</span>
-									</a>
-								</li>
-								<li class="postion-relative">
-									<a href="{{ route('register') }}" class="nav-link nav-link_sp -mypage">
-										<i class="far fa-user" ></i>
-										<span class="nav-item_text">新規登録</span>
-									</a>
-								</li>
-							@else
-								<li class="pr-3 pl-3 postion-relative active">
-									<a href="/" class="nav-link nav-link_sp -home">
-										<i class="fas fa-home" ></i>
-										<span class="nav-item_text">ホーム</span>
-									</a>
-								</li>
-								<li class="pr-1 pl-1 postion-relative">
-									<a href="/" class="nav-link nav-link_sp -aleart">
-										<i class="fas fa-bell" ></i>
-										<span class="nav-item_text">お知らせ</span>
-									</a>
-								</li>
-								<li class="postion-relative">
-									<a href="{{ route('login') }}" class="nav-link nav-link_sp -aleart">
-										<i class="fas fa-ticket-alt" style="font-size:35px;
-										color:rgba(0,0,0,0.24);"></i>
-										<span class="nav-item_text">チケット</span>
-									</a>
-								</li>
-								<li class="postion-relative">
-									<a href="{{ route('register') }}" class="nav-link nav-link_sp -message">
-										<i class="far fa-comment-alt" ></i>
-										<span class="nav-item_text">メッセージ</span>
-									</a>
-								</li>
-								<li class="postion-relative">
-									<a href="/" class="nav-link nav-link_sp -mypage">
-										<i class="fas fa-user" ></i>
-										<span class="nav-item_text">マイページ</span>
-									</a>
-								</li>
-							@endguest
-						</ul>
-					</div>
-
-				</nav>
-			
-			
+				<div class="container col-md-8 col-lg-6">
+					<ul class="nav align-items-center justify-content-between">
+						@guest
+							<li class="pr-3 pl-3 postion-relative active">
+								<a href="/" class="nav-link nav-link_sp -home">
+									<i class="fas fa-home" ></i>
+									<span class="nav-item_text">ホーム</span>
+								</a>
+							</li>
+							<li class="pr-1 pl-1 postion-relative">
+								<a href="/" class="nav-link nav-link_sp -aleart">
+									<i class="fas fa-search" ></i>
+									<span class="nav-item_text">検索</span>
+								</a>
+							</li>
+							<li class="postion-relative">
+								<a href="{{ route('login') }}" class="nav-link nav-link_sp -message">
+									<i class="fas fa-sign-in-alt" style="font-size:35px;
+									color:rgba(0,0,0,0.24);"></i>
+									<span class="nav-item_text">ログイン</span>
+								</a>
+							</li>
+							<li class="postion-relative">
+								<a href="{{ route('register') }}" class="nav-link nav-link_sp -mypage">
+									<i class="far fa-user" ></i>
+									<span class="nav-item_text">新規登録</span>
+								</a>
+							</li>
+						@else
+							<li class="pr-3 pl-3 postion-relative active">
+								<a href="/" class="nav-link nav-link_sp -home">
+									<i class="fas fa-home" ></i>
+									<span class="nav-item_text">ホーム</span>
+								</a>
+							</li>
+							<li class="pr-1 pl-1 postion-relative">
+								<a href="/" class="nav-link nav-link_sp -aleart">
+									<i class="fas fa-bell" ></i>
+									<span class="nav-item_text">お知らせ</span>
+								</a>
+							</li>
+							<li class="postion-relative">
+								<a href="{{ route('login') }}" class="nav-link nav-link_sp -aleart">
+									<i class="fas fa-ticket-alt" style="font-size:35px;
+									color:rgba(0,0,0,0.24);"></i>
+									<span class="nav-item_text">チケット</span>
+								</a>
+							</li>
+							<li class="postion-relative">
+								<a href="{{ route('register') }}" class="nav-link nav-link_sp -message">
+									<i class="far fa-comment-alt" ></i>
+									<span class="nav-item_text">メッセージ</span>
+								</a>
+							</li>
+							<li class="postion-relative">
+								<a href="/" class="nav-link nav-link_sp -mypage">
+									<i class="fas fa-user" ></i>
+									<span class="nav-item_text">マイページ</span>
+								</a>
+							</li>
+						@endguest
+					</ul>
+				</div>
+			</nav>
+			<!-- footer -->
 			<footer id="footer" class="bg-gray pt-3" 
-					style="padding-bottom: 150px;">
+				style="padding-bottom: 150px;">
 				<div class="container col-md-6 col-lg-6 pb-5">
 					<h2 class="h2 h2--extend h2--extend--notion">
 						つなげーとについて

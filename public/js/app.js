@@ -1,13 +1,24 @@
 
-$(".slider-inner").slick({
-  autoplay:true,
-  autoplaySpeed:4000,
-  dots:true,
-    
-    
+$('.info-slide').slick({
+  autoplay: true,
+  autoplaySpeed: 2500,
+  speed: 800,
+  arrows: false,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  dots: true,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 3,
+        centerMode: true,
+        centerPadding: '20%',
+      }
+    }
+  ]
 });
-
-
 
 
 /******/ (function(modules) { // webpackBootstrap
