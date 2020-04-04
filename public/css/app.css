@@ -422,7 +422,7 @@ h5,
 
 h6,
 .h6 {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .lead {
@@ -6389,8 +6389,8 @@ a.close.disabled {
 }
 
 .modal-header .close {
-  padding: 1rem 1rem;
-  margin: -1rem -1rem -1rem auto;
+  padding: 0.5rem 0.5rem;
+  
 }
 
 .modal-title {
@@ -11374,6 +11374,84 @@ a.text-dark:focus {
 .line-height-2_5 {
   line-height: 2.5;
 }
+
+.checkbox__input:checked + .checkbox__lg::before {
+  border: 1px solid #f09819;
+}
+
+/* line 1097, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__input:checked + .checkbox__lg::after {
+  position: absolute;
+  top: -1px;
+  left: 26px;
+  display: block;
+  width: 10px;
+  height: 16px;
+  border-right: 2px solid #f09819;
+  border-bottom: 2px solid #f09819;
+  content: '';
+  transform: rotate(40deg);
+}
+
+.checkbox__lg {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* line 1085, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__lg::before {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #e4e4e4;
+  border-radius: 3px;
+  background: transparent;
+  content: '';
+}
+
+.checkbox__input:checked + .checkbox__lg::before {
+  border: 1px solid #f09819;
+}
+
+/* line 1097, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__input:checked + .checkbox__lg::after {
+  position: absolute;
+  top: -1px;
+  left: 26px;
+  display: block;
+  width: 10px;
+  height: 16px;
+  border-right: 2px solid #f09819;
+  border-bottom: 2px solid #f09819;
+  content: '';
+  transform: rotate(40deg);
+}
+
+/* line 1110, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__noborder::before {
+  border: transparent;
+}
+
+/* line 1114, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__area:checked + label {
+  color: #f09819;
+}
+
+/* line 1117, app/assets/stylesheets/application2019/css/common.css */
+.checkbox__area:checked + label .checkbox__lg::after {
+  position: absolute;
+  top: -1px;
+  left: 26px;
+  display: block;
+  width: 10px;
+  height: 16px;
+  border-right: 2px solid #f09819;
+  border-bottom: 2px solid #f09819;
+  content: '';
+  transform: rotate(40deg);
+}
+
+
 
 /* 興味から探す */
 .input-icon {

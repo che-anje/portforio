@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'PrefectureController@create');
 
 Auth::routes();
 /*public function auth()
