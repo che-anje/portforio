@@ -84,7 +84,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </div>
                         
                         <div class="modal-body card bg-white h-100">
-                            <ul class="nav flex-colum">
+                            <ul class="nav flex-column">
                                 @foreach($prefectures as $prefecture)
                                     <li class="border-bottom nav-item p-3">
                                         <input type="radio" name="" id="" 

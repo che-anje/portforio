@@ -13,7 +13,7 @@
 
 Route::get('/', 'PrefectureController@create');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 /*public function auth()
     {
         // Authentication Routes...
@@ -31,5 +31,13 @@ Auth::routes();
         $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     } */
+Route::get('profile', function () {
+    
+})->middleware('verified');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', function () {
+    return('auth.verify')
+});
+
