@@ -54,7 +54,7 @@ class RegisterController extends Controller
             return $this->redirectTo();
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/unverified';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
     }
 
     /**

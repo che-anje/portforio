@@ -37,7 +37,4 @@ Route::get('profile', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/unverified', function () {
-    return('auth.verify');
-});
 
