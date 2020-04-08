@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PrefectureController@create');
+Route::get('/', 'PrefectureController@create')->middleware('verified');
 
 Auth::routes(['verify' => true]);
 /*public function auth()
@@ -37,4 +37,6 @@ Route::get('profile', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::middleware('verified')->group(function() {
+    Route::get('/', 'PrefectureController@create');
+});

@@ -37,14 +37,13 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         //$this->guard()->login($user);
-
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
     }
 
     protected function registered(Request $request, $user)
     {
-        //
+        return view('auth.register_complete');
     }
 
     //RedirectsUsers
@@ -62,8 +61,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    
-    protected $redirectTo = RouteServiceProvider::HOME;
+    /*protected $redirectTo = '/';*/
+        protected $redirectTo = RouteServiceProvider::HOME;
     /**
      * Create a new controller instance.
      *

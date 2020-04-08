@@ -8,7 +8,7 @@
     <p class="text-fz-14px text-fw-bold text-black-50 mb-2">メールアドレスでログイン</p>
 </div>
 <div class="col-md-6 col-lg-6 p-0 container">
-    <form class="mb-4" id="new_user" method="POST" action="{{ route('register') }}" accept-charset="UTF-8">
+    <form class="mb-4" id="new_user" method="POST" action="{{ route('login') }}" accept-charset="UTF-8">
         @csrf
         <input type="hidden" name="authenticity_token" value="TSFaCIy40j3lniqREkjSeJTcuZIm2lJP8Fzg0ZSRZH+4a3YcWQaDYVBa3eZ/DQuxEZ7raryP1kzFez8z2AKJcg==" />
         <input id="invite_activation_key" name="user[invite_activation_key]" type="hidden" value="" />
