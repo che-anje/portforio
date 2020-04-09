@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ja">
 <head>
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,6 +31,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 </head>
 <body style="word-break: break-all;">
+
 	<div id="app">
 		<div class="boxed" style="height: auto !important">
 			

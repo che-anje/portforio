@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PrefectureController@create')->middleware('verified');
+Route::get('/', 'PrefectureController@create'); 
 
 Auth::routes(['verify' => true]);
 /*public function auth()
@@ -31,12 +31,8 @@ Auth::routes(['verify' => true]);
         $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     } */
-Route::get('profile', function () {
-    
-})->middleware('verified');
+Route::get('profile', 'ProfileController@show')->name('profile');;
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::middleware('verified')->group(function() {
-    Route::get('/', 'PrefectureController@create');
-});
+
