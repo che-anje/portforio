@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
-
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Auth\Access\AuthorizationException;
+use Auth;
 
 class VerificationController extends Controller
 {
@@ -22,6 +24,8 @@ class VerificationController extends Controller
     */
 
     use VerifiesEmails;
+    
+
 
     /**
      * Where to redirect users after verification.
@@ -60,7 +64,7 @@ class VerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-        Auth::login($user);
+        Auth::login($request->user());
 
         return redirect($this->redirectPath())->with('verified', true);
     }
