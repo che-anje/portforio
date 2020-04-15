@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailVerifiedAtToUsersTable extends Migration
+class AddUserIdToProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('email_verified_at')->nullable();
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->Integer('user_id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            Schema::dropIfExists('users');
+        Schema::table('profiles', function (Blueprint $table) {
+            Schema::dropIfExists('profiles');
         });
     }
 }

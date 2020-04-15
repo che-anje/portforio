@@ -31,7 +31,8 @@ Auth::routes(['verify' => true]);
         $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     } */
-Route::get('profile', 'ProfileController@show')->name('profile');;
+Route::get('profile/create', 'ProfileController@showCreateForm')->name('profile');
+Route::post('profile/create', 'ProfileController@create')->name('profile.create');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
