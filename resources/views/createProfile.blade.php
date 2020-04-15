@@ -5,6 +5,7 @@
     <h1 class="text-center font-weight-bold pt-3" style="font-size: 20px;">プロフィール登録</h1>
     <form action="{{ route('profile.create')}}" class="edit_user" id="edit_user" enctype="multipart/form-data" 
     accept-charset="UTF-8" method="POST">
+    @csrf
         <input type="hidden" name="_method" value="POST" />
         <input type="hidden" name="authenticity_token" value="" />
         <input type="hidden" name="user_id" value="{{ $user_id }}" />
@@ -71,9 +72,9 @@
 <div class="shadow-sm mb-2_5 bg-white">
     <div class="container col-md-8 col-lg-6 p-3_5">
         <select class="d-block w-100" selected="selected" style="border: none;background-color: #fff;height: 24px;" 
-        name="profile[gender]" id="user_gender">
-            <option value="male">男性</option>
-            <option value="female">女性</option>
+        name="gender" id="gender">
+            <option value="1">男性</option>
+            <option value="2">女性</option>
         </select>
     </div>
 </div>

@@ -21,10 +21,10 @@ final class Gender extends Enum
             case self::None:
                 return '未設定';
                 break;
-            case self::Public:
+            case self::Male:
                 return '男性';
                 break;
-            case self::Private:
+            case self::Female:
                 return '女性';
                 break;
             default:
