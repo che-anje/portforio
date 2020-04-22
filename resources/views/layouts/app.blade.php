@@ -35,13 +35,15 @@
 	<div id="app">
 		<div class="boxed" style="height: auto !important">
 			
-			<header id="header" class="position-relative container col-lg-6 col-md-6">
-				<div class="container">
+			<header id="header" class="position-relative container col-lg-6 col-md-8">
+				<div class="container d-flex">
+					@section('edit-button')
 					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
 							<div class="logo">つなげーと</div>
 						</a>
-					</div>				
+					</div>
+					@show				
 				</div>
 			</header>
 			

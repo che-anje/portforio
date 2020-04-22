@@ -3,6 +3,7 @@
 namespace App\Enums;
 
 use BenSampo\Enum\Enum;
+use App\Models\Profile;
 
 /**
  * @method static static OptionOne()

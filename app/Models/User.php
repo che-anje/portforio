@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
+use App\Models\Profile;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -54,6 +55,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
      public function sendPasswordResetNotification($token) {
          $this->notify(new CustomResetPassword($token));
  
+    }
+
+    /* リレーション*/
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }
 

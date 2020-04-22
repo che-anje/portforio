@@ -20,6 +20,33 @@ $('.info-slide').slick({
   ]
 });
 
+$(function(){
+  //selectタグ（親） が変更された場合
+  $('[name=prefectureOfInterest]').on('change', function(){
+    var prefecture_val = $(this).val();
+    var url = $('[name=prefectureOfInterest] option:selected').attr('data-url');
+    
+    $.ajax({
+      url: url,
+      type: "GET",
+      
+    })
+    
+    .done(function(data){
+      //selectタグ（子） の option値 を一旦削除
+      $('.cityOfInterest option').remove();
+      //select.php から戻って来た data の値をそれそれ optionタグ として生成し、
+      // .car_model に optionタグ を追加する
+      $.each(data, function(id, name){
+        $('.cityOfInterest').append($('<option>').text(name).attr('value', id));
+      });
+    })
+    .fail(function(){
+      console.log("失敗");
+    });
+
+  });
+});
 
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

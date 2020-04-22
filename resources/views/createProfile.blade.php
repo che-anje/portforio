@@ -55,7 +55,7 @@
 <div class="shadow-sm mb-0 bg-white">
     <div class=" container col-md-8 col-lg-6 p-3_5">
       <input autofocus="autofocus" class="textarea--eventreport" id="name" value="{{ old('name') }}"
-      placeholder="＠ユーザーネームを記載" type="text" value="Ug4Vqm" name="name" />
+      placeholder="＠ユーザーネームを記載" type="text" value="{{ old('name') }}" name="name" />
     </div>
 </div>
 <p id="tunagate-id-success" class="container col-md-8 col-lg-6 small mb-0" style="display: none; color: #72c02c;">
@@ -227,7 +227,8 @@
     </div>
 </div>
 <div class="container col-md-8 col-lg-6 mt-4">
-    <input type="submit" name="commit" value="登録" id="user-edit-btn-submit" class="mx-auto btn btn-primary--grad text-white mb-3 btn-block" data-disable-with="登録" />
+    <input type="submit" name="commit" value="登録" id="user-edit-btn-submit" 
+    class="mx-auto btn btn-primary--grad text-white mb-3 btn-block" data-disable-with="登録" />
 </div>
 </form>
 
