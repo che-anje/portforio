@@ -31,12 +31,15 @@ Auth::routes(['verify' => true]);
         $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     } */
+
+Route::get('mypage', 'MyPageController@show')->name('mypage.show');
+
 Route::get('profile/create', 'ProfileController@showCreateForm')->name('profile');
 Route::post('profile/create', 'ProfileController@create')->name('profile.create');
-Route::get('profile/show', 'ProfileController@show')->name('profile.show');
-Route::get('profile/edit', 'ProfileController@showEditForm');
+Route::get('profile/show/{id}', 'ProfileController@show')->name('profile.show');
+Route::get('profile/edit/{id}', 'ProfileController@showEditForm');
 Route::get('/profile/{prefecture_id}/cities', 'CityController@getCityList')->name('cities.get');
-Route::post('profile/edit', 'ProfileController@edit')->name('profile.edit');
+Route::post('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

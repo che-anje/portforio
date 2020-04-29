@@ -1,52 +1,107 @@
 
-$('.info-slide').slick({
-  autoplay: true,
-  autoplaySpeed: 2500,
-  speed: 800,
-  arrows: false,
-  slidesToShow: 2,
-  slidesToScroll: 1,
-  dots: true,
-  responsive: [
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 3,
-        centerMode: true,
-        centerPadding: '20%',
+if ($('.info-slide').length) {
+  $('.info-slide').slick({
+    autoplay: true,
+    autoplaySpeed: 2500,
+    speed: 800,
+    arrows: false,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    dots: true,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 3,
+          centerMode: true,
+          centerPadding: '20%',
+        }
       }
-    }
-  ]
-});
+    ]
+  });
+}
+
 
 $(function(){
   //selectタグ（親） が変更された場合
-  $('[name=prefectureOfInterest]').on('change', function(){
-    var prefecture_val = $(this).val();
-    var url = $('[name=prefectureOfInterest] option:selected').attr('data-url');
-    
+  $('[name=prefectureOfInterest]').on('change', function(e) {
+    var $select = $(e.target);
+    var key = $select.find('option:selected').attr('value');
+    var url = $select.find('option:selected').attr('data-url');
     $.ajax({
       url: url,
       type: "GET",
-      
     })
-    
     .done(function(data){
-      //selectタグ（子） の option値 を一旦削除
       $('.cityOfInterest option').remove();
-      //select.php から戻って来た data の値をそれそれ optionタグ として生成し、
-      // .car_model に optionタグ を追加する
-      $.each(data, function(id, name){
-        $('.cityOfInterest').append($('<option>').text(name).attr('value', id));
+      if(key == '0') {
+        $('.cityOfInterest').append($('<option>').text('選択してください').attr('value', 0));
+      } 
+      $.each(data, function(index, city) {
+        $('.cityOfInterest').append($('<option>').text(city.name).attr('value', city.id));
       });
+      
     })
     .fail(function(){
       console.log("失敗");
     });
-
   });
 });
+
+$(function(){
+  function formSetDay(){
+    var lastday = formSetLastDay($('.birthdate_1i').val(), $('.birthdate_2i').val());
+    var option = '';
+    var $key = $('.birthdate_3i').val();
+    for (var i = 1; i <= lastday; i++) {
+        option += '<option value="' + i + '">' + i + '</option>\n';
+      }
+    $('.birthdate_3i').html(option);
+    $('.birthdate_3i').val($key);
+  }
+
+  function formSetLastDay(){
+    var year = $('.birthdate_1i').val();
+    var month = $('.birthdate_2i').val();
+    var lastday = new Array('', 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0){
+      lastday[2] = 29;
+    }
+    return lastday[month];
+  }
+
+  $('.birthdate_1i, .birthdate_2i').change(function(){
+    formSetDay();
+  });
+});
+
+//画像プレビュー
+$(function(){
+  $('#upfile').change(function(e){
+    //ファイルオブジェクトを取得する
+    var file = e.target.files[0];
+    var reader = new FileReader();
+ 
+    //画像でない場合は処理終了
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+ 
+    //アップロードした画像を設定する
+    reader.onload = (function(file){
+      return function(e){
+        $("#user_img").attr("src", e.target.result);
+        $("#user_img").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+ 
+  });
+});
+
+
 
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache

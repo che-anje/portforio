@@ -8729,6 +8729,10 @@ button.bg-dark:focus {
   padding-left: 1rem !important;
 }
 
+.pt-3_5 {
+  padding-top: 1.25rem;
+}
+
 .p-4 {
   padding: 1.5rem !important;
 }
@@ -12079,4 +12083,21 @@ li.nav-item:not(:last-child) {
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
+}
+
+.card--makecircle {
+  width: 140px;
+  height: 140px;
+}
+
+.hov--default {
+  color: #000;
+}
+
+/* マイページ */
+.member-icon_72px {
+  width: 72px;
+  height: 72px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }

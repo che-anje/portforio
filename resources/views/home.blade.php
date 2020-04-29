@@ -510,7 +510,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 </section>
 
 <!-- サークルを作る -->
-<section class="bg-white shadow-sm mb-3 pt-4 pb-3">
+<section class="bg-white shadow-sm mb-0 pt-4 pb-4">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -plus mb-2">サークルを作ろう！</h2>
         <p class="text-black-50">つなげーとで募集〜運営まで完結できます！</p>
@@ -527,18 +527,4 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         position-relative">+</span>サークルを作る</a>
     </div>
 </section>
-
-<div aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </a>
-
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-</div>
-
-
 @endsection

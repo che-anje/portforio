@@ -121,41 +121,9 @@
 					</ul>
 				</div>
 			</nav>
-			<footer id="footer" class="bg-gray pt-3" 
-				style="padding-bottom: 150px;">
-				<div class="container col-md-6 col-lg-6 pb-5">
-					<h2 class="h2 h2--extend h2--extend--notion">
-						つなげーとについて
-					</h2>
-					<ul class="nav flex-column">
-						@guest
-							<li class="nav-item">
-								<a href="{{ route('register') }}" class="nav-link pl-0 nav-link--gray">新規登録</a>
-							</li>
-							<li class="nav-item">
-								<a href="{{ route('login') }}" class="nav-link pl-0 nav-link--gray">ログイン</a>
-							</li>
-						@endguest
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">利用規約</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">コンテンツクオリティガイドライン</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">プライバシーポリシー</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">よくある質問</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">お問い合わせ</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">サイトマップ</a>
-						</li>
-					</ul>
-				</div>
+			<!-- footer -->
+			<footer id="footer" class="bg-gray " 
+				style="padding-bottom: 100px;">
 			</footer>
 		</div>
     </div>

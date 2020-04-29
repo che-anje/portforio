@@ -1,19 +1,27 @@
 @extends('layouts.app')
 
 @section('edit-button')
-    <a href="" class="position-absolute position--backbtn text-black-20 text-fz-18px">
+    <a href="javascript:history.back()" class="position-absolute position--backbtn text-black-20 text-fz-18px">
         <i class="fas fa-chevron-left"></i>
     </a>
     @parent
-    <a href="/profile/edit" class="position-absolute position--headerright
-     text-black-20 text-fz-14px">編集</a>
+    @if(Auth::user()->id === $my_profile->user_id)
+    <a href="/profile/edit/{{ $my_profile->user_id }}" class="position-absolute position--headerright
+     text-black-20 text-fz-14px">
+        編集
+    </a>
+    @endif
 @endsection
 
 @section('content')
 <div class="shadow-sm mb-4 bg-white pt-3_5 pb-3 h-100">
     <div class="container col-md-8 col-lg-6">
         <div class="profile-img mr-auto ml-auto mb-4">
-          <img class="rounded-circle w-100" src="https://image.tunagate.com/users/avatars/000/117/176/medium/3ECA8997-413A-447D-A5A4-57547CD8B346.jpeg?1584270278" />
+        @if($my_profile->user_image)
+            <img class="rounded-circle w-100" src="/storage/UserImages/{{ $my_profile->user_image }}" style="height: 160px; object-fit: cover;" />
+        @else
+            <img class="rounded-circle w-100" src="/storage/UserImages/no_image.jpeg" />
+        @endif
         </div>
         <div class="d-flex justify-content-center">
             <h4 class="text-fw-bold text-center mb-2 mr-2">{{$my_profile->familyName}}</h4>
