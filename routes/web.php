@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/{id}', 'PrefectureController@change')->name('prefecture.change')->where('id', '[0-9]+');
 Route::get('/category', 'CategoryController@edit');
 Route::post('/category', 'CategoryController@up')->name('category.edit');
+Route::get('/circle', 'CircleController@edit');
+Route::post('/circle', 'CircleController@up')->name('circle.edit');
 
 Route::get('genre', 'Homecontroller@insert')->name('genre.insert');
 

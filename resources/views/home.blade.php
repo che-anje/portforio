@@ -251,7 +251,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 <a href="" class="card card--circle hov--default border-0">
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
                     @if($circle->image)
-                        <img src="{{ $circle->image }}" class="card-img-top card-img-top--list">
+                        <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
                         <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
                     @endif
