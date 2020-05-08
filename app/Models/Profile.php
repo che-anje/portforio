@@ -4,13 +4,35 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Prefecture;
 use App\Enums\Gender;
 
 class Profile extends Model
 {
+    protected $fillable = [
+        'familyName',
+        'firstName',
+        'name',
+        'gender',
+        'prefectureOfInterest',
+        'cityOfInterest',
+        'searchSettingByEmail',
+        'introduction',
+        'birthdate_1i',
+        'birthdate_2i',
+        'birthdate_3i',
+        'user_id',
+        'user_image'  
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function Prefecture()
+    {
+        return $this->belongTo(Prefecture::class, 'foreign_key', 'prefectureOfInterest');
     }
 
     public static function getGenderDescription($value) {

@@ -141,8 +141,7 @@
 <div class="shadow-sm mb-0 bg-white pt-3 pb-2">
     <div class=" container col-md-8 col-lg-6">
       <textarea autofocus="autofocus" class="p-0 w-100 textarea--eventreport" cols="5" rows="6" 
-      name="introduction" id="user_introduction" value="{{ old('introduction') }}">
-      </textarea>
+      name="introduction" id="user_introduction" value="{{ old('introduction') }}"></textarea>
     </div>
 </div>
 <div class="container col-md-8 col-lg-6 mt-4">

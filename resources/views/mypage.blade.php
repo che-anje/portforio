@@ -12,7 +12,11 @@
     <div class="container col-md-8 col-lg-6">
       <div class="row align-items-center p-3">
         <div class="col-3 pl-0 pr-2">
-          <img class="member-icon_72px" alt="User Image" src="/storage/UserImages/{{ $profile->user_image }}" />
+        @if($profile->user_image)
+            <img class="member-icon_72px" alt="User Image" src="/storage/UserImages/{{ $profile->user_image }}" />
+        @else
+            <img class="member-icon_72px" alt="User Image" src="/storage/UserImages/no_image.jpeg" />
+        @endif
         </div>
         <div class="col align-items-center cricle-member-name">
           <div class="col p-0">

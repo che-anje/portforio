@@ -22,7 +22,35 @@ if ($('.info-slide').length) {
   });
 }
 
+$('.modal-pref').on('change',function(e) {
+  var key = $(e.target).val();
+  var url = $(e.target).attr('data-url');
+  location.href = url;
+  
+});
 
+/*
+$('.modal-pref').on('change',function(e) {
+  var key = $(e.target).val();
+  var url = $(e.target).attr('data-url');
+  $.ajax({
+    url: url,
+    type: "GET",
+  })
+  
+  
+  .done(function(data){
+    $.each(data, function(index, circle) {
+      $('.circle_card').html($('<li>'+circle.name+'</li>').attr('value', circle.id));
+    });
+    location.reload();
+  })
+  .fail(function(){
+    console.log("失敗");
+  });
+  
+});
+*/
 $(function(){
   //selectタグ（親） が変更された場合
   $('[name=prefectureOfInterest]').on('change', function(e) {
@@ -43,6 +71,7 @@ $(function(){
       });
       
     })
+    
     .fail(function(){
       console.log("失敗");
     });

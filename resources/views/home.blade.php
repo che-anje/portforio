@@ -76,47 +76,52 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                        <div class="modal-header bg-gray d-flex align-items-center">
-                            <button type="button" class="close pl-0 pr-0" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
-                        </div>
-                        
-                        <div class="modal-body card bg-white h-100">
-                            <ul class="nav flex-column">
-                                @foreach($prefectures as $prefecture)
-                                    <li class="border-bottom nav-item p-3">
-                                        <input type="radio" name="" id="" 
-                                        class="d-none checkbox__input checkbox__area" value="1">
-                                        <label class="d-flex justify-content-between align-items-center 
-                                        mb-0 position-relative" for="1">
-                                        <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture }}</span>
-                                        <span class="checkbox__lg checkbox__noborder"></span>
-                                        </label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                            <div class="modal-header bg-gray d-flex align-items-center">
+                                <button type="button" class="close pl-0 pr-0" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
+                            </div>
+                            
+                            <div class="modal-body card bg-white h-100">
+                                <ul class="nav flex-column modal-pref">
+                                    @foreach($prefectures as $prefecture)
+                                        <li class="border-bottom nav-item p-3">
+                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="{{ route('prefecture.change', [ $prefecture->id ]) }}"
+                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
+                                            <label class="d-flex justify-content-between align-items-center 
+                                            mb-0 position-relative" for="{{ $prefecture->id }}">
+                                            <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
+                                            <span class="checkbox__lg checkbox__noborder"></span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray">
-                <select name="pref">
-                    @foreach($prefectures as $prefecture)
-                        <option value="{{ $prefecture }}">{{ $prefecture }}</option>
-                    @endforeach
-                </select>
+                @if($my_prefecture)
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+                value="{{  $my_prefecture->name  }}">
+                    {{ $my_prefecture->name }}
                 </p>
+                @else
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+                value="0">
+                    全国
+                </p>
+                @endif
             </div>
         </div>
     </div>    
 </div>
 <!-- 新規登録・ログイン -->
+@guest
 <section class="bg-white shadow-sm mb-3 pb-3">
     <div class="container col-md-8 col-lg-6">
         <h1 class="mv-copy-black h4 bg-white pt-3 pb-0 mb-0">
@@ -128,6 +133,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         mx-auto mb-1 text-fw-bold mt-3">新規登録・ログイン</a>
     </div>
 </section>
+@endguest
 <!-- 興味のあることから探す -->
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
     <div class="container col-md-8 col-lg-6">
@@ -154,114 +160,24 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </div>
         </section>
         <div class="row pl-2 pr-2">
+            @foreach($categories as $category)
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
                 <a href="" class="display-block">
                     <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
+                    rounded border-0 ">
+                    @if($category->image)
+                        <img class="picture card-img" src="/storage/CategoryImages/{{ $category->image }}" style="height: 90px">
+                    @else
+                        <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
+                    @endif
                         <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">体をうごかす<br><span class="text-fz-small">サークルを探す</span></h3>
+                            <h3 class="card-title card-title--extend mb-0">{{ $category->name }}<br>
+                            <span class="text-fz-small">サークルを探す</span></h3>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで学ぶ<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで行く<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで食べる<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで創る<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                    rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで遊ぶ<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                        rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">20代・30代男女で楽しむ<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                        rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">大人の友達探し<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
-                    <div class="card text-white text-center 
-                        rounded border-0">
-                        <img src="image/slide1.jpg" class="picture card-img" 
-                        style="height: 90px">
-                        <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">みんなで語る<br><span class="text-fz-small">サークルを探す</span></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            @endforeach
             <div class="col-12 mb-2">
                 <h2 class="h2 h2--extend mt-4 mb-3">
                     "今日のイチオシ情報"
@@ -329,88 +245,38 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -crown">「人気順」からサークルを探す</h2>
-        <ul class="scrollable-list pl-0 ib-list d-flex">
-            <li class="d-inline-block mr-2">
+        <ul class="scrollable-list pl-0 ib-list d-flex circle_card">
+            @foreach($circles as $circle)
+            <li class="d-inline-block mr-2 ">
                 <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">バドミントンサークルバドミントンサークル</h4>
-                    <img src="image/slide5.jpg" class="card-img-top card-img-top--list">
+                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
+                    @if($circle->image)
+                        <img src="{{ $circle->image }}" class="card-img-top card-img-top--list">
+                    @else
+                        <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                    @endif
                     <div class="card-body card-body--narrow border 
                     rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
+                        @foreach($circle->genres as $genre)
                             <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
+                            btn-sm btn-sm--expand mr-2">{{ $genre }}</p>
+                        @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
+                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
                             <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
                         </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            紹介文・・・バドミントンサークルです。創立１００周年の伝統あるサークルです。
+                        <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
+                            {{ $circle->introduction }}
                         </p>
                         <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
+                            {{ $circle->name }}
                         </p>
                     </div>
                 </a>
             </li>
-            <li class="d-inline-block mr-2">
-                <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">野球サークル</h4>
-                    <img src="image/slide6.jpg" class="card-img-top card-img-top--list">
-                    <div class="card-body card-body--narrow border 
-                    rounded-bottom border-top-0 pb-4">
-                        <div class="d-flex scrollable-list">
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
-                        </div>
-                        <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
-                        </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            野球サークルです。素人から甲子園経験者までさまざまなメンバーが和気藹々と練習しています。
-                        </p>
-                        <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li class="d-inline-block mr-2">
-                <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">飲み会サークル</h4>
-                    <img src="image/slide4.jpg" class="card-img-top card-img-top--list">
-                    <div class="card-body card-body--narrow border 
-                    rounded-bottom border-top-0 pb-4">
-                        <div class="d-flex scrollable-list">
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
-                        </div>
-                        <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
-                        </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            毎週金曜日飲み会を開催しています。お酒の飲めない人も気軽に参加してください。
-                        </p>
-                        <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
-                        </p>
-                    </div>
-                </a>
-            </li>
+            @endforeach
         </ul>
         <p class="text-center mb-0"><a href="" class="btn btn-outline-info w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「人気順」のサークルをもっと見る</a></p>
@@ -422,87 +288,37 @@ data-ride="carousel" data-interval="4000" data-touch="true">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -new">「新着順」からサークルを探す</h2>
         <ul class="scrollable-list pl-0 ib-list d-flex">
+            @foreach($circles as $circle)
             <li class="d-inline-block mr-2">
                 <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">バドミントンサークルバドミントンサークル</h4>
-                    <img src="image/slide5.jpg" class="card-img-top card-img-top--list">
+                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
+                    @if($circle->image)
+                        <img src="{{ $circle->image }}" class="card-img-top card-img-top--list">
+                    @else
+                        <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                    @endif
                     <div class="card-body card-body--narrow border 
                     rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
+                        @foreach($circle->genres as $genre)
                             <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
+                            btn-sm btn-sm--expand mr-2">{{ $genre }}</p>
+                        @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
+                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
                             <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
                         </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            紹介文・・・バドミントンサークルです。創立１００周年の伝統あるサークルです。
+                        <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
+                            {{ $circle->introduction }}
                         </p>
                         <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
+                            {{ $circle->name }}
                         </p>
                     </div>
                 </a>
             </li>
-            <li class="d-inline-block mr-2">
-                <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">野球サークル</h4>
-                    <img src="image/slide6.jpg" class="card-img-top card-img-top--list">
-                    <div class="card-body card-body--narrow border 
-                    rounded-bottom border-top-0 pb-4">
-                        <div class="d-flex scrollable-list">
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
-                        </div>
-                        <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
-                        </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            野球サークルです。素人から甲子園経験者までさまざまなメンバーが和気藹々と練習しています。
-                        </p>
-                        <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
-                        </p>
-                    </div>
-                </a>
-            </li>
-            <li class="d-inline-block mr-2">
-                <a href="" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">飲み会サークル</h4>
-                    <img src="image/slide4.jpg" class="card-img-top card-img-top--list">
-                    <div class="card-body card-body--narrow border 
-                    rounded-bottom border-top-0 pb-4">
-                        <div class="d-flex scrollable-list">
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル１</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル２</p>
-                            <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">ジャンル３</p>
-                        </div>
-                        <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>地域(県)</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
-                        </div>
-                        <p class="card-text card-text--ellipsis mb-2">
-                            毎週金曜日飲み会を開催しています。お酒の飲めない人も気軽に参加してください。
-                        </p>
-                        <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
-                            サークル名
-                        </p>
-                    </div>
-                </a>
-            </li>
+            @endforeach
         </ul>
         <p class="text-center mb-0"><a href="" class="btn btn-outline-info w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「新着順」のサークルをもっと見る</a></p>

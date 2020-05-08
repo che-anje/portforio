@@ -7,11 +7,13 @@ use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\CreateProfileRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Prefecture;
 use App\Enums\Gender;
 use Carbon\Carbon;
+
 
 
 class ProfileController extends Controller
@@ -28,7 +30,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function create(CreateProfileRequest $request) {
+    /*public function create(CreateProfileRequest $request) {
         $my_profile = new Profile();
         $my_profile->user_id = $request->user_id;
         $my_profile->familyName = $request->familyName;
@@ -45,6 +47,14 @@ class ProfileController extends Controller
         $my_profile->save();
         
         return redirect('/');
+    }
+    */
+    public function create(CreateProfileRequest $request) {
+
+        Auth::user()->profile()->create($request->validated());        
+    
+        return redirect('/');
+    
     }
 
     /* もう少しいい書き方がありそうなので聞く */
@@ -63,8 +73,9 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function showEditForm(int $id) {
-        $user = User::where('id', $id)->first();
+    public function showEditForm() {
+        
+        $user = Auth::user();
         $my_profile = $user->profile ?: Profile::make();
         $prefectures = \App\Models\Prefecture::orderBy('id','asc')->get();
         $cities = \App\Models\City::where('prefecture_id', $my_profile->prefectureOfInterest)->get();
@@ -74,22 +85,14 @@ class ProfileController extends Controller
             'prefectures' => $prefectures,
             'cities' => $cities,
         ]);
+        
     }
 
     public function edit(int $id, EditProfileRequest $request) {
         $my_profile = Profile::where('user_id',$id)->first();
-        $my_profile->familyName = $request->familyName;
-        $my_profile->firstName = $request->firstName;
-        $my_profile->name = $request->name;
-        $my_profile->gender = $request->gender;
-        $my_profile->birthdate_1i = $request->birthdate_1i;
-        $my_profile->birthdate_2i = $request->birthdate_2i;
-        $my_profile->birthdate_3i = $request->birthdate_3i;
-        $my_profile->prefectureOfInterest = $request->prefectureOfInterest;
-        $my_profile->cityOfInterest = $request->cityOfInterest;
-        $my_profile->searchSettingByEmail = $request->searchSettingByEmail;
-        $my_profile->introduction = $request->introduction;
-        if($request->user_image) {
+        $my_profile->fill($request->validated());
+        if($request->file('user_image')) {
+            Storage::delete('public/UserImages/'.$my_profile->user_image);
             $originalImg = $request->user_image;
             $filePath = $originalImg->store('public/UserImages');
             $my_profile->user_image = str_replace('public/UserImages/', '', $filePath);

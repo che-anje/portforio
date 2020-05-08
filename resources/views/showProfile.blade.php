@@ -6,7 +6,7 @@
     </a>
     @parent
     @if(Auth::user()->id === $my_profile->user_id)
-    <a href="/profile/edit/{{ $my_profile->user_id }}" class="position-absolute position--headerright
+    <a href="/profile/edit" class="position-absolute position--headerright
      text-black-20 text-fz-14px">
         編集
     </a>

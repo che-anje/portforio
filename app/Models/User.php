@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 use App\Models\Profile;
+use App\Models\Circle;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -42,6 +43,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
+    
+
     public function getData(){
     $data = DB::table($this->table)->get();
 
@@ -61,6 +64,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function circle()
+    {
+        return $this->hasMany(Profile::class);
     }
 }
 

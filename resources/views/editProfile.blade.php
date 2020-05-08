@@ -217,7 +217,7 @@
 <!-- メールアドレス検索設定 -->
 <div class="shadow-sm mb-2_5 bg-white">
     <div class="container col-md-8 col-lg-6 p-3_5">
-        <select class="d-block w-100" selected="selected" style="border: none;background-color: #fff;height: 24px;"
+        <select class="d-block w-100" style="border: none;background-color: #fff;height: 24px;"
             name="searchSettingByEmail" id="searchSettingByEmail">
             @foreach(\App\Models\Profile::SEARCHSETTINGBYEMAIL as $key => $val)
                 <option value="{{ $key }}" 
