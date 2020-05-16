@@ -13,10 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/{id}', 'PrefectureController@change')->name('prefecture.change')->where('id', '[0-9]+');
-Route::get('/category', 'CategoryController@edit');
-Route::post('/category', 'CategoryController@up')->name('category.edit');
-Route::get('/circle', 'CircleController@edit');
-Route::post('/circle', 'CircleController@up')->name('circle.edit');
 
 Route::get('genre', 'Homecontroller@insert')->name('genre.insert');
 
@@ -47,6 +43,14 @@ Route::get('profile/show/{id}', 'ProfileController@show')->name('profile.show');
 Route::get('profile/edit', 'ProfileController@showEditForm');
 Route::get('/profile/{prefecture_id}/cities', 'CityController@getCityList')->name('cities.get');
 Route::post('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
+
+Route::get('/category', 'CategoryController@edit');
+Route::post('/category', 'CategoryController@up')->name('category.edit');
+
+Route::get('circles/new', 'CircleController@showCreateForm');
+Route::post('circle/new', 'CircleController@create')->name('circle.create');
+Route::get('/circle', 'CircleController@edit');
+Route::post('/circle', 'CircleController@up')->name('circle.edit');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Prefecture;
 use App\Models\Genre;
+use App\Models\Profile;
 
 class Circle extends Model
 {
@@ -15,8 +16,14 @@ class Circle extends Model
         'prefecture_id',
         'detailedArea',
         'ageGroup',
-        'activeDay',
+        'activityDay',
         'cost',
+        'image',
+        'recruit_status',
+        'dexcription_template',
+        'request_required',
+        'private_status',
+        'admin_user_id',        
     ];
 
     public function prefecture() {
@@ -27,5 +34,23 @@ class Circle extends Model
         return $this->belongsToMany('App\Models\Genre', 'circle_genre', 'circle_id', 'genre_id');
         //->withPivot('id');
     }
+
+    public function users() {
+        return $this->belongsToMany('App\Models\User', 'circle_user', 'circle_id', 'user_id');
+        //->withPivot('id');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\Models\User', 'admin_user_id');
+    }
+
+    const AGEGROUP = [
+        0 => '指定しない',
+        1 => '10代',
+        2 => '20代',
+        3 => '30代',
+        4 => '40代',
+        5 => '50代以上'
+    ];
 
 }

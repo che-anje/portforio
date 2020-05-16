@@ -9,18 +9,15 @@ use BenSampo\Enum\Enum;
  * @method static static OptionTwo()
  * @method static static OptionThree()
  */
-final class GenderPublishState extends Enum
+final class PrivateStatus extends Enum
 {
-    const None =   0;
-    const Public =   1;
-    const Private =   2;
+    
+    const Public =   0;
+    const Private =   1;
 
     public static function getDescription($value): string
     {
         switch ($value) {
-            case self::None:
-                return '未設定';
-                break;
             case self::Public:
                 return '公開';
                 break;
@@ -35,14 +32,11 @@ final class GenderPublishState extends Enum
     public static function getValue(string $key)
     {
         switch ($key) {
-            case '未設定':
+            case '公開':
                 return 0;
                 break;
-            case '公開':
-                return 1;
-                break;
             case '非公開':
-                return 2;
+                return 1;
                 break;
             default:
                 return self::getValue($key);

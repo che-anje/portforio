@@ -29,6 +29,8 @@ $('.modal-pref').on('change',function(e) {
   
 });
 
+
+
 /*
 $('.modal-pref').on('change',function(e) {
   var key = $(e.target).val();
@@ -129,6 +131,116 @@ $(function(){
  
   });
 });
+
+//サークル作成 tab//
+
+$('.next').click(function () {
+  $('.nav-tabs > .nav-item > .active').parent().next('li').find('a').trigger('click');
+});
+
+$('.previous').click(function () {
+  $('.nav-tabs > .nav-item > .active').parent().prev('li').find('a').trigger('click');
+});
+
+//サークル作成 checkbox//
+$(document).on('change', '.checkbox__genre', function(e) {
+  var $count = $("input[type=checkbox]:checked").length;
+  var $not = $('input[type=checkbox]').not(':checked')
+
+      //チェックが3つ付いたら、チェックされてないチェックボックスにdisabledを加える
+  if($count >= 3) {
+      $not.attr("disabled",true);
+  }else{
+      //3つ以下ならisabledを外す
+      $not.attr("disabled",false);
+  }
+
+  var $genreHiddenTag = $('#genreHiddenTag');
+  var id = $(this).val();
+  if ($(this).is(":checked")){
+    $('<input>').attr({
+      'type': 'hidden',
+      'id': 'genre',
+      'name': 'genres[]',
+      'value': id,
+    }).appendTo(genreHiddenTag);
+  }else{
+    $(genreHiddenTag).find('input[value="'+ id +'"]').remove();
+  }
+    
+});
+//画像プレビュー
+$(function(){
+  $('#upfile').change(function(e){
+    //ファイルオブジェクトを取得する
+    var file = e.target.files[0];
+    var reader = new FileReader();
+ 
+    //画像でない場合は処理終了
+    if(file.type.indexOf("image") < 0){
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+ 
+    //アップロードした画像を設定する
+    reader.onload = (function(file){
+      return function(e){
+        $("#circle_img").attr("src", e.target.result);
+        $("#circle_img").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+ 
+  });
+});
+//都道府県設定
+$('.modal-circle-pref').on('change',function(e) {
+  var name = $(e.target).attr('id');
+  $('.circle-pref').text(name);
+  
+  
+});
+
+$('.modal-circle-ageGroup').on('change',function(e) {
+  var name = $(e.target).attr('id');
+  $('.circle-ageGroup').text(name);  
+});
+
+//サークル作成 disabled
+$(function() {
+  //始めにjQueryで送信ボタンを無効化する
+  $('.send').prop("disabled", true);
+
+  //入力欄の操作時
+  $("form input:required,form textarea:required,.checkbox__genre,.checkbox__area").change(function () {
+    //必須項目が空かどうかフラグ
+    let flag = true;
+    //必須項目をひとつずつチェック
+    $('form input:required').each(function(e) {
+        //もし必須項目が空なら
+        if ($('form input:required').eq(e).val() === "") {
+            flag = false;
+        }
+    });
+
+    $('form textarea:required').each(function(e) {
+      //もし必須項目が空なら
+      if ($('form textarea:required').eq(e).val() === "") {
+          flag = false;
+      }
+  });
+    //全て埋まっていたら
+    if (flag && $('.checkbox__genre:checked').length > 0 && $('.checkbox__area:checked').length > 0) {
+        //送信ボタンを復活
+        $('.send').prop("disabled", false);
+    }
+    else {
+        //送信ボタンを閉じる
+        $('.send').prop("disabled", true);
+    }
+  });
+});
+
 
 
 

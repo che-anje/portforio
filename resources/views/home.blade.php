@@ -293,7 +293,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 <a href="" class="card card--circle hov--default border-0">
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
                     @if($circle->image)
-                        <img src="{{ $circle->image }}" class="card-img-top card-img-top--list">
+                        <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
                         <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
                     @endif
@@ -338,7 +338,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             <h5 class="h5--18px"><span class="number-circle">3</span>サークル運営費を獲得しよう！</h5>
             <p class="text-center pl-2">みんなが集まるイベントを企画して収益を上げよう！</p>
         </div>
-        <a href="" class="btn btn-primary btn-primary--grad 
+        <a href="circles/new" class="btn btn-primary btn-primary--grad 
         mx-auto text-fw-bold line-height-2_45"><span class="text-fz-24px 
         position-relative">+</span>サークルを作る</a>
     </div>
