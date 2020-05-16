@@ -17,7 +17,7 @@
     </ul>
 </div>
 @endif
-
+<!--
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a href="#create_circle_form01" class="nav-link active" data-toggle="tab">タブ1</a>
@@ -29,6 +29,7 @@
     <a href="#create_circle_form03" class="nav-link" data-toggle="tab">タブ3</a>
   </li>
 </ul>
+-->
 <form class="create_circle" id="create_circle" enctype="multipart/form-data" 
     action="{{ route('circle.create') }}" accept-charset="UTF-8" method="post">
     {{ csrf_field() }}
