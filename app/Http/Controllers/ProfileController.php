@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Prefecture;
+use App\Models\EmailReset;
 use App\Enums\Gender;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -100,12 +103,35 @@ class ProfileController extends Controller
         $my_profile->save();
 
         $user = User::find($id);
-        $user->email = $request->email;
         if($request->password) {
             $user->password = Hash::make($request->password);
         }
+        if($user->email !== $request->email) {
+            $new_email = $request->email;
+            // トークン生成
+            $token = hash_hmac(
+                'sha256',
+                Str::random(40) . $new_email,
+                config('app.key')
+            );
+            // トークンをDBに保存
+            DB::beginTransaction();
+            try {
+                $param = [];
+                $param['user_id'] = $id;
+                $param['new_email'] = $new_email;
+                $param['token'] = $token;
+                $email_reset = EmailReset::create($param);
+                DB::commit();
+                $email_reset->sendEmailResetNotification($token);
+                return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'アカウントを更新しました。');
+            } catch (\Exception $e) {
+                DB::rollback();
+                return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'メール更新に失敗しました。');
+            }
+        }
         $user->save();
 
-        return redirect('/');
+        return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'アカウントを更新しました。');
     }
 }

@@ -6467,6 +6467,8 @@ a.close.disabled {
   .modal-sm {
     max-width: 300px;
   }
+
+   
 }
 
 @media (min-width: 992px) {
@@ -12117,6 +12119,96 @@ li.nav-item:not(:last-child) {
   object-fit: cover;
 }
 
+.modal-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal-view .modal-view-fade-in {
+  position: absolute;
+  z-index: 10000;
+  animation: fade-in 0.3s ease 0s 1 normal;
+  -webkit-animation: fade-in 0.3s ease 0s 1 normal;
+}
+
+.modal-view .modal-view-overAll {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0%;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 1000;
+}
+
+.modal-view .modal-view-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal-view .modal-view-dialog {
+  position: absolute;
+  width: 95%;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  animation: scale-in 0.3s ease 0s 1 normal;
+  -webkit-animation: scale-in 0.3s ease 0s 1 normal;
+}
+
+@media (min-width: 576px){
+  .modal-view .modal-view-dialog {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    animation: scale-in 0.3s ease 0s 1 normal;
+    -webkit-animation: scale-in 0.3s ease 0s 1 normal;
+  }
+}
+
+.modal-view .modal-view-dialog .modal-view-content {
+  margin: 0 20px;
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 10px;
+  color: #5a5a5a;
+}
+
+.modal-view .modal-view-dialog .modal-view-content .modal-view-header {
+  padding-top: 15px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.modal-view .modal-view-dialog .modal-view-content .modal-view-body {
+  padding: 0 15px 15px 15px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-view .modal-view-dialog .modal-view-content .modal-view-footer {
+  border-top: 1px solid #e5e5e5;
+}
+
+.modal-view .modal-view-button-center-12 {
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
 /*サークル作成画面*/
 .list-makecircle {
   margin: 0 auto;
@@ -12230,4 +12322,37 @@ a:not([href]):not([tabindex]) {
   opacity: 1;
   background: #afafaf;
   cursor: default;
+}
+
+/* circleページ */
+.fa-bars {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.breadcrumb--scroll {
+  display: block;
+}
+
+.breadcrumb--scroll li {
+  display: inline-block;
+}
+
+.event-img {
+  max-height: 300px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center;
+  object-position: center;
+}
+
+.member-icon_48px {
+  width: 48px;
+  height: 48px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }

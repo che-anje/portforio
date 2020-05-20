@@ -241,7 +241,15 @@ $(function() {
   });
 });
 
-
+//マイページ モーダル
+$(window).load(function() {
+  $('.modal_view').modal('show');
+});
+  
+$('.modal-view-overlay').on('click',function(){
+    $('.modal-view').fadeOut();
+    return false;
+});
 
 
 /******/ (function(modules) { // webpackBootstrap

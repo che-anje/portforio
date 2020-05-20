@@ -20,7 +20,7 @@ class Circle extends Model
         'cost',
         'image',
         'recruit_status',
-        'dexcription_template',
+        'description_template',
         'request_required',
         'private_status',
         'admin_user_id',        

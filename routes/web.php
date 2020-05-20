@@ -36,6 +36,7 @@ Auth::routes(['verify' => true]);
     } */
 
 Route::get('mypage', 'MyPageController@show')->name('mypage.show');
+Route::get("reset/{token}", "UserController@reset");
 
 Route::get('profile/create', 'ProfileController@showCreateForm')->name('profile');
 Route::post('profile/create', 'ProfileController@create')->name('profile.create');
@@ -49,8 +50,10 @@ Route::post('/category', 'CategoryController@up')->name('category.edit');
 
 Route::get('circles/new', 'CircleController@showCreateForm');
 Route::post('circle/new', 'CircleController@create')->name('circle.create');
-Route::get('/circle', 'CircleController@edit');
-Route::post('/circle', 'CircleController@up')->name('circle.edit');
+Route::get('circle/{id}', 'CircleController@show')->name('circle.show');
+Route::get('circle/{id}/circle_menu', 'CircleController@menu')->name('circle.menu');
+Route::get('circle/{id}/edit', 'CircleController@showEditForm');
+Route::post('/circle/{id}/edit', 'CircleController@edit')->name('circle.edit');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

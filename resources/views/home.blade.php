@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="bg-white">
 <ul id="carouselTopIndicators" class="carousel slide container col-md-8 col-lg-6 p-0 mb-0" 
 data-ride="carousel" data-interval="4000" data-touch="true">
@@ -248,7 +247,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <ul class="scrollable-list pl-0 ib-list d-flex circle_card">
             @foreach($circles as $circle)
             <li class="d-inline-block mr-2 ">
-                <a href="" class="card card--circle hov--default border-0">
+                <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">

@@ -14,6 +14,31 @@
 @endsection
 
 @section('content')
+@if (session('flash_message'))
+<div class="modal-view" style="position: relative; z-index: 10001;">
+  <div class="modal-view-fade-in">
+    <div class="modal-view-overAll">
+      <div class="modal-view-overlay">
+      </div>
+      <div class="modal-view-dialog">
+        <div class="modal-view-content">
+          <div class="modal-view-header" style="position: relative; z-index: 10001;">
+            <p style="margin: 0px 15px 6px">
+              <strong>お知らせ</strong>
+            </p>
+          </div>
+          <div class="modal-view-body">
+            <p>{{ session('flash_message') }}</p>
+          </div>
+          <div class="modal-view-footer">
+            <a class="modal-view-button-center-12">OK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 <div class="shadow-sm mb-4 bg-white pt-3_5 pb-3 h-100">
     <div class="container col-md-8 col-lg-6">
         <div class="profile-img mr-auto ml-auto mb-4">

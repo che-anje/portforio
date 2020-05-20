@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateEmailResetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('email_resets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email', 191)->uniqe();
-            $table->string('password');
+            $table->integer('user_id')->comment('メールアドレスを更新したユーザーID');
+            $table->string('new_email')->comment('ユーザーが新規に設定したメールアドレス');
+            $table->string('token');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('email_resets');
     }
 }

@@ -15,6 +15,7 @@ use App\Models\Circle_User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\aboutPrefecture;
+use Illuminate\Support\Facades\DB;
 
 class CircleController extends Controller
 {
@@ -46,13 +47,6 @@ class CircleController extends Controller
         foreach($categories as $categoryRecord) {
             $genres = $categoryRecord->genre()->orderby('id')->get();
             $genreName = [];
-            /*
-            foreach($genres as $genreRecord) {
-                $genreName[] = $genreRecord->name;
-            }
-            
-            $categoryRecord['genres'] = $genreName;
-            */
             $categoryRecord['genres'] = $genres;
         }
         
@@ -63,47 +57,55 @@ class CircleController extends Controller
     }
 
     public function create(CreateCircleRequest $request) {
-        $circle = new Circle;
-        $user = Auth::user();
-        $circle_user = new Circle_User;
 
-        $circle->name = $request->name;
-        $circle->introduction = $request->introduction;
-        $circle->prefecture_id = $request->prefecture_id;
-        $circle->detailedArea = $request->detailedArea;
-        $circle->ageGroup = $request->ageGroup;
-        $circle->activityDay = $request->activityDay;
-        $circle->cost = $request->cost;
-        $circle->recruit_status = $request->recruit_status;
-        $circle->description_template = $request->description_template;
-        $circle->request_required = $request->request_required;
-        $circle->private_status = $request->private_status;
-        $circle->admin_user_id = $user->id;
+        return DB::transaction(function () use ($request) {
+            $circle = new Circle;
+            $user = Auth::user();
+            $circle_user = new Circle_User;
+            $circle->fill($request->all());
+            $circle->admin_user_id = $user->id;
+            if($request->file('image')) {
+                $originalImg = $request->image;
+                $filePath = $originalImg->store('public/CircleImages');
+                $circle->image = str_replace('public/CircleImages/', '', $filePath);
+            }
+            $circle->save();
+            
+            $genres = $request->genres;
+            foreach((array)$genres as $genre) {
+                $circle_genre = new Circle_Genre;
+                $circle_genre->circle_id = $circle->id;
+                $circle_genre->genre_id = $genre;
+                $circle_genre->save();
+            }
 
-        if($request->file('image')) {
-            $originalImg = $request->image;
-            $filePath = $originalImg->store('public/CircleImages');
-            $circle->image = str_replace('public/CircleImages/', '', $filePath);
-        }
-        $circle->save();
-        
-        $genres = $request->genres;
-        foreach((array)$genres as $genre) {
-            $circle_genre = new Circle_Genre;
-            $circle_genre->circle_id = $circle->id;
-            $circle_genre->genre_id = $genre;
-            $circle_genre->save();
-        }
+            $circle_user->user_id = $user->id;
+            $circle_user->circle_id = $circle->id;
+            $circle_user->save();
 
-        $circle_user->user_id = $user->id;
-        $circle_user->circle_id = $circle->id;
-        $circle_user->save();
+            return redirect('/');
+        });
+    }
 
-        return redirect('/');
+    public function show(int $id) {
+        $circle = Circle::find($id);
+        $circle_pref = $this->getMyPrefecture();
+        $genres = $circle->genre()->get();
+        $members = $circle->user->profile()->get();
+        $categories = Category::orderby('id', 'asc')->get();
+
+
+        return view('showCircle', [
+            'circle' => $circle,
+            'circle_pref' => $circle_pref,
+            'genres' => $genres,
+            'members' => $members,
+            'categories' => $categories,
+        ]);
     }
 
     public function edit() {
-        return view('circle_image');
+        return view('circle_image', );
     }
 
     public function up(Request $request) {
