@@ -51,9 +51,16 @@ Route::post('/category', 'CategoryController@up')->name('category.edit');
 Route::get('circles/new', 'CircleController@showCreateForm');
 Route::post('circle/new', 'CircleController@create')->name('circle.create');
 Route::get('circle/{id}', 'CircleController@show')->name('circle.show');
-Route::get('circle/{id}/circle_menu', 'CircleController@menu')->name('circle.menu');
-Route::get('circle/{id}/edit', 'CircleController@showEditForm');
+Route::get('circle/{id}/circle_menu', 'CircleController@showCircleMenu')->name('circle.menu');
+Route::get('/circle/{id}/edit', 'CircleController@showEditForm');
+Route::get('/getCircleGenres/{id}', 'CircleController@getCircleGenres');
 Route::post('/circle/{id}/edit', 'CircleController@edit')->name('circle.edit');
+Route::delete('/circle/{id}/delete', 'CircleController@delete')->name('circle.delete');
+
+//サークル一覧・探す
+Route::get('/{category_id}/{pref_name}', 'Circlecontroller@categorySearch');
+Route::get('/search/{prefecture_name}');
+Route::get('/search/{prefecture_name}/{genre_id}');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

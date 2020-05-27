@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
+use App\Models\Prefecture;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Circle;
-use App\Models\Prefecture\Prefecture;
-use App\Traits\aboutPrefecture;
+use App\Models\Circle_User;
+use App\Traits\AboutPrefecture;
 
 class HomeController extends Controller
 {
@@ -39,18 +40,18 @@ class HomeController extends Controller
             }elseif(session()->exists('my_prefecture')){
                 $my_prefecture = session('my_prefecture');
             }else{
-                $my_prefecture = null;
+                $my_prefecture = Prefecture::find(48);
             }
         }elseif(session()->exists('my_prefecture')){
             $my_prefecture = session('my_prefecture');
         }else{
-            $my_prefecture = null;
+            $my_prefecture = Prefecture::find(48);
         }
         $prefectures = $this->getPrefectures();
 
         $categories = Category::orderby('id', 'asc')->get();
 
-        if($my_prefecture!=null) {
+        if($my_prefecture!=null && $my_prefecture->id!=48) {
             $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'desc')->get();
         }else{
             $circles = Circle::orderby('id', 'desc')->get();
@@ -63,6 +64,7 @@ class HomeController extends Controller
             }
             $circleRecord['genres'] = $genreName;
             $circleRecord['pref'] = $circleRecord->prefecture()->first()->name;
+            $circleRecord['count'] = Circle_User::where('circle_id', $circleRecord->id)->count();
         }
 
         return view('home',  [

@@ -66,6 +66,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasOne(Profile::class);
     }
 
+    
+
+
     public function circles()
     {
         return $this->belongsToMany('App\Models\Circle');

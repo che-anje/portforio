@@ -11513,7 +11513,26 @@ a.text-dark:focus {
 }
 
 /* オススメ情報 */
+.info-slide .slick-dots {
+  position: absolute;
+  bottom: -20px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
 
+.info-slide .slick-dots li button:before {
+  color: gray;
+  opacity: 0.7;
+}
+
+.info-slide .slick-dots li.slick-active button:before {
+  color: black;
+  opacity: 1;
+}
 
 /* 人気順から探す */
 .scrollable-list {
@@ -11564,9 +11583,22 @@ ul.ib-list li {
   color: #2292a4;
 }
 
+.btn-outline-red {
+  border-color: #e3342f;
+  color: #e3342f;
+}
+
 .btn-sm--expand {
   margin-bottom: 12px;
   line-height: 1.25;
+}
+
+.btn-sm--admin {
+  margin-bottom: 12px;
+  line-height: 1;
+  padding: 0.25rem 0.3rem;
+  font-size: 0.7875rem;
+  border-radius: 0.2rem;
 }
 
 .card i {
@@ -12355,4 +12387,86 @@ a:not([href]):not([tabindex]) {
   height: 48px;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.h5--20px {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 20px;
+  font-family: HiraKakuProN-W6;
+  line-height: 1.89;
+}
+
+.twitter-share-btn {
+  /* width: 100px; */
+  position: relative;
+  padding: 1px 8px 1px 6px;
+  background-color: #1b95e0;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0;
+  padding: 16px 16px 8px 16px;
+}
+
+.twitter-icon {
+  height: 20px;
+  color: white;
+  vertical-align: top;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.cricle-member-name {
+  min-height: 50px;
+}
+
+.grad-wrap {
+  position: relative;
+}
+.grad-wrap + .grad-wrap {
+  margin-top: 40px;
+}
+
+.grad-trigger::after {
+  content: "もっと読む" /*クリック前のボタンのラベル*/
+}
+.grad-trigger .fa {
+  margin-right: .5em;
+}
+.grad-item {
+  position: relative;
+  overflow: hidden;
+}
+.grad-item.is-hide {
+  height: 55px; /*隠した後の高さ*/
+}
+.grad-item::before {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 40px; /*グラデーションで隠す高さ*/
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+  background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+}
+
+
+.grad-trigger.is-show {
+  bottom: -2em;
+}
+.grad-trigger.is-show::after {
+  content: "閉じる" /*クリック後にボタンのラベルを変える*/
+}
+.grad-trigger.is-show + .grad-item::before {
+  display: none;
 }

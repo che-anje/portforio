@@ -40,6 +40,11 @@ class Circle extends Model
         //->withPivot('id');
     }
 
+    public function categories() {
+        return $this->belongsToMany('App\Models\Circle', 'category_circle', 'circle_id', 'category_id');
+        //->withPivot('id');
+    }
+
     public function user() {
         return $this->belongsTo('App\Models\User', 'admin_user_id');
     }

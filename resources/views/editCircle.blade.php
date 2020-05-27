@@ -30,8 +30,8 @@
   </li>
 </ul>
 
-<form class="create_circle" id="create_circle" enctype="multipart/form-data" 
-    action="{{ route('circle.create') }}" accept-charset="UTF-8" method="post">
+<form class="edit_circle" id="create_circle" enctype="multipart/form-data" 
+    action="{{ route('circle.edit', [ $circle->id ]) }}" accept-charset="UTF-8" method="post">
     {{ csrf_field() }}
 <!-- 1 -->
 <div class="tab-content">
@@ -82,13 +82,13 @@
                             <div id="collapse{{ $category->id }}" class="collapse" aria-labelledby="#heading{{ $category->id }}"
                             data-parent="#accordionExample">
                                 <div class="card-body p-0">
-                                    <ul class="nav flex-column">
+                                    <ul class="nav flex-column genres" name="genres" data-url="/getCircleGenres/{{ $circle->id }}">
                                         @foreach($category->genres as $genre)
                                         <li class="nav-item p-3 border-bottom">
                                             <label class="d-flex justify-content-between align-items-center mb-0 position-relative">
                                                 <p class="p-0 line-height-2 pl-3 mb-0">{{ $genre->name }}</p>
-                                                <input type="checkbox" name="genre_record" class="d-none checkbox__input 
-                                                checkbox__genre" value="{{ $genre->id }}" >
+                                                <input id="checkbox__genre" type="checkbox" name="genre_record" class="d-none checkbox__input checkbox__genre" value="{{ $genre->id }}"  
+                                                @if(in_array($genre->id, $genres_id)) checked @endif >
                                                 <span class="checkbox__lg"></span>
                                             </label>
                                         </li>
@@ -135,10 +135,14 @@
                     align-items-center hov--default p-3_5">
                         <div>
                             <a onClick="$('#upfile').click()">
+                            @if($circle->image)
+                                <img id="circle_img" src="/storage/CircleImages/{{ $circle->image }}" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
+                            @else
                                 <img id="circle_img" src="/storage/CircleImages/Camera.png" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
+                            @endif
                             </a>
                             <input type="file" accept="image/png, image/jpeg, image/gif" 
-                            name="image" id="upfile" style="display: none;" required>
+                            name="image" id="upfile" style="display: none;" class="required">
                         </div>
                     </label>
                 </div>
@@ -150,8 +154,8 @@
             </div>
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
-                    <input name="name" id="name" type="text" class="p-0 w-100 textarea--eventreport" required
-                    placeholder="サークル名を入力（例：サッカー好き集まれ）" >
+                    <input name="name" id="name" type="text" class="p-0 w-100 textarea--eventreport required" 
+                    placeholder="サークル名を入力（例：サッカー好き集まれ）" value="{{ $circle->name }}" >
                 </div>
             </div>
             <!-- 紹介文 -->
@@ -162,8 +166,8 @@
             </div>
             <div class="shadow-sm mb-0 bg-white pt-3 pb-2">
                 <div class="container col-md-8 col-lg-6">
-                    <textarea name="introduction" id="introduction" type="text" cols="5" rows="6" class="p-0 w-100 textarea--eventreport" required
-                    placeholder="何をするサークルか記載しましょう。サークル設立の思いなども記載しましょう。（例：みんなで楽しく登山をしたいと思ってサークルを設立しました。主に日帰り登山をしようと思っています。高尾山や鍋割山などに行こうと思っています。"></textarea>
+                    <textarea name="introduction" id="introduction" type="text" cols="5" rows="6" class="p-0 w-100 textarea--eventreport required" 
+                    placeholder="何をするサークルか記載しましょう。サークル設立の思いなども記載しましょう。（例：みんなで楽しく登山をしたいと思ってサークルを設立しました。主に日帰り登山をしようと思っています。高尾山や鍋割山などに行こうと思っています。" >{{ $circle->introduction }}</textarea>
                 </div>
             </div>
             <!-- 活動場所 都道府県 -->
@@ -180,9 +184,14 @@
                             <div id>
                                 <div class="cursor-pointer">
                                     <p class="nav-link link--arrow p-0 mb-0">
+                                        
                                         <a  href="javascript:void(0);" class="circle-pref" style="color: black;"
                                         data-toggle="modal" data-target="#myAreaModal">
+                                        @if($circle->prefecture_id)
+                                            {{ $prefectures[$circle->prefecture_id-1]->name }}
+                                        @else
                                             主な活動地域を選択
+                                        @endif
                                         </a>
                                     </p>
                                 </div>
@@ -206,7 +215,8 @@
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
                                             <input type="radio" name="prefecture_id" id="{{ $prefecture->name }}" 
-                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
+                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" 
+                                            @if($prefecture->id == $circle->prefecture_id) checked @endif>
                                             <label class="d-flex justify-content-between align-items-center 
                                             mb-0 position-relative" for="{{ $prefecture->name }}">
                                             <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
@@ -231,7 +241,7 @@
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <input name="detailedArea" id="detailedArea" class="p-0 w-100 textarea--eventreport"
-                    placeholder="詳細な場所（例：山田１丁目 味の素スタジアム">
+                    placeholder="詳細な場所（例：山田１丁目 味の素スタジアム" value="{{ $circle->detailedArea }}">
                 </div>
             </div>
             <!-- 年齢層 -->
@@ -243,12 +253,16 @@
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <ul class="p-0 m-0">
                         <div>
-                            <div id>
+                            <div>
                                 <div class="cursor-pointer">
                                     <p class="nav-link link--arrow p-0 mb-0">
                                         <a  href="#" class="circle-ageGroup" data-toggle="modal" style="color: black;"
                                         data-target="#ageModal">
-                                        指定しない
+                                        @if($circle->ageGroup)
+                                            {{ \App\Models\Circle::AGEGROUP[$circle->ageGroup] }}
+                                        @else
+                                            指定しない
+                                        @endif
                                         </a>
                                     </p>
                                 </div>
@@ -272,7 +286,8 @@
                                     @foreach(\App\Models\Circle::AGEGROUP as $key => $val)
                                     <li class="border-bottom nav-item p-3">
                                         <input type="radio" name="ageGroup" id="{{ $val }}" data-url=""
-                                        class="d-none checkbox__input checkbox__area" value="{{ $key }}">
+                                        class="d-none checkbox__input checkbox__ageGroup" value="{{ $key }}"
+                                        @if($key == $circle->ageGroup) checked @endif>
                                         <label class="d-flex justify-content-between align-items-center 
                                         mb-0 position-relative" for="{{ $val }}">
                                         <span class="p-0 line-height-2 pl-3 mb-0">{{ $val }}</span>
@@ -295,7 +310,7 @@
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <input name="activityDay" id="activityDay" class="p-0 w-100 textarea--eventreport"
-                    placeholder="指定しない" value>
+                    placeholder="指定しない" value="{{ $circle->activityDay }}">
                 </div>
             </div>
             <!-- 費用 -->
@@ -306,7 +321,7 @@
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <input name="cost" id="cost" class="p-0 w-100 textarea--eventreport"
-                    placeholder="無料" value>
+                    placeholder="無料" value="{{ $circle->cost }}">
                 </div>
             </div>
         </div>
@@ -346,8 +361,8 @@
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <select name="recruit_status" id="recruit_status" class="p-0 w-100 textarea--eventreport custom-select 
                     custom-select--makecircle" placeholder="メンバー募集">
-                        <option value="0">募集中</option>
-                        <option value="1">募集中止</option>
+                        <option value="0" @if($circle->recruit_status==0) selected @endif>募集中</option>
+                        <option value="1" @if($circle->recruit_status==1) selected @endif>募集中止</option>
                     </select>
                 </div>
             </div>
@@ -361,8 +376,8 @@
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <select name="request_required" id="request_required" class="p-0 w-100 textarea--eventreport custom-select 
                     custom-select--makecircle" placeholder="メンバーによるイベント作成の許可を選択">
-                        <option value="0">必要（サークル参加時の承認が必要）</option>
-                        <option value="1">不要（サークル参加時の承認が不要）</option>
+                        <option value="0" @if($circle->request_required==0) selected @endif>必要（サークル参加時の承認が必要）</option>
+                        <option value="1" @if($circle->request_required==1) selected @endif>不要（サークル参加時の承認が不要）</option>
                     </select>
                 </div>
             </div>
@@ -374,7 +389,7 @@
             <div class="shadow-sm mb-0 bg-white pt-3 pb-3">
                 <div class="container col-md-8 col-lg-6">
                     <textarea name="description_template" id="description_template" cols="5" rows="5" class="p-0 w-100 textarea--eventreport"
-                    placeholder="参加時の教えてもらいたいことを記載 例）年齢とスポーツ歴を書いてください。"></textarea>
+                    placeholder="参加時の教えてもらいたいことを記載 例）年齢とスポーツ歴を書いてください。">{{ $circle->description_template }}</textarea>
                 </div>
             </div>
             <div class="container col-md-8 col-lg-6">
@@ -386,8 +401,8 @@
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <select name="private_status" id="private_status" class="p-0 w-100 textarea--eventreport custom-select 
                     custom-select--makecircle" placeholder="サークルの公開・非公開を選択">
-                        <option value="0">公開</option>
-                        <option value="1">非公開</option>
+                        <option value="0" @if($circle->private_status==0) selected @endif>公開</option>
+                        <option value="1" @if($circle->private_status==1) selected @endif>非公開</option>
                     </select>
                 </div>
             </div>
@@ -408,9 +423,10 @@
     </div>
 </div>
 <script>
-    //サークル作成 disabled
 $(function() {
-  function requiredCheck() {
+  $('.send').prop("disabled", !($('.checkbox__genre:checked').length > 0 && $('.checkbox__area:checked').length > 0));
+  //必須項目のチェック
+  function requiredCheck () {
     let flag = true;
     //必須項目をひとつずつチェック
     $('form input:required').each(function(e) {
@@ -435,15 +451,14 @@ $(function() {
         $('.send').prop("disabled", true);
     }
   }
-  //始めにjQueryで送信ボタンを無効化する
-  $('.send').prop("disabled", true);
-  
   //入力欄の操作時
-  $("form input:required,form textarea:required,.checkbox__genre,.checkbox__area").change(function () {
+  $(".required").change(function (e) {
+    $(e.target).prop('required', true);
     requiredCheck();
-    
+  });
+  $(".checkbox__genre,.checkbox__area").change(function () {
+    requiredCheck();
   });
 });
-
 </script>
 @endsection

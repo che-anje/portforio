@@ -93,9 +93,10 @@ class ProfileController extends Controller
 
     public function edit(int $id, EditProfileRequest $request) {
         $my_profile = Profile::where('user_id',$id)->first();
+        $old_image = $my_profile->user_image;
         $my_profile->fill($request->validated());
         if($request->file('user_image')) {
-            Storage::delete('public/UserImages/'.$my_profile->user_image);
+            Storage::delete('public/UserImages/'.$old_image);
             $originalImg = $request->user_image;
             $filePath = $originalImg->store('public/UserImages');
             $my_profile->user_image = str_replace('public/UserImages/', '', $filePath);

@@ -161,7 +161,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <div class="row pl-2 pr-2">
             @foreach($categories as $category)
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-                <a href="" class="display-block">
+                <a href="/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
                     <div class="card text-white text-center 
                     rounded border-0 ">
                     @if($category->image)
@@ -217,28 +217,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         </div>
     </div>
 </section>
-<style>
-.info-slide .slick-dots {
-  position: absolute;
-  bottom: -20px;
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: center;
-}
 
-.info-slide .slick-dots li button:before {
-  color: gray;
-  opacity: 0.7;
-}
-
-.info-slide .slick-dots li.slick-active button:before {
-  color: black;
-  opacity: 1;
-}
-</style>
 
 <!-- 人気のサークルから探す -->
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
@@ -254,8 +233,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     @else
                         <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
                     @endif
-                    <div class="card-body card-body--narrow border 
-                    rounded-bottom border-top-0 pb-4">
+                    <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
                             <p class="btn btn-outline-primary btn-outline-blue 
@@ -264,7 +242,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </div>
                         <div class="row no-gutters">
                             <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
+                            <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
                         </div>
                         <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
                             {{ $circle->introduction }}
@@ -289,7 +267,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <ul class="scrollable-list pl-0 ib-list d-flex">
             @foreach($circles as $circle)
             <li class="d-inline-block mr-2">
-                <a href="" class="card card--circle hov--default border-0">
+                <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
@@ -306,7 +284,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </div>
                         <div class="row no-gutters">
                             <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
-                            <i class="fas fa-map-marker-alt mr-2"><p>人数</p></i>
+                            <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
                         </div>
                         <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
                             {{ $circle->introduction }}

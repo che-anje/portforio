@@ -25,6 +25,9 @@ trait aboutPrefecture
             $profile->prefectureOfInterest = $id;
             $profile->cityOfInterest = 0;
             $profile->save();
+            $my_prefecture = Prefecture::find($id);
+            $prefectures = $this->getPrefectures();
+            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
         
     }
 }

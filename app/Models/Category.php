@@ -11,7 +11,12 @@ class Category extends Model
         'name',
     ];
 
-    public function genre() {
+    public function genres() {
         return $this->hasMany(Genre::class);
+    }
+
+    public function circles()
+    {
+        return $this->belongsToMany('App\Models\Circle');
     }
 }

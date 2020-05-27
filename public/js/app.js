@@ -151,7 +151,7 @@ $(document).on('change', '.checkbox__genre', function(e) {
   if($count >= 3) {
       $not.attr("disabled",true);
   }else{
-      //3つ以下ならisabledを外す
+      //3つ以下ならdisabledを外す
       $not.attr("disabled",false);
   }
 
@@ -175,30 +175,26 @@ $(function(){
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
- 
     //画像でない場合は処理終了
     if(file.type.indexOf("image") < 0){
       alert("画像ファイルを指定してください。");
       return false;
     }
- 
     //アップロードした画像を設定する
     reader.onload = (function(file){
       return function(e){
         $("#circle_img").attr("src", e.target.result);
         $("#circle_img").attr("title", file.name);
+        $("#upfile").attr("value", file.name);
       };
     })(file);
     reader.readAsDataURL(file);
- 
   });
 });
 //都道府県設定
 $('.modal-circle-pref').on('change',function(e) {
   var name = $(e.target).attr('id');
-  $('.circle-pref').text(name);
-  
-  
+  $('.circle-pref').text(name);  
 });
 
 $('.modal-circle-ageGroup').on('change',function(e) {
@@ -206,14 +202,8 @@ $('.modal-circle-ageGroup').on('change',function(e) {
   $('.circle-ageGroup').text(name);  
 });
 
-//サークル作成 disabled
-$(function() {
-  //始めにjQueryで送信ボタンを無効化する
-  $('.send').prop("disabled", true);
-
-  //入力欄の操作時
-  $("form input:required,form textarea:required,.checkbox__genre,.checkbox__area").change(function () {
-    //必須項目が空かどうかフラグ
+$(function(){
+  function requiredCheck() {
     let flag = true;
     //必須項目をひとつずつチェック
     $('form input:required').each(function(e) {
@@ -222,13 +212,12 @@ $(function() {
             flag = false;
         }
     });
-
     $('form textarea:required').each(function(e) {
       //もし必須項目が空なら
       if ($('form textarea:required').eq(e).val() === "") {
           flag = false;
       }
-  });
+    });
     //全て埋まっていたら
     if (flag && $('.checkbox__genre:checked').length > 0 && $('.checkbox__area:checked').length > 0) {
         //送信ボタンを復活
@@ -238,8 +227,12 @@ $(function() {
         //送信ボタンを閉じる
         $('.send').prop("disabled", true);
     }
-  });
+  }
 });
+
+//サークル作成 disabled
+
+
 
 //マイページ モーダル
 $(window).load(function() {
@@ -250,6 +243,64 @@ $('.modal-view-overlay').on('click',function(){
     $('.modal-view').fadeOut();
     return false;
 });
+
+
+var returnHeight;
+
+$(function(){
+  $(".grad-item").each(function(){ //ターゲット(縮めるアイテム)
+    $(this).addClass("is-hide"); //CSSで指定した高さにする
+    returnHeight = $(this).height(); //is-hideの高さを取得
+  });
+});
+
+$(".grad-trigger").click(function(){ //トリガーをクリックしたら
+  if(!$(this).hasClass("is-show")) {
+    var itemHeight = $(".description").height()+40;
+    $(this).addClass("is-show").prev().animate({height: itemHeight},200).removeClass("is-hide"); //高さを元に戻す
+  } else {
+    $(this).removeClass("is-show").prev().animate({height: returnHeight},200).addClass("is-hide"); //高さを制限する
+  }
+});
+
+//サークルメニュー
+/*
+$('.circle-delete').click(function(){
+  if(!confirm('本当に削除しますか？')){
+    
+      return false;
+  }else{
+      
+      location.href = 'index.html';
+  }
+});*/
+
+
+//サークル編集
+$(document).ready(function(){
+  var url = $('.genres').attr('data-url');
+  $.ajax({
+    url: url,
+    type: "GET",
+  })
+  .done(function(data){
+    $.each(data, function(index, value){
+      var val = value;
+      var $input_genre = $("input[name='genre_record'][value="+val+"]");
+      var $genreHiddenTag = $('#genreHiddenTag');
+      $('<input>').attr({
+        'type': 'hidden',
+        'id': 'genre',
+        'name': 'genres[]',
+        'value': val,
+      }).appendTo(genreHiddenTag);
+    });
+  })
+  .fail(function(){
+    console.log("失敗");
+  });
+});
+
 
 
 /******/ (function(modules) { // webpackBootstrap

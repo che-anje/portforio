@@ -13,18 +13,18 @@
     <!-- Scripts -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="js/slick.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/slick.min.js"></script>
+	<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
+	<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.6/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
 	<script src="{{ asset('js/app.js') }}" defer></script>
 
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- Styles -->
-	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
-	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
