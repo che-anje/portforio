@@ -137,7 +137,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend">
-            "「興味・趣味からサークルを探す"
+            「興味・趣味からサークルを探す
         </h2>
         <section class="pb-3">
             <div class="position-relative">
@@ -255,7 +255,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="" class="btn btn-outline-info w-100 
+        <p class="text-center mb-0"><a href="{{ route('circle.search', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「人気順」のサークルをもっと見る</a></p>
     </div>
 </section>
@@ -297,7 +297,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="" class="btn btn-outline-info w-100 
+        <p class="text-center mb-0"><a href="{{ route('circle.search', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「新着順」のサークルをもっと見る</a></p>
     </div>
 </section>

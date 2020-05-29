@@ -250,6 +250,47 @@ class CircleController extends Controller
         ]);
     }
 
+    public function search(int $pref_id) {
+        $prefectures = $this->getPrefectures();
+        if(Auth::check()) {
+            if(Auth::user()->profile->prefectureOfInterest != 0) {
+                $my_prefecture = $this->getMyPrefecture();
+            }elseif(session()->exists('my_prefecture')){
+                $my_prefecture = session('my_prefecture');
+            }else{
+                $my_prefecture = Prefecture::find(48);
+            }
+        }elseif(session()->exists('my_prefecture')){
+            $my_prefecture = session('my_prefecture');
+        }else{
+            $my_prefecture = Prefecture::find(48);
+        }
+        $categories = Category::orderby('id', 'asc')->get();
+        if($my_prefecture!=null && $my_prefecture->id!=48) {
+            $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'desc')->get();
+        }else{
+            $circles = Circle::orderby('id', 'desc')->get();
+        }
+        $circles_count = $circles->count();
+        $pop_genres = [];
+        foreach($circles as $circleRecord) {
+            $circle_genres = $circleRecord->genre()->orderby('genre_id')->get();
+            $circleRecord['genres'] = $circle_genres;
+            $circleRecord['count'] = Circle_User::where('circle_id', $circleRecord->id)->count();
+            foreach($circle_genres as $circle_genre) {
+                $pop_genres[] = $circle_genre->name;
+            }
+            $pop_genres = array_unique($pop_genres);
+        }
+        return view('searchCircle', [
+            'prefectures' => $prefectures,
+            'my_prefecture' => $my_prefecture,
+            'categories' => $categories,
+            'circles' => $circles,
+            'circles_count' => $circles_count,
+        ]);
+    }
+
     public function up(Request $request) {
         $circle = Circle::find(1);
         

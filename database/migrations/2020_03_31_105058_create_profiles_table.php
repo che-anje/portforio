@@ -22,22 +22,14 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('surName');
+            $table->string('firstName');
             $table->string('familyName');
             $table->string('name');
             $table->tinyInteger('gender');
-            $table->tinyInteger('genderPublishState')->unsigned()->default(GenderPublishState::None);
-            $table->date('birthday');
-            $table->tinyInteger('birthdayPublishState');
-            $table->tinyInteger('prefectureOfInterest1');
-            $table->Integer('cityOfInterest1');
-            $table->tinyInteger('prefectureOfInterest2');
-            $table->Integer('cityOfInterest2');
-            $table->tinyInteger('prefectureOfInterest3');
-            $table->Integer('cityOfInterest3');
+            $table->tinyInteger('prefectureOfInterest');
+            $table->Integer('cityOfInterest');
             $table->tinyInteger('searchSettingByEmail');
             $table->string('introduction');
-            $table->tinyInteger('myArea');
             $table->timestamps();
         });
     }

@@ -129,7 +129,7 @@
             </li>
         @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="/search/kanagawa?service_id=51" class="btn btn-outline-info w-100 text-fw-bold">人気のサークルをもっと見る</a></p>
+        <p class="text-center mb-0"><a href="{{ route('circle.search', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 text-fw-bold">人気のサークルをもっと見る</a></p>
     </div>
 </section>
 
@@ -167,7 +167,7 @@
             </li>
         @endforeach
       </ul>
-      <p class="text-center mb-0"><a href="/search/kanagawa?service_id=51&order=newer" class="btn btn-outline-info w-100 text-fw-bold">新着のサークルをもっと見る</a></p>
+      <p class="text-center mb-0"><a href="/search/{{ $my_prefecture->id }}" class="btn btn-outline-info w-100 text-fw-bold">新着のサークルをもっと見る</a></p>
     </div>
   </section>
 <!-- 興味のあることから探す -->
