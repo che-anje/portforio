@@ -18,12 +18,24 @@ class PrefectureController extends Controller
         if(Auth::check()) {
             $this->changePrefecture($id);
             return redirect('/');
-            
         }else{
             $my_prefecture = Prefecture::find($id);
             $prefectures = $this->getPrefectures();
             session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
             return redirect('/');
         }
+    }
+
+    public function circlePrefChange(int $pref_id, $category_id) {
+        if(Auth::check()) {
+            $this->changePrefecture($pref_id);
+            
+        }else{
+            $my_prefecture = Prefecture::find($pref_id);
+            $prefectures = $this->getPrefectures();
+            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
+            
+        }
+        return redirect("/circle/$category_id/$pref_id");
     }
 }

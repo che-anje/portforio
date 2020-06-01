@@ -41,7 +41,7 @@
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
-                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="{{ route('prefecture.change', [ $prefecture->id ]) }}"
+                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles/{{ $prefecture->id }}/{{ $my_category->id }}"
                                             class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
                                             <label class="d-flex justify-content-between align-items-center 
                                             mb-0 position-relative" for="{{ $prefecture->id }}">
@@ -254,48 +254,15 @@
 </style>
 
 <script>
-  $(function() {
-    $('#keyword-submit-btn').on('click', function() {
-      var pref_key = $('#keyword-text').data('pref')
-      var keyword = $('#keyword-text').val();
-      if (keyword == '' && pref_key == '') {
-        window.location.href = `/search/all`;
-      } else if (keyword == '' && pref_key != '') {
-        window.location.href = `/search/${pref_key}`;
-      } else if (keyword != '' && pref_key == '') {
-        window.location.href = `/search?keyword=${keyword}`;
-      } else if (keyword != '' && pref_key != '') {
-        window.location.href = `/search/${pref_key}?&keyword=${keyword}`;
-      }
-    });
+$('.modal-pref').on('change',function(e) {
+  var key = $(e.target).val();
+  var url = $(e.target).attr('data-url');
+  
+  location.href = url;
+  
+});
 
-    $('#keyword-text').keypress(function(e) {
-      if (e.which == 13) {
-        $('#keyword-submit-btn').click();
-      }
-    })
-
-    $('.tunagate-featured').slick({
-      autoplay: true,
-      autoplaySpeed: 2500,
-      speed: 800,
-      arrows: false,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      dots: true,
-      responsive: [
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '20%',
-          }
-        }
-      ]
-    });
-  });
+    
 </script>
 
 
