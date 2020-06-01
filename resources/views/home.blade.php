@@ -143,16 +143,16 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             <div class="position-relative">
                 <div class="row">
                     <div class="col-9 pr-0">
-                        <input class="form-control mb-2 pl-5" 
+                        <input class="form-control mb-2 pl-5 search_form" 
                         type="text" placeholder="キーワードを入力" 
-                        id="keyword-text" data-pref="">
+                        id="keyword-text" data-pref="{{ $my_prefecture->id }}">
                         <div class="input-icon position-absolute pl-3">
                             <i class="fas fa-search" style="font-size: 18px;"></i>
                         </div>
                     </div>
                     <div class="col-3 pl-2">
                         <button type="submit" class="btn btn-warning btn-warning--grad" 
-                        id="keyword-submit-btn" style="width: 100%;">
+                        id="keyword-submit-btn" style="width: 100%;" data-url="/index/{{ $my_prefecture->id }}">
                         検索</button>
                     </div>
                 </div>
@@ -320,4 +320,15 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         position-relative">+</span>サークルを作る</a>
     </div>
 </section>
+<script>
+$('#keyword-submit-btn').on('click',function(e) {
+    var val = $('.search_form').val();
+    if(val) {
+        var url = $(e.target).attr('data-url')+'?&keyword='+val;
+    }else{
+        var url = $(e.target).attr('data-url');
+    }
+    location.href = url;
+});
+</script>
 @endsection

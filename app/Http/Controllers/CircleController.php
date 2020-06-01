@@ -257,8 +257,19 @@ class CircleController extends Controller
             $my_prefecture = Prefecture::find(48);
         }
         $categories = Category::orderby('id', 'asc')->get();
+        $query = Circle::query();
         if($my_prefecture!=null && $my_prefecture->id!=48) {
-            if($request->input('category')){
+            if($request->input('keyword')){
+                $keyword = $request->input('keyword');
+                $circles = $query->where('prefecture_id', $my_prefecture->id)
+                    ->where(function($query) use($keyword){
+                        $query->where('name', 'LIKE', "%{$keyword}%");
+                        $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
+                        $query->orWhereHas('genre', function($query) use ($keyword) {
+                            $query->where('name',"%{$keyword}%");
+                        });
+                    })->orderby('id', 'asc')->get();
+            }elseif($request->input('category')){
                 $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
             }elseif($genre_id){
                 $circles = Genre::find($genre_id)->circle()->where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
@@ -266,7 +277,17 @@ class CircleController extends Controller
                 $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
             }
         }else{
-            if($request->input('category')){
+            if($request->input('keyword')){
+                $keyword = $request->input('keyword');
+                $circles = $query->where(function($query) use($keyword){
+                        $query->where('name', 'LIKE', "%{$keyword}%");
+                        $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
+                        $query->orWhereHas('genre', function($query) use ($keyword) {
+                            $query->where('name',"%{$keyword}%");
+                        });
+                    })->orderby('id', 'asc')->get();
+            
+            }elseif($request->input('category')){
                 $circles = Circle::where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
             }elseif($genre_id){
                 $circles = Genre::find($genre_id)->circle()->orderby('id', 'asc')->get();
@@ -277,7 +298,6 @@ class CircleController extends Controller
         $circles_count = $circles->count();
         $pop_genres = [];
         $this->getGenres($circles);
-        
         if($request->ajax()) {
             $query = Circle::query();
             $keyword = $request->keyword;
