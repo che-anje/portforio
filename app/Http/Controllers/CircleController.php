@@ -220,7 +220,7 @@ class CircleController extends Controller
         if($my_prefecture!=null && $my_prefecture->id!=48) {
             $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id', $category_id)->orderby('id', 'desc')->get();
         }else{
-            $circles = Circle::orderby('id', 'desc')->get();
+            $circles = Circle::where('category_id', $category_id)->orderby('id', 'desc')->get();
         }
         $circles_count = $circles->count();
         $pop_genres = [];
