@@ -167,7 +167,7 @@
                 <div class="field">
                     <select class="textarea--eventreport prefectureOfInterest" style="border: none;background-color: #fff;height: 24px;" 
                     name="prefectureOfInterest" id="prefectureOfInterest">
-                            <option value="0">都道府県を選択</option>
+                            <option value="48">都道府県を選択</option>
                         @foreach($prefectures as $prefecture)
                             <option value="{{ $prefecture->id }}" data-url="{{ route('cities.get', [ $prefecture->id ]) }}" 
                                 {{ $prefecture->id == old('prefectureOfInterest', 

@@ -86,7 +86,7 @@
         <div class="position-relative container col-md-8 col-lg-6">
             <div class="row">
                 <div class="col-9 pr-0">
-                    <input type="text" class="form-control mb-2 pl-5" value placeholder="キーワードを入力">
+                    <input type="text" class="form-control mb-2 pl-5 keyword" value placeholder="キーワードを入力">
                     <div class="input-icon position-absolute pl-3">
                         <i class="fas fa-search" style="font-size: 18px;"></i>
                     </div>
@@ -103,26 +103,26 @@
     <div class="pb-3 d-none d-sm-block"></div>
 <div>
     <div class="container col-md-8 col-lg-6">
-        <h1 style="font-size:20px; padding-left:0px; margin-bottom:8px; font-family:HiraKakuProN-W6" class="left mt-4 h2--extend -event">
-            大阪のサークル一覧（{{ $circles_count }}件）
+        <h1 style="font-size:20px; padding-left:0px; margin-bottom:8px; font-family:HiraKakuProN-W6" id="circles_count" class="left mt-4 h2--extend -event">
+            {{ $my_prefecture->name }}のサークル一覧（{{ $circles_count }}件）
         </h1>
         <div class="row justify-content-between">
             <div class="col">
                 <ul class="list-unstyled d-flex">
                     <li class="list-link">
-                        <a href="#" class="nav-link--gray link--active order" data-value="popular" data-url="/search/{{ $my_prefecture->id }}?order=popular">人気順</a>
+                        <a href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray link--active order" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
                     </li>
                     <li class="list-link">
-                        <a href="#" class="nav-link--gray order" data-value="new" data-url="/search/{{ $my_prefecture->id }}?order=new">新着順</a>
+                        <a href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div>
+    <div class="circle-list">
         <div>
             @foreach($circles as $circle)
-            <div class="bg-white search-shadow pt-3 mb-2">
+            <div id="circle_item" class="bg-white search-shadow pt-3 mb-2">
                 <div class="container col-md-8 col-lg-6">
                     <div>
                         <a href="{{ route('circle.show', [ $circle->id ]) }}" class="hov--default">
@@ -139,7 +139,7 @@
                                     @endforeach
                                     </div>
                                     <div class="row no-gutters">
-                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $my_prefecture->name }}</p></i>
+                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture }}</p></i>
                                         <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
                                     </div>
                                     <p class="text-black-50 line-2 mb-2_5 text-fz-14px">
@@ -247,6 +247,7 @@
 </style>
 
 <script>
+/*
 $('.order').click(function () {
 var params = getParameter();
     params['order'] = $(this).attr('data-value');
@@ -280,10 +281,79 @@ function getParameter(){
     }
     return paramsArray;
 };
+ */
+/*
+$(function(){
+    $('.order').click(function(event){
+        event.preventDefault();
+        var orderType = $(this).attr('data-value');
+        switch(orderType){
+            case 'new':
+                $(this).addClass('link--active');
+                $('.order[data-value=popular]').removeClass('link--active');
+                break;
+            case 'popular':
+                $(this).addClass('link--active');
+                $('.order[data-value=new]').removeClass('link--active');
+                break;
+        }
+        var pref_id = '{{$my_prefecture->id}}';
+        var keyword = $('.keyword').val();
+        $.ajax({
+            url: 'http://127.0.0.1:8000/index/'+pref_id,
+            type: 'GET',
+            data: {
+                order: orderType,
+                keyword: keyword,
+            },
+            dataType: 'html',
 
-    
-
-    
+        })
+        .done(function(response) {
+            $('.circle-list').html(response);
+        })
+        .fail(function (html) { 
+            alert('失敗');
+        });
+    });
+}); */
+$(function(){
+  $('.order').click(function(event){
+      event.preventDefault();
+      var orderType = $(this).attr('data-value');
+      switch(orderType){
+          case 'new':
+              $(this).addClass('link--active');
+              $('.order[data-value=popular]').removeClass('link--active');
+              break;
+          case 'popular':
+              $(this).addClass('link--active');
+              $('.order[data-value=new]').removeClass('link--active');
+              break;
+      }
+      var pref_id = '{{$my_prefecture->id}}';
+      var keyword = $('.keyword').val();
+      
+      $.ajax({
+          url: 'http://127.0.0.1:8000/index/'+pref_id,
+          type: 'GET',
+          data: {
+              order: orderType,
+              keyword: keyword,
+          },
+          dataType: 'html',
+      })
+      .done(function(response) {
+        $('.circle-list').html(response);
+        var count = $(response).find('#circle_item').length;
+        $('#circles_count').text('{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
+      })
+      .fail(function (response) { 
+          alert('失敗');
+      });
+      
+  });
+}); 
 </script>
 
 

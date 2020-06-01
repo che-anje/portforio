@@ -58,9 +58,8 @@ Route::post('/circle/{id}/edit', 'CircleController@edit')->name('circle.edit');
 Route::delete('/circle/{id}/delete', 'CircleController@delete')->name('circle.delete');
 
 //サークル一覧・探す
-Route::get('/search/{pref_id}', 'Circlecontroller@search')->name('circle.search');
-Route::get('/{category_id}/{pref_name}', 'Circlecontroller@categorySearch');
-Route::get('/search/{prefecture_name}/{genre_id}');
+Route::get('/index/{pref_id}/{genre?}', 'CircleController@index')->name('circle.index');
+Route::get('/{category_id}/{pref_id}', 'CircleController@categorySearch');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

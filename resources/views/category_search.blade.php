@@ -80,9 +80,9 @@
         <h2 class="h2 h2--extend -crown mb-3_5">人気のジャンル</h2>
         @if($pop_genres)
             @foreach($pop_genres as $pop_genre)
-            <a href="/search/kanagawa/4" >
+            <a href="{{ route('circle.index', ['pref_id'=>$my_prefecture->id, 'genre'=>$pop_genre->id]) }}" >
                 <p class="btn btn-outline-primary btn-outline-blue btn-sm mr-2 rounded-1000 mb-2_5 pl-2_5 pr-2_5">
-                    {{ $pop_genre }}
+                    {{ $pop_genre->name }}
                 </p>
             </a>
             @endforeach
@@ -129,7 +129,7 @@
             </li>
         @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="{{ route('circle.search', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 text-fw-bold">人気のサークルをもっと見る</a></p>
+        <p class="text-center mb-0"><a href="/index/{{ $my_prefecture->id }}?category={{ $my_category->id }}" class="btn btn-outline-info w-100 text-fw-bold">人気のサークルをもっと見る</a></p>
     </div>
 </section>
 
@@ -167,7 +167,7 @@
             </li>
         @endforeach
       </ul>
-      <p class="text-center mb-0"><a href="/search/{{ $my_prefecture->id }}" class="btn btn-outline-info w-100 text-fw-bold">新着のサークルをもっと見る</a></p>
+      <p class="text-center mb-0"><a href="/index/{{ $my_prefecture->id }}?category={{ $my_category->id }}" class="btn btn-outline-info w-100 text-fw-bold">新着のサークルをもっと見る</a></p>
     </div>
   </section>
 <!-- 興味のあることから探す -->
