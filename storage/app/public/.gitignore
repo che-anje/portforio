@@ -1,6 +1,5 @@
 *
-!public/
-!UserImages
-!CircleImages
-!CategoryImages
+!/Applications/MAMP/htdocs/Tsunagate/storage/app/public/CategoryImages
+!CircleImages/
+!CategoryImages/
 !.gitignore
