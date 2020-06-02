@@ -31,6 +31,8 @@ class CreateProfileRequest extends FormRequest
             'birthdate_1i' => 'required',
             'birthdate_2i' => 'required',
             'birthdate_3i' => 'required',
+            'prefectureOfInterest' => 'required',
+            'cityOfInterest' => 'required',
             'introduction' => 'required|max:140|',
         ];
     }

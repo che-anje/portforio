@@ -277,6 +277,7 @@
 <!-- 紹介文 -->
 <div class="container col-md-8 col-lg-6">
     <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">紹介文</p>
+    <p class="message-required d-inline-block mb-0">必須</p>
 </div>
 <div class="shadow-sm mb-0 bg-white pt-3 pb-2">
     <div class=" container col-md-8 col-lg-6">

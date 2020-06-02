@@ -50,8 +50,13 @@
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
-                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="{{ route('prefecture.change', [ $prefecture->id ]) }}"
-                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
+                                            @if($my_category)
+                                                <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles_pref/{{ $prefecture->id }}/{{ $my_category->id }}"
+                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" data-value="{{ $my_category->id }">
+                                            @else
+                                                <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles_pref/{{ $prefecture->id }}"
+                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" data-value="">
+                                            @endif
                                             <label class="d-flex justify-content-between align-items-center 
                                             mb-0 position-relative" for="{{ $prefecture->id }}">
                                             <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
@@ -104,7 +109,7 @@
 <div>
     <div class="container col-md-8 col-lg-6">
         <h1 style="font-size:20px; padding-left:0px; margin-bottom:8px; font-family:HiraKakuProN-W6" id="circles_count" class="left mt-4 h2--extend -event">
-            {{ $my_prefecture->name }}のサークル一覧（{{ $circles_count }}件）
+            {{ $my_prefecture->name }}の@if($my_category){{ $my_category->name }}@endifサークル一覧（{{ $circles_count }}件）
         </h1>
         <div class="row justify-content-between">
             <div class="col">
@@ -247,41 +252,7 @@
 </style>
 
 <script>
-/*
-$('.order').click(function () {
-var params = getParameter();
-    params['order'] = $(this).attr('data-value');
-    window.location.href = setParameter(params);
-});
 
-//パラメータを設定したURLを返す
-function setParameter( paramsArray ) {
-    var resurl = location.href.replace(/\?.*$/,"");
-    for ( key in paramsArray ) {
-        resurl += (resurl.indexOf('?') == -1) ? '?':'&';
-        resurl += key + '=' + paramsArray[key];
-    }
-    return resurl;
-}
-//パラメータを取得する
-function getParameter(){
-    var paramsArray = [];
-    var url = location.href; 
-    parameters = url.split("#");
-    if( parameters.length > 1 ) {
-        url = parameters[0];
-    }
-    parameters = url.split("?");
-    if( parameters.length > 1 ) {
-        var params   = parameters[1].split("&");
-        for ( i = 0; i < params.length; i++ ) {
-            var paramItem = params[i].split("=");
-            paramsArray[paramItem[0]] = paramItem[1];
-        }
-    }
-    return paramsArray;
-};
- */
 /*
 $(function(){
     $('.order').click(function(event){
@@ -333,6 +304,7 @@ $(function(){
       }
       var pref_id = '{{$my_prefecture->id}}';
       var keyword = $('.keyword').val();
+      var category_id = 
       
       $.ajax({
           url: 'http://127.0.0.1:8000/index/'+pref_id,
@@ -354,6 +326,14 @@ $(function(){
       
   });
 }); 
+
+$('.modal-pref').on('change',function(e) {
+  var key = $(e.target).val();
+  var url = $(e.target).attr('data-url');
+  
+  location.href = url;
+  
+});
 </script>
 
 

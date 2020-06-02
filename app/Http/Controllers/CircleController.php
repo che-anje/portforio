@@ -241,7 +241,7 @@ class CircleController extends Controller
         ]);
     }
 
-    public function index(int $pref_id, Request $request, $genre_id=null) {
+    public function index($pref_id, Request $request, $genre_id=null) {
         $prefectures = $this->getPrefectures();
         if(Auth::check()) {
             if(Auth::user()->profile->prefectureOfInterest != 0) {
@@ -257,6 +257,7 @@ class CircleController extends Controller
             $my_prefecture = Prefecture::find(48);
         }
         $categories = Category::orderby('id', 'asc')->get();
+        $my_category = null;
         $query = Circle::query();
         if($my_prefecture!=null && $my_prefecture->id!=48) {
             if($request->input('keyword')){
@@ -271,6 +272,7 @@ class CircleController extends Controller
                     })->orderby('id', 'asc')->get();
             }elseif($request->input('category')){
                 $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
+                $my_category = Category::find($request->input('category'));
             }elseif($genre_id){
                 $circles = Genre::find($genre_id)->circle()->where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
             }else{
@@ -341,6 +343,7 @@ class CircleController extends Controller
                 'categories' => $categories,
                 'circles' => $circles,
                 'circles_count' => $circles_count,
+                'my_category' => $my_category,
             ]);
         }
         return $response;

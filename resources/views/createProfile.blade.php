@@ -133,9 +133,51 @@
         </select>
     </div>
 </div>
+<!-- 興味のある地域 -->
+<div class="container col-md-8 col-lg-6">
+    <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">興味のある地域</p>
+    <p class="message-required d-inline-block mb-0">必須</p>
+</div>
+<div class="shadow-sm mb-2_5 bg-white">
+    <div class="container col-md-8 col-lg-6 p-3_5">
+        <div class="row">
+            <div class="col-6">
+                <div class="field">
+                    <select class="textarea--eventreport prefectureOfInterest" style="border: none;background-color: #fff;height: 24px;" 
+                    name="prefectureOfInterest" id="prefectureOfInterest">
+                            <option value="48">都道府県を選択</option>
+                        @foreach($prefectures as $prefecture)
+                            <option value="{{ $prefecture->id }}" data-url="{{ route('cities.get', [ $prefecture->id ]) }}" 
+                                {{ $prefecture->id == old('prefectureOfInterest', 
+                                    $my_profile->prefectureOfInterest) ? 'selected' : '' }}>
+                                {{ $prefecture->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="field">
+                    <select class="textarea--eventreport cityOfInterest" style="border: none;background-color: #fff;height: 24px;" 
+                    name="cityOfInterest" id="cityOfInterest">
+                        <option value="0">選択してください</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}"  
+                                {{ $city->id == old('cityOfInterest', 
+                                    $my_profile->cityOfInterest) ? 'selected' : '' }}>
+                                {{ $city->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container col-md-8 col-lg-6">
     <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">
     紹介文</p>
+    <p class="message-required d-inline-block mb-0">必須</p>
 </div>
 <!-- 紹介文 -->
 <div class="shadow-sm mb-0 bg-white pt-3 pb-2">

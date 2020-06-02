@@ -60,7 +60,8 @@ Route::delete('/circle/{id}/delete', 'CircleController@delete')->name('circle.de
 //サークル一覧・探す
 Route::get('/index/{pref_id}/{genre?}', 'CircleController@index')->name('circle.index');
 Route::get('/circle/{category_id}/{pref_id}', 'CircleController@categorySearch');
-Route::get('circles/{pref_id}/{category_id?}', 'PrefectureController@circlePrefChange')->name('circle_pref.change')->where('pref_id', '[0-9]+');
+Route::get('category_pref/{pref_id}/{category_id?}', 'PrefectureController@categoryPrefChange')->name('category_pref.change')->where('pref_id', '[0-9]+');
+Route::get('/circles_pref/{pref_id}/{category_id?}', 'PrefectureController@circlePrefChange')->name('circles_pref.change')->where('pref_id', '[0-9]+');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

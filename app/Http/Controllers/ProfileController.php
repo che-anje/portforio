@@ -28,8 +28,16 @@ class ProfileController extends Controller
 
     public function showCreateForm() {
         $id = Auth::user()->id;
+        $user = Auth::user();
+        $my_profile = $user->profile ?: Profile::make();
+        $prefectures = \App\Models\Prefecture::orderBy('id','asc')->get();
+        $cities = \App\Models\City::where('prefecture_id', $my_profile->prefectureOfInterest)->get();
         return view('createProfile', [
             'user_id' => $id,
+            'my_profile' => $my_profile,
+            'user' => $user,
+            'prefectures' => $prefectures,
+            'cities' => $cities,
         ]);
     }
 

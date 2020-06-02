@@ -41,7 +41,7 @@
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
-                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles/{{ $prefecture->id }}/{{ $my_category->id }}"
+                                            <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/category_pref/{{ $prefecture->id }}/{{ $my_category->id }}"
                                             class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
                                             <label class="d-flex justify-content-between align-items-center 
                                             mb-0 position-relative" for="{{ $prefecture->id }}">
