@@ -1,5 +1,6 @@
 *
-!.gitignore
+
 !UserImages
 !CircleImages
 !CategoryImages
+!.gitignore
