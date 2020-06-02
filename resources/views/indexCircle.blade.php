@@ -52,7 +52,7 @@
                                         <li class="border-bottom nav-item p-3">
                                             @if($my_category)
                                                 <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles_pref/{{ $prefecture->id }}/{{ $my_category->id }}"
-                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" data-value="{{ $my_category->id }">
+                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" data-value="{{ $my_category->id }}">
                                             @else
                                                 <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="/circles_pref/{{ $prefecture->id }}"
                                                 class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" data-value="">
