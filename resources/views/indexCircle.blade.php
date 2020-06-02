@@ -89,14 +89,14 @@
         <div class="position-relative container col-md-8 col-lg-6">
             <div class="row">
                 <div class="col-9 pr-0">
-                    <input type="text" class="form-control mb-2 pl-5 keyword" value placeholder="キーワードを入力">
+                    <input type="text" class="form-control mb-2 pl-5 keyword" data-old="" value placeholder="キーワードを入力">
                     <div class="input-icon position-absolute pl-3">
                         <i class="fas fa-search" style="font-size: 18px;"></i>
                     </div>
                 </div>
                 <div class="col-3 pl-2">
                     <button type="submit" class="btn btn-warning btn-warning--grad" 
-                    id="keyword-submit-btn" style="width: 100%;">
+                    id="keyword-submit-btn" data-value="popular" style="width: 100%;">
                     検索</button>
                 </div>
             </div>
@@ -119,10 +119,10 @@
             <div class="col">
                 <ul class="list-unstyled d-flex">
                     <li class="list-link">
-                        <a href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray link--active order" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
+                        <a id="" href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray link--active order" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
                     </li>
                     <li class="list-link">
-                        <a href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
+                        <a id="" href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
                     </li>
                 </ul>
             </div>
@@ -302,12 +302,12 @@ $(function(){
               $('.order[data-value=popular]').removeClass('link--active');
               break;
           case 'popular':
-              $(this).addClass('link--active');
+            $(this).addClass('link--active');
               $('.order[data-value=new]').removeClass('link--active');
               break;
       }
       var pref_id = '{{$my_prefecture->id}}';
-      var keyword = $('.keyword').val();
+      var keyword = $('.keyword').attr('data-old');
       var category = $('input[name=prefectureOfInterest]').attr('data-category');
       var genre = $('input[name=prefectureOfInterest]').attr('data-genre');
       if(category){
@@ -340,6 +340,51 @@ $(function(){
             $('#circles_count').text('{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
         }
             
+      })
+      .fail(function (response) { 
+          alert('失敗');
+      });
+  });
+}); 
+
+$(function(){
+  $('#keyword-submit-btn').click(function(event){
+      event.preventDefault();
+      var orderType = $(this).attr('data-value');
+      if($('.order[data-value=new]').hasClass('link--active')){
+        $('.order[data-value=new]').removeClass('link--active');
+        $('.order[data-value=popular]').addClass('link--active');
+      }
+      var pref_id = '{{$my_prefecture->id}}';
+      var keyword = $('.keyword').val();
+      var category = $('input[name=prefectureOfInterest]').attr('data-category');
+      var genre = $('input[name=prefectureOfInterest]').attr('data-genre');
+      if(category){
+        var url = 'http://127.0.0.1:8000/index/'+pref_id+'?category='+category;
+      }else if(genre){
+        var url = 'http://127.0.0.1:8000/index/'+pref_id+'/'+genre;
+      }else{
+          var url = 'http://127.0.0.1:8000/index/'+pref_id;
+      }
+      $.ajax({
+          url: url,
+          type: 'GET',
+          data: {
+              order: orderType,
+              keyword: keyword,
+          },
+          dataType: 'html',
+      })
+      .done(function(response) {
+        $('.circle-list').html(response);
+        var count = $(response).find('#circle_item').length;
+        if(keyword){
+            $('#circles_count').text('{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
+            $('.keyword').attr('data-old',keyword);
+        }else{
+            $('#circles_count').text('{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
+            $('.keyword').attr('data-old','');
+        }
       })
       .fail(function (response) { 
           alert('失敗');
