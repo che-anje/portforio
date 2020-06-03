@@ -180,7 +180,7 @@
     <div class="row pl-2 pr-2">
       @foreach($categories as $category)
       <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-        <a href="/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
+        <a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
           <div class="card text-white text-center rounded border-0 ">
           @if($category->image)
             <img class="picture card-img" src="/storage/CategoryImages/{{ $category->image }}" style="height: 90px">
@@ -257,41 +257,7 @@
 
 <script>
 
-/*
-$(function(){
-    $('.order').click(function(event){
-        event.preventDefault();
-        var orderType = $(this).attr('data-value');
-        switch(orderType){
-            case 'new':
-                $(this).addClass('link--active');
-                $('.order[data-value=popular]').removeClass('link--active');
-                break;
-            case 'popular':
-                $(this).addClass('link--active');
-                $('.order[data-value=new]').removeClass('link--active');
-                break;
-        }
-        var pref_id = '{{$my_prefecture->id}}';
-        var keyword = $('.keyword').val();
-        $.ajax({
-            url: 'http://127.0.0.1:8000/index/'+pref_id,
-            type: 'GET',
-            data: {
-                order: orderType,
-                keyword: keyword,
-            },
-            dataType: 'html',
 
-        })
-        .done(function(response) {
-            $('.circle-list').html(response);
-        })
-        .fail(function (html) { 
-            alert('失敗');
-        });
-    });
-}); */
 $(function(){
   $('.order').click(function(event){
       event.preventDefault();

@@ -131,6 +131,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            
         ],
     ],
 
@@ -145,5 +146,26 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'familyName' => '姓',
+        'firstName' => '名',
+        'name' => '名前',
+        'introduction' => '紹介文',
+        'user_image' => '写真',
+        'genre_record' => 'ジャンル',
+        'image' => '写真',
+        'prefecture_id' => '活動場所',
+        'detailedArea' => '詳細な場所',
+        'ageGroup' => '年齢層',
+        'cost' => '費用',
+        'recruit_statu' => '募集状況',
+        'request_required' => '承認',
+        'private_status' => '公開設定',
+        '' => '',
+        '' => '',
+        '' => '',
+        '' => '',
+    ],
 ];

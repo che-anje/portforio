@@ -66,7 +66,7 @@
 <div class="shadow-sm mb-0 bg-white">
     <div class=" container col-md-8 col-lg-6 p-3_5">
       <input autofocus="autofocus" class="textarea--eventreport" id="name" value="{{ old('name') }}"
-      placeholder="＠ユーザーネームを記載" type="text" value="{{ old('name') }}" name="name" />
+      placeholder="＠ユーザーネームを記載" type="text"  name="name" />
     </div>
 </div>
 <p id="tunagate-id-success" class="container col-md-8 col-lg-6 small mb-0" style="display: none; color: #72c02c;">
@@ -183,7 +183,7 @@
 <div class="shadow-sm mb-0 bg-white pt-3 pb-2">
     <div class=" container col-md-8 col-lg-6">
       <textarea autofocus="autofocus" class="p-0 w-100 textarea--eventreport" cols="5" rows="6" 
-      name="introduction" id="user_introduction" value="{{ old('introduction') }}"></textarea>
+      name="introduction" id="introduction" >{{ old('introduction') }}</textarea>
     </div>
 </div>
 <div class="container col-md-8 col-lg-6 mt-4">
