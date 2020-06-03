@@ -1,6 +1,6 @@
 *
 !public/
-!public/CategoryImages/
-!public/CircleImages/
-!public/UserImages/
+!public/CategoryImages/*
+!public/CircleImages/*
+!public/UserImages/*
 !.gitignore
