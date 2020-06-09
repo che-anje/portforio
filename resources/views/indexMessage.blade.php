@@ -23,12 +23,12 @@
                             <div class="col-2 pr-1">
                                 <img src="/storage/CircleImages/{{ $c_board->circle->image }}" alt="" class="rounded-circle member-icon_48px">
                             </div>
-                            <div class="col-8 pl-3 pr-2">
+                            <div class="col-8 pl-3 pr-2 board_info">
                                 <p class="mb-1 line-1 position-relative mr-4">
                                     <span class="badge badge-light">{{ $c_board->circle->name }}</span>
                                 </p>
                                 <span class="position-absolute position--messagenum">（{{ $c_board->users()->count() }}）</span>
-                                <p class="text-fz-14px text-black-20 mb-0 line-2">{!! $c_board->last_msg !!}</p>
+                                <p class="text-fz-14px text-black-20 mb-0 line-2">{!! strip_tags($c_board->last_msg) !!}</p>
                             </div>
                             <div class="col-2 p-0 align-self-start">
                                 <p class="text-fz-small text-black-20 mb-0 text-center">{{ $c_board->last_date }}</p>
@@ -76,4 +76,7 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>
 @endsection

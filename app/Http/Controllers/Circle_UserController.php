@@ -86,22 +86,29 @@ class Circle_UserController extends Controller
     }
 
     public function participate($circle_id,$user_id, Request $request) {
-        $circle_user = Circle_User::where('circle_id',$circle_id)->where('user_id', $user_id)->first();
-        $circle_user->approval = 2;
-        $circle_user->save();
         $circle = Circle::find($circle_id);
-        $board = $circle->board()->first();
-        $profile = Profile::where('user_id',$user_id)->first();
-        $board_user = new Board_User;
-        $board_user->board_id = $board->id;
-        $board_user->user_id = $user_id;
-        $board_user->save();
-        $request->user_id = $user_id;
-        $request->board_id = $board->id;
-        $fullName = $profile->familyName.$profile->firstName;
-        $request->msg = $fullName.'さんが参加しました。';
-        $request->msg_type = 'entry';
-        $this->storeMessage($request);
-        return redirect('/message');
+        if(Auth::id()==$circle->admin_user_id){
+            
+            $circle_user = Circle_User::where('circle_id',$circle_id)->where('user_id', $user_id)->first();
+            if($circle_user->approval != 2){
+            $circle_user->approval = 2;
+            $circle_user->save();
+            $profile = Profile::where('user_id',$user_id)->first();
+            $board = $circle->board()->first();
+            $board_user = new Board_User;
+            $board_user->board_id = $board->id;
+            $board_user->user_id = $user_id;
+            $board_user->save();
+            $request->user_id = $user_id;
+            $request->board_id = $board->id;
+            $fullName = $profile->familyName.$profile->firstName;
+            $request->msg = $fullName.'さんが参加しました。';
+            $request->msg_type = 'entry';
+            $this->storeMessage($request);
+            return redirect('/message')->with('message', $profile->name.'の参加を承認しました');
+            }
+            return back()->with('message', '既に承認済です');
+        }
+        return back()->with('message', '管理者ではありません');
     }
 }

@@ -44,7 +44,7 @@
 									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}{{ $board->count }}<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
 							</div>
 						</div>
-						<a href="" class="position-absolute position--headerright text-black-20 text-fz-18px">
+						<a href="{{ route('circle.menu', [$board->circle->id]) }}" class="position-absolute position--headerright text-black-20 text-fz-18px">
 							<i class="fas fa-ellipsis-v"></i>
 						</a>
 					@elseif($board->type == 'user')
@@ -56,7 +56,29 @@
 							<p class="position-absolute position--headerright text-fw-bold mb-1 pb-1 line-1 position-relative pr-4">({{ $board->count }})</p>
 					@endif
 					</header>
+				</div>
+				@if(session()->has('message'))
+				<div class="modal-view" id="sampleModal" style="position: relative; z-index: 10001;">
+					<div class="modal-view-fade-in">
+						<div class="modal-view-overAll">
+							<div class="modal-view-overlay">
+							</div>
+							<div class="modal-view-dialog">
+								<div class="modal-view-content">
+									<div class="modal-view-header" style="position: relative; z-index: 10001;">
+									</div>
+									<div class="modal-view-body">
+										<p class="mt-3">{{ session('message') }}</p>
+									</div>
+									<div class="modal-view-footer">
+										<a class="modal-view-button-center-12">OK</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+				</div>
+				@endif
 				<form action="{{ route('message.store') }}" class="create_circle" id="store_message" enctype="multipart/form-data"
 				accept-charset="UTF-8" method="post">
 				{{ csrf_field() }}
@@ -218,12 +240,8 @@
 					.fail(function (data) { 
 							alert('失敗');
 					});
-				});				
+				});			
 			}); 
-
-			
-
-			
 		</script>
 	</footer>
 </html>

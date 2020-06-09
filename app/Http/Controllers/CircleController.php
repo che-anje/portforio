@@ -152,6 +152,13 @@ class CircleController extends Controller
         ]);
     }
 
+    public function showMyCircleMenu(int $id) {
+        $circle = Circle::find($id);
+        return view('myCircleMenu', [
+            'circle' => $circle,
+        ]);
+    }
+
     public function showEditForm(int $id) {
         $circle = Circle::find($id);
         $circle_genres = Circle_Genre::where('circle_id', $id)->get();

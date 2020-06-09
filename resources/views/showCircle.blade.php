@@ -6,7 +6,7 @@
     </a>
     @parent
     @if(Auth::user()->id === $circle->admin_user_id)
-    <a href="{{ route('circle.menu', [$circle->id]) }}" class="position-absolute position--headerright
+    <a href="{{ route('my_circle.menu', [$circle->id]) }}" class="position-absolute position--headerright
      text-black-20 text-fz-18px">
         <i class="fa fa-bars"></i>
     </a>
@@ -322,9 +322,9 @@
     <div class="container col-md-8 col-lg-6">
       <div class="d-flex justify-content-around" style="margin-bottom:24px">
         @if($circle->request_required==0)
-          <a class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal">メンバー申請</a>
+        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal" data-approval="{{ $approval }}">メンバー申請</a>
         @else
-        <a class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal">メンバーになる</a>
+        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal" data-approval="{{ $approval }}">メンバーになる</a>
         @endif
         <a href="" class="btn btn-primary--grad btn-primary--grad--outline w-40">フォロー</a>
       </div>
@@ -368,4 +368,19 @@
 </div>
 </section>
 @endif
+<script>
+
+$(window).on('load', function() {
+  //必須項目をひとつずつチェック
+  var approval = $('#apply_btn').attr('data-approval');
+  //全て埋まっていたら
+  if (approval == 1) {
+    //送信ボタンを閉じる
+    $('#apply_btn').addClass('disabled');
+  }
+  
+});
+
+
+</script>
 @endsection

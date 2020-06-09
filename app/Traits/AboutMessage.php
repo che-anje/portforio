@@ -46,24 +46,24 @@ trait AboutMessage
     }
 
     public function getTemplateApply($request, $circle, $user) {
-        $template_msg = "<p>《システムから送信》</p><br>"       
-        ."<p>".$circle->name." 管理人さんへ、サークルプロフィールページからサークル参加リクエストが届いています。</p><br>"          
-        ."<p>管理人さんが下記のURLをクリックすると".$user->profile->familyName.$user->profile->firstName."さんのAAへの参加を承認します。</p><br>"
-        ."<p>URL</p><br>"
-        ."<a href='/circle_user/".$circle->id."/".$user->id."'>".url("/circle_user/".$circle->id."/".$user->id)."</a><br>"
-        ."<p>".$user->profile->familyName.$user->profile->firstName."さんの自己紹介</p><br>"
-        ."<p>---------</p><br>"
-        ."<p>".$request->msg."</p><br>"           
-        ."<p>".$user->profile->familyName.$user->profile->firstName."さんのプロフィール</p><br>"
-        ."<a href='/profile/show/".$user->profile->id."'>".url("/profile/show/".$user->profile->id)."</a>";
+        $template_msg = "<p class='mb-0'>《システムから送信》</p><br>"       
+        ."<p class='mb-0'>".$circle->name." 管理人さんへ、サークルプロフィールページからサークル参加リクエストが届いています。</p><br>"          
+        ."<p class='mb-0'>管理人さんが下記のURLをクリックすると".$user->profile->familyName.$user->profile->firstName."さんのAAへの参加を承認します。</p>"
+        ."<p class='mb-0'>URL</p>"
+        ."<a class='mb-0' href='/circle_user/".$circle->id."/".$user->id."'>".url("/circle_user/".$circle->id."/".$user->id)."</a><br>"
+        ."<p class='mb-0'>".$user->profile->familyName.$user->profile->firstName."さんの自己紹介</p>"
+        ."<p class='mb-0'>---------</p><br>"
+        ."<p class='mb-0'>".$request->msg."</p><br>"           
+        ."<p class='mb-0'>".$user->profile->familyName.$user->profile->firstName."さんのプロフィール</p>"
+        ."<a class='mb-0' href='/profile/show/".$user->profile->id."'>".url("/profile/show/".$user->profile->id)."</a>";
         return $template_msg;
     }
 
     public function getTemplateMsg($profile) {
-        $template_msg = "<p>《システムから送信》</p><br>"
-        ."<p>".$profile->familyName.$profile->firstName."さんの自己紹介</p><br>"
-        ."<p>---------</p><br>"
-        ."<p>よろしく</p><br>";
+        $template_msg = "<p class='mb-0'>《システムから送信》</p><br>"
+        ."<p class='mb-0'>".$profile->familyName.$profile->firstName."さんの自己紹介</p>"
+        ."<p class='mb-0'>---------</p>"
+        ."<p class='mb-0'>よろしく</p><br>";
         return $template_msg;
     }
 }

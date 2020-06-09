@@ -51,6 +51,7 @@ Route::post('/category', 'CategoryController@up')->name('category.edit');
 Route::get('circles/new', 'CircleController@showCreateForm');
 Route::post('circle/new', 'CircleController@create')->name('circle.create');
 Route::get('circle/{id}', 'CircleController@show')->name('circle.show');
+Route::get('my_circle/{id}/circle_menu', 'CircleController@showMyCircleMenu')->name('my_circle.menu');
 Route::get('circle/{id}/circle_menu', 'CircleController@showCircleMenu')->name('circle.menu');
 Route::get('/circle/{id}/edit', 'CircleController@showEditForm');
 Route::get('/getCircleGenres/{id}', 'CircleController@getCircleGenres');
