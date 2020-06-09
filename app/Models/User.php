@@ -11,6 +11,7 @@ use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 use App\Models\Profile;
 use App\Models\Circle;
+use App\Models\Board;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -66,9 +67,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasOne(Profile::class);
     }
 
-    
-
-
     public function circles()
     {
         return $this->belongsToMany('App\Models\Circle');
@@ -77,6 +75,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function circle()
     {
         return $this->hasOne('App\Models\Circle', 'admin_user_id');
+    }
+
+    public function messages(){
+        return $this->hasMany('App\Models\Message');
+    }
+
+    public function boards(){
+        return $this->belongsToMany('App\Models\Board', 'board_users', 'user_id', 'board_id');
     }
 }
 

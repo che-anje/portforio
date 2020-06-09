@@ -6,7 +6,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Models\Prefecture;
 
-trait aboutPrefecture
+trait AboutPrefecture
 {
     public function getPrefectures() {
         

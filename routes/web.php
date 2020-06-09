@@ -63,6 +63,13 @@ Route::get('/circle/{category_id}/{pref_id}', 'CircleController@categorySearch')
 Route::get('category_pref/{pref_id}/{category_id?}', 'PrefectureController@categoryPrefChange')->name('category_pref.change')->where('pref_id', '[0-9]+');
 Route::get('/circles_pref/{pref_id}/{category_id?}', 'PrefectureController@circlePrefChange')->name('circles_pref.change')->where('pref_id', '[0-9]+');
 
+Route::post('/circle_user/apply', 'Circle_UserController@apply');
+Route::get('/circle_user/{circle_id}/{user_id}', 'Circle_UserController@participate');
+
+Route::get('/message', 'BoardController@index');
+Route::get('/message/board/{board_id}', 'BoardController@show')->name('message.show');
+Route::post('/message/store', 'MessageController@store')->name('message.store');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 

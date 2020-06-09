@@ -106,7 +106,7 @@
 								</a>
 							</li>
 							<li class="postion-relative">
-								<a href="{{ route('register') }}" class="nav-link nav-link_sp -message">
+								<a href="/message" class="nav-link nav-link_sp -message">
 									<i class="far fa-comment-alt" ></i>
 									<span class="nav-item_text">メッセージ</span>
 								</a>

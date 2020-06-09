@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Prefecture;
 use App\Models\Genre;
 use App\Models\Profile;
+use App\Models\Board;
 
 class Circle extends Model
 {
@@ -47,6 +48,10 @@ class Circle extends Model
 
     public function user() {
         return $this->belongsTo('App\Models\User', 'admin_user_id');
+    }
+
+    public function board() {
+        return $this->hasOne('App\Models\Board');
     }
 
     const AGEGROUP = [

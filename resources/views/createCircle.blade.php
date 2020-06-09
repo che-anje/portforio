@@ -180,7 +180,7 @@
                             <div id>
                                 <div class="cursor-pointer">
                                     <p class="nav-link link--arrow p-0 mb-0">
-                                        <a  href="javascript:void(0);" class="circle-pref" style="color: black;"
+                                        <a href="javascript:void(0);" class="circle-pref" style="color: black;"
                                         data-toggle="modal" data-target="#myAreaModal">
                                             主な活動地域を選択
                                         </a>

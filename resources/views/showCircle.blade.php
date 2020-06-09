@@ -315,5 +315,57 @@
     </div>
   </div>
 </section>
+<!-- メンバー申請・フォロー -->
+@if($approval!=2)
+<section>
+  <nav class="fixed-bottom" style="padding-bottom: 85px;">
+    <div class="container col-md-8 col-lg-6">
+      <div class="d-flex justify-content-around" style="margin-bottom:24px">
+        @if($circle->request_required==0)
+          <a class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal">メンバー申請</a>
+        @else
+        <a class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal">メンバーになる</a>
+        @endif
+        <a href="" class="btn btn-primary--grad btn-primary--grad--outline w-40">フォロー</a>
+      </div>
+    </div>
+  </nav>
 
+  <a  href="javascript:void(0);" class="circle-pref" style="color: black;"
+  data-toggle="modal" data-target="#myAreaModal">
+      主な活動地域を選択
+  </a>
+  <!-- モーダル -->
+  <div class="modal fade " id="application-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog bg-gray h-" role="document">
+      <div class="modal-content bg-gray border-0 h-100">
+        <div class="modal-body card bg-gray h-100">
+          <div class="bg-gray d-flex align-items-center">
+            <button type="button" class="close pl-0 pr-0" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="font-size:30px;">&times;</span>
+            </button>
+            @if($circle->request_required==0)
+              <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">メンバー申請</h6>
+            @else
+              <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">メンバーになる</h6>
+            @endif
+          </div>
+          <form action="/circle_user/apply" class="create_circle" id="store_message" enctype="multipart/form-data"
+          accept-charset="UTF-8" method="post" name="apply">
+          {{ csrf_field() }}
+          <textarea name="msg" id="application" class="border-0 rounded mt-3 mb-3 w-100" cols="30" rows="10"></textarea>
+          <div class="align-items-center">
+            <a href="javascript:apply.submit()" class="btn btn-primary--grad text-white mx-auto">メンバー申請を送信</a>
+          </div>
+          <input type="hidden" name="circle_id" value="{{ $circle->id }}" class="circle_id">
+          <input type="hidden" name="user_id" value="{{ Auth::id() }}" class="user_id">
+          <input type="hidden" name="msg_type" value="msg" class="msg_type">
+          <input type="hidden" name="board_id" value="{{ $board->id }}" class="board_id">
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+@endif
 @endsection

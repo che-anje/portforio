@@ -13,6 +13,10 @@ use App\Models\Genre;
 use App\Models\Circle_Genre;
 use App\Models\Circle_User;
 use App\Models\Category_Circle;
+use App\Models\Message;
+use App\Models\Board;
+use App\Models\Board_User;
+use App\Models\Board_Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\AboutPrefecture;
@@ -20,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 
 class CircleController extends Controller
 {
-    use aboutPrefecture;
+    use AboutPrefecture;
 
     public function getCircles(int $id) {
         
@@ -79,10 +83,20 @@ class CircleController extends Controller
                 $circle_genre->genre_id = $genre;
                 $circle_genre->save();
             }
-
             $circle_user->user_id = $user->id;
             $circle_user->circle_id = $circle->id;
+            $circle_user->approval = 2;
             $circle_user->save();
+
+            $board = new Board;
+            $board->type = 'circle';
+            $board->circle_id = $circle->id;
+            $board->save();
+
+            $board_user = new Board_User;
+            $board_user->board_id = $board->id;
+            $board_user->user_id = $user->id;
+            $board_user->save();
 
             return redirect('/');
         });
@@ -104,16 +118,21 @@ class CircleController extends Controller
             $circle_pref = Prefecture::find(48);
         }
         $genres = $circle->genre()->get();
-        $members = $circle->users()->get();
+        $members = $circle->users()->where('circle_user.approval', '=', 2)->get();
         foreach($members as $memberRecord) {
             $profile = $memberRecord->profile()->first();
             $memberRecord['profile'] = $profile;
         }
-        $circle['count'] = $circle->users()->count();
+        $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
         $categories = Category::orderby('id', 'asc')->get();
         $cricle_category = $circle->genre[0]->category()->first();
-
-
+        if(Circle_User::where('circle_id', $id)->where('user_id', Auth::id())->first()){
+            $circle_user = Circle_User::where('circle_id', $id)->where('user_id', Auth::id())->first();
+            $approval = $circle_user->approval;
+        }else{
+            $approval = 0;
+        }
+        $board = $circle->board()->first();
         return view('showCircle', [
             'circle' => $circle,
             'circle_pref' => $circle_pref,
@@ -121,7 +140,9 @@ class CircleController extends Controller
             'members' => $members,
             'categories' => $categories,
             'cricle_category' => $cricle_category,
-        ]);
+            'approval' => $approval,
+            'board' => $board,
+         ]);
     }
 
     public function showCircleMenu(int $id) {
