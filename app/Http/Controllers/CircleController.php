@@ -104,44 +104,22 @@ class CircleController extends Controller
 
     public function show(int $id) {
         $circle = Circle::find($id);
-        if(Auth::check()) {
-            if(Auth::user()->profile->prefectureOfInterest != 0) {
-                $circle_pref = $this->getMyPrefecture();
-            }elseif(session()->exists('my_prefecture')){
-                $circle_pref = session('my_prefecture');
-            }else{
-                $circle_pref = Prefecture::find(48);
-            }
-        }elseif(session()->exists('my_prefecture')){
-            $circle_pref = session('my_prefecture');
-        }else{
-            $circle_pref = Prefecture::find(48);
-        }
-        $genres = $circle->genre()->get();
-        $members = $circle->users()->where('circle_user.approval', '=', 2)->get();
-        foreach($members as $memberRecord) {
-            $profile = $memberRecord->profile()->first();
-            $memberRecord['profile'] = $profile;
-        }
-        $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
-        $categories = Category::orderby('id', 'asc')->get();
-        $cricle_category = $circle->genre[0]->category()->first();
-        if(Circle_User::where('circle_id', $id)->where('user_id', Auth::id())->first()){
-            $circle_user = Circle_User::where('circle_id', $id)->where('user_id', Auth::id())->first();
-            $approval = $circle_user->approval;
-        }else{
-            $approval = 0;
-        }
+        $profile = new Profile;
+        $members = $circle->getCircleMembers($circle)->get();
+        $members = $profile->getUsersProfile($members);
+        $circle = $circle->addInfomationToCircle($circle);
+        $categories = Category::getAllCategories();
+        $approval = Circle_User::getApproval($id, Auth::id());
+        /*自分の選択している都道府県を取得する。*/
+        $my_prefecture = Prefecture::getMyPrefecture();
         $board = $circle->board()->first();
         return view('showCircle', [
             'circle' => $circle,
-            'circle_pref' => $circle_pref,
-            'genres' => $genres,
             'members' => $members,
             'categories' => $categories,
-            'cricle_category' => $cricle_category,
             'approval' => $approval,
             'board' => $board,
+            'my_prefecture' => $my_prefecture,
          ]);
     }
 
@@ -167,11 +145,10 @@ class CircleController extends Controller
             $genres_id[] = $circle_genre->genre_id;
         }
         
-        $prefectures = $this->getPrefectures();
-        $categories = Category::get();
+        $prefectures = Prefecture::getPrefectures();
+        $categories = Category::getAllCategories();
         foreach($categories as $categoryRecord) {
             $genres = $categoryRecord->genres()->orderby('id')->get();
-            
             $categoryRecord['genres'] = $genres;
         }
         return view('editCircle', [
@@ -182,14 +159,6 @@ class CircleController extends Controller
         ]);
     }
 
-    public function getCircleGenres(int $id) {
-        $circle_genres = Circle_Genre::where('circle_id', $id)->get();
-        $genres_id = [];
-        foreach($circle_genres as $circle_genre) {
-            $genres_id[] = $circle_genre->genre_id;
-        }
-        return $genres_id;
-    }
 
     public function edit(int $id, CreateCircleRequest $request) {
         return DB::transaction(function () use ($id, $request) {
@@ -207,8 +176,6 @@ class CircleController extends Controller
             $main_genre = Genre::find($genres[0]);
             $circle->category_id = $main_genre->category_id;
             $circle->save();
-            
-            
             Circle_Genre::where('circle_id', $circle->id)->delete();
             foreach((array)$genres as $genre) {
                 $circle_genre = new Circle_Genre;
@@ -227,162 +194,66 @@ class CircleController extends Controller
         return redirect('/');
     }
 
-    public function categorySearch($category_id, $pref_id) {
-        $categories = Category::orderby('id', 'asc')->get();
+    public function categorySearch(Request $request,$category_id, $pref_id) {
+        $circle = new Circle;
+        /*全てのカテゴリーを抜き出す*/
+        $categories = Category::getAllCategories();
         $my_category = Category::find($category_id);
-        $prefectures = $this->getPrefectures();
-        if(Auth::check()) {
-            if(Auth::user()->profile->prefectureOfInterest != 0) {
-                $my_prefecture = $this->getMyPrefecture();
-            }elseif(session()->exists('my_prefecture')){
-                $my_prefecture = session('my_prefecture');
-            }else{
-                $my_prefecture = Prefecture::find(48);
-            }
-        }elseif(session()->exists('my_prefecture')){
-            $my_prefecture = session('my_prefecture');
-        }else{
-            $my_prefecture = Prefecture::find(48);
-        }
+        $prefectures = Prefecture::getPrefectures();
+        /*自分の選択している都道府県を取得する。*/
+        $my_prefecture = Prefecture::getMyPrefecture();
         $genres = $my_category->genres()->get();
-        if($my_prefecture!=null && $my_prefecture->id!=48) {
-            $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id', $category_id)->orderby('id', 'desc')->get();
-        }else{
-            $circles = Circle::where('category_id', $category_id)->orderby('id', 'desc')->get();
-        }
-        $circles_count = $circles->count();
+        /*サークル情報を取得する*/
+        $circles = $circle->getCircleList($my_prefecture,$request,$genre_id=null,$category_id)->sortByDesc('id');
+        
         $pop_genres = [];
-        if($circles_count > 0){
+        if($circles->count() > 0){
             $pop_genres = $this->getPopGenres($circles);
         }
-        $this->getGenres($circles);
-        
+        $circle->addInfomationToCircles($circles);
+
+        /*$html = view('message.template.xxx', [
+        ])->render();*/
         return view('category_search', [
             'categories' => $categories,
             'my_category' => $my_category,
             'genres' => $genres,
             'prefectures' => $prefectures,
             'my_prefecture' => $my_prefecture,
-            'circles_count' => $circles_count,
             'circles' => $circles,
             'pop_genres' => $pop_genres,
         ]);
     }
 
-    public function index($pref_id, Request $request, $genre_id=null) {
-        $prefectures = $this->getPrefectures();
-        if(Auth::check()) {
-            if(Auth::user()->profile->prefectureOfInterest != 0) {
-                $my_prefecture = $this->getMyPrefecture();
-            }elseif(session()->exists('my_prefecture')){
-                $my_prefecture = session('my_prefecture');
-            }else{
-                $my_prefecture = Prefecture::find(48);
-            }
-        }elseif(session()->exists('my_prefecture')){
-            $my_prefecture = session('my_prefecture');
-        }else{
-            $my_prefecture = Prefecture::find(48);
-        }
-        $categories = Category::orderby('id', 'asc')->get();
-        $my_category = null;
-        $my_genre = null;
+    public function index($pref_id,Request $request, $genre_id=null) {
         $query = Circle::query();
-        if($my_prefecture!=null && $my_prefecture->id!=48) {
-            if($request->input('keyword')){
-                $keyword = $request->input('keyword');
-                $circles = $query->where('prefecture_id', $my_prefecture->id)
-                    ->where(function($query) use($keyword){
-                        $query->where('name', 'LIKE', "%{$keyword}%");
-                        $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
-                        $query->orWhereHas('genre', function($query) use ($keyword) {
-                            $query->where('name',"%{$keyword}%");
-                        });
-                    })->orderby('id', 'asc')->get();
-            }elseif($request->input('category')){
-                $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
-                $my_category = Category::find($request->input('category'));
-            }elseif($genre_id){
-                $circles = Genre::find($genre_id)->circle()->where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
-                $my_genre = Genre::find($genre_id);
-            }else{
-                $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
-            }
-        }else{
-            if($request->input('keyword')){
-                $keyword = $request->input('keyword');
-                $circles = $query->where(function($query) use($keyword){
-                        $query->where('name', 'LIKE', "%{$keyword}%");
-                        $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
-                        $query->orWhereHas('genre', function($query) use ($keyword) {
-                            $query->where('name',"%{$keyword}%");
-                        });
-                    })->orderby('id', 'asc')->get();
-            
-            }elseif($request->input('category')){
-                $circles = Circle::where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
-            }elseif($genre_id){
-                $circles = Genre::find($genre_id)->circle()->orderby('id', 'asc')->get();
-            }else{
-                $circles = Circle::orderby('id', 'asc')->get();
-            }
-        }
-        $circles_count = $circles->count();
-        $pop_genres = [];
-        $this->getGenres($circles);
+        $circle = new Circle;
+        /*全都道府県を取得する*/
+        $prefectures = Prefecture::getPrefectures();
+        /*自分の選択している都道府県を取得する。*/
+        $my_prefecture = Prefecture::getMyPrefecture();
+        /*全てのカテゴリーを抜き出す*/
+        $categories = Category::getAllCategories();
+        /*サークル情報を取得する*/
+        $category_id = $request->input('category');
+        $circles = $circle->getCircleList($my_prefecture,$request,$genre_id,$category_id);
+        /*サークルごとのジャンル・メンバー数・都道府県を取得する*/
+        $circle->addInfomationToCircles($circles);
+        //選択したカテゴリー・ジャンルを取得。無ければnull。
+        $my_category = Category::find($category_id);
+        $my_genre = Genre::find($genre_id);
+        /*返すビューを作る*/
         if($request->ajax()) {
-            $query = Circle::query();
-            $keyword = $request->keyword;
-            if($my_prefecture!=null && $my_prefecture->id!=48) {
-                if(!empty($keyword)){
-                    $circles = $query->where('prefecture_id', $my_prefecture->id)
-                        ->where(function($query) use($keyword){
-                            $query->where('name', 'LIKE', "%{$keyword}%");
-                            $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
-                            $query->orWhereHas('genre', function($query) use ($keyword) {
-                                $query->where('name',"%{$keyword}%");
-                            });
-                        })->orderby('id', 'asc')->get();
-                }elseif($request->input('category')){
-                    $circles = Circle::where('prefecture_id', $my_prefecture->id)->where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
-                    $my_category = Category::find($request->input('category'));
-                }elseif($genre_id){
-                    $circles = Genre::find($genre_id)->circle()->where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
-                    $my_genre = Genre::find($genre_id);
-                }else{
-                    $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'asc')->get();
-                }
-            }else{
-                if(!empty($keyword)){
-                    
-                    $circles = $query->where(function($query) use($keyword){
-                            $query->where('name', 'LIKE', "%{$keyword}%");
-                            $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
-                            $query->orWhereHas('genre', function($query) use ($keyword) {
-                                $query->where('name',"%{$keyword}%");
-                            });
-                        })->orderby('id', 'asc')->get();
-                
-                }elseif($request->input('category')){
-                    $circles = Circle::where('category_id',$request->input('category'))->orderby('id', 'asc')->get();
-                }elseif($genre_id){
-                    $circles = Genre::find($genre_id)->circle()->orderby('id', 'asc')->get();
-                }else{
-                    $circles = Circle::orderby('id', 'asc')->get();
-                }
-            }
-           
-            $this->getGenres($circles);
+            //ajaxで呼び出した場合
+            //新着順の場合並び替える
             if($request->order=='new'){
                 $circles = $circles->sortByDesc('id');
             }
-            $circles_count = $circles->count();
             $html = view('circleList', [
                 'prefectures' => $prefectures,
                 'my_prefecture' => $my_prefecture,
                 'categories' => $categories,
                 'circles' => $circles,
-                'circles_count' => $circles_count,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
             ])->render();
@@ -393,38 +264,22 @@ class CircleController extends Controller
                 'my_prefecture' => $my_prefecture,
                 'categories' => $categories,
                 'circles' => $circles,
-                'circles_count' => $circles_count,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
             ]);
         }
+        /*戻り値を返す*/
         return $response;
     }
 
-    public function up(Request $request) {
-        $circle = Circle::find(1);
-        
-        if($request->file('circle_image')) {
-            Storage::delete('public/CircleImages/'.$circle->image);
-            $originalImg = $request->circle_image;
-            $filePath = $originalImg->store('public/CircleImages');
-            $circle->image = str_replace('public/CircleImages/', '', $filePath);
-        }
-        $circle->save();
-    }
 
-    public function getGenres($circles) {
-        foreach($circles as $circleRecord) {
-            $circle_genres = $circleRecord->genre()->orderby('genre_id')->get();
-            $circleRecord['genres'] = $circle_genres;
-            $circleRecord['count'] = Circle_User::where('circle_id', $circleRecord->id)->count();
-            $circleRecord['prefecture'] = Prefecture::find($circleRecord->prefecture_id)->name;
-            
-        }
-        
-    }
+    
 
     public function getPopGenres($circles) {
+        $circleIds = $circles->pluck('id');
+        return  Genre::whereHas('circle', function($query) use($circleIds) {
+            $query->whereIn('circle_id', $circleIds);
+        })->get();
         foreach($circles as $circleRecord) {
             $circle_genres = $circleRecord->genre()->orderby('genre_id')->get();
             foreach($circle_genres as $circle_genre) {
@@ -435,4 +290,5 @@ class CircleController extends Controller
         return $pop_genres;
     }
     
+
 }

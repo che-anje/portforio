@@ -31,6 +31,9 @@ class CreateProfilesTable extends Migration
             $table->tinyInteger('searchSettingByEmail');
             $table->string('introduction');
             $table->timestamps();
+
+            
+                    
         });
     }
 

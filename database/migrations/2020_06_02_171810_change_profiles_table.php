@@ -23,6 +23,8 @@ class ChangeProfilesTable extends Migration
             $table->Integer('cityOfInterest')->nullable()->change();
             $table->Integer('searchSettingByEmail')->nullable()->change();
             $table->string('user_image')->nullable()->change(); 
+            
+
         });
     }
 

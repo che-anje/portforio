@@ -25,14 +25,14 @@
         </li>
       <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
         <a href="/search/all/346" class="nav-link--gray">
-          {{ $genres[0]->name }}
+          {{ $circle->genres[0]->name }}
         </a>
       </li>
       <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
         <a
           href="/search/akita/346" class="nav-link--gray"
         >
-          {{ $circle_pref->name }}
+          {{ $circle->prefecture->name }}
         </a>
       </li>
     <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
@@ -45,18 +45,18 @@
     <div class="row">
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $cricle_category->name }}」一覧へ戻る</a>
+          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $circle->category->name }}」一覧へ戻る</a>
         </p>
       </div>
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $circle_pref->name }}の{{ $genres[0]->name }}サークル」一覧へ戻る</a>
+          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $circle->prefecture->name }}の{{ $circle->genres[0]->name }}サークル」一覧へ戻る</a>
         </p>
       </div>
     </div>
   </div>
   <div class="container col-md-8 col-lg-6">
-    <h1 style="font-size:18px;font-weight: bold;" class="m-0 pb-3 pt-3">【{{ $circle_pref->name }}】{{ $genres[0]->name }}サークル</h1>
+    <h1 style="font-size:18px;font-weight: bold;" class="m-0 pb-3 pt-3">【{{ $circle->prefecture->name }}】{{ $circle->genres[0]->name }}サークル</h1>
   </div>
   <div class="event-img-wrap container col-md-8 col-lg-6 pl-0 pr-0">
     <div  style="position: relative;">
@@ -100,7 +100,7 @@
 <div class="shadow-sm mb-3 bg-white pt-3 pb-3">
   <div class="container col-md-8 col-lg-6 h-100">
     <div class="scrollable-list mb-2">
-      @foreach($genres as $genre)
+      @foreach($circle->genres as $genre)
       <a href="/search/akita/346">
         <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2 d-inline-block mb-0">
           {{ $genre->name }}
@@ -125,7 +125,7 @@
       </i>
       <i class="fas fa-map-marker-alt mr-2 d-flex">
         <p class="mb-2 icon icon-area ml-2">
-          {{ $circle_pref->name }}
+          {{ $circle->prefecture->name }}
         </p>
       </i>
     </div>
@@ -264,7 +264,7 @@
     <div class="row pl-2 pr-2">
       @foreach($categories as $category)
       <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
-        <a href="/{{ $category->id }}/{{ $circle_pref->id }}" class="display-block">
+        <a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
           <div class="card text-white text-center rounded border-0 ">
           @if($category->image)
             <img class="picture card-img" src="/storage/CategoryImages/{{ $category->image }}" style="height: 90px">

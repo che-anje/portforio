@@ -11,7 +11,7 @@
     <div class="top-mv top-mv--moving pb-4_5 pt-5 container col-md-8 col-lg-6" style="background: url('/storage/CategoryImages/{{ $my_category->image }}'); background-size: cover;">
       <h1 class="mv-copy text-center h4 mb-3 pt-3">{{ $my_category->name }}
         <div class="container col-md-10 col-lg-8 mt-3 mb-3 pt-4 ml-10 mr-10" style="border: 1px solid #fff;">
-        <p class="text-center text-white text-fz-small">登録サークル数：<span class="text-fz-24px">{{ $circles_count }}</span> <span class="text-fz-xs">* {{ $my_prefecture->name }}</span></p>
+        <p class="text-center text-white text-fz-small">登録サークル数：<span class="text-fz-24px">{{ $circles->count() }}</span> <span class="text-fz-xs">* {{ $my_prefecture->name }}</span></p>
         </div>
       </h1>
       <p class="text-center text-fz-14px mb-4_5 text-white">安心・信頼できるサークルのみを厳選！</p>

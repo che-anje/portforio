@@ -10,8 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomVerifyEmail;
 use App\Notifications\CustomResetPassword;
 use App\Models\Profile;
+use App\Models\Prefecture;
 use App\Models\Circle;
 use App\Models\Board;
+use App\Models\EmailReset;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -67,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasOne(Profile::class);
     }
 
+    public function email_resets()
+    {
+        return $this->hasMany(EmailReset::class);
+    }
+
     public function circles()
     {
         return $this->belongsToMany('App\Models\Circle');
@@ -83,6 +92,37 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function boards(){
         return $this->belongsToMany('App\Models\Board', 'board_users', 'user_id', 'board_id');
+    }
+
+    public function updateProfile(array $attributes)
+    {
+        $deleteImage = null;
+        $this->profile->fill($attributes);
+
+        if(
+            $this->profile->isDirty('user_image')
+            && $this->profile->getOriginal('user_image')
+        ) {
+            $deleteImage = $this->profile->getOriginal('user_image');
+        }
+        $this->profile->save();
+
+        if($attributes['new_email']) {
+            $new_email = $attributes['new_email'];
+            $token = hash_hmac(
+                'sha256',
+                Str::random(40) . $new_email,
+                config('app.key')
+            );
+            $email_reset = $this->email_resets()->create([
+                'new_email' => $new_email,
+                'token' => $token
+            ]);
+            $email_reset->sendEmailResetNotification($token);
+        }
+        $this->fill($attributes)->save();
+
+        return [$deleteImage];
     }
 }
 

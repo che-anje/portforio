@@ -35,7 +35,7 @@
 			<div class="boxed bg-gray" style="padding-top: 60px;height: 100%;">
 				<div class="fixed-top bg-white">
 					<header id="header" class="container col-lg-6 col-md-6">
-					<a href="javascript:history.back()" class="position-absolute position--backbtn text-black-20 text-fz-18px">
+					<a href="/message" class="position-absolute position--backbtn text-black-20 text-fz-18px">
 							<i class="fas fa-chevron-left"></i>
 					</a>
 					@if($board->type == 'circle')

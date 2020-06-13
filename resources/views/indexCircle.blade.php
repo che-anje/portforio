@@ -108,11 +108,11 @@
     <div class="container col-md-8 col-lg-6">
         <h1 style="font-size:20px; padding-left:0px; margin-bottom:8px; font-family:HiraKakuProN-W6" id="circles_count" class="left mt-4 h2--extend -event">
         @if($my_category)
-            {{ $my_prefecture->name }}の{{ $my_category->name }}サークル一覧（{{ $circles_count }}件）
+            {{ $my_prefecture->name }}の{{ $my_category->name }}サークル一覧（{{ $circles->count() }}件）
         @elseif($my_genre)
-            {{ $my_prefecture->name }}の{{ $my_genre->name }}サークル一覧（{{ $circles_count }}件）
+            {{ $my_prefecture->name }}の{{ $my_genre->name }}サークル一覧（{{ $circles->count() }}件）
         @else
-            {{ $my_prefecture->name }}のサークル一覧（{{ $circles_count }}件）
+            {{ $my_prefecture->name }}のサークル一覧（{{ $circles->count() }}件）
         @endif
         </h1>
         <div class="row justify-content-between">
@@ -148,7 +148,7 @@
                                     @endforeach
                                     </div>
                                     <div class="row no-gutters">
-                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture }}</p></i>
+                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture->name }}</p></i>
                                         <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
                                     </div>
                                     <p class="text-black-50 line-2 mb-2_5 text-fz-14px">

@@ -30,14 +30,24 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Prefecture()
+    public function prefecture()
     {
-        return $this->belongTo(Prefecture::class, 'foreign_key', 'prefectureOfInterest');
+        return $this->belongsTo('App\Models\Prefecture', 'prefectureOfInterest');
     }
 
     public static function getGenderDescription($value) {
         return Gender::getDescription($value);
     }
+
+    public function getUsersProfile($users) {
+        
+        foreach($users as $userRecord) {
+            $userRecord['profile'] = $userRecord->profile;
+        }
+        return $users;
+    }
+
+    
 
     const SEARCHSETTINGBYEMAIL = [
         1 => '許可する',

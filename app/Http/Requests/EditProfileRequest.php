@@ -41,4 +41,27 @@ class EditProfileRequest extends FormRequest
             'password' => 'nullable|min:6|confirmed'
         ];
     }
+
+    public function validated(): array
+    {
+        $validated = parent::validated();
+
+        if(isset($validated['user_image'])) {
+            $originalImg = $validated['user_image'];
+            $filePath = $originalImg->store('public/UserImages');
+            $validated['user_image'] = str_replace('public/UserImages/', '', $filePath);
+        }
+
+        if (isset($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+        if (isset($validated['email'])) {
+            $validated['new_email'] = $validated['email'];
+            unset($validated['email']);
+        }
+
+        return $validated;
+    }
 }

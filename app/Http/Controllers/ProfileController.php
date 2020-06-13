@@ -99,6 +99,32 @@ class ProfileController extends Controller
         
     }
 
+    public function edit(EditProfileRequest $request) {
+        $user = Auth::user();
+        try {
+            DB::beginTransaction();
+    
+            $form = $request->validated();
+            [ $deleteImageUrl ] = $user->updateProfile($form);
+            if($deleteImageUrl) {
+                Storage::delete('public/UserImages/' . $deleteImageUrl);
+            }
+            DB::commit();    
+            $response = redirect()
+                ->route('profile.show', ['id' => (int) $user->profile->id ])
+                ->with('flash_message', 'アカウントを更新しました。')
+            ;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $response = redirect()
+                ->route('profile.show', ['id' => (int) $user->profile->id ])
+                ->with('flash_message', 'メール更新に失敗しました。');
+        }
+    
+        return $response;
+    }
+
+    /*
     public function edit(int $id, EditProfileRequest $request) {
         $my_profile = Profile::where('user_id',$id)->first();
         $old_image = $my_profile->user_image;
@@ -142,5 +168,5 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'アカウントを更新しました。');
-    }
+    }*/
 }

@@ -8,6 +8,7 @@ use App\Models\Prefecture;
 use App\Models\Genre;
 use App\Models\Profile;
 use App\Models\Board;
+use Illuminate\Support\Facades\Auth;
 
 class Circle extends Model
 {
@@ -52,6 +53,81 @@ class Circle extends Model
 
     public function board() {
         return $this->hasOne('App\Models\Board');
+    }
+
+    public function scopeKeyword($query, $keyword) {
+        if ($keyword) {
+            $query->where(function($query) use($keyword){
+                $query->where('name', 'LIKE', "%{$keyword}%");
+                $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
+                $query->orWhereHas('genre', function($query) use ($keyword) {
+                    $query->where('name',"%{$keyword}%");
+                });
+            });
+        }
+        return $query;
+    }
+
+    public function scopePrefecture($query,$prefecture_id) {
+        if($prefecture_id!=null && $prefecture_id!=48) {
+        $query->where('prefecture_id', $prefecture_id);
+        }
+        return $query;
+    }
+
+    public function scopeGenre($query,$genre_id) {
+        if($genre_id){
+            $query->whereHas('genre', function($query) use ($genre_id) {
+                $query->where('genres.id', $genre_id);
+            });
+        }
+        return $query;
+    }
+
+    public function scopeCategory($query,$category_id) {
+        if($category_id) {
+            $query->where('category_id',$category_id);
+        }
+        return $query;
+    }
+
+    public function scopeAsc($query) {
+        $query->orderby('id', 'asc');
+        return $query;
+    }
+
+
+
+    public function getCircleList($my_prefecture,$request,$genre_id,$category_id) {
+        $query = Circle::query();
+        return $query->prefecture($my_prefecture->id)
+        ->keyword($request->keyword)
+        ->category($category_id)
+        ->genre($genre_id)
+        ->asc()
+        ->get();
+    }
+
+    public function getCircleMembers($circle) {
+        return $circle->users()->where('circle_user.approval', '=', 2);
+        
+    }
+
+
+    public function addInfomationToCircles($circles) {
+        
+        foreach($circles as $circleRecord) {
+            $circleRecord = Circle::addInfomationToCircle($circleRecord);
+        }
+        return $circles;
+    }
+
+    public function addInfomationToCircle($circle) {
+        $circle['genres'] = $circle->genre()->orderby('genre_id')->get();
+        $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
+        $circle['prefecture'] = Prefecture::find($circle->prefecture_id);
+        $circle['category'] = $circle->genres[0]->category;
+        return $circle;
     }
 
     const AGEGROUP = [

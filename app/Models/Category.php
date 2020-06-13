@@ -19,4 +19,8 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Models\Circle');
     }
+
+    public static function getAllCategories() {
+        return Category::orderby('id', 'asc')->get();
+    }
 }

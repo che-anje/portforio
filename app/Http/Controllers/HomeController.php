@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         if(Auth::check()) {
             if(Auth::user()->profile->prefectureOfInterest != 0) {
-                $my_prefecture = $this->getMyPrefecture();
+                $my_prefecture = Auth::user()->profile->prefecture;
             }elseif(session()->exists('my_prefecture')){
                 $my_prefecture = session('my_prefecture');
             }else{
@@ -47,7 +47,7 @@ class HomeController extends Controller
         }else{
             $my_prefecture = Prefecture::find(48);
         }
-        $prefectures = $this->getPrefectures();
+        $prefectures = Prefecture::getPrefectures();
 
         $categories = Category::orderby('id', 'asc')->get();
 
