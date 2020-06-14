@@ -88,7 +88,7 @@
                                             <label class="d-flex justify-content-between align-items-center mb-0 position-relative">
                                                 <p class="p-0 line-height-2 pl-3 mb-0">{{ $genre->name }}</p>
                                                 <input id="checkbox__genre" type="checkbox" name="genre_record" class="d-none checkbox__input checkbox__genre" value="{{ $genre->id }}"  
-                                                @if(in_array($genre->id, $genres_id)) checked @endif >
+                                                @if(in_array($genre->id, $circle->checked_genres)) checked @endif >
                                                 <span class="checkbox__lg"></span>
                                             </label>
                                         </li>

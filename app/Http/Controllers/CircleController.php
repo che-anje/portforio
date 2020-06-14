@@ -26,33 +26,11 @@ class CircleController extends Controller
 {
     use AboutPrefecture;
 
-    public function getCircles(int $id) {
-        
-        if(Auth::check()) {
-            $profile = Auth::user()->profile;
-            $profile->prefectureOfInterest = $id;
-            $profile->cityOfInterest = 0;
-            $profile->save();
-            $my_prefecture = Prefecture::where('id', $profile->prefectureOfInterest)->first();
-        }else{
-            $my_prefecture = null;
-        }
-        $prefectures = \App\Models\Prefecture::orderBy('id','asc')->get();
-        $circles = Circle::where('prefecture_id', $id)->get();
-        return view('home',  [
-            'my_prefecture' => $my_prefecture,
-            'prefectures' => $prefectures,
-            'circles' => $circles,
-        ]);
-    }
-
     public function showCreateForm() {
-        $prefectures = $this->getPrefectures();
+        $prefectures = Prefecture::getPrefectures();
         $categories = Category::get();
-        foreach($categories as $categoryRecord) {
-            $genres = $categoryRecord->genres()->orderby('id')->get();
-            $categoryRecord['genres'] = $genres;
-        }
+        $category = new Category;
+        $category->getGenresOfCategories($categories);
         
         return view('createCircle', [
             'categories' => $categories,
@@ -139,21 +117,13 @@ class CircleController extends Controller
 
     public function showEditForm(int $id) {
         $circle = Circle::find($id);
-        $circle_genres = Circle_Genre::where('circle_id', $id)->get();
-        $genres_id = [];
-        foreach($circle_genres as $circle_genre) {
-            $genres_id[] = $circle_genre->genre_id;
-        }
-        
+        $circle['checked_genres'] = $circle->getCheckedGenres($circle);
+        $category = new Category;
         $prefectures = Prefecture::getPrefectures();
-        $categories = Category::getAllCategories();
-        foreach($categories as $categoryRecord) {
-            $genres = $categoryRecord->genres()->orderby('id')->get();
-            $categoryRecord['genres'] = $genres;
-        }
+        $categories = $category->getAllCategories();
+        $category->getGenresOfCategories($categories);
         return view('editCircle', [
             'circle' => $circle,
-            'genres_id' => $genres_id,
             'categories' => $categories,
             'prefectures' => $prefectures,
         ]);
@@ -270,6 +240,11 @@ class CircleController extends Controller
         }
         /*戻り値を返す*/
         return $response;
+    }
+
+    public function getCircleGenres(int $id) {
+        $circle = Circle::find($id);
+        return $circle->getCheckedGenres($circle);
     }
 
 

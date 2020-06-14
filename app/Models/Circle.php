@@ -123,11 +123,15 @@ class Circle extends Model
     }
 
     public function addInfomationToCircle($circle) {
-        $circle['genres'] = $circle->genre()->orderby('genre_id')->get();
+        $circle['genres'] = $circle->genre()->orderby('circle_genre.id','asc')->get();
         $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
         $circle['prefecture'] = Prefecture::find($circle->prefecture_id);
         $circle['category'] = $circle->genres[0]->category;
         return $circle;
+    }
+
+    public function getCheckedGenres($circle) {
+        return $circle->genre()->orderby('circle_genre.id','asc')->get()->pluck('id')->toArray();
     }
 
     const AGEGROUP = [
