@@ -227,7 +227,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($circles as $circle)
             <li class="d-inline-block mr-2 ">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
+                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
@@ -237,11 +237,11 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
                             <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">{{ $genre }}</p>
+                            btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
+                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->prefecture->name }}</p></i>
                             <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
                         </div>
                         <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
@@ -268,7 +268,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($circles as $circle)
             <li class="d-inline-block mr-2">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0] }}サークル</h4>
+                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
@@ -279,11 +279,11 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
                             <p class="btn btn-outline-primary btn-outline-blue 
-                            btn-sm btn-sm--expand mr-2">{{ $genre }}</p>
+                            btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->pref }}</p></i>
+                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->prefecture->name }}</p></i>
                             <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
                         </div>
                         <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">

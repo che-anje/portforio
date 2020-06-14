@@ -34,39 +34,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::check()) {
-            if(Auth::user()->profile->prefectureOfInterest != 0) {
-                $my_prefecture = Auth::user()->profile->prefecture;
-            }elseif(session()->exists('my_prefecture')){
-                $my_prefecture = session('my_prefecture');
-            }else{
-                $my_prefecture = Prefecture::find(48);
-            }
-        }elseif(session()->exists('my_prefecture')){
-            $my_prefecture = session('my_prefecture');
-        }else{
-            $my_prefecture = Prefecture::find(48);
-        }
+        $my_prefecture = Prefecture::getMyPrefecture();
         $prefectures = Prefecture::getPrefectures();
-
-        $categories = Category::orderby('id', 'asc')->get();
-
+        $categories = Category::getAllCategories();
+        
         if($my_prefecture!=null && $my_prefecture->id!=48) {
             $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'desc')->get();
         }else{
             $circles = Circle::orderby('id', 'desc')->get();
         }
-        foreach($circles as $circleRecord) {
-            $genres = $circleRecord->genre()->orderby('genre_id')->get();
-            $genreName = [];
-            foreach($genres as $genreRecord) {
-                $genreName[] = $genreRecord->name;
-            }
-            $circleRecord['genres'] = $genreName;
-            $circleRecord['pref'] = $circleRecord->prefecture()->first()->name;
-            $circleRecord['count'] = Circle_User::where('circle_id', $circleRecord->id)->count();
-        }
-
+        $circle = new Circle;
+        /*サークルごとのジャンル・メンバー数・都道府県を取得する*/
+        $circle->addInfomationToCircles($circles);
         return view('home',  [
             'my_prefecture' => $my_prefecture,
             'prefectures' => $prefectures,
@@ -77,12 +56,5 @@ class HomeController extends Controller
 
     
 
-    /*
-    public function insert() {
-        foreach ($this->genres8 as $genre) {
-            Genre::insert($genre);
-        }
-    }
-    */
     
 }

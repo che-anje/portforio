@@ -39,7 +39,6 @@ class CircleController extends Controller
     }
 
     public function create(CreateCircleRequest $request) {
-
         return DB::transaction(function () use ($request) {
             $circle = new Circle;
             $user = Auth::user();
@@ -246,9 +245,6 @@ class CircleController extends Controller
         $circle = Circle::find($id);
         return $circle->getCheckedGenres($circle);
     }
-
-
-    
 
     public function getPopGenres($circles) {
         $circleIds = $circles->pluck('id');
