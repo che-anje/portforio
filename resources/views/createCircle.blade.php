@@ -392,6 +392,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="admin_user_id" value="{{ Auth::id() }}" class="admin_user_id">
         </form>
         <div class="fixed-bottom" style="padding-bottom:90px;">
             <div class="container col-md-8 col-lg-6">

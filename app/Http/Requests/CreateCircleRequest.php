@@ -29,6 +29,9 @@ class CreateCircleRequest extends FormRequest
             'prefecture_id' => 'required',
             'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
             'genres' => 'required',
+            'admin_user_id' => 'required',
         ];
     }
+
+    
 }

@@ -46,10 +46,16 @@ class Board extends Model
         return $board->messages()->orderby('id','asc')->get();
     }
 
-
-
     public function getOtherUser($user_id,$board_id) {
         $board_user = Board_User::where('board_id',$board_id)->where('user_id', '!=', $user_id)->first();
         return User::find($board_user->user_id);
+    }
+
+    public function createBoard($type, $circle_id) {
+        $board = new Board;
+        $board->type = $type;
+        $board->circle_id = $circle_id;
+        $board->save();
+        return $board;
     }
 }

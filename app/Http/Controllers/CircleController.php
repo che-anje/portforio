@@ -42,39 +42,22 @@ class CircleController extends Controller
         return DB::transaction(function () use ($request) {
             $circle = new Circle;
             $user = Auth::user();
-            $circle_user = new Circle_User;
-            $circle->fill($request->all());
-            $circle->admin_user_id = $user->id;
+            $circle->fill($request->validated());
             if($request->file('image')) {
                 $originalImg = $request->image;
                 $filePath = $originalImg->store('public/CircleImages');
                 $circle->image = str_replace('public/CircleImages/', '', $filePath);
             }
-            $genres = $request->genres;
-            $main_genre = Genre::find($genres[0]);
-            $circle->category_id = $main_genre->category_id;
+            $circle->category_id = Genre::find($request->genres[0])->category_id;
             $circle->save();
-            foreach((array)$genres as $genre) {
-                $circle_genre = new Circle_Genre;
-                $circle_genre->circle_id = $circle->id;
-                $circle_genre->genre_id = $genre;
-                $circle_genre->save();
-            }
-            $circle_user->user_id = $user->id;
-            $circle_user->circle_id = $circle->id;
-            $circle_user->approval = 2;
-            $circle_user->save();
-
+            $circle_genre = new Circle_Genre;
+            $circle_genre->updateCircleGenres($circle->id,$request->genres);
+            $circle_user = new Circle_User;
+            $circle_user->createCircleUser($user->id,$circle->id,2);
             $board = new Board;
-            $board->type = 'circle';
-            $board->circle_id = $circle->id;
-            $board->save();
-
+            $board = $board->createBoard('circle', $circle->id);
             $board_user = new Board_User;
-            $board_user->board_id = $board->id;
-            $board_user->user_id = $user->id;
-            $board_user->save();
-
+            $board_user->createBoardUser($board->id, $user->id);
             return redirect('/');
         });
     }
@@ -141,17 +124,10 @@ class CircleController extends Controller
                 $filePath = $originalImg->store('public/CircleImages');
                 $circle->image = str_replace('public/CircleImages/', '', $filePath);
             }
-            $genres = $request->genres;
-            $main_genre = Genre::find($genres[0]);
-            $circle->category_id = $main_genre->category_id;
+            $circle->category_id = Genre::find($request->genres[0])->category_id;
             $circle->save();
-            Circle_Genre::where('circle_id', $circle->id)->delete();
-            foreach((array)$genres as $genre) {
-                $circle_genre = new Circle_Genre;
-                $circle_genre->circle_id = $circle->id;
-                $circle_genre->genre_id = $genre;
-                $circle_genre->save();
-            }
+            $circle_genre = new Circle_Genre;
+            $circle_genre->updateCircleGenres($circle->id,$request->genres);
             return redirect('/');
         });
     }
