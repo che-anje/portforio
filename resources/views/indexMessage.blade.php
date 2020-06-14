@@ -27,7 +27,7 @@
                                 <p class="mb-1 line-1 position-relative mr-4">
                                     <span class="badge badge-light">{{ $c_board->circle->name }}</span>
                                 </p>
-                                <span class="position-absolute position--messagenum">（{{ $c_board->users()->count() }}）</span>
+                                <span class="position-absolute position--messagenum">（{{ $c_board->users->count() }}）</span>
                                 <p class="text-fz-14px text-black-20 mb-0 line-2">{!! strip_tags($c_board->last_msg) !!}</p>
                             </div>
                             <div class="col-2 p-0 align-self-start">
@@ -62,7 +62,7 @@
                                 <p class="mb-1 line-1 position-relative mr-4" style="overflow:scroll;">
                                     <span class="badge badge-light">{{ $u_board->circle->name }}</span>
                                 </p>
-                                <span class="position-absolute position--messagenum">（{{ $u_board->users()->count() }}）</span>
+                                <span class="position-absolute position--messagenum">（{{ $u_board->users->count() }}）</span>
                                 <p class="text-fz-14px text-black-20 mb-0 line-2">{{ $u_board->otherUser->profile->familyName }}{{ $u_board->otherUser->profile->firstName }}</p>
                             </div>
                             <div class="col-2 p-0 align-self-start">

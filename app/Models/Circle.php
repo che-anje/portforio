@@ -134,6 +134,13 @@ class Circle extends Model
         return $circle->genre()->orderby('circle_genre.id','asc')->get()->pluck('id')->toArray();
     }
 
+    public function getPopGenres($circles) {
+        $circleIds = $circles->pluck('id');
+        return  Genre::whereHas('circle', function($query) use($circleIds) {
+            $query->whereIn('circle_id', $circleIds);
+        })->get();
+    }
+
     const AGEGROUP = [
         0 => '指定しない',
         1 => '10代',

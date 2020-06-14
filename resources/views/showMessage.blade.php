@@ -41,7 +41,7 @@
 					@if($board->type == 'circle')
 						<div class="container">
 							<div class="text-center p-3">
-									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}{{ $board->count }}<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
+									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}({{ $board->users->count() }})<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
 							</div>
 						</div>
 						<a href="{{ route('circle.menu', [$board->circle->id]) }}" class="position-absolute position--headerright text-black-20 text-fz-18px">
@@ -101,8 +101,8 @@
 											<li>
 												<div class="row justify-content-around align-items-start mb-3">
 													<div class="col-2 pr-1">
-														@if($msg->user->user_image)
-														<img src="/storage/UserImages/{{ $msg->user->user_image }}" alt="" class="rounded-circle member-icon_48px">
+														@if($msg->user->profile->user_image)
+														<img src="/storage/UserImages/{{ $msg->user->profile->user_image }}" alt="" class="rounded-circle member-icon_48px">
 														@else
 														<img src="/storage/UserImages/no_image.jpeg" alt="" class="rounded-circle member-icon_48px">
 														@endif
@@ -112,9 +112,9 @@
 															<a href="">
 																<div class="mb-0 pl-0">
 																	<p class="text-fz-xs text-black-20 mb-0 line-1 p-0">
-																		{{ $msg->user->familyName }} {{ $msg->user->firstName }}
+																		{{ $msg->user->profile->familyName }} {{ $msg->user->profile->firstName }}
 																	</p>
-																	<p class="m-0 p-0 line-1" style="color: rgb(123, 176, 188); font-size: 9px;"><span >@</span>{{ $msg->user->name }}</p>
+																	<p class="m-0 p-0 line-1" style="color: rgb(123, 176, 188); font-size: 9px;"><span >@</span>{{ $msg->user->profile->name }}</p>
 																</div>
 															</a>
 															<p class="text-fz-xs text-black-20 mb-0">{{ $msg->date }}</p>

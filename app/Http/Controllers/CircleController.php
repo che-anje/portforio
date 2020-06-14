@@ -174,11 +174,8 @@ class CircleController extends Controller
         $genres = $my_category->genres()->get();
         /*サークル情報を取得する*/
         $circles = $circle->getCircleList($my_prefecture,$request,$genre_id=null,$category_id)->sortByDesc('id');
-        
         $pop_genres = [];
-        if($circles->count() > 0){
-            $pop_genres = $this->getPopGenres($circles);
-        }
+        $pop_genres = $circle->getPopGenres($circles);
         $circle->addInfomationToCircles($circles);
 
         /*$html = view('message.template.xxx', [
@@ -246,20 +243,6 @@ class CircleController extends Controller
         return $circle->getCheckedGenres($circle);
     }
 
-    public function getPopGenres($circles) {
-        $circleIds = $circles->pluck('id');
-        return  Genre::whereHas('circle', function($query) use($circleIds) {
-            $query->whereIn('circle_id', $circleIds);
-        })->get();
-        foreach($circles as $circleRecord) {
-            $circle_genres = $circleRecord->genre()->orderby('genre_id')->get();
-            foreach($circle_genres as $circle_genre) {
-                $pop_genres[] = $circle_genre;
-            }
-            $pop_genres = array_unique($pop_genres, SORT_REGULAR);
-        }
-        return $pop_genres;
-    }
     
 
 }
