@@ -30,83 +30,31 @@ class Circle_UserController extends Controller
     //申請
     public function apply(Request $request) {
         return DB::transaction(function () use ($request) {
-            $circle_id = $request->circle_id;
             $user = User::find($request->user_id);
-            $user['profile'] = $user->profile()->first();
-            
-            if(!Circle_User::where('circle_id', $circle_id)->where('user_id', $user->id)->first()){
-                $circle = Circle::find($circle_id);
-                $circle_user = new Circle_User;
-                $circle_user->circle_id = $circle_id;
-                $circle_user->user_id = $user->id;
-                if($circle->request_required==1){
-                    $circle_user->approval = 2;
-                    $circle_user->save();
-                    $board = $circle->board()->first();
-                    $profile = Profile::where('user_id',$user->id)->first();
-                    $board_user = new Board_User;
-                    $board_user->board_id = $board->id;
-                    $board_user->user_id = $user->id;
-                    $board_user->save();
-                    $fullName = $profile->familyName.$profile->firstName;
-                    $request->msg = $fullName.'さんが参加しました。';
-                    $request->msg_type = 'entry';
-                    $this->storeMessage($request);
-                    $request = new Request;
-                    $request->user_id = $user->id;
-                    $request->board_id = $board->id;
-                    $request->msg = $this->getTemplateMsg($profile);
-                    $request->msg_type = 'msg';
-                    $this->storeMessage($request);
-                }elseif($circle->request_required==0){
-                    $circle_user->approval = 1;
-                    $circle_user->save();
-                    $board = new Board;
-                    $board->type = 'user';
-                    $board->circle_id = $circle_id;
-                    $board->save();
-                    $board_user = new Board_User;
-                    $board_user->board_id = $board->id;
-                    $board_user->user_id = $user->id;
-                    $board_user->save();
-                    $board_user2 = new Board_User;
-                    $board_user2->board_id = $board->id;
-                    $circle = Circle::find($circle_id);
-                    $board_user2->user_id = $circle->admin_user_id;
-                    $board_user2->save();
-                    $request->board_id = $board->id;
-                    $request->msg = $this->getTemplateApply($request, $circle, $user);
-                    $this->storeMessage($request);
-                    
-                }
+            $user['profile'] = $user->profile;
+            $circle_user = new Circle_User;
+            $text = $request->msg;
+
+            if(!Circle_User::where('circle_id', $request->circle_id)->where('user_id', $user->id)->first()){
+                $circle = Circle::find($request->circle_id);
+                $circle_user->applyForCircle($circle,$user,$text);
             }
-            return redirect(route('circle.show', [$circle_id]));
+            return redirect(route('circle.show', [$circle->id]));
         });
         
     }
 
-    public function participate($circle_id,$user_id, Request $request) {
-        return DB::transaction(function () use ($circle_id,$user_id,$request) {
+    public function participate($circle_id,$user_id) {
+        return DB::transaction(function () use ($circle_id,$user_id) {
             $circle = Circle::find($circle_id);
+            $user = User::find($user_id);
+            $board = $circle->board;
             if(Auth::id()==$circle->admin_user_id){
                 
                 $circle_user = Circle_User::where('circle_id',$circle_id)->where('user_id', $user_id)->first();
                 if($circle_user->approval != 2){
-                $circle_user->approval = 2;
-                $circle_user->save();
-                $profile = Profile::where('user_id',$user_id)->first();
-                $board = $circle->board()->first();
-                $board_user = new Board_User;
-                $board_user->board_id = $board->id;
-                $board_user->user_id = $user_id;
-                $board_user->save();
-                $request->user_id = $user_id;
-                $request->board_id = $board->id;
-                $fullName = $profile->familyName.$profile->firstName;
-                $request->msg = $fullName.'さんが参加しました。';
-                $request->msg_type = 'entry';
-                $this->storeMessage($request);
-                return redirect('/message')->with('message', $profile->name.'の参加を承認しました');
+                    $circle_user->approveUser($circle_user,$board,$user);
+                    return redirect('/message')->with('message', $user->profile->name.'の参加を承認しました');
                 }
                 return back()->with('message', '既に承認済です');
             }
