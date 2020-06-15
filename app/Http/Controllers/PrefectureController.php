@@ -15,42 +15,20 @@ class PrefectureController extends Controller
     use aboutPrefecture;
 
     public function change(int $id) {
-        if(Auth::check()) {
-            $this->changePrefecture($id);
-            return redirect('/');
-        }else{
-            $my_prefecture = Prefecture::find($id);
-            $prefectures = $this->getPrefectures();
-            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
-            return redirect('/');
-        }
+        $prefecture = new Prefecture;
+        $prefecture->changeMyPrefecture($id);
+        return redirect('/');
     }
 
     public function categoryPrefChange(int $pref_id, $category_id) {
         $prefecture = new Prefecture;
-        if(Auth::check()) {
-            $prefecture->changePrefecture($pref_id);
-            
-        }else{
-            $my_prefecture = Prefecture::find($pref_id);
-            $prefectures = $prefecture->getPrefectures();
-            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
-            
-        }
+        $prefecture->changeMyPrefecture($pref_id);
         return redirect("/circle/$category_id/$pref_id");
     }
 
     public function circlePrefChange(int $pref_id, $category_id=null) {
         $prefecture = new Prefecture;
-        if(Auth::check()) {
-            $prefecture->changePrefecture($pref_id);
-            
-        }else{
-            $my_prefecture = Prefecture::find($pref_id);
-            $prefectures = $prefecture->getPrefectures();
-            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
-            
-        }
+        $prefecture->changeMyPrefecture($pref_id);
         if($category_id){
             return redirect("/index/$pref_id?&category=$category_id");
         }else{

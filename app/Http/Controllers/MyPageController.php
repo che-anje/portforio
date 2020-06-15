@@ -11,7 +11,7 @@ class MyPageController extends Controller
 {
     public function show() {
         $user = Auth::user();
-        $profile = Profile::where('user_id', $user->id)->first();
+        $profile = $user->profile;
         return view('mypage', [
             'user' => $user,
             'profile' => $profile,

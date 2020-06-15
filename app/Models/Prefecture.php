@@ -65,14 +65,29 @@ class Prefecture extends Model
         
     }
 
-    public function changePrefecture(int $id) {
-        $profile = Auth::user()->profile;
-            $profile->prefectureOfInterest = $id;
-            $profile->cityOfInterest = 0;
-            $profile->save();
-            $my_prefecture = Prefecture::find($id);
-            $prefectures = $this->getPrefectures();
-            session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
-        
+    public function changeMyPrefecture(int $id) {
+        $prefecture = new Prefecture;
+        if(Auth::check()) {
+            $prefecture->changeUserPrefecture($id);
+            $prefecture->changeSessionPrefecture($id);
+        }else{
+            $prefecture->changeSessionPrefecture($id);
+        }
     }
+
+    public function changeUserPrefecture(int $id) {
+        $profile = Auth::user()->profile;
+        $profile->prefectureOfInterest = $id;
+        $profile->cityOfInterest = 0;
+        $profile->save();
+    }
+
+    public function changeSessionPrefecture(int $id) {
+        $prefecture = new Prefecture;
+        $my_prefecture = Prefecture::find($id);
+        $prefectures = $prefecture->getPrefectures();
+        session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
+    }
+
+
 }

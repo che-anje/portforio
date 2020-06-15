@@ -9,6 +9,28 @@
     
 @endsection
 @section('content')
+@if(session()->has('message'))
+<div class="modal-view" id="sampleModal" style="position: relative; z-index: 10001;">
+    <div class="modal-view-fade-in">
+        <div class="modal-view-overAll">
+            <div class="modal-view-overlay">
+            </div>
+            <div class="modal-view-dialog">
+                <div class="modal-view-content">
+                    <div class="modal-view-header" style="position: relative; z-index: 10001;">
+                    </div>
+                    <div class="modal-view-body">
+                        <p class="mt-3">{{ session('message') }}</p>
+                    </div>
+                    <div class="modal-view-footer">
+                        <a class="modal-view-button-center-12">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <div class="h-main100vh">
     <div class="container col-md-8 col-lg-6">
         <h6 class="h6--list-title text-fz-14px text-black-50 pt-2">CIRCLE MESSAGES</h6>

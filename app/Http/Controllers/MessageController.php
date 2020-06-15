@@ -17,8 +17,8 @@ class MessageController extends Controller
     use AboutMessage;
 
     public function store(Request $request) {
-        
-        $this->storeMessage($request);
+        $message = new Message;
+        $message->storeMessage($request->user_id,$request->board_id,$request->msg,$request->msg_type);
         $board = Board::find($request->board_id);
         $messages = $board->messages()->orderby('id','asc')->get();
         if($request->ajax()){

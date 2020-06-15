@@ -23,18 +23,6 @@ use Illuminate\Support\Facades\DB;
 trait AboutMessage
 {
 
-    public function storeBoard(Request $request) {
-        $board = new Board;
-        $board->type = $request->board_type;
-        $board->save();
-    }
-
-    public function storeBoard_User(Request $request) {
-        $board_user = new Board_User;
-        $board_user->board_id = $request->board_id;
-        $board_user->user_id = $request->user_id;
-        $board_user->save();
-    }
 
     
 
