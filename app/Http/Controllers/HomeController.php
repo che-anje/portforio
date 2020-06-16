@@ -34,9 +34,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $my_prefecture = Prefecture::getMyPrefecture();
-        $prefectures = Prefecture::getPrefectures();
-        $categories = Category::getAllCategories();
+        $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         
         if($my_prefecture!=null && $my_prefecture->id!=48) {
             $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'desc')->get();
@@ -48,8 +46,6 @@ class HomeController extends Controller
         $circle->addInfomationToCircles($circles);
         return view('home',  [
             'my_prefecture' => $my_prefecture,
-            'prefectures' => $prefectures,
-            'categories' => $categories,
             'circles' => $circles,
         ]);
     }

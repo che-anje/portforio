@@ -27,14 +27,12 @@ class CircleController extends Controller
     use AboutPrefecture;
 
     public function showCreateForm() {
-        $prefectures = Prefecture::getPrefectures();
         $categories = Category::get();
         $category = new Category;
         $category->getGenresOfCategories($categories);
         
         return view('createCircle', [
             'categories' => $categories,
-            'prefectures' => $prefectures,
         ]);
     }
 
@@ -68,15 +66,13 @@ class CircleController extends Controller
         $members = $circle->getCircleMembers($circle)->get();
         $members = $profile->getUsersProfile($members);
         $circle = $circle->addInfomationToCircle($circle);
-        $categories = Category::getAllCategories();
         $approval = Circle_User::getApproval($id, Auth::id());
         /*自分の選択している都道府県を取得する。*/
-        $my_prefecture = Prefecture::getMyPrefecture();
+        $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         $board = $circle->board()->first();
         return view('showCircle', [
             'circle' => $circle,
             'members' => $members,
-            'categories' => $categories,
             'approval' => $approval,
             'board' => $board,
             'my_prefecture' => $my_prefecture,
@@ -101,13 +97,8 @@ class CircleController extends Controller
         $circle = Circle::find($id);
         $circle['checked_genres'] = $circle->getCheckedGenres($circle);
         $category = new Category;
-        $prefectures = Prefecture::getPrefectures();
-        $categories = $category->getAllCategories();
-        $category->getGenresOfCategories($categories);
         return view('editCircle', [
             'circle' => $circle,
-            'categories' => $categories,
-            'prefectures' => $prefectures,
         ]);
     }
 
@@ -142,11 +133,9 @@ class CircleController extends Controller
     public function categorySearch(Request $request,$category_id, $pref_id) {
         $circle = new Circle;
         /*全てのカテゴリーを抜き出す*/
-        $categories = Category::getAllCategories();
         $my_category = Category::find($category_id);
-        $prefectures = Prefecture::getPrefectures();
         /*自分の選択している都道府県を取得する。*/
-        $my_prefecture = Prefecture::getMyPrefecture();
+        $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         $genres = $my_category->genres()->get();
         /*サークル情報を取得する*/
         $circles = $circle->getCircleList($my_prefecture,$request,$genre_id=null,$category_id)->sortByDesc('id');
@@ -157,10 +146,8 @@ class CircleController extends Controller
         /*$html = view('message.template.xxx', [
         ])->render();*/
         return view('category_search', [
-            'categories' => $categories,
             'my_category' => $my_category,
             'genres' => $genres,
-            'prefectures' => $prefectures,
             'my_prefecture' => $my_prefecture,
             'circles' => $circles,
             'pop_genres' => $pop_genres,
@@ -170,12 +157,8 @@ class CircleController extends Controller
     public function index($pref_id,Request $request, $genre_id=null) {
         $query = Circle::query();
         $circle = new Circle;
-        /*全都道府県を取得する*/
-        $prefectures = Prefecture::getPrefectures();
         /*自分の選択している都道府県を取得する。*/
-        $my_prefecture = Prefecture::getMyPrefecture();
-        /*全てのカテゴリーを抜き出す*/
-        $categories = Category::getAllCategories();
+        $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         /*サークル情報を取得する*/
         $category_id = $request->input('category');
         $circles = $circle->getCircleList($my_prefecture,$request,$genre_id,$category_id);
@@ -192,9 +175,7 @@ class CircleController extends Controller
                 $circles = $circles->sortByDesc('id');
             }
             $html = view('circleList', [
-                'prefectures' => $prefectures,
                 'my_prefecture' => $my_prefecture,
-                'categories' => $categories,
                 'circles' => $circles,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
@@ -204,7 +185,6 @@ class CircleController extends Controller
             $response = view('indexCircle', [
                 'prefectures' => $prefectures,
                 'my_prefecture' => $my_prefecture,
-                'categories' => $categories,
                 'circles' => $circles,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,

@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Prefecture extends Model
 {
+
+    const ALL_PREFECTURE = 48;
+
     public function area()
     {
         return $this->belongsTo(Area::class);
@@ -39,55 +42,12 @@ class Prefecture extends Model
     }
 
     
-    public static function getMyPrefecture() {
-        if(Auth::check()) {
-        //ログインユーザーの場合
-            if(Auth::user()->profile->prefectureOfInterest != 0) {
-            //プロフィールに都道府県を設定している場合
-                return Auth::user()->profile->prefecture;
-            }elseif(session()->exists('my_prefecture')){
-            //セッションになら都道府県がある場合
-                return session('my_prefecture');
-            }else{
-            //どちらにも設定していない場合
-                return Prefecture::find(48);
-            }
-        }elseif(session()->exists('my_prefecture')){
-        //ゲストでセッションがある場合
-            return session('my_prefecture');
-        }else{
-        //ゲストでセッションがない場合
-            return Prefecture::find(48);
-        }
-    }
 
-    public static function getCirclePrefecture() {
-        
-    }
 
-    public function changeMyPrefecture(int $id) {
-        $prefecture = new Prefecture;
-        if(Auth::check()) {
-            $prefecture->changeUserPrefecture($id);
-            $prefecture->changeSessionPrefecture($id);
-        }else{
-            $prefecture->changeSessionPrefecture($id);
-        }
-    }
 
-    public function changeUserPrefecture(int $id) {
-        $profile = Auth::user()->profile;
-        $profile->prefectureOfInterest = $id;
-        $profile->cityOfInterest = 0;
-        $profile->save();
-    }
+    
 
-    public function changeSessionPrefecture(int $id) {
-        $prefecture = new Prefecture;
-        $my_prefecture = Prefecture::find($id);
-        $prefectures = $prefecture->getPrefectures();
-        session()->put(['my_prefecture' => $my_prefecture, 'prefectures' => $prefectures,]);
-    }
+    
 
 
 }
