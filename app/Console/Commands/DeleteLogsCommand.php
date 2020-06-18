@@ -8,14 +8,14 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use App\Models\Circle;
 
-class LogCommand extends Command
+class DeleteLogsCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:logcommand';
+    protected $signature = 'command:deletelogscommand';
 
     /**
      * The console command description.
@@ -41,15 +41,10 @@ class LogCommand extends Command
      */
     public function handle()
     {
-        DB::table('circle_ranking')->delete();
-        $circles = Circle::all();
-        foreach($circles as $circle) {
-            $circle_rank = new Circle_Ranking;
-            $circle_rank->circle_id = $circle->id;
-            $circle_rank->total_point = Point_Log::where('circle_id', $circle->id)
-            ->whereRaw('created_at > NOW() - INTERVAL 1 DAY')
-            ->sum('point');
-            $circle_rank->save();
-        }
+        $point_log = new Point_Log;
+        $point_log->whereRaw('created_at < NOW() - INTERVAL 1 WEEK')
+        ->delete();
+            
+        
     }
 }
