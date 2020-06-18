@@ -224,9 +224,9 @@ data-ride="carousel" data-interval="4000" data-touch="true">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -crown">「人気順」からサークルを探す</h2>
         <ul class="scrollable-list pl-0 ib-list d-flex circle_card">
-            @foreach($circles as $circle)
+            @foreach($p_circles as $circle)
             <li class="d-inline-block mr-2 ">
-                <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
+                <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
@@ -265,7 +265,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -new">「新着順」からサークルを探す</h2>
         <ul class="scrollable-list pl-0 ib-list d-flex">
-            @foreach($circles as $circle)
+            @foreach($n_circles as $circle)
             <li class="d-inline-block mr-2">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
                     <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>

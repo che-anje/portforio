@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Prefecture;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Point_Log;
+use App\Models\Circle_Ranking;
+use Illuminate\Http\Request;
 
 class Controller extends BaseController
 {
@@ -35,5 +38,28 @@ class Controller extends BaseController
             return;
         }
         session()->put(['my_prefecture' => $id]);
+    }
+
+    public function insertLogOfShow($circle_id, $user_id=null) {
+        $point_log = new Point_Log;
+        $ip_address = \Request::ip();
+        $session_id = session()->getId();
+        $point = 1;
+        if($point_log->CheckLogs($session_id,$user_id,$circle_id,$point)){
+            $point_log->insert($ip_address, $session_id, $circle_id, $user_id, $point);
+        }
+        return;
+    }
+
+
+    public function insertLogOfRegister($circle_id, $user_id=null) {
+        $point_log = new Point_Log;
+        $ip_address = \Request::ip();
+        $session_id = session()->getId();
+        $point = 2;
+        if($point_log->CheckLogs($session_id,$user_id,$circle_id,$point)){
+            $point_log->insert($ip_address, $session_id, $circle_id, $user_id, $point);
+        }
+        return;
     }
 }

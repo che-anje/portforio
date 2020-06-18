@@ -40,7 +40,7 @@ Route::get("reset/{token}", "UserController@reset");
 
 Route::get('profile/create', 'ProfileController@showCreateForm')->name('profile');
 Route::post('profile/create', 'ProfileController@create')->name('profile.create');
-Route::get('profile/show/{id}', 'ProfileController@show')->name('profile.show');
+Route::get('profile/show/{id}', 'ProfileController@show')->name('profile.show')->where('id', '[0-9]+');
 Route::get('profile/edit', 'ProfileController@showEditForm');
 Route::get('/profile/{prefecture_id}/cities', 'CityController@getCityList')->name('cities.get');
 Route::post('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit');
@@ -50,7 +50,7 @@ Route::post('/category', 'CategoryController@up')->name('category.edit');
 
 Route::get('circles/new', 'CircleController@showCreateForm');
 Route::post('circle/new', 'CircleController@create')->name('circle.create');
-Route::get('circle/{id}', 'CircleController@show')->name('circle.show');
+Route::get('circle/{id}', 'CircleController@show')->name('circle.show')->where('id', '[0-9]+');
 Route::get('my_circle/{id}/circle_menu', 'CircleController@showMyCircleMenu')->name('my_circle.menu');
 Route::get('circle/{id}/circle_menu', 'CircleController@showCircleMenu')->name('circle.menu');
 Route::get('/circle/{id}/edit', 'CircleController@showEditForm');

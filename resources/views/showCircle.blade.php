@@ -5,11 +5,13 @@
         <i class="fas fa-chevron-left"></i>
     </a>
     @parent
-    @if(Auth::user()->id === $circle->admin_user_id)
-    <a href="{{ route('my_circle.menu', [$circle->id]) }}" class="position-absolute position--headerright
-     text-black-20 text-fz-18px">
-        <i class="fa fa-bars"></i>
-    </a>
+    @if(Auth::check())
+      @if(Auth::id() === $circle->admin_user_id)
+      <a href="{{ route('my_circle.menu', [$circle->id]) }}" class="position-absolute position--headerright
+      text-black-20 text-fz-18px">
+          <i class="fa fa-bars"></i>
+      </a>
+      @endif
     @endif
 @endsection
 

@@ -17,23 +17,22 @@ use App\Models\Message;
 use App\Models\Board;
 use App\Models\Board_User;
 use App\Models\Board_Message;
+use App\Models\Point_Log;
+use App\Models\Circle_Ranking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Traits\AboutPrefecture;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller,
+    Session;
 
 class CircleController extends Controller
 {
     use AboutPrefecture;
 
     public function showCreateForm() {
-        $categories = Category::get();
-        $category = new Category;
-        $category->getGenresOfCategories($categories);
         
-        return view('createCircle', [
-            'categories' => $categories,
-        ]);
+        return view('createCircle');
     }
 
     public function create(CreateCircleRequest $request) {
@@ -60,7 +59,10 @@ class CircleController extends Controller
         });
     }
 
-    public function show(int $id) {
+    public function show(int $id, Request $request) {
+        
+        
+
         $circle = Circle::find($id);
         $profile = new Profile;
         $members = $circle->getCircleMembers($circle)->get();
@@ -70,6 +72,9 @@ class CircleController extends Controller
         /*自分の選択している都道府県を取得する。*/
         $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         $board = $circle->board()->first();
+        
+        $log = new Point_Log;
+        $this->insertLogOfShow($circle->id, Auth::id());
         return view('showCircle', [
             'circle' => $circle,
             'members' => $members,
@@ -183,7 +188,6 @@ class CircleController extends Controller
             $response = response($html, 200);
         }else{
             $response = view('indexCircle', [
-                'prefectures' => $prefectures,
                 'my_prefecture' => $my_prefecture,
                 'circles' => $circles,
                 'my_category' => $my_category,

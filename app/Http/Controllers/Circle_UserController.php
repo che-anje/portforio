@@ -39,8 +39,10 @@ class Circle_UserController extends Controller
                 $circle = Circle::find($request->circle_id);
                 $circle_user->applyForCircle($circle,$user,$text);
             }
+            $this->insertLogOfRegister($request->circle_id, Auth::id());
             return redirect(route('circle.show', [$circle->id]));
         });
+        
         
     }
 

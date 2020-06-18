@@ -4,6 +4,10 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+use App\Models\Point_Log;
+use App\Models\Circle_Ranking;
+use App\Models\Circle;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +17,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\LogCommand::class,
     ];
 
     /**
@@ -26,6 +30,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('command:logcommand')->daily();
+        
     }
 
     /**

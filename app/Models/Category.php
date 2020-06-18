@@ -20,15 +20,6 @@ class Category extends Model
         return $this->belongsToMany('App\Models\Circle');
     }
 
-    public static function getAllCategories() {
-        return Category::orderby('id', 'asc')->get();
-    }
 
-    public function getGenresOfCategories($categories) {
-        foreach($categories as $category) {
-            $category['genres'] = $category->genres()->orderby('id')->get();
-        }
-        return $categories;
-    }
 
 }

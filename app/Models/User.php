@@ -13,6 +13,7 @@ use App\Models\Profile;
 use App\Models\Prefecture;
 use App\Models\Circle;
 use App\Models\Board;
+use App\Models\Point_Log;
 use App\Models\EmailReset;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -92,6 +93,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function boards(){
         return $this->belongsToMany('App\Models\Board', 'board_users', 'user_id', 'board_id');
+    }
+
+    public function point_log()
+    {
+        return $this->hasOne(Point_Log::class);
     }
 
     public function updateProfile(array $attributes)

@@ -35,18 +35,19 @@ class HomeController extends Controller
     public function index()
     {
         $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
-        
-        if($my_prefecture!=null && $my_prefecture->id!=48) {
-            $circles = Circle::where('prefecture_id', $my_prefecture->id)->orderby('id', 'desc')->get();
-        }else{
-            $circles = Circle::orderby('id', 'desc')->get();
-        }
         $circle = new Circle;
+        $n_circles = $circle->sortByNewArrival($my_prefecture->id);
+        $p_circles = $circle->sortCirclesByPopularity($my_prefecture->id);
+        
+        
         /*サークルごとのジャンル・メンバー数・都道府県を取得する*/
-        $circle->addInfomationToCircles($circles);
+        $circle->addInfomationToCircles($n_circles);
+        $circle->addInfomationToCircles($p_circles);
+        
         return view('home',  [
             'my_prefecture' => $my_prefecture,
-            'circles' => $circles,
+            'n_circles' => $n_circles,
+            'p_circles' => $p_circles,
         ]);
     }
 

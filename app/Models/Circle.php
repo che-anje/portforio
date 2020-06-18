@@ -8,6 +8,8 @@ use App\Models\Prefecture;
 use App\Models\Genre;
 use App\Models\Profile;
 use App\Models\Board;
+use App\Models\Point_Log;
+use App\Models\Circle_Ranking;
 use Illuminate\Support\Facades\Auth;
 
 class Circle extends Model
@@ -30,6 +32,21 @@ class Circle extends Model
 
     public function prefecture() {
         return $this->belongsTo(Prefecture::class);
+    }
+
+    public function circle_ranking()
+    {
+        return $this->hasOne(Circle_Ranking::class);
+    }
+
+    public function point_log()
+    {
+        return $this->hasOne(Point_Log::class);
+    }
+
+    public function circle_rank()
+    {
+        return $this->hasOne(Circle_Ranking::class);
     }
 
     public function genre() {
@@ -104,7 +121,7 @@ class Circle extends Model
         ->keyword($request->keyword)
         ->category($category_id)
         ->genre($genre_id)
-        ->asc()
+        ->sortByPopularity()
         ->get();
     }
 
@@ -123,6 +140,7 @@ class Circle extends Model
     }
 
     public function addInfomationToCircle($circle) {
+        
         $circle['genres'] = $circle->genre()->orderby('circle_genre.id','asc')->get();
         $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
         $circle['prefecture'] = Prefecture::find($circle->prefecture_id);
@@ -139,6 +157,33 @@ class Circle extends Model
         return  Genre::whereHas('circle', function($query) use($circleIds) {
             $query->whereIn('circle_id', $circleIds);
         })->get();
+    }
+
+    public function sortCirclesByPopularity($my_prefecture_id=null) {
+        if($my_prefecture_id!=null && $my_prefecture_id!=48) {
+            $circles = Circle::where('prefecture_id', $my_prefecture_id)
+            ->sortByPopularity()
+            ->get();
+        }else{
+            $circles = Circle::sortByPopularity()->get();
+        }
+        return $circles;
+    }
+
+    public function sortByNewArrival($my_prefecture_id=null) {
+        if($my_prefecture_id!=null && $my_prefecture_id!=48) {
+            $circles = Circle::where('prefecture_id', $my_prefecture_id)->orderby('id', 'desc')->get();
+        }else{
+            $circles = Circle::orderby('id', 'desc')->get();
+        }
+        return $circles;
+    }
+
+    public function scopeSortByPopularity($query) {
+        $query->select('circles.*')
+        ->join('circle_ranking', 'circle_ranking.circle_id', '=','circles.id' )
+        ->orderby('circle_ranking.total_point','desc');
+        return $query;
     }
 
     const AGEGROUP = [
