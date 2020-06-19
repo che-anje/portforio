@@ -72,7 +72,7 @@
         <div class="toast-body">
           集客の悩みをまるっと解決！
           メンバー募集を加速させましょう！<br><br>
-          <a href="https://tunagate.com/circle/payment/ready/34196?md=2019">有料プランについて詳しく見る</a>
+          <a href="">有料プランについて詳しく見る</a>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
     </h2>
     <div class="d-flex justify-content-end">
       <p class="twitter-share-btn d-flex justify-content-end">
-        <a href="https://twitter.com/share?url=https%3A%2F%2Ftunagate.com%2Fcircle%2F34196&related=tunagate&hashtags=つなげーと&text=A - サークルで趣味やスポーツを楽しもう！ つなげーと" rel="nofollow" target="_blank"><i class="fa fa-twitter twitter-icon" style="font-size:14px;">&nbsp;&nbsp;ツイート</i></a>
+        <a href="" rel="nofollow" target="_blank"><i class="fa fa-twitter twitter-icon" style="font-size:14px;">&nbsp;&nbsp;ツイート</i></a>
       </p>
     </div>
     <div class="row no-gutters">
@@ -222,7 +222,7 @@
         <a class="card card--circle hov--default border-0" href="/circle/26935">
           <h4 class="mb-2 line-1" style="font-size: 13px;font-weight: bold;">スポーツ全般サークル</h4>
           <img class="card-img-top card-img-top--list"
-          src="https://image.tunagate.com/circles/main_images/000/026/935/medium/A66AE58D-FAD6-4FB1-9953-312380AE9DB6.jpeg?1570981816">
+          src="">
           <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4 ">
             <div class="d-flex scrollable-list">
               <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2">スポーツ全般</p>
@@ -287,7 +287,7 @@
         </h2>
         <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
           <div class="mb-2 pl-1 pr-1">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -300,7 +300,7 @@
             </a>
           </div>
           <div class="mb-2 pl-1 pr-1 ">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">

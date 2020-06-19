@@ -12,7 +12,7 @@
 			<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 			<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
 			<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
-			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.6/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
 			<script src="{{ asset('js/app.js') }}" defer></script>
 			<!-- Fonts -->
@@ -41,7 +41,7 @@
 					@if($board->type == 'circle')
 						<div class="container">
 							<div class="text-center p-3">
-									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}({{ $board->users->count() }})<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
+								<p id="circle_name" class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}({{ $board->users->count() }})<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
 							</div>
 						</div>
 						<a href="{{ route('circle.menu', [$board->circle->id]) }}" class="position-absolute position--headerright text-black-20 text-fz-18px">
@@ -82,8 +82,8 @@
 				<form action="{{ route('message.store') }}" class="create_circle" id="store_message" enctype="multipart/form-data"
 				accept-charset="UTF-8" method="post">
 				{{ csrf_field() }}
-				<div  style="height: auto;min-height: 100%;">
-					<div class="bg-gray h-main100vh">
+				<div style="height: auto;min-height: 100%;">
+					<div id="test" class="bg-gray h-main100vh">
 						<div class="pb-5" style="pdding-bottom:0px;">
 							<div class="block-messageList container col-md-8 col-lg-6">
 								<ul id="message_list" class="list-unstyled mb-2 pt-3">
@@ -147,9 +147,9 @@
 														</p>
 													</div>
 													<div class="col-7 pl-0 pr-1">
-														<p class="text-fz-xs text-black-20 mb-0">{{ $msg->date }}</p>
+														<p class="text-fz-xs text-black-20 mb-0" >{{ $msg->date }}</p>
 														<div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px">
-															<p class="mb-0">
+															<p class="mb-0" id="my_msg">
 																{!! $msg->msg !!}
 															</p>
 														</div>
@@ -190,8 +190,7 @@
 	<footer>
 		<script>
 			$(function(){
-				get_data();
-
+				
 				$('#btnMessageSubmit').click(function(event){
 					event.preventDefault();
 					var msg = $('textarea[name=msg]').val();
@@ -213,36 +212,23 @@
 								msg_type: msg_type,
 								user_id: user_id,
 							},
-							dataType: json,
+							dataType: 'json',
 					})
 					.done(function(data) {
-						$('#message_list').append('<li>'
-							'<div class="row justify-content-around align-items-start mb-3">'
-								'<div class="col-2 pr-1 p-0"></div>'
-								'<div class="col-2 p-0 align-self-end">'
-									'<p class="text-fz-xs mb-0 text-green">'
-										'<span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">'
-											'既読２'
-										'</span>'
-									'</p>'
-								'</div>'
-								'<div class="col-7 pl-0 pr-1">'
-									'<p class="text-fz-xs text-black-20 mb-0">'+data->created_at+'</p>'
-									'<div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px">'
-										'<p class="mb-0">'
-											+ msg +
-										'</p>'
-									'</div>'
-								'</div>'
-							'</div>'
-						'</li>');
-						
+						$('#message_list').append('<li><div class="row justify-content-around align-items-start mb-3"><div class="col-2 pr-1 p-0"></div><div class="col-2 p-0 align-self-end"><p class="text-fz-xs mb-0 text-green"><span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">既読２</span></p></div><div class="col-7 pl-0 pr-1"><p class="text-fz-xs text-black-20 mb-0">' + data.created_at + '</p><div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px"><p class="mb-0">' + msg + '</p></div></div></div></li>');
+						window.scrollTo(0,document.body.scrollHeight);
 					})
 					.fail(function (data) { 
-							alert('失敗');
+						alert('失敗');
 					});
-				});			
+				});	
+				
 			}); 
+			window.scrollTo(0,document.body.scrollHeight);
+				
+							
+			
+			
 		</script>
 	</footer>
 </html>

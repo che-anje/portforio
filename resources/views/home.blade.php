@@ -183,7 +183,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 </h2>
                 <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
                     <div class="mb-2 pl-1 pr-1">
-                        <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+                        <a  href=""
                             class="display-block"
                             target=&quot;_blank&quot;
                             onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -198,7 +198,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </a>
                     </div>
                     <div class="mb-2 pl-1 pr-1 ">
-                        <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+                        <a  href=""
                             class="display-block"
                             target=&quot;_blank&quot;
                             onClick="gtag('event', '', {'event_category': '','event_label': '/'});">

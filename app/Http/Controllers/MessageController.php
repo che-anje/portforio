@@ -18,11 +18,11 @@ class MessageController extends Controller
 
     public function store(Request $request) {
         $message = new Message;
-        $message->storeMessage($request->user_id,$request->board_id,$request->msg,$request->msg_type);
+        $message = $message->storeMessage($request->user_id,$request->board_id,$request->msg,$request->msg_type);
         $board = Board::find($request->board_id);
         $messages = $board->messages()->orderby('id','asc')->get();
         if($request->ajax()){
-            return $message;
+            return json_encode($message);
         }
         return redirect(route('message.show', ['board_id' => $board->id]));
     }

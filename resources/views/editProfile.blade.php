@@ -88,14 +88,14 @@
 </div>
 <div class="shadow-sm mb-0 bg-white">
     <div class=" container col-md-8 col-lg-6 p-3_5">
-        <input autofocus="autofocus" class="textarea--eventreport" id="tunagate_id" 
+        <input autofocus="autofocus" class="textarea--eventreport" id="" 
         placeholder="＠ユーザーネームを記載" type="text" value="{{ $my_profile->name }}" name="name" />
     </div>
 </div>
-<p id="tunagate-id-success" class="container col-md-8 col-lg-6 small mb-0" style="display: none; color: #72c02c;">
+<p class="container col-md-8 col-lg-6 small mb-0" style="display: none; color: #72c02c;">
     <i class="fa fa-check" aria-hidden="true"></i> ユーザーネームは有効です。
 </p>
-<p id="tunagate-id-error" class="container col-md-8 col-lg-6 small red mb-0" style="display: none;">
+<p class="container col-md-8 col-lg-6 small red mb-0" style="display: none;">
     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 入力いただいたユーザーネームは利用できません（他のユーザーと同一のもの、
     「.（ドット）」「#（シャープ）」「半角全角スペース」を含むもの、数字のみは登録できません）。別のユーザーネームに変更してください。
 </p>
@@ -209,7 +209,7 @@
 </div>
 <p class="container col-md-8 col-lg-6 small g-color-gray-dark-v4 g-mt-10">
     <i class="fa fa-question-circle" aria-hidden="true"></i> 
-    メールアドレスを変更すると確認メールが送られます。そのメールの確認URLをクリックして変更が完了します。@tunagate.comからの受信が可能な状態にしてください。
+    メールアドレスを変更すると確認メールが送られます。そのメールの確認URLをクリックして変更が完了します。受信が可能な状態にしてください。
 </p>
 <div class="container col-md-8 col-lg-6">
     <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">メールアドレスで検索を許可する</p>

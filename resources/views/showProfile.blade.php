@@ -73,7 +73,7 @@
                 <a class="hov--default" href="/circle/34196">
                     <div class="row align-items-center">
                         <div class="col-6">
-                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="https://image.tunagate.com/circles/main_images/000/034/196/medium/70E7600A-D2A8-4E2E-B9F8-75A54476229F.jpeg?1583924940">
+                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="">
                         </div>
                         <div class="col pl-0 position-relative">
                             <p class="btn-sm text-fz-xs bg-orange text-white mb-0 float-right">管理者</p>

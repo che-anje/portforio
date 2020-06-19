@@ -198,7 +198,7 @@
         </h2>
         <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
           <div class="mb-2 pl-1 pr-1">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -211,7 +211,7 @@
             </a>
           </div>
           <div class="mb-2 pl-1 pr-1 ">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -228,31 +228,6 @@
     </div>
   </div>
 </section>
-
-
-<style>
-.tunagate-featured .slick-dots {
-  position: absolute;
-  bottom: -20px;
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: center;
-}
-
-.tunagate-featured .slick-dots li button:before {
-  color: gray;
-  opacity: 0.7;
-}
-
-.tunagate-featured .slick-dots li.slick-active button:before {
-  color: black;
-  opacity: 1;
-}
-</style>
-
 <script>
 $('.modal-pref').on('change',function(e) {
   var key = $(e.target).val();
@@ -261,8 +236,6 @@ $('.modal-pref').on('change',function(e) {
   location.href = url;
   
 });
-
-    
 </script>
 
 

@@ -117,7 +117,7 @@
         </h1>
         <div class="row justify-content-between">
             <div class="col">
-                <ul class="list-unstyled d-flex">
+                <ul id="sample" class="list-unstyled d-flex">
                     <li class="list-link">
                         <a id="" href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray link--active order" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
                     </li>
@@ -201,7 +201,7 @@
         </h2>
         <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
           <div class="mb-2 pl-1 pr-1">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -214,7 +214,7 @@
             </a>
           </div>
           <div class="mb-2 pl-1 pr-1 ">
-            <a  href="https://tunagate.com/article/tunagate-patia01?=top0214patia"
+            <a  href=""
               class="display-block"
               target=&quot;_blank&quot;
               onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
@@ -230,36 +230,12 @@
       </div>
     </div>
   </div>
+  
 </section>
-
-<style>
-.tunagate-featured .slick-dots {
-  position: absolute;
-  bottom: -20px;
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: center;
-}
-
-.tunagate-featured .slick-dots li button:before {
-  color: gray;
-  opacity: 0.7;
-}
-
-.tunagate-featured .slick-dots li.slick-active button:before {
-  color: black;
-  opacity: 1;
-}
-</style>
-
 <script>
-
-
 $(function(){
-  $('.order').click(function(event){
+    
+    $('.order').click(function(event){
       event.preventDefault();
       var orderType = $(this).attr('data-value');
       switch(orderType){
@@ -366,6 +342,8 @@ $('.modal-pref').on('change',function(e) {
   location.href = url;
   
 });
+
+
 </script>
 
 
