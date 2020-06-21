@@ -18,8 +18,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     align-items: center;
                     flex-direction: column;
                     ">
-                    <p class="text-center h4 text-white" style="font-size: .875rem;">＼20,805サークル／ 掲載数日本一！</p>
-                    <p class="mv-copy text-center h4 ">仲間を見つけて趣味を楽しもう！</p>
+                    <p class="text-center h4 text-white" style="font-size: .875rem;"></p>
+                    <p class="mv-copy text-center h4 ">サークルを作って仲間を集めよう！</p>
                 </div>
             </div>
         </li>
@@ -40,7 +40,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     align-items: center;
                     flex-direction: column;
                     ">
-                    <p class="text-center h4 text-white" style="font-size: .875rem;">＼20,805サークル／ 掲載数日本一！</p>
+                    <p class="text-center h4 text-white" style="font-size: .875rem;"></p>
                     <p class="mv-copy text-center h4 ">仲間を見つけて趣味を楽しもう！</p>
                 </div>
             </div>
@@ -64,13 +64,14 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 </div>
 <div class="">
     <div class="cursor-pointer">
-        <div class="search-box bg-gray p-3 container col-md-8 col-lg-6">
+        <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
             <div class="row align-items-center justify-content-between 
             line-height-1 cursor-pointer">
                 
-                <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0" style="font-size: .875rem;" 
+                <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0 nav-link--gray" style="font-size: .875rem;" 
                 data-toggle="modal" data-target="#myAreaModal">
                     自分の地域を設定する
+                    
                 </a>
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -123,10 +124,9 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 @guest
 <section class="bg-white shadow-sm mb-3 pb-3">
     <div class="container col-md-8 col-lg-6">
-        <h1 class="mv-copy-black h4 bg-white pt-3 pb-0 mb-0">
-            <span style="font-size: .875rem;">\20,842サークル/</span>
-            "&nbsp;&nbsp;&nbsp;掲載数日本一！"<br>
-            "趣味のサークル探しと仲間づくりのサイト"
+        <h1 class="mv-copy-black h4 bg-white pt-3 pb-0 mb-0 text-center">
+            "サークル探しと仲間づくりのサイト"<br>
+            <span style="font-size: .9rem;">まずは会員登録から!!</span>
         </h1>
         <a href="{{ route('register') }}" class="btn btn-primary btn-primary--grad 
         mx-auto mb-1 text-fw-bold mt-3">新規登録・ログイン</a>
@@ -151,7 +151,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </div>
                     </div>
                     <div class="col-3 pl-2">
-                        <button type="submit" class="btn btn-warning btn-warning--grad" 
+                        <button type="submit" class="btn btn-success btn-success--grad" 
                         id="keyword-submit-btn" style="width: 100%;" data-url="/index/{{ $my_prefecture->id }}">
                         検索</button>
                     </div>
@@ -170,7 +170,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
                     @endif
                         <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-                            <h3 class="card-title card-title--extend mb-0">{{ $category->name }}<br>
+                            <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>
                             <span class="text-fz-small">サークルを探す</span></h3>
                         </div>
                     </div>
@@ -179,37 +179,31 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @endforeach
             <div class="col-12 mb-2">
                 <h2 class="h2 h2--extend mt-4 mb-3">
-                    "今日のイチオシ情報"
+                    ピックアップ情報!!
                 </h2>
-                <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
+                <div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
                     <div class="mb-2 pl-1 pr-1">
-                        <a  href=""
-                            class="display-block"
-                            target=&quot;_blank&quot;
-                            onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-                            <div class="text-white text-center rounded border-0">
-                            <img src="image/slide1.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-                            <div class="card-img-overlay--black">
+                        <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
+                            <div class="card text-white text-center rounded border-0 position-relative">
+                                <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}が</span>「{{ $recent->circle->name }}」<br>
+                                    <span class="text-fz-small" >を作成しました</span></h2>
+                                </div>
                             </div>
-                            </div>
-                            <script style="display: none;">
-                                gtag('event', '', {'event_category': '','event_label': '/'});
-                            </script>
+                            
                         </a>
                     </div>
-                    <div class="mb-2 pl-1 pr-1 ">
-                        <a  href=""
-                            class="display-block"
-                            target=&quot;_blank&quot;
-                            onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-                            <div class="text-white text-center rounded border-0">
-                            <img src="image/slide2.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-                            <div class="card-img-overlay--black">
+                    <div class="mb-2 pl-1 pr-1">
+                        <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
+                            <div class="card text-white text-center rounded border-0 position-relative">
+                                <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}が</span>「{{ $recent->Circle->name }}」<br>
+                                    <span class="text-fz-small" >に参加しました</span></h2>
+                                </div>
                             </div>
-                            </div>
-                            <script style="display: none;">
-                                gtag('event', '', {'event_category': '','event_label': '/'});
-                            </script>
+                            
                         </a>
                     </div>
                 </div>
@@ -227,7 +221,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($p_circles as $circle)
             <li class="d-inline-block mr-2 ">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+                    <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
@@ -236,15 +230,15 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
-                            <p class="btn btn-outline-primary btn-outline-blue 
+                            <p class="btn btn-outline-success 
                             btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->prefecture->name }}</p></i>
-                            <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
+                            <i class="fas fa-map-marker-alt mr-2 hov--default" style="color: mediumorchid;"><p>{{ $circle->prefecture->name }}</p></i>
+                            <i class="fas fa-user-friends mr-3 d-flex hov--default" style="color: mediumorchid;"><p>{{ $circle->count }}</p></i>
                         </div>
-                        <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
+                        <p class="card-text card-text--ellipsis mb-2 hov--default" style="min-height: 50px;">
                             {{ $circle->introduction }}
                         </p>
                         <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
@@ -255,7 +249,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 
+        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-success w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「人気順」のサークルをもっと見る</a></p>
     </div>
 </section>
@@ -268,7 +262,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($n_circles as $circle)
             <li class="d-inline-block mr-2">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+                    <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
                     @else
@@ -278,15 +272,15 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
-                            <p class="btn btn-outline-primary btn-outline-blue 
+                            <p class="btn btn-outline-success 
                             btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>
                         <div class="row no-gutters">
-                            <i class="fas fa-map-marker-alt mr-2"><p>{{ $circle->prefecture->name }}</p></i>
-                            <i class="fas fa-user-friends mr-3 d-flex"><p>{{ $circle->count }}</p></i>
+                            <i class="fas fa-map-marker-alt mr-2 hov--default" style="color: mediumorchid;"><p>{{ $circle->prefecture->name }}</p></i>
+                            <i class="fas fa-user-friends mr-3 d-flex hov--default" style="color: mediumorchid;"><p>{{ $circle->count }}</p></i>
                         </div>
-                        <p class="card-text card-text--ellipsis mb-2" style="min-height: 50px;">
+                        <p class="card-text card-text--ellipsis mb-2 hov--default" style="min-height: 50px;">
                             {{ $circle->introduction }}
                         </p>
                         <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
@@ -297,7 +291,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-info w-100 
+        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-success w-100 
         text-fw-bold mb-2" style="font-size: 15px;">「新着順」のサークルをもっと見る</a></p>
     </div>
 </section>
@@ -305,19 +299,10 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <!-- サークルを作る -->
 <section class="bg-white shadow-sm mb-0 pt-4 pb-4">
     <div class="container col-md-8 col-lg-6">
-        <h2 class="h2 h2--extend -plus mb-2">サークルを作ろう！</h2>
-        <p class="text-black-50">つなげーとで募集〜運営まで完結できます！</p>
-        <div class="text-center mb-4">
-            <h5 class="h5--18px"><span class="number-circle">1</span>サークルで仲間を集めよう！！</h5>
-            <p class="text-center pl-2">趣味・興味・関心のあることで仲間を集められる！</p>
-            <h5 class="h5--18px"><span class="number-circle">2</span>イベントを主催して楽しもう！</h5>
-            <p class="text-center pl-2">イベントを行うことで更に仲間を増やせる！！</p>
-            <h5 class="h5--18px"><span class="number-circle">3</span>サークル運営費を獲得しよう！</h5>
-            <p class="text-center pl-2">みんなが集まるイベントを企画して収益を上げよう！</p>
-        </div>
+        <h2 class="h2 h2--extend -plus mb-4">サークルを作ろう！</h2>
         <a href="circles/new" class="btn btn-primary btn-primary--grad 
-        mx-auto text-fw-bold line-height-2_45"><span class="text-fz-24px 
-        position-relative">+</span>サークルを作る</a>
+        mx-auto text-fw-bold line-height-2_45 mt-2"><span class="text-fz-24px 
+        position-relative">+</span>サークル作成へ進む</a>
     </div>
 </section>
 <script>

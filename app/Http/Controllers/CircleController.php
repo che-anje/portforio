@@ -60,9 +60,6 @@ class CircleController extends Controller
     }
 
     public function show(int $id, Request $request) {
-        
-        
-
         $circle = Circle::find($id);
         $profile = new Profile;
         $members = $circle->getCircleMembers($circle)->get();
@@ -72,15 +69,20 @@ class CircleController extends Controller
         /*自分の選択している都道府県を取得する。*/
         $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         $board = $circle->board()->first();
-        
+        $circles = $circle->getRecommendedCircles($circle->genre[0],$circle->prefecture_id);
         $log = new Point_Log;
         $this->insertLogOfShow($circle->id, Auth::id());
+        $circle_user = new Circle_User;
+        $recent = $circle_user->getRecent();
+        $recent['circle'] = $circle_user->getRecentCircle();
         return view('showCircle', [
             'circle' => $circle,
             'members' => $members,
             'approval' => $approval,
             'board' => $board,
             'my_prefecture' => $my_prefecture,
+            'circles' => $circles,
+            'recent' => $recent,
          ]);
     }
 
@@ -147,6 +149,9 @@ class CircleController extends Controller
         $pop_genres = [];
         $pop_genres = $circle->getPopGenres($circles);
         $circle->addInfomationToCircles($circles);
+        $circle_user = new Circle_User;
+        $recent = $circle_user->getRecent();
+        $recent['circle'] = $circle_user->getRecentCircle();
 
         /*$html = view('message.template.xxx', [
         ])->render();*/
@@ -156,6 +161,7 @@ class CircleController extends Controller
             'my_prefecture' => $my_prefecture,
             'circles' => $circles,
             'pop_genres' => $pop_genres,
+            'recent' => $recent,
         ]);
     }
 
@@ -172,6 +178,9 @@ class CircleController extends Controller
         //選択したカテゴリー・ジャンルを取得。無ければnull。
         $my_category = Category::find($category_id);
         $my_genre = Genre::find($genre_id);
+        $circle_user = new Circle_User;
+        $recent = $circle_user->getRecent();
+        $recent['circle'] = $circle_user->getRecentCircle();
         /*返すビューを作る*/
         if($request->ajax()) {
             //ajaxで呼び出した場合
@@ -192,6 +201,7 @@ class CircleController extends Controller
                 'circles' => $circles,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
+                'recent' => $recent,
             ]);
         }
         /*戻り値を返す*/

@@ -38,6 +38,7 @@
     <div class="bg-white h-100 mb-2">
         <div class="container col-md-8 col-lg-6 h-100">
             <ul class="list-unstyled mb-0">
+            @if(!empty($c_boards[0]))
                 @foreach($c_boards as $c_board)
                 <li >
                     <a href="/message/board/{{ $c_board->id }}" class="hov--default">
@@ -59,6 +60,17 @@
                     </a>
                 </li>
                 @endforeach
+            @else
+                <li>
+                    <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom">
+                        <div class="col-8 pl-3 pr-2 text-center">
+                            <p class="mb-0 line-1 position-relative mr-3 font-weight-bold">
+                                メッセージはありません
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            @endif
             </ul>
         </div>
     </div>
@@ -69,31 +81,44 @@
     <div class="bg-white h-100 mb-2">
         <div class="container col-md-8 col-lg-6 h-100">
             <ul class="list-unstyled mb-0">
-                @foreach($u_boards as $u_board)
-                <li>
-                    <a href="/message/board/{{ $u_board->id }}" class="hov--default">
+                @if(!empty($u_boards[0]))
+                    @foreach($u_boards as $u_board)
+                    <li>
+                        <a href="/message/board/{{ $u_board->id }}" class="hov--default">
+                            <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom">
+                                <div class="col-2 pr-1">
+                                    @if($u_board->otherUser->profile->user_image)
+                                    <img src="/storage/UserImages/{{ $u_board->otherUser->profile->user_image }}" alt="" class="rounded-circle member-icon_48px">
+                                    @else
+                                    <img src="/storage/UserImages/no_image.jpeg" alt="" class="rounded-circle member-icon_48px">
+                                    @endif
+                                </div>
+                                <div class="col-8 pl-3 pr-2">
+                                    <p class="mb-1 line-1 position-relative mr-4" style="overflow:scroll;">
+                                        <span class="badge badge-light">{{ $u_board->circle->name }}</span>
+                                    </p>
+                                    <span class="position-absolute position--messagenum">（{{ $u_board->users->count() }}）</span>
+                                    <p class="text-fz-14px text-black-20 mb-0 line-2">{{ $u_board->otherUser->profile->familyName }}{{ $u_board->otherUser->profile->firstName }}</p>
+                                </div>
+                                <div class="col-2 p-0 align-self-start">
+                                    <p class="text-fz-small text-black-20 mb-0 text-center">19:41</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @endforeach
+                @else
+                    <li>
                         <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom">
-                            <div class="col-2 pr-1">
-                                @if($u_board->otherUser->profile->user_image)
-                                <img src="/storage/UserImages/{{ $u_board->otherUser->profile->user_image }}" alt="" class="rounded-circle member-icon_48px">
-                                @else
-                                <img src="/storage/UserImages/no_image.jpeg" alt="" class="rounded-circle member-icon_48px">
-                                @endif
-                            </div>
-                            <div class="col-8 pl-3 pr-2">
-                                <p class="mb-1 line-1 position-relative mr-4" style="overflow:scroll;">
-                                    <span class="badge badge-light">{{ $u_board->circle->name }}</span>
+                            <div class="col-8 pl-3 pr-2 text-center">
+                                <p class="mb-0 line-1 position-relative mr-3 font-weight-bold">
+                                    メッセージはありません
                                 </p>
-                                <span class="position-absolute position--messagenum">（{{ $u_board->users->count() }}）</span>
-                                <p class="text-fz-14px text-black-20 mb-0 line-2">{{ $u_board->otherUser->profile->familyName }}{{ $u_board->otherUser->profile->firstName }}</p>
-                            </div>
-                            <div class="col-2 p-0 align-self-start">
-                                <p class="text-fz-small text-black-20 mb-0 text-center">19:41</p>
                             </div>
                         </div>
-                    </a>
-                </li>
-                @endforeach
+                    </li>
+                @endif
+                
             </ul>
         </div>
     </div>

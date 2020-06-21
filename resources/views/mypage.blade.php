@@ -54,9 +54,9 @@
                       @endif
                       <h6 class="h6--list-title position-relative mb-2 profile-event__title line-2">{{ $circle->name }}</h6>
                       <div class="row no-gutters">
-                      <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;">
+                      <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;">
                       <p class="ml-2 mb-2 icon icon-area mr-2_5 hov--default">{{ $circle->prefecture->name }}</p></i>
-                      <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: #f6993f;">
+                      <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;">
                       <p class="ml-2 mb-2 icon icon-member hov--default">{{ $circle->count }}</p></i>
                       </div>
                     </div>

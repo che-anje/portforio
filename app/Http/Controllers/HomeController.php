@@ -39,15 +39,18 @@ class HomeController extends Controller
         $n_circles = $circle->sortByNewArrival($my_prefecture->id);
         $p_circles = $circle->sortCirclesByPopularity($my_prefecture->id);
         
-        
         /*サークルごとのジャンル・メンバー数・都道府県を取得する*/
         $circle->addInfomationToCircles($n_circles);
         $circle->addInfomationToCircles($p_circles);
+        $circle_user = new Circle_User;
+        $recent = $circle_user->getRecent();
+        $recent['circle'] = $circle_user->getRecentCircle();
         
         return view('home',  [
             'my_prefecture' => $my_prefecture,
             'n_circles' => $n_circles,
             'p_circles' => $p_circles,
+            'recent' => $recent,
         ]);
     }
 

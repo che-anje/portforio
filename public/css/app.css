@@ -15,7 +15,7 @@
   --red: #e3342f;
   --orange: #f6993f;
   --yellow: #ffed4a;
-  --green: #38c172;
+  --green: #2E8B57;
   --teal: #4dc0b5;
   --cyan: #6cb2eb;
   --white: #fff;
@@ -2702,8 +2702,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #3490dc;
-  border-color: #3490dc;
+  background-color: green;
+  border-color: green;
 }
 
 .btn_,
@@ -2715,7 +2715,7 @@ fieldset:disabled a.btn {
   height: 50px;
   border: none;
   border-radius: 25px;
-  background-image: linear-gradient(to right, #f09819, #ff5858);
+  background-image: linear-gradient(to right, #2E8B57, green);
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   line-height: 2.13;
   -o-object-fit: contain;
@@ -2723,10 +2723,10 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary--grad--outline {
-  border: 1px solid #f09819;
+  border: 1px solid green;
   background-color: #fff;
   background-image: none;
-  color: #f09819;
+  color: green;
   font-family: HiraKakuProN-W6;
 }
 
@@ -2810,21 +2810,21 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #38c172;
-  border-color: #38c172;
+  background-color: green;
+  border-color: green;
 }
 
 .btn-success:hover {
   color: #fff;
-  background-color: #2fa360;
-  border-color: #2d995b;
+  background-color: green;
+  border-color: green;
 }
 
 .btn-success:focus,
 .btn-success.focus {
   color: #fff;
-  background-color: #2fa360;
-  border-color: #2d995b;
+  background-color: green;
+  border-color: green;
   box-shadow: 0 0 0 0.2rem rgba(86, 202, 135, 0.5);
 }
 
@@ -2839,8 +2839,8 @@ fieldset:disabled a.btn {
 .btn-success:not(:disabled):not(.disabled).active,
 .show > .btn-success.dropdown-toggle {
   color: #fff;
-  background-color: #2d995b;
-  border-color: #2a9055;
+  background-color: green;
+  border-color: green;
 }
 
 .btn-success:not(:disabled):not(.disabled):active:focus,
@@ -2898,7 +2898,7 @@ fieldset:disabled a.btn {
 
 .btn-warning--grad {
   border: none;
-  background-image: linear-gradient(to right, #f09819, #ff5858);
+  background-image: linear-gradient(to right, #4dc0b5, #38c172);
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   color: #fff;
 }
@@ -3134,14 +3134,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-success {
-  color: #38c172;
-  border-color: #38c172;
+  color: green;
+  border-color: green;
 }
 
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #38c172;
-  border-color: #38c172;
+  background-color: green;
+  border-color: green;
 }
 
 .btn-outline-success:focus,
@@ -3166,18 +3166,18 @@ fieldset:disabled a.btn {
 .btn-outline-success:not(:disabled):not(.disabled):active:focus,
 .btn-outline-success:not(:disabled):not(.disabled).active:focus,
 .show > .btn-outline-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(56, 193, 114, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(56, 192, 114, 0.5);
 }
 
 .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: #4dc0b5;
+  border-color: #4dc0b5;
 }
 
 .btn-outline-info:hover {
   color: white;
-  border-color: #17a2b8;
-  background-color: #17a2b8;
+  border-color: #4dc0b5;
+  background-color: #4dc0b5;
 }
 
 .btn-outline-info:focus,
@@ -3195,8 +3195,8 @@ fieldset:disabled a.btn {
 .btn-outline-info:not(:disabled):not(.disabled).active,
 .show > .btn-outline-info.dropdown-toggle {
   color: #212529;
-  background-color: #6cb2eb;
-  border-color: #6cb2eb;
+  background-color: #4dc0b5;
+  border-color: #4dc0b5;
 }
 
 .btn-outline-info:not(:disabled):not(.disabled):active:focus,
@@ -7165,6 +7165,14 @@ button.bg-dark:focus {
 
 .bg-gray {
   background-color: #ececec !important;
+}
+
+.bg-brown {
+  background-color: wheat !important;
+}
+
+.bg-burlywood {
+  background-color: burlywood !important;
 }
 
 .bg-light-yellow {
@@ -11656,7 +11664,7 @@ ul.ib-list li {
   line-height: 1;
   content: "\f055";
   font-family: "Font Awesome 5 Free";
-  color: #f6993f;
+  color: green;
 }
 
 .h5--18px {
@@ -11697,7 +11705,7 @@ ul.ib-list li {
   font-size: 27px;
   height: 33px;
   width: 32px;
-  color: rgba(0, 0, 0, 0.54) !important;
+  color: rgba(0,0,0,0.58) !important;
   overflow: hidden;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -11705,12 +11713,6 @@ ul.ib-list li {
   text-align: center;
   
 }
-
-
-
-
-
-
 
 
 /* つなげーとについて */
@@ -11729,7 +11731,7 @@ ul.ib-list li {
   content: '\f004';
   vertical-align: text-top;
   font-family: "Font Awesome 5 Free";
-  color: #f6993f;
+  color: green;
   font-weight: bold;
   text-rendering: auto;
 }
@@ -11745,7 +11747,7 @@ ul.ib-list li {
   line-height: 1;
   content: "\f024";
   font-family: "Font Awesome 5 Free";
-  color: #f6993f;
+  color: green;
 }
 /* line 133, app/assets/stylesheets/application2019/css/common.css */
 .h2--search {
@@ -11778,7 +11780,7 @@ ul.ib-list li {
   line-height: 1;
   content: "\f521";
   font-family: "Font Awesome 5 Free";
-  color: #f6993f;
+  color: green;
 }
 
 /* line 155, app/assets/stylesheets/application2019/css/common.css */
@@ -11791,7 +11793,7 @@ ul.ib-list li {
   line-height: 1;
   content: "\f09e";
   font-family: "Font Awesome 5 Free";
-  color: #f6993f;
+  color: green;
 }
 
 /* line 164, app/assets/stylesheets/application2019/css/common.css */
@@ -11831,10 +11833,10 @@ ul.ib-list li {
 
 /* フッターの下線 */
 li.nav-item:not(:last-child) {
-  border-bottom: 1px solid #dee2e6 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.54) !important;
   border-bottom-width: 1px !important;
   border-bottom-style: solid !important;
-  border-bottom-color: rgb(222, 226, 230) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.54) !important;
 }
 
 
@@ -12286,11 +12288,11 @@ li.nav-item:not(:last-child) {
 }
 
 .list-makecircleitem.active {
-  color: #f09819;
+  color: green;
 }
 
 .list-makecircleitem.active::before {
-  background-color: #f09819;
+  background-color: green;
   color: #fff;
 }
 
@@ -12485,7 +12487,7 @@ table {
 }
 
 .link--active {
-  color: #2292a4 !important;
+  color: green !important;
   font-family: HiraKakuProN-W6;
 }
 
@@ -12554,3 +12556,9 @@ textarea.h-1em {
   height: calc(1.5em + .75rem + 2px);
 }
 
+.text-in-image {
+  text-shadow: 1.5px  1.5px 1.5px #343a40,
+  -1.5px  1.5px 1.5px #343a40,
+  1.5px -1.5px 1.5px #343a40,
+  -1.5px -1.5px 1.5px #343a40;
+}

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Prefecture;
+use App\Models\Circle;
 use App\Models\EmailReset;
 use App\Enums\Gender;
 use Carbon\Carbon;
@@ -77,10 +78,14 @@ class ProfileController extends Controller
         $birthday = $year.'-'.$month.'-'.$date;
         $age = Carbon::parse($birthday)->age;
         $gender = Profile::getGenderDescription($my_profile->gender);
+        $circles = $my_profile->user->circles;
+        $circle = new Circle;
+        $circle->addInfomationToCircles($circles);
         return view('showProfile', [
             'my_profile' => $my_profile,
             'age' => $age,
             'gender' => $gender,
+            'circles' => $circles,
         ]);
     }
 

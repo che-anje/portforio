@@ -17,7 +17,7 @@
 
 
 @section('content')
-<nav aria-label="breadcrumb" class="bg-gray">
+<nav aria-label="breadcrumb" class="bg-brown">
   <ul class="mb-0 rounded-0 scrollable-list breadcrumb--scroll pt-1 pb-1 container col-md-8 col-lg-6">
     <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px"><a href="/" class="nav-link--gray">TOP</a></li>
         <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
@@ -47,12 +47,12 @@
     <div class="row">
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $circle->category->name }}」一覧へ戻る</a>
+          <a href="" style="color: green;">&lt;&nbsp;「{{ $circle->category->name }}」一覧へ戻る</a>
         </p>
       </div>
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: #2292a4;">&lt;&nbsp;「{{ $circle->prefecture->name }}の{{ $circle->genres[0]->name }}サークル」一覧へ戻る</a>
+          <a href="" style="color: green;">&lt;&nbsp;「{{ $circle->prefecture->name }}の{{ $circle->genres[0]->name }}サークル」一覧へ戻る</a>
         </p>
       </div>
     </div>
@@ -72,7 +72,6 @@
         <div class="toast-body">
           集客の悩みをまるっと解決！
           メンバー募集を加速させましょう！<br><br>
-          <a href="">有料プランについて詳しく見る</a>
         </div>
       </div>
     </div>
@@ -104,7 +103,7 @@
     <div class="scrollable-list mb-2">
       @foreach($circle->genres as $genre)
       <a href="/search/akita/346">
-        <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2 d-inline-block mb-0">
+        <p class="btn btn-outline-success btn-sm btn-sm--expand mr-2 d-inline-block mb-0">
           {{ $genre->name }}
         </p>
       </a>
@@ -218,46 +217,40 @@
   <div class="container col-md-8 col-lg-6">
     <h2 class="h2 h2--extend -crown">あなたへのおすすめサークル</h2>
     <ul class="scrollable-list pl-0 ib-list d-flex">
-      <li class="d-inline-block mr-2">
-        <a class="card card--circle hov--default border-0" href="/circle/26935">
-          <h4 class="mb-2 line-1" style="font-size: 13px;font-weight: bold;">スポーツ全般サークル</h4>
-          <img class="card-img-top card-img-top--list"
-          src="">
-          <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4 ">
-            <div class="d-flex scrollable-list">
-              <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2">スポーツ全般</p>
-              <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2">スノーボード</p>
-              <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2">スキー</p>
-            </div>
-            <div class="row no-gutters">
-              <p class="mb-0 icon icon-area mr-2">
-                愛知県
-              </p>
-              <p class="mb-0 icon icon-member">
-                5人以下
-              </p>
-            </div>
-            <p class="card-text card-text--ellipsis mb-2">夏も終わり…
-            冬に近づいてきましたね^_^
-            今のうちから…笑
-
-            雪山行きたい、初心者から上級者もみんなでワイワイ乗り合わせでいきましょう！！
-
-            主にカレンダー通り土日祝、名古屋市内から岐阜県や長野県のスキー場に向かいます^_^
-
-            行けるようでしたら、帰りの温泉や、飲み会、鍋パなどげきたら最高ですね^_^
-
-            ここを機会に雪山仲間増えたら楽しいと思いますので、気軽に声かけて下さい！
-
-            宜しくお願い致します(^O^)</p>
-            <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1 ">スキー&amp;スノーボード GO GO</p>
+    @foreach($circles as $circle)
+    <li class="d-inline-block mr-2 ">
+      <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
+        <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+        @if($circle->image)
+          <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
+        @else
+          <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+        @endif
+        <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
+          <div class="d-flex scrollable-list">
+          @foreach($circle->genres as $genre)
+            <p class="btn btn-outline-success 
+            btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
+          @endforeach
           </div>
-        </a>
-      </li>
+          <div class="row no-gutters">
+            <i class="fas fa-map-marker-alt mr-2 hov--default" style="color: mediumorchid;"><p>{{ $circle->prefecture->name }}</p></i>
+            <i class="fas fa-user-friends mr-3 d-flex hov--default" style="color: mediumorchid;"><p>{{ $circle->count }}</p></i>
+          </div>
+          <p class="card-text card-text--ellipsis mb-2 hov--default" style="min-height: 50px;">
+            {{ $circle->introduction }}
+          </p>
+          <p class="text-black-20 text-fz-small mb-0 card-bottommeta card-text--ellipsis_1">
+            {{ $circle->name }}
+          </p>
+        </div>
+      </a>
+    </li>
+    @endforeach
     </ul>
   </div>
 </section>
-<div data-react-class="redux/components/circle/circle_join_request_form" data-react-props="{&quot;circle&quot;:{&quot;id&quot;:34196}}" data-hydrate="t"><div data-reactroot=""><div id=""><div id=""><div class="cursor-pointer"><button type="button" class="mx-auto btn btn-primary--grad btn-primary--grad--outline mb-4">サークルに問い合わせる</button></div></div></div></div></div>
+<div class="cursor-pointer"><button type="button" class="mx-auto btn btn-primary--grad btn-success--grad--outline mb-4 text-white">サークルに問い合わせる</button></div>
 
 <!-- 興味のあることから探す -->
 <section class="bg-white mb-3 pt-4 pb-3">
@@ -283,33 +276,29 @@
       @endforeach
       <div class="col-12 mb-2">
         <h2 class="h2 h2--extend mt-4 mb-3">
-            "今日のイチオシ情報"
+          ピックアップ情報!!
         </h2>
-        <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
+        <div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
           <div class="mb-2 pl-1 pr-1">
-            <a  href=""
-              class="display-block"
-              target=&quot;_blank&quot;
-              onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-              <div class="text-white text-center rounded border-0">
-              <img src="/image/slide1.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-              <div class="card-img-overlay--black">
+            <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
+              <div class="card text-white text-center rounded border-0 position-relative">
+                <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}が</span>「{{ $recent->circle->name }}」<br>
+                  <span class="text-fz-small" >を作成しました</span></h2>
+                </div>
               </div>
-              </div>
-              
             </a>
           </div>
-          <div class="mb-2 pl-1 pr-1 ">
-            <a  href=""
-              class="display-block"
-              target=&quot;_blank&quot;
-              onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-              <div class="text-white text-center rounded border-0">
-              <img src="/image/slide2.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-              <div class="card-img-overlay--black">
+          <div class="mb-2 pl-1 pr-1">
+            <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
+              <div class="card text-white text-center rounded border-0 position-relative">
+                <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}が</span>「{{ $recent->Circle->name }}」<br>
+                  <span class="text-fz-small" >に参加しました</span></h2>
+                </div>
               </div>
-              </div>
-              
             </a>
           </div>
         </div>
@@ -333,10 +322,7 @@
     </div>
   </nav>
 
-  <a  href="javascript:void(0);" class="circle-pref" style="color: black;"
-  data-toggle="modal" data-target="#myAreaModal">
-      主な活動地域を選択
-  </a>
+  
   <!-- モーダル -->
   <div class="modal fade " id="application-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog bg-gray h-" role="document">

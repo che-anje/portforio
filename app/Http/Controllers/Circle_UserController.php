@@ -63,4 +63,6 @@ class Circle_UserController extends Controller
             return back()->with('message', '管理者ではありません');
         });
     }
+
+    
 }

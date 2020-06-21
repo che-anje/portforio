@@ -66,28 +66,45 @@
 <div class="container col-md-8 col-lg-6">
     <h6 class="h6--list-title text-fz-14px text-black-50">参加サークル</h6>
 </div>
+@if(!empty($circles[0]))
 <div class="bg-white h-100 mb-3_5 shadow-sm">
     <div class="container col-md-8 col-lg-6">
         <ul class="list-group list-group--event ">
+          @foreach($circles as $circle)
             <li class="list-group-item list-group--item-event border-bottom-0 border-top-0 pt-3 pr-0 pl-0">
-                <a class="hov--default" href="/circle/34196">
+                <a class="hov--default" href="{{ route('circle.show', [ $circle->id ]) }}">
                     <div class="row align-items-center">
                         <div class="col-6">
-                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="">
+                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="/storage/CircleImages/{{ $circle->image }}">
                         </div>
                         <div class="col pl-0 position-relative">
+                          @if($circle->admin_user_id == $my_profile->user_id)
                             <p class="btn-sm text-fz-xs bg-orange text-white mb-0 float-right">管理者</p>
-                            <h6 class="h6--list-title position-relative mb-2 profile-event__title line-2">A</h6>
+                          @endif
+                            <h6 class="h6--list-title position-relative mb-2 profile-event__title line-2">{{ $circle->name }}</h6>
                             <div class="row no-gutters profile-circle">
-                                <i class="fas fa-map-marker-alt mr-3 d-flex"><p>秋田県</p></i>
-                                <i class="fas fa-user-friends mr-3 d-flex"><p>2</p></i>
+                                <i class="fas fa-map-marker-alt mr-3 d-flex" style="color: mediumorchid;"><p>{{ $circle->prefecture->name }}</p></i>
+                                <i class="fas fa-user-friends mr-3 d-flex" style="color: mediumorchid;"><p>{{ $circle->count }}</p></i>
                             </div>
                         </div>
                     </div>
                 </a> 
             </li>
+          @endforeach
         </ul>
     </div>
 </div>
-
+@else
+<div class="bg-white h-100 shadow-sm">
+  <div class="container col-md-8 col-lg-6">
+    <li class="list-group-item list-group--item-event border-bottom-0 border-top-0 pt-3 pr-0 pl-0">
+      <div class="row align-items-center col-8 mx-auto">
+        <p class="mb-0 line-1 position-relative  font-weight-bold mx-auto ">
+          参加サークルはありません
+        </p>
+      </div>
+    </li>
+  </div>
+</div>
+@endif
 @endsection

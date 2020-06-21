@@ -9,7 +9,7 @@
 @section('content')
 <div>
     <div>
-        <nav aria-label="breadcrumb" class="bg-gray">
+        <nav aria-label="breadcrumb" class="bg-brown">
             <ul class="mb-0 rounded-0 scrollable-list breadcrumb--scroll pt-1 pb-1 container col-md-8 col-lg-6">
                 <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
                     <a href="" class="nav-link--gray">TOP</a>
@@ -28,7 +28,7 @@
     </div>
     <hr class="m-0">
     <div class="cursor-pointer">
-        <div class="search-box bg-gray p-3 container col-md-8 col-lg-6">
+        <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
             <div class="row align-items-center justify-content-between 
             line-height-1 cursor-pointer">
                 
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-3 pl-2">
-                    <button type="submit" class="btn btn-warning btn-warning--grad" 
+                    <button type="submit" class="btn btn-success btn-success--grad" 
                     id="keyword-submit-btn" data-value="popular" style="width: 100%;">
                     検索</button>
                 </div>
@@ -137,19 +137,18 @@
                         <a href="{{ route('circle.show', [ $circle->id ]) }}" class="hov--default">
                             <div class="row">
                                 <div class="col-8">
-                                    <h6 class="text-fw-bold mb-2 line-1 text-fz-14px false">
+                                    <h6 class="text-fw-bold mb-2 line-1 text-fz-14px false hov--default">
                                         <span class="badge badge-light text-fw-normal">サークル</span>
                                         {{ $circle->name }}
                                     </h6>
                                     <div class="scrollable-list">
                                     @foreach($circle->genres as $genre)
-                                        <p class="btn btn-outline-primary btn-outline-blue btn-sm btn-sm--expand mr-2 
-                                        d-inline-block text-tz-xs">{{ $genre->name }}</p>
+                                        <p class="btn btn-outline-success btn-sm btn-sm--expand mr-2 ">{{ $genre->name }}</p>
                                     @endforeach
                                     </div>
                                     <div class="row no-gutters">
-                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture->name }}</p></i>
-                                        <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: #f6993f;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
+                                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture->name }}</p></i>
+                                        <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
                                     </div>
                                     <p class="text-black-50 line-2 mb-2_5 text-fz-14px">
                                         {{ $circle->introduction }}
@@ -197,33 +196,29 @@
       @endforeach
       <div class="col-12 mb-2">
         <h2 class="h2 h2--extend mt-4 mb-3">
-            "今日のイチオシ情報"
+          ピックアップ情報!!
         </h2>
-        <div class="row pl-0 info-slide slider" style="justify-content: center; align-items: center;">
+        <div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
           <div class="mb-2 pl-1 pr-1">
-            <a  href=""
-              class="display-block"
-              target=&quot;_blank&quot;
-              onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-              <div class="text-white text-center rounded border-0">
-              <img src="/image/slide1.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-              <div class="card-img-overlay--black">
+            <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
+              <div class="card text-white text-center rounded border-0 position-relative">
+                <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}が</span>「{{ $recent->circle->name }}」<br>
+                  <span class="text-fz-small" >を作成しました</span></h2>
+                </div>
               </div>
-              </div>
-              
             </a>
           </div>
-          <div class="mb-2 pl-1 pr-1 ">
-            <a  href=""
-              class="display-block"
-              target=&quot;_blank&quot;
-              onClick="gtag('event', '', {'event_category': '','event_label': '/'});">
-              <div class="text-white text-center rounded border-0">
-              <img src="/image/slide2.jpg" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-              <div class="card-img-overlay--black">
+          <div class="mb-2 pl-1 pr-1">
+            <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
+              <div class="card text-white text-center rounded border-0 position-relative">
+                <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}が</span>「{{ $recent->Circle->name }}」<br>
+                  <span class="text-fz-small" >に参加しました</span></h2>
+                </div>
               </div>
-              </div>
-              
             </a>
           </div>
         </div>
@@ -273,13 +268,13 @@ $(function(){
         $('.circle-list').html(response);
         var count = $(response).find('#circle_item').length;
         if(keyword){
-            $('#circles_count').text('{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
         }else if(category){
-            $('#circles_count').text('{{$my_prefecture->name}}の@if($my_category){{ $my_category->name }}@endifサークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}の@if($my_category){{ $my_category->name }}@endifサークル一覧（'+count+'件）');
         }else if(genre){
-            $('#circles_count').text('{{$my_prefecture->name}}の@if($my_genre){{ $my_genre->name }}@endifサークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}の@if($my_genre){{ $my_genre->name }}@endifサークル一覧（'+count+'件）');
         }else{
-            $('#circles_count').text('{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
         }
             
       })
@@ -321,10 +316,10 @@ $(function(){
         $('.circle-list').html(response);
         var count = $(response).find('#circle_item').length;
         if(keyword){
-            $('#circles_count').text('{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
             $('.keyword').attr('data-old',keyword);
         }else{
-            $('#circles_count').text('{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
+            $('#circles_count').text('\n{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
             $('.keyword').attr('data-old','');
         }
       })

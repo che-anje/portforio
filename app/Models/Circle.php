@@ -113,7 +113,13 @@ class Circle extends Model
         return $query;
     }
 
-
+    public function getRecommendedCircles($genre,$prefecture_id) {
+        
+        $circles = Circle::where('prefecture_id',$prefecture_id)->genre($genre->id)->sortByPopularity()->get();
+        $circle = new Circle;
+        $circle->addInfomationToCircles($circles);
+        return $circles;
+    }
 
     public function getCircleList($my_prefecture,$request,$genre_id,$category_id) {
         $query = Circle::query();
