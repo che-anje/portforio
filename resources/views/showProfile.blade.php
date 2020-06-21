@@ -69,7 +69,7 @@
 @if(!empty($circles[0]))
 <div class="bg-white h-100 mb-3_5 shadow-sm">
     <div class="container col-md-8 col-lg-6">
-        <ul class="list-group list-group--event ">
+        <ul class="scrollable-list list-group list-group--event" style="max-height:650px;">
           @foreach($circles as $circle)
             <li class="list-group-item list-group--item-event border-bottom-0 border-top-0 pt-3 pr-0 pl-0">
                 <a class="hov--default" href="{{ route('circle.show', [ $circle->id ]) }}">

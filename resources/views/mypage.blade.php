@@ -40,7 +40,7 @@
         </ul>
         <div class="tab-content" id="pills-tabContent--circle">
           <div class="tab-pane fade show active" id="pills-circle" role="tabpanel" aria-labelledby="pills-circle">
-            <ul class="list-group list-group--event pt-3">
+            <ul class="scrollable-list list-group list-group--event pt-3" style="max-height:650px;">
             @foreach($circles as $circle)
               <li class="list-group-item list-group--item-event border-top-0 pt-2 pr-0 pl-0">
                 <a href="{{ route('circle.show',$circle->id) }}" class="hov--default">
