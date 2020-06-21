@@ -72,5 +72,6 @@ Route::get('/message/board/{board_id}', 'BoardController@show')->name('message.s
 Route::post('/message/store', 'MessageController@store')->name('message.store');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/etcetera', 'HomeController@etcetera');
 
 

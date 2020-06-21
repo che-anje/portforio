@@ -93,7 +93,7 @@
 								</a>
 							</li>
 							<li class="pr-1 pl-1 postion-relative">
-								<a href="/" class="nav-link nav-link_sp -aleart">
+								<a href="/etcetera?word=お知らせ" class="nav-link nav-link_sp -aleart">
 									<i class="fas fa-bell" ></i>
 									<span class="nav-item_text" style="font-weight:600;">お知らせ</span>
 								</a>
@@ -131,22 +131,22 @@
 							</li>
 						@endguest
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">利用規約</a>
+							<a href="/etcetera?word=利用規約" class="nav-link pl-0 nav-link--gray">利用規約</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">コンテンツクオリティガイドライン</a>
+							<a href="/etcetera?word=コンテンツクオリティガイドライン" class="nav-link pl-0 nav-link--gray">コンテンツクオリティガイドライン</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">プライバシーポリシー</a>
+							<a href="/etcetera?word=プライバシーポリシー" class="nav-link pl-0 nav-link--gray">プライバシーポリシー</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">よくある質問</a>
+							<a href="/etcetera?word=よくある質問" class="nav-link pl-0 nav-link--gray">よくある質問</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">お問い合わせ</a>
+							<a href="/etcetera?word=お問い合わせ" class="nav-link pl-0 nav-link--gray">お問い合わせ</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link pl-0 nav-link--gray">サイトマップ</a>
+							<a href="/etcetera?word=サイトマップ" class="nav-link pl-0 nav-link--gray">サイトマップ</a>
 						</li>
 					</ul>
 				</div>

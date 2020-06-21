@@ -54,7 +54,12 @@ class HomeController extends Controller
         ]);
     }
 
-    
+    public function etcetera(Request $request) {
+        $word = $request->input('word');
+        return view('etcetera', [
+            'word' => $word,
+        ]);
+    }
 
     
 }

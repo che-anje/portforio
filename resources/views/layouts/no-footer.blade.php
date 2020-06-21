@@ -93,7 +93,7 @@
 								</a>
 							</li>
 							<li class="pr-1 pl-1 postion-relative">
-								<a href="/" class="nav-link nav-link_sp -aleart">
+								<a href="/etcetera?word=お知らせ" class="nav-link nav-link_sp -aleart">
 									<i class="fas fa-bell" ></i>
 									<span class="nav-item_text" style="font-weight:600;">お知らせ</span>
 								</a>
@@ -116,7 +116,7 @@
 				</div>
 			</nav>
 			<!-- footer -->
-			<footer id="footer" class="bg-brown " 
+			<footer id="footer" class="bg-brown" 
 				style="padding-bottom: 100px;">
 			</footer>
 		</div>

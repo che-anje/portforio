@@ -73,10 +73,10 @@
     <div class="container col-md-8 col-lg-6 p-0">
       <ul class="nav flex-column">
         <li class="nav-item p-3"><a href="/circles/new" class="nav-link text-dark p-0 line-height-2  text-fz-18px">サークルをつくる</a></li>
-        <li class="nav-item p-3"><a href="/member/profile/1812366064815" class="nav-link text-dark p-0 line-height-2  text-fz-18px">マイプロフィール</a></li>
-        <li class="nav-item p-3"><a href="/mypage/management" class="nav-link text-dark p-0 line-height-2  text-fz-18px">サークル・アカウント管理</a></li>
-        <li class="nav-item p-3"><a class="nav-link text-dark p-0 line-height-2  text-fz-18px" href="/users/edit">プロフィール設定</a></li>
-        <li class="nav-item p-3"><a href="/inquiry" class="nav-link text-dark p-0 line-height-2  text-fz-18px">お問い合わせ・ご要望</a></li>
+        <li class="nav-item p-3"><a href="{{ route('profile.show', ['id' => $profile->id]) }}" class="nav-link text-dark p-0 line-height-2  text-fz-18px">マイプロフィール</a></li>
+        <li class="nav-item p-3"><a href="/etcetera?word=サークルアカウント管理" class="nav-link text-dark p-0 line-height-2  text-fz-18px">サークル・アカウント管理</a></li>
+        <li class="nav-item p-3"><a href="/profile/edit" class="nav-link text-dark p-0 line-height-2  text-fz-18px">プロフィール設定</a></li>
+        <li class="nav-item p-3"><a href="/etcetera?word=お問い合わせ・ご要望" class="nav-link text-dark p-0 line-height-2  text-fz-18px">お問い合わせ・ご要望</a></li>
         <li class="nav-item p-3">
             <a href="#" class="nav-link text-dark p-0 line-height-2  text-fz-18px" rel="nofollow"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
