@@ -24,14 +24,20 @@ class Board extends Model
         return $this->belongsTo('App\Models\Circle');
     }
 
-    public function addLastMessageToBoard($c_boards) {
-        foreach($c_boards as $cboard){
-            if($cboard->messages()->orderby('id','desc')->first()){
-                $last_msg = $cboard->messages()->orderby('id','desc')->first();
-                $cboard['last_msg'] = $last_msg['msg'];
-                $cboard['last_date'] = $cboard->changeFormatLastDate($last_msg,$cboard);
+    public function addLastMessageToBoard($boards) {
+        foreach($boards as $board){
+            if($board->messages()->orderby('id','desc')->first()){
+                $last_msg = $board->messages()->orderby('id','desc')->first();
+                $board['last_msg'] = $last_msg['msg'];
+                $board['last_date'] = $board->changeFormatLastDate($last_msg,$board);
+                $board['last'] = $last_msg['created_at'];
             }
         }
+        return $boards->sortByDesc('last');
+    }
+
+    public function getBoards($user, $type) {
+        return $user->boards()->where('type', $type)->get();
     }
 
     public function changeFormatLastDate($last_msg,$boad) {

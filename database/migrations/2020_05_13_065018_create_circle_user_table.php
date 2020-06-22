@@ -17,6 +17,7 @@ class CreateCircleUserTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('circle_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            
             $table->timestamps();
 
             //FK rule

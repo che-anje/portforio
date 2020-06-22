@@ -21,24 +21,24 @@
   <ul class="mb-0 rounded-0 scrollable-list breadcrumb--scroll pt-1 pb-1 container col-md-8 col-lg-6">
     <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px"><a href="/" class="nav-link--gray">TOP</a></li>
         <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-          <a href="/sportsactivity" class="nav-link--gray">
-            体をうごかす
+          <a href="/circle/{{ $circle->category->id }}/{{ $my_prefecture->id }}" class="nav-link--gray">
+            {{ $circle->category->name }}
           </a>
         </li>
       <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-        <a href="/search/all/346" class="nav-link--gray">
+        <a href="{{ route('circle.index', ['pref_id'=>$my_prefecture->id, 'genre'=>$circle->genres[0]->id]) }}" class="nav-link--gray">
           {{ $circle->genres[0]->name }}
         </a>
       </li>
       <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
         <a
-          href="/search/akita/346" class="nav-link--gray"
+          href="{{ route('circle.index', [ $circle->prefecture->id ]) }}" class="nav-link--gray"
         >
           {{ $circle->prefecture->name }}
         </a>
       </li>
     <li class="pl-0 breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-      <a href="" class="nav-link--gray">{{ $circle->name }}</a>
+      <a href="{{ route('circle.show', [ $circle->id ]) }}" class="nav-link--gray">{{ $circle->name }}</a>
     </li>
   </ul>
 </nav>
@@ -47,12 +47,12 @@
     <div class="row">
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: green;">&lt;&nbsp;「{{ $circle->category->name }}」一覧へ戻る</a>
+          <a href="/circle/{{ $circle->category->id }}/{{ $my_prefecture->id }}" style="color: green;">&lt;&nbsp;「{{ $circle->category->name }}」一覧へ戻る</a>
         </p>
       </div>
       <div class="col-6">
         <p class="mb-0" style="font-weight: bold;font-size:13px;">
-          <a href="" style="color: green;">&lt;&nbsp;「{{ $circle->prefecture->name }}の{{ $circle->genres[0]->name }}サークル」一覧へ戻る</a>
+          <a href="{{ route('circle.index', ['pref_id'=>$my_prefecture->id, 'genre'=>$circle->genres[0]->id]) }}" style="color: green;">&lt;&nbsp;「{{ $circle->prefecture->name }}の{{ $circle->genres[0]->name }}サークル」一覧へ戻る</a>
         </p>
       </div>
     </div>
@@ -284,7 +284,7 @@
               <div class="card text-white text-center rounded border-0 position-relative">
                 <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
-                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}が</span>「{{ $recent->circle->name }}」<br>
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
                   <span class="text-fz-small" >を作成しました</span></h2>
                 </div>
               </div>
@@ -295,7 +295,7 @@
               <div class="card text-white text-center rounded border-0 position-relative">
                 <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
-                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}が</span>「{{ $recent->Circle->name }}」<br>
+                  <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
                   <span class="text-fz-small" >に参加しました</span></h2>
                 </div>
               </div>

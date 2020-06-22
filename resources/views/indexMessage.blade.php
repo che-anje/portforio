@@ -101,7 +101,7 @@
                                     <p class="text-fz-14px text-black-20 mb-0 line-2">{{ $u_board->otherUser->profile->familyName }}{{ $u_board->otherUser->profile->firstName }}</p>
                                 </div>
                                 <div class="col-2 p-0 align-self-start">
-                                    <p class="text-fz-small text-black-20 mb-0 text-center">19:41</p>
+                                    <p class="text-fz-small text-black-20 mb-0 text-center">{{ $u_board->last_date }}</p>
                                 </div>
                             </div>
                         </a>

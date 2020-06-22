@@ -16,6 +16,7 @@ class CreateCirclesTable extends Migration
         Schema::create('circles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->Integer('genre_id');
+            $table->Integer('admin_user_id');
             $table->string('name');
             $table->string('introduction');
             $table->tinyInteger('prefecture_id');

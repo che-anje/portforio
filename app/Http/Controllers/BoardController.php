@@ -29,9 +29,12 @@ class BoardController extends Controller
     public function index() {
         $board = new Board;
         $user = Auth::user();
-        $c_boards = $user->boards()->where('type', 'circle')->get();
-        $board->addLastMessageToBoard($c_boards);
-        $u_boards = $user->boards()->where('type', 'user')->get();
+        /*
+        $c_boards = $user->boards()->where('type', 'circle')->get();*/
+        $c_boards = $board->getBoards($user, 'circle');
+        $c_boards = $board->addLastMessageToBoard($c_boards);
+        $u_boards = $board->getBoards($user, 'user');
+        $u_boards = $board->addLastMessageToBoard($u_boards);
         foreach($u_boards as $uboard){
             $uboard['otherUser'] = $board->getOtherUser($user->id,$uboard->id);
         }
