@@ -22,8 +22,8 @@
 		<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}" defer></script>
 	@endif
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.6/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
+	
+	
 	
 
 	<!-- Fonts -->
@@ -42,7 +42,6 @@
 	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
 	
-	<link  href="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.css" rel="stylesheet">
 	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">

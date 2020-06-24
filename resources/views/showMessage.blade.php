@@ -20,7 +20,6 @@
 				<script src="{{ asset('js/app.js') }}" defer></script>
 			@endif
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-			<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
 			<!-- Fonts -->
 			<link rel="dns-prefetch" href="//fonts.gstatic.com">
 			<link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -37,7 +36,6 @@
 			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 			<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 			@endif
-			<link  href="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.css" rel="stylesheet">
 			<!-- fontawesome -->
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 
