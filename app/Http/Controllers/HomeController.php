@@ -77,7 +77,7 @@ class HomeController extends Controller
       // バケットの`myprefix`フォルダへアップロード
       $path = Storage::disk('s3')->putFile('CircleImages', $image, 'public');
       // アップロードした画像のフルパスを取得
-      dd(Storage::disk('s3')->url($path));
+      Storage::disk('s3')->url($path);
 
       return redirect('/');
   }
