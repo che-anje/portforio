@@ -12,6 +12,7 @@ use App\Models\Genre;
 use App\Models\Circle;
 use App\Models\Circle_User;
 use App\Traits\AboutPrefecture;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -61,5 +62,24 @@ class HomeController extends Controller
         ]);
     }
 
+    public function add()
+  {
+      return view('image_upload');
+  }
+
+    public function create(Request $request)
+  {
+      
+      $form = $request->all();
+
+      //s3アップロード開始
+      $image = $request->file('image');
+      // バケットの`myprefix`フォルダへアップロード
+      $path = Storage::disk('s3')->putFile('CircleImages', $image, 'public');
+      // アップロードした画像のフルパスを取得
+      dd(Storage::disk('s3')->url($path));
+
+      return redirect('/');
+  }
     
 }

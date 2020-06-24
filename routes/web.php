@@ -74,4 +74,6 @@ Route::post('/message/store', 'MessageController@store')->name('message.store');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/etcetera', 'HomeController@etcetera');
 
+Route::get('/image_upload', 'HomeController@add');
+Route::post('/image_upload', 'HomeController@create');
 
