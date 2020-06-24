@@ -28,12 +28,15 @@
     <!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
-	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
+	
 	@if(app('env') == 'production')
 		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 	@else
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 	@endif
 	
 	<!-- fontawesome -->

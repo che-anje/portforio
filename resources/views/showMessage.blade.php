@@ -25,16 +25,19 @@
 			<link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 			<!-- Styles -->
 			
-			<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
-			<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
+			
 			@if(app('env') == 'production')
 			<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
 			<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
 			<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+			<link rel="stylesheet" href="{{ secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 			@else
 			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
 			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 			<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+			<link rel="stylesheet" href="{{ asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+			<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 			@endif
 			<!-- fontawesome -->
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">

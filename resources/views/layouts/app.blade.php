@@ -34,13 +34,16 @@
 		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
 		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
 		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 	@else
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 	@endif
-	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
+	
 	
 	
 	<!-- fontawesome -->
