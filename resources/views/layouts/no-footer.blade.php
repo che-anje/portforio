@@ -16,9 +16,12 @@
 	<script src="js/slick.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/slick.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.6/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
-	<script src="{{ asset('js/app.js') }}" defer></script>
-
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>	
+	@if(app('env') == 'production')
+		<script src="{{ secure_asset('js/app.js') }}" defer></script>
+	@else
+		<script src="{{ asset('js/app.js') }}" defer></script>
+	@endif
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -27,7 +30,12 @@
 	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@if(app('env') == 'production')
+		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+	@else
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@endif
+
 	<link  href="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.css" rel="stylesheet">
 	
 	<!-- fontawesome -->

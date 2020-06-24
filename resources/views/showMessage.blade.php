@@ -10,20 +10,33 @@
 			<!-- Scripts -->
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 			<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-			<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
-			<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+			@if(app('env') == 'production')
+				<script src="{{ secure_asset('js/slick.js') }}" type="text/javascript"></script>
+				<script type="text/javascript" src="{{ secure_asset('js/slick.min.js') }}"></script>
+				<script src="{{ secure_asset('js/app.js') }}" defer></script>
+			@else
+				<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
+				<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+				<script src="{{ asset('js/app.js') }}" defer></script>
+			@endif
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			<script src="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.js"></script>
-			<script src="{{ asset('js/app.js') }}" defer></script>
 			<!-- Fonts -->
 			<link rel="dns-prefetch" href="//fonts.gstatic.com">
 			<link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 			<!-- Styles -->
-			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
-			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
+			
 			<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
 			<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
+			@if(app('env') == 'production')
+			<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
+			<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
+			<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+			@else
+			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
+			<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 			<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+			@endif
 			<link  href="//cdnjs.cloudflare.com/ajax/libs/cropper/3.1.6/cropper.min.css" rel="stylesheet">
 			<!-- fontawesome -->
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">

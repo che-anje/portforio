@@ -15,7 +15,12 @@
 	<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="js/slick.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/slick.min.js"></script>
-	<script src="{{ asset('js/app.js') }}" defer></script>
+	@if(app('env') == 'production')
+		<script src="{{ secure_asset('js/app.js') }}" defer></script>
+	@else
+		<script src="{{ asset('js/app.js') }}" defer></script>
+	@endif
+
 
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,7 +30,11 @@
 	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 	<link rel="stylesheet" href="css/remodal.css" media="screen" rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/remodal-default-theme.css" media="screen" rel='stylesheet' type='text/css'>
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@if(app('env') == 'production')
+		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+	@else
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@endif
 	
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
