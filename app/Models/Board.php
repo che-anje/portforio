@@ -37,7 +37,17 @@ class Board extends Model
     }
 
     public function getBoards($user, $type) {
-        return $user->boards()->where('type', $type)->get();
+        $boards = $user->boards()->where('type', $type)->get();
+        $boards = $this->addInformationToBoards($boards);
+        return $boards;
+    }
+
+    public function addInformationToBoards($boards) {
+        $circle = new Circle;
+        foreach($boards as $board) {
+            $circle->addInfomationToCircle($board->circle);
+        }
+        return $boards;
     }
 
     public function changeFormatLastDate($last_msg,$boad) {

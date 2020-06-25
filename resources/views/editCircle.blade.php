@@ -136,9 +136,9 @@
                         <div>
                             <a onClick="$('#upfile').click()">
                             @if($circle->image)
-                                <img id="circle_img" src="/storage/CircleImages/{{ $circle->image }}" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
+                                <img id="circle_img" src="{{ $circle->image_path }}" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
                             @else
-                                <img id="circle_img" src="/storage/CircleImages/Camera.png" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
+                                <img id="circle_img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/Camera.png') }}" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
                             @endif
                             </a>
                             <input type="file" accept="image/png, image/jpeg, image/gif" 

@@ -44,7 +44,7 @@
                     <a href="/message/board/{{ $c_board->id }}" class="hov--default">
                         <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom" >
                             <div class="col-2 pr-1">
-                                <img src="/storage/CircleImages/{{ $c_board->circle->image }}" alt="" class="rounded-circle member-icon_48px">
+                                <img src="{{ $c_board->circle->image_path }}" alt="" class="rounded-circle member-icon_48px">
                             </div>
                             <div class="col-8 pl-3 pr-2 board_info">
                                 <p class="mb-1 line-1 position-relative mr-4">

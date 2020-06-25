@@ -103,6 +103,7 @@ class CircleController extends Controller
     public function showEditForm(int $id) {
         $circle = Circle::find($id);
         $circle['checked_genres'] = $circle->getCheckedGenres($circle);
+        $circle = $circle->addInfomationToCircle($circle);
         $category = new Category;
         return view('editCircle', [
             'circle' => $circle,
@@ -141,6 +142,7 @@ class CircleController extends Controller
         $circle = new Circle;
         /*全てのカテゴリーを抜き出す*/
         $my_category = Category::find($category_id);
+        $my_category['image_path'] = $my_category->getImagePathAttributes();
         /*自分の選択している都道府県を取得する。*/
         $my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
         $genres = $my_category->genres()->get();

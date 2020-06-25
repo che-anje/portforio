@@ -46,7 +46,7 @@
                 <a href="{{ route('circle.show',$circle->id) }}" class="hov--default">
                   <div class="row align-items-center">
                     <div class="col-6">
-                      <img class="card-img-top w-100 card-img-top--list_profileevent" alt="A"  src="/storage/CircleImages/{{ $circle->image }}" />
+                      <img class="card-img-top w-100 card-img-top--list_profileevent" alt="A"  src="{{ $circle->image_path }}" />
                     </div>
                     <div class="col pl-0 position-relative">
                       @if($user->id == $circle->admin_user_id)

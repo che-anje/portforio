@@ -113,6 +113,14 @@ class ProfileController extends Controller
             [ $deleteImageUrl ] = $user->updateProfile($form);
             if($deleteImageUrl) {
                 Storage::delete('public/UserImages/' . $deleteImageUrl);
+                
+                $form = $request->all();
+                //s3アップロード開始
+                $image = $request->file('image');
+                // バケットの`myprefix`フォルダへアップロード
+                $path = Storage::disk('s3')->putFile('CircleImages', $image, 'public');
+                // アップロードした画像のフルパスを取得
+                Storage::disk('s3')->url($path);
             }
             DB::commit();    
             $response = redirect()

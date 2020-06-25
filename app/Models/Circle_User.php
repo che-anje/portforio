@@ -95,11 +95,14 @@ class Circle_User extends Model
         $recent = Circle_User::where('approval', 2)->where('user_id', '!=', $circle->admin_user_id)->orderby('id','desc')->first();
         $recent['user'] = User::find($recent->user_id);
         $recent['Circle'] = Circle::find($recent->circle_id);
+        $circle->addInfomationToCircle($recent['Circle']);
         return $recent;
     }
 
     public function getRecentCircle() {
-        return Circle::orderby('id','desc')->first();
+        $circle = Circle::orderby('id','desc')->first();
+        $circle->addInfomationToCircle($circle);
+        return $circle;
     }
 }
 

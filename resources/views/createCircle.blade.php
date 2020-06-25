@@ -135,7 +135,7 @@
                     align-items-center hov--default p-3_5">
                         <div>
                             <a onClick="$('#upfile').click()">
-                                <img id="circle_img" src="/storage/CircleImages/Camera.png" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
+                                <img id="circle_img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/Camera.png') }}" alt class="card-img-top card-img-top--list_bgwhite mb-0 w-100">
                             </a>
                             <input type="file" accept="image/png, image/jpeg, image/gif" 
                             name="image" id="upfile" style="display: none;" required>

@@ -75,7 +75,7 @@
                 <a class="hov--default" href="{{ route('circle.show', [ $circle->id ]) }}">
                     <div class="row align-items-center">
                         <div class="col-6">
-                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="/storage/CircleImages/{{ $circle->image }}">
+                        <img class="card-img-top w-100 card-img-top--list_profileevent" src="{{ $circle->image_path }}">
                         </div>
                         <div class="col pl-0 position-relative">
                           @if($circle->admin_user_id == $my_profile->user_id)

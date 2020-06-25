@@ -14,8 +14,10 @@ class CategoryComposer {
     public function __construct()
     {
         $this->categories = Category::orderby('id', 'asc')->get();
+
         foreach($this->categories as $category) {
             $category['genres'] = $category->genres()->orderby('id')->get();
+            $category['image_path'] = $category->getImagePathAttributes();
         }
     }
 

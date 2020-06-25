@@ -28,7 +28,7 @@
                         <div class="col-4 pl-0 mb-3">
                             <div class="adjust-box adjust-box-4x3" style="width:100%;">
                             @if($circle->image)
-                                <img src="/storage/CircleImages/{{ $circle->image }}" class="rounded w-100 object-fit-cover adjust-box-inner">
+                                <img src="{{ $circle->image_path }}" class="rounded w-100 object-fit-cover adjust-box-inner">
                             @else
                                 <img src="/storage/UserImages/no_image.jpeg" class="rounded w-100 object-fit-cover adjust-box-inner">
                             @endif

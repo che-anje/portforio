@@ -8,7 +8,7 @@
 @endsection
 @section('content')
 <div class="bg-white">
-    <div class="top-mv top-mv--moving pb-4_5 pt-5 container col-md-8 col-lg-6 text-in-image" style="background: url('/storage/CategoryImages/{{ $my_category->image }}'); background-size: cover;">
+    <div class="top-mv top-mv--moving pb-4_5 pt-5 container col-md-8 col-lg-6 text-in-image" style="background: url('{{ $my_category->image_path }}'); background-size: cover;">
       <h1 class="mv-copy text-center h4 mb-3 pt-3">{{ $my_category->name }}
         <div class="container col-md-10 col-lg-8 mt-3 mb-3 pt-4 ml-10 mr-10" style="border: 1px solid #fff;">
         <p class="text-center text-white text-fz-small">登録サークル数：<span class="text-fz-24px">{{ $circles->count() }}</span> <span class="text-fz-xs">* {{ $my_prefecture->name }}</span></p>
@@ -101,7 +101,7 @@
                 <a class="card card--circle hov--default border-0" href="{{ route('circle.show', [ $circle->id ]) }}">
                     <h4 class="mb-2 line-1 hov--default" style="font-size: 13px;font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
-                        <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
+                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
                         <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
                     @endif
@@ -139,7 +139,7 @@
                 <a class="card card--circle hov--default border-0" href="{{ route('circle.show', [ $circle->id ]) }}">
                     <h4 class="mb-2 line-1 hov--default" style="font-size: 13px;font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
-                        <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
+                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
                         <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
                     @endif
@@ -177,7 +177,7 @@
         <a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
           <div class="card text-white text-center rounded border-0 ">
           @if($category->image)
-            <img class="picture card-img" src="/storage/CategoryImages/{{ $category->image }}" style="height: 90px">
+            <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
           @else
             <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
           @endif
@@ -197,7 +197,7 @@
           <div class="mb-2 pl-1 pr-1">
             <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
               <div class="card text-white text-center rounded border-0 position-relative">
-                <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
                   <span class="text-fz-small" >を作成しました</span></h2>
@@ -208,7 +208,7 @@
           <div class="mb-2 pl-1 pr-1">
             <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
               <div class="card text-white text-center rounded border-0 position-relative">
-                <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
                   <span class="text-fz-small" >に参加しました</span></h2>

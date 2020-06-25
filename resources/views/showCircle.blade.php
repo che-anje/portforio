@@ -83,14 +83,13 @@
     <figure class="position-relative m-0">
     @if($circle->image)
         <img
-        src="/storage/CircleImages/{{ $circle->image }}"
+        src="{{ $circle->image_path }}"
         onerror="this.src='/images/ja2/img_noimage.gif'"
         alt=""
         class="w-100 event-img">
     @else
         <img
         src="/storage/UserImages/no_image.jpeg"
-        onerror="this.src='/images/ja2/img_noimage.gif'"
         alt=""
         class="w-100 event-img">
     @endif
@@ -222,7 +221,7 @@
       <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
         <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
         @if($circle->image)
-          <img src="/storage/CircleImages/{{ $circle->image }}" class="card-img-top card-img-top--list">
+          <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
         @else
           <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
         @endif
@@ -262,12 +261,12 @@
         <a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
           <div class="card text-white text-center rounded border-0 ">
           @if($category->image)
-            <img class="picture card-img" src="/storage/CategoryImages/{{ $category->image }}" style="height: 90px">
+            <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
           @else
             <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
           @endif
             <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
-              <h3 class="card-title card-title--extend mb-0">{{ $category->name }}<br>
+              <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>
               <span class="text-fz-small">サークルを探す</span></h3>
             </div>
           </div>
@@ -282,7 +281,7 @@
           <div class="mb-2 pl-1 pr-1">
             <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
               <div class="card text-white text-center rounded border-0 position-relative">
-                <img src="/storage/CircleImages/{{ $recent->circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
                   <span class="text-fz-small" >を作成しました</span></h2>
@@ -293,7 +292,7 @@
           <div class="mb-2 pl-1 pr-1">
             <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
               <div class="card text-white text-center rounded border-0 position-relative">
-                <img src="/storage/CircleImages/{{ $recent->Circle->image }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                <img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                 <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
                   <span class="text-fz-small" >に参加しました</span></h2>
