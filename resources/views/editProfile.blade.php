@@ -286,35 +286,6 @@
         </textarea>
     </div>
 </div>
-<!--snsアカウントのところ 余裕あれば
-<div class="container col-md-8 col-lg-6">
-    <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">
-        SNSアカウント
-    </p>
-</div>
-<div class="shadow-sm mb-0 bg-white">
-    <div class=" container col-md-8 col-lg-6 p-3_5">
-        <div>
-            <i class="fa fa-facebook-official mr-2" aria-hidden="true"></i>
-            <span style="font-size: 10px;">https://www.facebook.com/</span>
-            <input class="p-0 d-inline-block form-control" style="width: 150px;" 
-            type="text" value="" name="user[facebook_url]" id="user_facebook_url" />
-        </div>
-        <div class="mt-2">
-            <i class="fa fa-twitter-square mr-2" aria-hidden="true"></i>
-            <span style="font-size: 10px;">https://twitter.com/</span>
-            <input class="p-0 d-inline-block form-control" style="width: 150px;" 
-            type="text" value="" name="user[twitter_url]" id="user_twitter_url" />
-        </div>
-        <div class="mt-2">
-            <i class="fa fa-instagram mr-2" aria-hidden="true"></i>
-            <span style="font-size: 10px;">https://twitter.com/</span>
-            <input class="p-0 d-inline-block form-control" style="width: 150px;" 
-            type="text" value="" name="user[instagram_url]" id="user_instagram_url" />
-        </div>
-    </div>
-</div>
--->
 
 <!-- 登録ボタン -->
 <div class="container col-md-8 col-lg-6 mt-4">

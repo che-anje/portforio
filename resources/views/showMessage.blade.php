@@ -8,8 +8,8 @@
 
 			<title>{{ config('app.name', 'Laravel') }}</title>
 			<!-- Scripts -->
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-			<script src="http://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 			@if(app('env') == 'production')
 				<script src="{{ secure_asset('js/slick.js') }}" type="text/javascript"></script>
 				<script type="text/javascript" src="{{ secure_asset('js/slick.min.js') }}"></script>
@@ -19,10 +19,10 @@
 				<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 				<script src="{{ asset('js/app.js') }}" defer></script>
 			@endif
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 			<!-- Fonts -->
 			<link rel="dns-prefetch" href="//fonts.gstatic.com">
-			<link href="http://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+			<link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 			<!-- Styles -->
 			
 			
@@ -40,9 +40,9 @@
 			<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
 			@endif
 			<!-- fontawesome -->
-			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+			<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
 
-			<link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,700,900|Roboto:400,700,900&display=swap&subset=japanese" rel="stylesheet">
+			<link href="//fonts.googleapis.com/css?family=M+PLUS+1p:400,700,900|Roboto:400,700,900&display=swap&subset=japanese" rel="stylesheet">
 	</head>
 	<body role="document" style="word-break: break-all;" class="royal_preloader scrollreveal" style="height: 100%;">
 		<div id="bg-boxed" style="height: 100%;">
@@ -211,7 +211,7 @@
 					var board_id = $('input[name=board_id]').val();
 					var msg_type = $('input[name=msg_type]').val();
 					var user_id = $('input[name=user_id]').val();
-					var url = 'http://127.0.0.1:8000/message/store';
+					var url = '/message/store';
 					$.ajaxSetup({  /* ①-追加 */
 						headers: {
 							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
