@@ -264,8 +264,8 @@ $(function(){
           url: url,
           type: 'GET',
           data: {
-              order: {orderType: '{{csrf_token()}}'},
-              keyword: {keyword: '{{csrf_token()}}'},
+              order: orderType,
+              keyword: keyword,
           },
           dataType: 'html',
       })
