@@ -45,7 +45,7 @@
         @if($my_profile->user_image)
             <img class="rounded-circle w-100" src="/storage/UserImages/{{ $my_profile->user_image }}" style="height: 160px; object-fit: cover;" />
         @else
-            <img class="rounded-circle w-100" src="/storage/UserImages/no_image.jpeg" />
+            <img class="rounded-circle w-100" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" />
         @endif
         </div>
         <div class="d-flex justify-content-center">

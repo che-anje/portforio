@@ -30,7 +30,7 @@
                             @if($circle->image)
                                 <img src="{{ $circle->image_path }}" class="rounded w-100 object-fit-cover adjust-box-inner">
                             @else
-                                <img src="/storage/UserImages/no_image.jpeg" class="rounded w-100 object-fit-cover adjust-box-inner">
+                                <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="rounded w-100 object-fit-cover adjust-box-inner">
                             @endif
                             </div>
                         </div>

@@ -63,7 +63,7 @@ class CircleController extends Controller
         $circle = Circle::find($id);
         $profile = new Profile;
         $members = $circle->getCircleMembers($circle)->get();
-        $members = $profile->getUsersProfile($members);
+        $members = $profile->getUsersImagePath($members);
         $circle = $circle->addInfomationToCircle($circle);
         $approval = Circle_User::getApproval($id, Auth::id());
         /*自分の選択している都道府県を取得する。*/

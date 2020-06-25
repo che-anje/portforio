@@ -93,7 +93,8 @@ class ProfileController extends Controller
         
         $user = Auth::user();
         $my_profile = $user->profile ?: Profile::make();
-        $prefectures = \App\Models\Prefecture::orderBy('id','asc')->get();
+        $my_profile['image_path'] = $my_profile->getImagePathAttributes();
+        $prefectures = Prefecture::orderBy('id','asc')->get();
         $cities = \App\Models\City::where('prefecture_id', $my_profile->prefectureOfInterest)->get();
         return view('editProfile', [
             'my_profile' => $my_profile,
@@ -113,7 +114,7 @@ class ProfileController extends Controller
             [ $deleteImageUrl ] = $user->updateProfile($form);
             if($deleteImageUrl) {
                 Storage::delete('public/UserImages/' . $deleteImageUrl);
-                
+
                 $form = $request->all();
                 //s3アップロード開始
                 $image = $request->file('image');

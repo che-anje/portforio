@@ -159,7 +159,7 @@
                                     @if($circle->image)
                                         <img src="{{ $circle->image_path }}" class="rounded w-100 object-fit-cover adjust-box-inner">
                                     @else
-                                        <img src="/storage/UserImages/no_image.jpeg" class="rounded w-100 object-fit-cover adjust-box-inner">
+                                        <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="rounded w-100 object-fit-cover adjust-box-inner">
                                     @endif
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
           @if($category->image)
             <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
           @else
-            <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
+            <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
           @endif
             <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
               <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>

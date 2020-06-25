@@ -33,10 +33,10 @@
                 justify-content-center align-items-center hov--default p-3_5" onClick="$('#upfile').click()">
                 @if($my_profile->user_image)
                     <img id=user_img class="card-img-top card-img-top--list_bgwhite mb-0 w-100" 
-                    src="/storage/UserImages/{{ $my_profile->user_image }}" />
+                    src="{{ $my_profile->image_path }}" />
                 @else
                     <img id=user_img class="card-img-top card-img-top--list_bgwhite mb-0 w-100" 
-                    src="/storage/UserImages/no_image.jpeg" />
+                    src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" />
                 @endif
                 </a>
                 <input style="display:none;" id="upfile" type="file" name="user_image" />

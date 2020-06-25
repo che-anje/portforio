@@ -88,9 +88,9 @@
                             <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom">
                                 <div class="col-2 pr-1">
                                     @if($u_board->otherUser->profile->user_image)
-                                    <img src="/storage/UserImages/{{ $u_board->otherUser->profile->user_image }}" alt="" class="rounded-circle member-icon_48px">
+                                    <img src="{{ $u_board->otherUser->image_path }}" alt="" class="rounded-circle member-icon_48px">
                                     @else
-                                    <img src="/storage/UserImages/no_image.jpeg" alt="" class="rounded-circle member-icon_48px">
+                                    <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" alt="" class="rounded-circle member-icon_48px">
                                     @endif
                                 </div>
                                 <div class="col-8 pl-3 pr-2">

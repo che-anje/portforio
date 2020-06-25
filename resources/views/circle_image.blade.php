@@ -26,7 +26,7 @@
             justify-content-center align-items-center hov--default p-3_5" onClick="$('#upfile').click()">
             
                 <img id=circle_img class="card-img-top card-img-top--list_bgwhite mb-0 w-100" 
-                src="/storage/UserImages/no_image.jpeg" />
+                src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" />
             
             </a>
             <input style="display:none;" id="upfile" type="file" name="circle_image" />

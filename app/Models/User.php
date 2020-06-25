@@ -130,5 +130,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         return [$deleteImage];
     }
+
+    
 }
 

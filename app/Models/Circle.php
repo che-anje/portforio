@@ -137,7 +137,6 @@ class Circle extends Model
         
     }
 
-
     public function addInfomationToCircles($circles) {
         
         foreach($circles as $circleRecord) {

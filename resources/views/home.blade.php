@@ -167,7 +167,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     @if($category->image)
                         <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
                     @else
-                        <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
+                        <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
                     @endif
                         <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
                             <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>
@@ -225,7 +225,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
-                        <img src="//sukettoimages.s3-ap-northeast-1.amazonaws.com/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                        <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
@@ -266,7 +266,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
-                        <img src="//sukettoimages.s3-ap-northeast-1.amazonaws.com/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                        <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
                     <div class="card-body card-body--narrow border 
                     rounded-bottom border-top-0 pb-4">

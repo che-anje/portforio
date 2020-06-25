@@ -89,7 +89,7 @@
         class="w-100 event-img">
     @else
         <img
-        src="/storage/UserImages/no_image.jpeg"
+        src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}"
         alt=""
         class="w-100 event-img">
     @endif
@@ -172,7 +172,7 @@
       <li>
         <div class="row align-items-start pt-3 pr-3 pl-3 pb-0">
           <div class="col-2 pl-0 pr-2">
-          <img src="/storage/UserImages/{{ $member->profile->user_image }}" alt="" class="member-icon_48px rounded-circle">
+          <img src="{{ $member->image_path }}" alt="" class="member-icon_48px rounded-circle">
           </div>
           <div class="row col border-bottom pb-2 align-items-start cricle-member-name">
           <div class="col pl-0">
@@ -192,7 +192,7 @@
       <li>
         <div class="row align-items-start pt-3 pr-3 pl-3 pb-0">
           <div class="col-2 pl-0 pr-2">
-            <img src="/storage/UserImages/{{ $member->profile->user_image }}" alt="" class="member-icon_48px rounded-circle">
+            <img src="{{ $member->image_path }}" alt="" class="member-icon_48px rounded-circle">
           </div>
           <div class="row col border-bottom pb-2 align-items-center cricle-member-name">
             <div class="col pl-0">
@@ -223,7 +223,7 @@
         @if($circle->image)
           <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
         @else
-          <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+          <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
         @endif
         <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
           <div class="d-flex scrollable-list">
@@ -263,7 +263,7 @@
           @if($category->image)
             <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
           @else
-            <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
+            <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
           @endif
             <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
               <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>

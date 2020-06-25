@@ -103,7 +103,7 @@
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
-                        <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                        <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4 ">
                         <div class="d-flex scrollable-list">
@@ -132,7 +132,7 @@
 
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
     <div class="container col-md-8 col-lg-6">
-      <h2 class="h2 h2--extend -new">新着の「体をうごかす」サークルから探す</h2>
+      <h2 class="h2 h2--extend -new">新着の「{{ $my_category->name }}」サークルから探す</h2>
       <ul class="scrollable-list pl-0  ib-list">
       @foreach($circles as $circle)
             <li class="d-inline-block mr-2">
@@ -141,7 +141,7 @@
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
-                        <img src="/storage/UserImages/no_image.jpeg" class="card-img-top card-img-top--list">
+                        <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4 ">
                         <div class="d-flex scrollable-list">
@@ -179,7 +179,7 @@
           @if($category->image)
             <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
           @else
-            <img class="picture card-img" src="/storage/UserImages/no_image.jpeg" style="height: 90px; filter:brightness(10%);">
+            <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
           @endif
             <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
               <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>

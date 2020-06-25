@@ -52,6 +52,7 @@ class BoardController extends Controller
         }
         $messages = $board->getAllMessages($board);
         $message->changeFormatMessagesDate($messages);
+        
         return view('showMessage', [
             'board' => $board,
             'messages' => $messages,

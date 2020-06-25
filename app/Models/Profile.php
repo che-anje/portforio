@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Prefecture;
 use App\Enums\Gender;
+use Illuminate\Support\Facades\Storage;
 
 class Profile extends Model
 {
@@ -39,14 +40,17 @@ class Profile extends Model
         return Gender::getDescription($value);
     }
 
-    public function getUsersProfile($users) {
+    public function getUsersImagePath($users) {
         
         foreach($users as $userRecord) {
-            $userRecord['profile'] = $userRecord->profile;
+            $userRecord->image_path = $userRecord->profile->getImagePathAttributes();
         }
         return $users;
     }
 
+    public function getImagePathAttributes() {
+        return Storage::disk('s3')->url('UserImages/' . $this->user_image);
+    }
     
 
     const SEARCHSETTINGBYEMAIL = [

@@ -116,9 +116,9 @@
 												<div class="row justify-content-around align-items-start mb-3">
 													<div class="col-2 pr-1">
 														@if($msg->user->profile->user_image)
-														<img src="/storage/UserImages/{{ $msg->user->profile->user_image }}" alt="" class="rounded-circle member-icon_48px">
+														<img src="{{ $msg->image_path }}" alt="" class="rounded-circle member-icon_48px">
 														@else
-														<img src="/storage/UserImages/no_image.jpeg" alt="" class="rounded-circle member-icon_48px">
+														<img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" alt="" class="rounded-circle member-icon_48px">
 														@endif
 													</div>
 													<div class="col-7 pl-0 pr-1">

@@ -13,6 +13,7 @@ class MyPageController extends Controller
     public function show() {
         $user = Auth::user();
         $profile = $user->profile;
+        $profile['image_path'] = $profile->getImagePathAttributes();
         $circles = $user->circles;
         $circle = new Circle;
         $circle->addInfomationToCircles($circles);

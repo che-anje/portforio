@@ -59,12 +59,18 @@ class Board extends Model
     }
 
     public function getAllMessages($board) {
-        return $board->messages()->orderby('id','asc')->get();
+        $messages = $board->messages()->orderby('id','asc')->get();
+        foreach($messages as $message) {
+            $message['image_path'] = $message->user->profile->getImagePathAttributes();
+        }
+        return $messages;
     }
 
     public function getOtherUser($user_id,$board_id) {
         $board_user = Board_User::where('board_id',$board_id)->where('user_id', '!=', $user_id)->first();
-        return User::find($board_user->user_id);
+        $other = User::find($board_user->user_id);
+        $other['image_path'] = $other->profile->getImagePathAttributes();
+        return $other;
     }
 
     public function createBoard($type, $circle_id) {
