@@ -253,11 +253,11 @@ $(function(){
       var category = $('input[name=prefectureOfInterest]').attr('data-category');
       var genre = $('input[name=prefectureOfInterest]').attr('data-genre');
       if(category){
-        var url = 'http://127.0.0.1:8000/index/'+pref_id+'?category='+category;
+        var url = '/index/'+pref_id+'?category='+category;
       }else if(genre){
-        var url = 'http://127.0.0.1:8000/index/'+pref_id+'/'+genre;
+        var url = '/index/'+pref_id+'/'+genre;
       }else{
-          var url = 'http://127.0.0.1:8000/index/'+pref_id;
+          var url = '/index/'+pref_id;
       }
 
       $.ajax({
@@ -302,11 +302,11 @@ $(function(){
       var category = $('input[name=prefectureOfInterest]').attr('data-category');
       var genre = $('input[name=prefectureOfInterest]').attr('data-genre');
       if(category){
-        var url = 'http://127.0.0.1:8000/index/'+pref_id+'?category='+category;
+        var url = '/index/'+pref_id+'?category='+category;
       }else if(genre){
-        var url = 'http://127.0.0.1:8000/index/'+pref_id+'/'+genre;
+        var url = '/index/'+pref_id+'/'+genre;
       }else{
-          var url = 'http://127.0.0.1:8000/index/'+pref_id;
+          var url = '/index/'+pref_id;
       }
       $.ajax({
           url: url,
