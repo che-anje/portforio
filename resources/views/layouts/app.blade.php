@@ -59,7 +59,9 @@
 					@section('edit-button')
 					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
-							<div class="logo">つなげーと</div>
+							<div class="logo">
+								スケットアプリ
+							</div>
 						</a>
 					</div>
 					@show				
@@ -135,7 +137,7 @@
 				style="padding-bottom: 150px;">
 				<div class="container col-md-6 col-lg-6 pb-5">
 					<h2 class="h2 h2--extend h2--extend--notion">
-						つなげーとについて
+						スケットアプリについて
 					</h2>
 					<ul class="nav flex-column">
 						@guest

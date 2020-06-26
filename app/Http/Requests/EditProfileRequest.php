@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class EditProfileRequest extends FormRequest
 {
@@ -45,11 +46,13 @@ class EditProfileRequest extends FormRequest
     public function validated(): array
     {
         $validated = parent::validated();
-
+        
         if(isset($validated['user_image'])) {
+            $disk = Storage::disk('s3');
             $originalImg = $validated['user_image'];
-            $filePath = $originalImg->store('public/UserImages');
-            $validated['user_image'] = str_replace('public/UserImages/', '', $filePath);
+            $path = $disk->putFile('UserImages', $originalImg, 'public');
+            $validated['user_image'] = str_replace('UserImages/', '', $path);
+            
         }
 
         if (isset($validated['password'])) {

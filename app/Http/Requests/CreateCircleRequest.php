@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CreateCircleRequest extends FormRequest
 {
@@ -31,6 +32,20 @@ class CreateCircleRequest extends FormRequest
             'genres' => 'required',
             'admin_user_id' => 'required',
         ];
+    }
+
+    public function validated(): array
+    {
+        $validated = parent::validated();
+        
+        if(isset($validated['image'])) {
+            $disk = Storage::disk('s3');
+            $originalImg = $validated['image'];
+            $path = $disk->putFile('CircleImages', $originalImg, 'public');
+            $validated['image'] = str_replace('CircleImages/', '', $path);
+            
+        }
+        return $validated;
     }
 
     

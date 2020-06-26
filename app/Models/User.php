@@ -104,7 +104,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         $deleteImage = null;
         $this->profile->fill($attributes);
-
         if(
             $this->profile->isDirty('user_image')
             && $this->profile->getOriginal('user_image')

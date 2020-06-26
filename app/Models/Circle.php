@@ -73,6 +73,21 @@ class Circle extends Model
         return $this->hasOne('App\Models\Board');
     }
 
+    public function updateCircle(array $attributes)
+    {
+        $deleteImage = null;
+        $this->fill($attributes);
+        if(
+            $this->isDirty('image')
+            && $this->getOriginal('image')
+        ) {
+            $deleteImage = $this->getOriginal('image');
+        }
+        $this->save();
+
+        return [$deleteImage];
+    }
+
     public function scopeKeyword($query, $keyword) {
         if ($keyword) {
             $query->where(function($query) use($keyword){

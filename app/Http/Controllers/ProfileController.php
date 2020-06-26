@@ -72,6 +72,7 @@ class ProfileController extends Controller
     /* もう少しいい書き方がありそうなので聞く */
     public function show(int $id) {
         $my_profile = Profile::find($id);
+        $my_profile['image_path'] = $my_profile->getImagePathAttributes();
         $year = $my_profile->birthdate_1i;
         $month = $my_profile->birthdate_2i;
         $date = $my_profile->birthdate_3i;
@@ -109,19 +110,13 @@ class ProfileController extends Controller
         $user = Auth::user();
         try {
             DB::beginTransaction();
-    
+
             $form = $request->validated();
             [ $deleteImageUrl ] = $user->updateProfile($form);
             if($deleteImageUrl) {
-                Storage::delete('public/UserImages/' . $deleteImageUrl);
-
-                $form = $request->all();
-                //s3アップロード開始
-                $image = $request->file('image');
-                // バケットの`myprefix`フォルダへアップロード
-                $path = Storage::disk('s3')->putFile('CircleImages', $image, 'public');
-                // アップロードした画像のフルパスを取得
-                Storage::disk('s3')->url($path);
+                $disk = Storage::disk('s3');
+                $disk->delete('UserImages/' . $deleteImageUrl);
+                
             }
             DB::commit();    
             $response = redirect()
@@ -138,49 +133,5 @@ class ProfileController extends Controller
         return $response;
     }
 
-    /*
-    public function edit(int $id, EditProfileRequest $request) {
-        $my_profile = Profile::where('user_id',$id)->first();
-        $old_image = $my_profile->user_image;
-        $my_profile->fill($request->validated());
-        if($request->file('user_image')) {
-            Storage::delete('public/UserImages/'.$old_image);
-            $originalImg = $request->user_image;
-            $filePath = $originalImg->store('public/UserImages');
-            $my_profile->user_image = str_replace('public/UserImages/', '', $filePath);
-        }
-        $my_profile->save();
-
-        $user = User::find($id);
-        if($request->password) {
-            $user->password = Hash::make($request->password);
-        }
-        if($user->email !== $request->email) {
-            $new_email = $request->email;
-            // トークン生成
-            $token = hash_hmac(
-                'sha256',
-                Str::random(40) . $new_email,
-                config('app.key')
-            );
-            // トークンをDBに保存
-            DB::beginTransaction();
-            try {
-                $param = [];
-                $param['user_id'] = $id;
-                $param['new_email'] = $new_email;
-                $param['token'] = $token;
-                $email_reset = EmailReset::create($param);
-                DB::commit();
-                $email_reset->sendEmailResetNotification($token);
-                return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'アカウントを更新しました。');
-            } catch (\Exception $e) {
-                DB::rollback();
-                return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'メール更新に失敗しました。');
-            }
-        }
-        $user->save();
-
-        return redirect()->route('profile.show', ['id' => (int)$my_profile->id])->with('flash_message', 'アカウントを更新しました。');
-    }*/
+    
 }

@@ -51,7 +51,7 @@
 				<div class="container">
 					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
-							<div class="logo">つなげーと</div>
+							<div class="logo">スケットアプリ</div>
 						</a>
 					</div>				
 				</div>

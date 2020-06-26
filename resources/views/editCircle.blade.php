@@ -34,6 +34,7 @@
     action="{{ route('circle.edit', [ $circle->id ]) }}" accept-charset="UTF-8" method="post">
     {{ csrf_field() }}
 <!-- 1 -->
+<input type="hidden" name="admin_user_id" value="{{ $circle->admin_user_id }}">
 <div class="tab-content">
     <div id="create_circle_form01" class="tab-pane active">
         <div style="padding-bottom: 168px;">

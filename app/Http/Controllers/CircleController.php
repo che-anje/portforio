@@ -40,11 +40,7 @@ class CircleController extends Controller
             $circle = new Circle;
             $user = Auth::user();
             $circle->fill($request->validated());
-            if($request->file('image')) {
-                $originalImg = $request->image;
-                $filePath = $originalImg->store('public/CircleImages');
-                $circle->image = str_replace('public/CircleImages/', '', $filePath);
-            }
+
             $circle->category_id = Genre::find($request->genres[0])->category_id;
             $circle->save();
             $circle_genre = new Circle_Genre;
@@ -116,12 +112,11 @@ class CircleController extends Controller
             $circle = Circle::find($id);
             $user = Auth::user();
             $old_image = $circle->image;
-            $circle->fill($request->all());
-            if($request->file('image')) {
-                Storage::delete('public/CircleImages/' . $old_image);
-                $originalImg = $request->image;
-                $filePath = $originalImg->store('public/CircleImages');
-                $circle->image = str_replace('public/CircleImages/', '', $filePath);
+            $form = $request->validated();
+            [ $deleteImageUrl ] = $circle->updateCircle($form);
+            if($deleteImageUrl) {
+                $disk = Storage::disk('s3');
+                $disk->delete('CircleImages/' . $deleteImageUrl);
             }
             $circle->category_id = Genre::find($request->genres[0])->category_id;
             $circle->save();
