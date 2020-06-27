@@ -35,7 +35,7 @@ Auth::routes(['verify' => true]);
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
     } */
 
-Route::get('mypage', 'MyPageController@show')->name('mypage.show');
+Route::get('mypage', 'MyPageController@show')->name('mypage.show')->middleware('auth');
 Route::get("reset/{token}", "UserController@reset");
 
 Route::get('profile/create', 'ProfileController@showCreateForm')->name('profile');
@@ -48,15 +48,15 @@ Route::post('profile/edit/{id}', 'ProfileController@edit')->name('profile.edit')
 Route::get('/category', 'CategoryController@edit');
 Route::post('/category', 'CategoryController@up')->name('category.edit');
 
-Route::get('circles/new', 'CircleController@showCreateForm');
-Route::post('circle/new', 'CircleController@create')->name('circle.create');
+Route::get('circles/new', 'CircleController@showCreateForm')->middleware('auth');
+Route::post('circle/new', 'CircleController@create')->name('circle.create')->middleware('auth');
 Route::get('circle/{id}', 'CircleController@show')->name('circle.show')->where('id', '[0-9]+');
-Route::get('my_circle/{id}/circle_menu', 'CircleController@showMyCircleMenu')->name('my_circle.menu');
-Route::get('circle/{id}/circle_menu', 'CircleController@showCircleMenu')->name('circle.menu');
-Route::get('/circle/{id}/edit', 'CircleController@showEditForm');
-Route::get('/getCircleGenres/{id}', 'CircleController@getCircleGenres');
-Route::post('/circle/{id}/edit', 'CircleController@edit')->name('circle.edit');
-Route::delete('/circle/{id}/delete', 'CircleController@delete')->name('circle.delete');
+Route::get('my_circle/{id}/circle_menu', 'CircleController@showMyCircleMenu')->name('my_circle.menu')->middleware('auth');
+Route::get('circle/{id}/circle_menu', 'CircleController@showCircleMenu')->name('circle.menu')->middleware('auth');
+Route::get('/circle/{id}/edit', 'CircleController@showEditForm')->middleware('auth');
+Route::get('/getCircleGenres/{id}', 'CircleController@getCircleGenres')->middleware('auth');
+Route::post('/circle/{id}/edit', 'CircleController@edit')->name('circle.edit')->middleware('auth');
+Route::delete('/circle/{id}/delete', 'CircleController@delete')->name('circle.delete')->middleware('auth');
 
 //サークル一覧・探す
 Route::get('/index/{pref_id}/{genre?}', 'CircleController@index')->name('circle.index');
@@ -64,15 +64,15 @@ Route::get('/circle/{category_id}/{pref_id}', 'CircleController@categorySearch')
 Route::get('category_pref/{pref_id}/{category_id?}', 'PrefectureController@categoryPrefChange')->name('category_pref.change')->where('pref_id', '[0-9]+');
 Route::get('/circles_pref/{pref_id}/{category_id?}', 'PrefectureController@circlePrefChange')->name('circles_pref.change')->where('pref_id', '[0-9]+');
 
-Route::post('/circle_user/apply', 'Circle_UserController@apply');
-Route::get('/circle_user/{circle_id}/{user_id}', 'Circle_UserController@participate');
+Route::post('/circle_user/apply', 'Circle_UserController@apply')->middleware('auth');
+Route::get('/circle_user/{circle_id}/{user_id}', 'Circle_UserController@participate')->middleware('auth');
 
-Route::get('/message', 'BoardController@index');
-Route::get('/message/board/{board_id}', 'BoardController@show')->name('message.show');
-Route::post('/message/store', 'MessageController@store')->name('message.store');
+Route::get('/message', 'BoardController@index')->middleware('auth');
+Route::get('/message/board/{board_id}', 'BoardController@show')->name('message.show')->middleware('auth');
+Route::post('/message/store', 'MessageController@store')->name('message.store')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/etcetera', 'HomeController@etcetera');
+Route::get('/etcetera', 'HomeController@etcetera')->middleware('auth');
 
 Route::get('/image_upload', 'HomeController@add');
 Route::post('/image_upload', 'HomeController@create');

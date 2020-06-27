@@ -55,7 +55,7 @@
 					@if($board->type == 'circle')
 						<div class="container">
 							<div class="text-center p-3">
-								<p id="circle_name" class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}({{ $board->users->count() }})<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
+								<p id="circle_name" class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->circle->name }}({{ $board->users->count() }})<span class="position-absolute position--messagenum"><a href=""><img src="" alt=""></a></span></p>
 							</div>
 						</div>
 						<a href="{{ route('circle.menu', [$board->circle->id]) }}" class="position-absolute position--headerright text-black-20 text-fz-18px">
@@ -64,7 +64,7 @@
 					@elseif($board->type == 'user')
 						<div class="container">
 							<div class="text-center p-3">
-									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->otherUser->profile->familyName }}{{ $board->otherUser->profile->firstName }},{{ Auth::user()->profile->familyName }}{{ Auth::user()->profile->firstName }}<span class="position-absolute position--messagenum"><a href="/message/circle_menu/34439"><img src="/aseets2019/img/icon_reader.svg" alt=""></a></span></p>
+									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->otherUser->profile->familyName }}{{ $board->otherUser->profile->firstName }},{{ Auth::user()->profile->familyName }}{{ Auth::user()->profile->firstName }}<span class="position-absolute position--messagenum"><a href=""><img src="" alt=""></a></span></p>
 							</div>
 						</div>
 							<p class="position-absolute position--headerright text-fw-bold mb-1 pb-1 line-1 position-relative pr-4">({{ $board->count }})</p>

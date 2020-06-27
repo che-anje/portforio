@@ -70,7 +70,7 @@
           </button>
         </div>
         <div class="toast-body">
-          {{ $circle->name }}は週間ランキング<br>現在全国&nbsp;<span style="font-size: 1.5em;">{{ $circle->rank }}</span>&nbsp;位です。<br><br>
+          {{ $circle->name }}は週間人気ランキング<br>全国&nbsp;<span style="font-size: 1.5em;">{{ $circle->rank }}</span>&nbsp;位です。<br><br>
         </div>
       </div>
     </div>
@@ -311,9 +311,11 @@
     <div class="container col-md-8 col-lg-6">
       <div class="d-flex justify-content-around" style="margin-bottom:24px">
         @if($circle->request_required==0)
-        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal" data-approval="{{ $approval }}">メンバー申請</a>
+        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" @if(Auth::check()) data-toggle="modal" @else href="{{ route('login') }}" @endif 
+        data-target="#application-modal" data-approval="{{ $approval }}">メンバー申請</a>
         @else
-        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" data-toggle="modal" data-target="#application-modal" data-approval="{{ $approval }}">メンバーになる</a>
+        <a id="apply_btn" class="btn btn-primary--grad text-white mr-2" @if(Auth::check()) data-toggle="modal" @else href="{{ route('login') }}" @endif 
+        data-target="#application-modal" data-approval="{{ $approval }}">メンバーになる</a>
         @endif
         <a href="" class="btn btn-primary--grad btn-primary--grad--outline w-40">フォロー</a>
       </div>
