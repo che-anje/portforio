@@ -14,15 +14,25 @@
                 <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
                     <a href="" class="nav-link--gray">TOP</a>
                 </li>
+                @if($my_category)
                 <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-                    <a href="" class="nav-link--gray">カテゴリー名ジャンル名</a>
+                    <a href="/circle/{{ $my_category->id }}/{{ $my_prefecture->id }}" class="nav-link--gray">{{ $my_category->name }}</a>
                 </li>
+                @endif
+                @if($my_genre)
                 <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-                    <a href="" class="nav-link--gray">全国</a>
+                    <a href="" class="nav-link--gray">{{ $my_genre->name }}
+                    </a>
                 </li>
+                @endif
                 <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
-                    <a href="" class="nav-link--gray">都道府県名</a>
+                    <a href="/circles_pref/48" class="nav-link--gray">全国</a>
                 </li>
+                @if($my_prefecture->name !== "全国")
+                <li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+                    <a href="/circles_pref/{{ $my_prefecture->id }}" class="nav-link--gray">{{ $my_prefecture->name }}</a>
+                </li>
+                @endif
             </ul>
         </nav>
     </div>

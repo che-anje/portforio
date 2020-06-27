@@ -79,7 +79,7 @@
 </div>
 <p class="container col-md-8 col-lg-6 small g-color-gray-dark-v4 g-mt-5">
     <i class="fa fa-question-circle" aria-hidden="true">
-    </i> 姓と名は本名をご記入ください。スケットアプリ会員で同一のサークルに参加した人同士や、メッセージを交換した人に公開されます。
+    </i> 姓と名は本名をご記入ください。CIRCLE APP会員で同一のサークルに参加した人同士や、メッセージを交換した人に公開されます。
 </p>
 <!-- ユーザーネーム -->
 <div class="container col-md-8 col-lg-6">

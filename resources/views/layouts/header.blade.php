@@ -51,7 +51,7 @@
 				<div class="container">
 					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
-							<div class="logo">スケットアプリ</div>
+							<div class="logo"><img class="w-100" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('circle_app.png') }}" style="height: 95%;"/></div>
 						</a>
 					</div>				
 				</div>

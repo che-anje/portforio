@@ -57,7 +57,7 @@
         </div>
     </div>
 </div>
-<p class="container col-md-8 col-lg-6 small g-color-gray-dark-v4 g-mt-5"><i class="fa fa-question-circle" aria-hidden="true"></i> 姓と名は本名をご記入ください。スケットアプリ会員で同一のサークルに参加した人同士や、メッセージを交換した人に公開されます。</p>
+<p class="container col-md-8 col-lg-6 small g-color-gray-dark-v4 g-mt-5"><i class="fa fa-question-circle" aria-hidden="true"></i> 姓と名は本名をご記入ください。CIRCLE APP会員で同一のサークルに参加した人同士や、メッセージを交換した人に公開されます。</p>
 <div class="container col-md-8 col-lg-6">
     <p class="text-fz-14px text-fw-bold text-black-50 mb-2 mt-3 d-inline-block">ユーザーネーム</p>
     <p class="message-required d-inline-block mb-2 ml-1">必須</p>

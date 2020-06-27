@@ -11094,7 +11094,7 @@ a.text-dark:focus {
 .header-logo {
   font-size: 1.6rem;
   text-align: center !important;
-  width: 150px;
+  width: 240px;
   height: 40px;
   -o-object-fit: contain;
   object-fit: contain;
@@ -11715,7 +11715,7 @@ ul.ib-list li {
 }
 
 
-/*スケットアプリについて */
+/*CIRCLE APPについて */
 .h2--extend {
   margin-bottom: 24px;
   font-size: 1.125rem;

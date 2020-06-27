@@ -62,16 +62,15 @@
   </div>
   <div class="event-img-wrap container col-md-8 col-lg-6 pl-0 pr-0">
     <div  style="position: relative;">
-      <div id="toast-premium-plan" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 8px; left: 8px; z-index: 1;">
+      <div id="toast-premium-plan" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" style="position: absolute; top: 8px; left: 8px; z-index: 1; min-width: 220px;">
         <div class="toast-header">
-          <strong class="mr-auto">有料プランのおすすめ</strong>
+          <strong class="mr-auto">週間ランキング結果</strong>
           <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="toast-body">
-          集客の悩みをまるっと解決！
-          メンバー募集を加速させましょう！<br><br>
+          {{ $circle->name }}は週間ランキング<br>現在全国&nbsp;<span style="font-size: 1.5em;">{{ $circle->rank }}</span>&nbsp;位です。<br><br>
         </div>
       </div>
     </div>

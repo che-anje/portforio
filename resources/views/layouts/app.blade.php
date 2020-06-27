@@ -60,7 +60,7 @@
 					<div class="text-center header-logo">
 						<a class="link-header" href="{{ url('/') }}">
 							<div class="logo">
-								スケットアプリ
+							<img class="w-100" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('circle_app.png') }}" style="height: 90%;"/>
 							</div>
 						</a>
 					</div>
@@ -137,7 +137,7 @@
 				style="padding-bottom: 150px;">
 				<div class="container col-md-6 col-lg-6 pb-5">
 					<h2 class="h2 h2--extend h2--extend--notion">
-						スケットアプリについて
+						CIRCLE APPについて
 					</h2>
 					<ul class="nav flex-column">
 						@guest

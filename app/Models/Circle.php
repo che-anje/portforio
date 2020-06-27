@@ -12,6 +12,7 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class Circle extends Model
 {
@@ -161,14 +162,16 @@ class Circle extends Model
     }
 
     public function addInfomationToCircle($circle) {
-        
         $circle['genres'] = $circle->genre()->orderby('circle_genre.id','asc')->get();
         $circle['count'] = $circle->users()->where('circle_user.approval', '=', 2)->count();
         $circle['prefecture'] = Prefecture::find($circle->prefecture_id);
         $circle['category'] = $circle->genres[0]->category;
         $circle['image_path'] = $circle->getImagePathAttributes();
+        $circle['rank'] = $circle->circle_ranking->rank;
         return $circle;
     }
+
+    
 
     public function getImagePathAttributes() {
         return Storage::disk('s3')->url('CircleImages/' . $this->image);
