@@ -11,12 +11,10 @@ use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Circle;
 use App\Models\Circle_User;
-use App\Traits\AboutPrefecture;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    use aboutPrefecture;
     use \App\Models\Genres;
     /**
      * Create a new controller instance.

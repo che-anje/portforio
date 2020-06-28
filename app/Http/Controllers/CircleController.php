@@ -21,14 +21,15 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\AboutPrefecture;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller,
     Session;
 
 class CircleController extends Controller
 {
-    use AboutPrefecture;
+    public function __construct() {
+        $this->middleware('auth')->except(['show', 'index', 'categorySearch']);
+    }
 
     public function showCreateForm() {
         

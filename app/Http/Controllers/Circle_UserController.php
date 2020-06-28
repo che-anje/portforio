@@ -18,14 +18,13 @@ use App\Models\Board_User;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\AboutPrefecture;
-use App\Traits\AboutMessage;
 use Illuminate\Support\Facades\DB;
 
 class Circle_UserController extends Controller
 {
-    use AboutPrefecture;
-    use AboutMessage;
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     //申請
     public function apply(Request $request) {

@@ -20,11 +20,13 @@ use App\Models\Board_Message;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Traits\AboutPrefecture;
 use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     public function index() {
         $board = new Board;
