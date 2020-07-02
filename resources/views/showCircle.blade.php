@@ -83,8 +83,8 @@
     @if($circle->image)
         <img
         src="{{ $circle->image_path }}"
-        onerror="this.src='/images/ja2/img_noimage.gif'"
-        alt=""
+        onerror=""
+        alt="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}"
         class="w-100 event-img">
     @else
         <img
