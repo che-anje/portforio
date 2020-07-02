@@ -83,7 +83,7 @@
     @if($circle->image)
         <img
         src="{{ $circle->image_path }}"
-        onerror=""
+        onerror="{{ 'Illuminate\Support\Facades\Storage'::disk('s3')->url('UserImages/no_image.jpeg') }}"
         alt="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}"
         class="w-100 event-img">
     @else
