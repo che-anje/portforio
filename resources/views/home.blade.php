@@ -291,8 +291,14 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-success w-100 
-        text-fw-bold mb-2" style="font-size: 15px;">「新着順」のサークルをもっと見る</a></p>
+        <form action="{{ route('circle.index', [ $my_prefecture->id ]) }}" method="GET" name="order">
+            <p class="text-center mb-0 ">
+                <a class="btn btn-outline-success w-100 text-fw-bold mb-2" style="font-size: 15px;" href="javascript:order.submit()">
+                「新着順」のサークルをもっと見る
+                </a>
+            </p>
+            <input type="hidden" name="order" value="new">
+        </form>
     </div>
 </section>
 

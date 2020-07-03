@@ -129,10 +129,10 @@
             <div class="col">
                 <ul id="sample" class="list-unstyled d-flex">
                     <li class="list-link">
-                        <a id="" href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray link--active order" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
+                        <a id="" href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray order @if($order==null) link--active @endif" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
                     </li>
                     <li class="list-link">
-                        <a id="" href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
+                        <a id="" href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order @if($order=='new') link--active @endif" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
                     </li>
                 </ul>
             </div>

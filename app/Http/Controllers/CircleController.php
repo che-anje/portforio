@@ -179,6 +179,7 @@ class CircleController extends Controller
         $circle_user = new Circle_User;
         $recent = $circle_user->getRecent();
         $recent['circle'] = $circle_user->getRecentCircle();
+        $order = $request->order;
         /*返すビューを作る*/
         if($request->ajax()) {
             //ajaxで呼び出した場合
@@ -191,6 +192,7 @@ class CircleController extends Controller
                 'circles' => $circles,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
+                'order' => $order
             ])->render();
             $response = response($html, 200);
         }else{
@@ -200,6 +202,7 @@ class CircleController extends Controller
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
                 'recent' => $recent,
+                'order' => $order
             ]);
         }
         /*戻り値を返す*/

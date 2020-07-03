@@ -130,6 +130,11 @@ class Circle extends Model
         return $query;
     }
 
+    public function scopeDesc($query) {
+        $query->orderby('id','desc');
+        return $query;
+    }
+
     public function getRecommendedCircles($genre,$prefecture_id) {
         
         $circles = Circle::where('prefecture_id',$prefecture_id)->genre($genre->id)->sortByPopularity()->get();
@@ -144,7 +149,7 @@ class Circle extends Model
         ->keyword($request->keyword)
         ->category($category_id)
         ->genre($genre_id)
-        ->sortByPopularity()
+        ->sortCircles($request)
         ->get();
     }
 
@@ -206,6 +211,16 @@ class Circle extends Model
             $circles = Circle::orderby('id', 'desc')->get();
         }
         return $circles;
+    }
+
+    public function scopeSortCircles($query, $request) {
+        if($request->order=='new'){
+            $query->Desc();
+            return $query;
+        }else{
+            $query->SortByPopularity();
+            return $query;
+        }
     }
 
     public function scopeSortByPopularity($query) {
