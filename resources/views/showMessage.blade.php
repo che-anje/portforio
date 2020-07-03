@@ -67,7 +67,7 @@
 									<p class="text-fw-bold mb-0 mb-1 line-1 position-relative pr-4">{{ $board->otherUser->profile->familyName }}{{ $board->otherUser->profile->firstName }},{{ Auth::user()->profile->familyName }}{{ Auth::user()->profile->firstName }}<span class="position-absolute position--messagenum"><a href=""><img src="" alt=""></a></span></p>
 							</div>
 						</div>
-							<p class="position-absolute position--headerright text-fw-bold mb-1 pb-1 line-1 position-relative pr-4">({{ $board->count }})</p>
+							<p class="position-absolute position--headerright text-fw-bold mb-1 pb-1 line-1 position-relative pr-4">({{ $board->users->count() }})</p>
 					@endif
 					</header>
 				</div>
