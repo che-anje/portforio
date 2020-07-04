@@ -6374,7 +6374,7 @@ a.close.disabled {
   border-radius: 0.3rem;
   outline: 0;
 }
-
+/*
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -6391,7 +6391,7 @@ a.close.disabled {
 
 .modal-backdrop.show {
   opacity: 0.5;
-}
+}*/
 
 .modal-header {
   display: flex;
@@ -12562,3 +12562,4 @@ textarea.h-1em {
   1.5px -1.5px 1.5px #343a40,
   -1.5px -1.5px 1.5px #343a40;
 }
+

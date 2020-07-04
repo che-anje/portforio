@@ -116,9 +116,8 @@ class ProfileController extends Controller
             if($deleteImageUrl) {
                 $disk = Storage::disk('s3');
                 $disk->delete('UserImages/' . $deleteImageUrl);
-                
             }
-            DB::commit();    
+            DB::commit();
             $response = redirect()
                 ->route('profile.show', ['id' => (int) $user->profile->id ])
                 ->with('flash_message', 'アカウントを更新しました。')

@@ -72,11 +72,11 @@
 					</header>
 				</div>
 				@if(session()->has('message'))
-				<div class="modal-view" id="sampleModal" style="position: relative; z-index: 10001;">
+				<div class="modal modal-view fade" id="sampleModal" style="position: relative; z-index: 10001;" tabindex="-1" role="dialog" aria-hidden="true">
 					<div class="modal-view-fade-in">
-						<div class="modal-view-overAll">
-							<div class="modal-view-overlay">
-							</div>
+						<div class="modal-view-overAll" >
+						<div class="modal-view-overlay">
+            			</div>
 							<div class="modal-view-dialog">
 								<div class="modal-view-content">
 									<div class="modal-view-header" style="position: relative; z-index: 10001;">
@@ -85,7 +85,7 @@
 										<p class="mt-3">{{ session('message') }}</p>
 									</div>
 									<div class="modal-view-footer">
-										<a class="modal-view-button-center-12">OK</a>
+										<a class="modal-view-button-center-12" data-dismiss="modal">OK</a>
 									</div>
 								</div>
 							</div>
@@ -205,6 +205,7 @@
 		<script>
 			$(function(){
 				
+				
 				$('#btnMessageSubmit').click(function(event){
 					event.preventDefault();
 					var msg = $('textarea[name=msg]').val();
@@ -238,6 +239,7 @@
 				});	
 				
 			}); 
+			
 			window.scrollTo(0,document.body.scrollHeight);
 				
 							

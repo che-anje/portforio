@@ -235,9 +235,7 @@ $(function(){
 
 
 //マイページ モーダル
-$(window).load(function() {
-  $('.modal_view').modal('show');
-});
+
   
 $('.modal-view-overlay').on('click',function(){
     $('.modal-view').fadeOut();
@@ -311,7 +309,10 @@ function getParam(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
-
+$(function(){
+  $('#sampleModal').modal('show');
+  
+});
 
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -7253,7 +7254,7 @@ function isArrayLike( obj ) {
 	// `in` check used to prevent JIT error (gh-2145)
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
-	var length = !!obj && "length" in obj && obj.length,
+	var length = !!obj && obj["length"] !== undefined && obj.length,
 		type = toType( obj );
 
 	if ( isFunction( obj ) || isWindow( obj ) ) {
