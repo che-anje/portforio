@@ -314,6 +314,7 @@ $(function(){
   
 });
 
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -7262,7 +7263,7 @@ function isArrayLike( obj ) {
 	}
 
 	return type === "array" || length === 0 ||
-		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+		typeof length === "number" && length > 0 && obj[( length - 1 )] !== undefined;
 }
 var Sizzle =
 /*!

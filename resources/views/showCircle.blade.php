@@ -370,5 +370,6 @@ $(window).on('load', function() {
 });
 
 
+
 </script>
 @endsection

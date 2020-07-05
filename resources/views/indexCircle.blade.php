@@ -239,12 +239,13 @@
 </section>
 <script>
 $(function(){
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+ 
     $('.order').click(function(event){
       event.preventDefault();
       var orderType = $(this).attr('data-value');
@@ -291,15 +292,12 @@ $(function(){
         }else{
             $('#circles_count').text('\n{{$my_prefecture->name}}のサークル一覧（'+count+'件）');
         }
-            
       })
       .fail(function (response) { 
           alert('失敗');
       });
   });
-}); 
 
-$(function(){
   $('#keyword-submit-btn').click(function(event){
       event.preventDefault();
       var orderType = $(this).attr('data-value');
@@ -343,8 +341,7 @@ $(function(){
       });
       
   });
-}); 
-
+});
 $('.modal-pref').on('change',function(e) {
   var key = $(e.target).val();
   var url = $(e.target).attr('data-url');
@@ -352,8 +349,6 @@ $('.modal-pref').on('change',function(e) {
   location.href = url;
   
 });
-
-
 </script>
 
 

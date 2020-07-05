@@ -1,4 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+	<!-- Scripts -->
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	@if(app('env') == 'production')
+		<script src="{{ secure_asset('js/slick.js') }}" type="text/javascript"></script>
+		<script type="text/javascript" src="{{ secure_asset('js/slick.min.js') }}"></script>
+		<script src="{{ secure_asset('js/app.js') }}" defer></script>
+	@else
+		<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
+		<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+		<script src="{{ asset('js/app.js') }}" defer></script>
+	@endif
+	
+	
+	
+
+	<!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<!-- Styles -->
+	@if(app('env') == 'production')
+		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
+		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+	@else
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+	@endif
+	
+	
+	
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+</head>
 <div>
     @foreach($circles as $circle)
     <div id="circle_item" class="bg-white search-shadow pt-3 mb-2">
@@ -41,3 +93,7 @@
     </div>
     @endforeach
 </div>
+<script>
+
+</script>
+</html>

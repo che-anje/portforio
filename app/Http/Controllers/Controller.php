@@ -18,6 +18,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    const ALL_PREFECTURE = 48;
+
     protected function getSelectedPrefectureId(): int
     {
         if(Auth::check() && Auth::user()->profile->prefectureOfInterest != 0) {

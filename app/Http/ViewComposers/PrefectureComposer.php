@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PrefectureComposer {
 
+    const ALL_PREFECTURE = 48;
     /**
      * @var String
      */
