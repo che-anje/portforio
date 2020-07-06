@@ -22,7 +22,7 @@ class Circle_Ranking extends Model
         $circle_ranking = new Circle_Ranking;
         $circle_ranking->circle_id = $circle_id;
         $circle_ranking->total_point = 0;
-        $circle_ranking->rank = $this->findBottom();
+        $circle_ranking->rank = $circle_ranking->findBottom();
         $circle_ranking->save();
     }
 

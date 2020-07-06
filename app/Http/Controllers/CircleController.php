@@ -133,6 +133,7 @@ class CircleController extends Controller
         return DB::transaction(function () use ($id) {
             $circle = Circle::find($id);
             Storage::disk('s3')->delete('CircleImages/' . $circle->image);
+            $circle->delete();
             $board = Board::where('circle_id', $id)->delete();
             $circle_ranking = Circle_Ranking::where('circle_id',$id)->delete();
             return redirect('/');

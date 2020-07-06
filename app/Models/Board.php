@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Circle;
 use App\Models\User;
+use App\Models\Board;
 use Carbon\Carbon;
 
 class Board extends Model
