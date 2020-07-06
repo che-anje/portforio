@@ -52,6 +52,8 @@ class CircleController extends Controller
             $board = $board->createBoard('circle', $circle->id);
             $board_user = new Board_User;
             $board_user->createBoardUser($board->id, $user->id);
+            $circle_ranking = new Circle_Ranking;
+            $circle_ranking->createBottom($circle->id);
             return redirect('/');
         });
     }
@@ -128,10 +130,13 @@ class CircleController extends Controller
     }
 
     public function delete(int $id) {
-        $circle = Circle::find($id);
-        Storage::delete('public/CircleImages/' . $circle->image);
-        $circle->delete();
-        return redirect('/');
+        return DB::transaction(function () use ($id) {
+            $circle = Circle::find($id);
+            Storage::delete('public/CircleImages/' . $circle->image)->delete();
+            $board = Board::where('circle_id', $id)->delete();
+            $circle_ranking = Circle_Ranking::where('circle_id',$id)->delete();
+            return redirect('/');
+        });
     }
 
     public function categorySearch(Request $request,$category_id, $pref_id) {

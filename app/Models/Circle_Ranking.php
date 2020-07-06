@@ -17,4 +17,21 @@ class Circle_Ranking extends Model
     {
         return $this->belongsTo(Circle::class);
     }
+
+    public function createBottom($circle_id) {
+        $circle_ranking = new Circle_Ranking;
+        $circle_ranking->circle_id = $circle_id;
+        $circle_ranking->total_point = 0;
+        $circle_ranking->rank = $this->findBottom();
+        $circle_ranking->save();
+    }
+
+    public function findBottom() {
+        $circle_ranking = new Circle_Ranking;
+        if($circle_ranking->where('total_point', 0)->first()) {
+            return $circle_ranking->where('total_point', 0)->first()->rank;
+        }else{
+            return $circle_ranking->max('rank') + 1;
+        }
+    }
 }

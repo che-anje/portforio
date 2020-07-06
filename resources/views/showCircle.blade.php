@@ -341,7 +341,7 @@
           <form action="/circle_user/apply" class="create_circle" id="store_message" enctype="multipart/form-data"
           accept-charset="UTF-8" method="post" name="apply">
           {{ csrf_field() }}
-          <textarea name="msg" id="application" class="border-0 rounded mt-3 mb-3 w-100" cols="30" rows="10"></textarea>
+          <textarea name="msg" id="application" class="border-0 rounded mt-3 mb-3 w-100" cols="30" rows="10" placeholder="{{ $circle->description_template }}"></textarea>
           <div class="align-items-center">
             <a href="javascript:apply.submit()" class="btn btn-primary--grad text-white mx-auto">メンバー申請を送信</a>
           </div>

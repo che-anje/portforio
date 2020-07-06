@@ -41,29 +41,41 @@
         <div class="tab-content" id="pills-tabContent--circle">
           <div class="tab-pane fade show active" id="pills-circle" role="tabpanel" aria-labelledby="pills-circle">
             <ul class="scrollable-list list-group list-group--event pt-3" style="max-height:650px;">
-            @foreach($circles as $circle)
-              <li class="list-group-item list-group--item-event border-top-0 pt-2 pr-0 pl-0">
-                <a href="{{ route('circle.show',$circle->id) }}" class="hov--default">
-                  <div class="row align-items-center">
-                    <div class="col-6">
-                      <img class="card-img-top w-100 card-img-top--list_profileevent" alt="A"  src="{{ $circle->image_path }}" />
-                    </div>
-                    <div class="col pl-0 position-relative">
-                      @if($user->id == $circle->admin_user_id)
-                      <p class="btn-sm text-fz-xs bg-orange text-white mb-0 float-right">管理者</p>
-                      @endif
-                      <h6 class="h6--list-title position-relative mb-2 profile-event__title line-2">{{ $circle->name }}</h6>
-                      <div class="row no-gutters">
-                      <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;">
-                      <p class="ml-2 mb-2 icon icon-area mr-2_5 hov--default">{{ $circle->prefecture->name }}</p></i>
-                      <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;">
-                      <p class="ml-2 mb-2 icon icon-member hov--default">{{ $circle->count }}</p></i>
+            @if(!empty($circles[0]))
+              @foreach($circles as $circle)
+                <li class="list-group-item list-group--item-event border-top-0 pt-2 pr-0 pl-0">
+                  <a href="{{ route('circle.show',$circle->id) }}" class="hov--default">
+                    <div class="row align-items-center">
+                      <div class="col-6">
+                        <img class="card-img-top w-100 card-img-top--list_profileevent" alt="A"  src="{{ $circle->image_path }}" />
+                      </div>
+                      <div class="col pl-0 position-relative">
+                        @if($user->id == $circle->admin_user_id)
+                        <p class="btn-sm text-fz-xs bg-orange text-white mb-0 float-right">管理者</p>
+                        @endif
+                        <h6 class="h6--list-title position-relative mb-2 profile-event__title line-2">{{ $circle->name }}</h6>
+                        <div class="row no-gutters">
+                        <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;">
+                        <p class="ml-2 mb-2 icon icon-area mr-2_5 hov--default">{{ $circle->prefecture->name }}</p></i>
+                        <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;">
+                        <p class="ml-2 mb-2 icon icon-member hov--default">{{ $circle->count }}</p></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-            @endforeach
+                  </a>
+                </li>
+              @endforeach
+            @else
+                <li>
+                    <div class="row justify-content-around align-items-center pt-3 pb-3 border-bottom">
+                        <div class="col-8 pl-3 pr-2 text-center">
+                            <p class="mb-0 line-1 position-relative mr-3 font-weight-bold">
+                                参加サークルはまだありません
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            @endif
             </ul>
           </div>
         </div>
