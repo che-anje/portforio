@@ -63,7 +63,5 @@ https://suketto.herokuapp.com
 
 # その他
 
-# Author
-崔 央載
-anje19960225@gmail.com
+
 
