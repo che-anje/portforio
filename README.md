@@ -10,21 +10,21 @@
 ## 仕様・使い方
 ### ① 誰でも簡単にサークルを作れます
 ログイン後、サークル作成へ進む から作成できます。
-ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
-<img src="./README_IMAGES/createCircle.gif" width="64px">
+ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。<br>
+<img src="./README_IMAGES/createCircle.gif" width="320px">
 
 ### ② サークルを探す
-地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
-<img src="./README_IMAGES/search_circle.gif" width="64px">
+地域、カテゴリー、ジャンル、キーワードでの検索が可能です。<br>
+<img src="./README_IMAGES/search_circle.gif" width="320px">
 
 ### ③ メンバー申請する
 申請後、サークル管理者に参加メッセージが送信されます。
-承認されるとサークルのグループチャットに参加できます。
-<img src="./README_IMAGES/apply_circle.gif" width="64px">
+承認されるとサークルのグループチャットに参加できます。<br>
+<img src="./README_IMAGES/apply_circle.gif" width="320px">
 
 ### ④ サークルのグループチャットで打ち合わせる
-チャット内で話し合う。
-<img src="./README_IMAGES/message.gif" width="64px">
+チャット内で話し合う。<br>
+<img src="./README_IMAGES/message.gif" width="320px">
 
 ### ⑤ レスポンシブデザイン対応
 スマートフォン、タブレットでも気軽にご利用いただけます。
