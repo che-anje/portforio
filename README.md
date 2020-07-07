@@ -1,42 +1,42 @@
-## CIRCLE APP
+# CIRCLE APP
 ====
 
-## 概要
+# 概要
 "CIRCLE APP"は自由にサークルを作って同じ趣味の人と繋がるイベントポータルサイトです。
 
-## 制作背景
+# 制作背景
 社会人になると会社の同僚以外で新たな友人を作りづらく、学生時代の友人は予定が合わず会えないことが多い。共通の趣味や休みの合う人たちと繋がれるアプリが欲しいと思い作成しました。
 
-## 仕様・使い方
-### ① 誰でも簡単にサークルを作れます
+# 仕様・使い方
+## ① 誰でも簡単にサークルを作れます
 ログイン後、サークル作成へ進む から作成できます。
 ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。<br>
 <br>
-<img src="./README_IMAGES/createCircle.gif" width="448px">
+<img src="./README_IMAGES/createCircle.gif" width="400px">
 
-### ② サークルを探す
+## ② サークルを探す
 地域、カテゴリー、ジャンル、キーワードでの検索が可能です。<br>
 <br>
-<img src="./README_IMAGES/search_circle.gif" width="448px">
+<img src="./README_IMAGES/search_circle.gif" width="400px">
 
-### ③ メンバー申請する
+## ③ メンバー申請する
 申請後、サークル管理者に参加メッセージが送信されます。
 承認されるとサークルのグループチャットに参加できます。<br>
 <br>
-<img src="./README_IMAGES/apply_circle.gif" width="448px">
+<img src="./README_IMAGES/apply_circle.gif" width="400px">
 
-### ④ サークルのグループチャットで打ち合わせる
+## ④ サークルのグループチャットで打ち合わせる
 チャット内で話し合う。<br>
 <br>
-<img src="./README_IMAGES/message.gif" width="448px">
+<img src="./README_IMAGES/message.gif" width="400px">
 
-### ⑤ レスポンシブデザイン対応
+## ⑤ レスポンシブデザイン対応
 スマートフォン、タブレットでも気軽にご利用いただけます。
 
 ## 本番環境のURL
 https://suketto.herokuapp.com
 
-## 機能一覧
+# 機能一覧
 - ユーザー機能
     - 新規登録、ログイン、ログアウト機能
     - プロフィール作成、編集機能
@@ -51,7 +51,7 @@ https://suketto.herokuapp.com
     - 参加したサークル内でグループチャットができます。
     - 参加申請後、サークル管理者と個人チャットができます。
 
-## 言語・環境
+# 言語・環境
 - PHP 7.4.3
 - Laravel Framework 6.18.3
 - MySQL  Ver 8.0.19
@@ -59,11 +59,11 @@ https://suketto.herokuapp.com
 - Jquery
 - AWS(S3)
 
-## データベース設計
+# データベース設計
 
-## その他
+# その他
 
-## Author
+# Author
 崔 央載
 anje19960225@gmail.com
 
