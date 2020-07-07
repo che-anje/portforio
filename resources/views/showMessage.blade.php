@@ -143,7 +143,6 @@
 													<div class="col-2 p-0 align-self-end">
 														<p class="text-fz-xs mb-0 text-green">
 															<span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">
-																既読２
 															</span>
 														</p>
 													</div>
@@ -157,7 +156,6 @@
 													<div class="col-2 p-0 align-self-end">
 														<p class="text-fz-xs mb-0 text-green">
 															<span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">
-																既読２
 															</span>
 														</p>
 													</div>
@@ -232,7 +230,7 @@
 						var messageForm = document.getElementById("message_form");
 						messageForm.value = '';
 						$('#btnMessageSubmit').css('outline','none');
-						$('#message_list').append('<li><div class="row justify-content-around align-items-start mb-3"><div class="col-2 pr-1 p-0"></div><div class="col-2 p-0 align-self-end"><p class="text-fz-xs mb-0 text-green"><span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">既読２</span></p></div><div class="col-7 pl-0 pr-1"><p class="text-fz-xs text-black-20 mb-0">' + message.created_at + '</p><div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px"><p class="mb-0">' + msg + '</p></div></div></div></li>');
+						$('#message_list').append('<li><div class="row justify-content-around align-items-start mb-3"><div class="col-2 pr-1 p-0"></div><div class="col-2 p-0 align-self-end"><p class="text-fz-xs mb-0 text-green"><span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok"></span></p></div><div class="col-7 pl-0 pr-1"><p class="text-fz-xs text-black-20 mb-0">' + message.created_at + '</p><div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px"><p class="mb-0">' + msg + '</p></div></div></div></li>');
 						window.scrollTo(0,document.body.scrollHeight);
 					})
 					.fail(function (message) { 
