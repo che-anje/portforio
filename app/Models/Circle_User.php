@@ -34,7 +34,6 @@ class Circle_User extends Model
         $circle_user = new Circle_User;
         if($circle->request_required==1){
             $circle_user->applyWithoutApproval($circle,$user,$text);
-
         }elseif($circle->request_required==0){
             $circle_user->applyWithApproval($circle,$user,$text);
         }

@@ -187,7 +187,7 @@
 										</label>
 									</div>
 									
-										<textarea type="text" id="ta-message" name="msg" cols="1" rows="1" class="form-control border-0 rounded h-1em" placeholder="メッセージ" style="max-height: 108px;"></textarea>
+										<textarea type="text" id="message_form" name="msg" cols="1" rows="1" class="form-control border-0 rounded h-1em" placeholder="メッセージ" style="max-height: 108px;"></textarea>
 										<input type="hidden" name="board_id" value="{{ $board->id }}" class="board_id">
 										<input type="hidden" name="msg_type" value="msg" class="msg_type">
 										<input type="hidden" name="user_id" value="{{ Auth::id() }}" class="user_id">
@@ -205,36 +205,37 @@
 	<footer>
 		<script>
 			$(function(){
-				
-				
 				$('#btnMessageSubmit').click(function(event){
+					
 					event.preventDefault();
 					var msg = $('textarea[name=msg]').val();
 					var board_id = $('input[name=board_id]').val();
 					var msg_type = $('input[name=msg_type]').val();
 					var user_id = $('input[name=user_id]').val();
-					var url = '/message/store';
-					$.ajaxSetup({  /* ①-追加 */
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						}
-					});
+					var url = "{{ route('message.store') }}";
+					var json = {
+							msg: msg,
+							board_id: board_id,
+							msg_type: msg_type,
+							user_id: user_id,
+						};
 					$.ajax({
-							url: url,
-							type: 'POST',
-							data: {
-								msg: msg,
-								board_id: board_id,
-								msg_type: msg_type,
-								user_id: user_id,
-							},
-							dataType: 'json',
+						url: url,
+						headers: {
+                       		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  		},
+						type: 'POST',
+						data: JSON.stringify(json),
+						dataType: 'JSON',
 					})
-					.done(function(data) {
-						$('#message_list').append('<li><div class="row justify-content-around align-items-start mb-3"><div class="col-2 pr-1 p-0"></div><div class="col-2 p-0 align-self-end"><p class="text-fz-xs mb-0 text-green"><span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">既読２</span></p></div><div class="col-7 pl-0 pr-1"><p class="text-fz-xs text-black-20 mb-0">' + data.created_at + '</p><div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px"><p class="mb-0">' + msg + '</p></div></div></div></li>');
+					.done(function(message) {
+						var messageForm = document.getElementById("message_form");
+						messageForm.value = '';
+						$('#btnMessageSubmit').css('outline','none');
+						$('#message_list').append('<li><div class="row justify-content-around align-items-start mb-3"><div class="col-2 pr-1 p-0"></div><div class="col-2 p-0 align-self-end"><p class="text-fz-xs mb-0 text-green"><span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">既読２</span></p></div><div class="col-7 pl-0 pr-1"><p class="text-fz-xs text-black-20 mb-0">' + message.created_at + '</p><div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px"><p class="mb-0">' + msg + '</p></div></div></div></li>');
 						window.scrollTo(0,document.body.scrollHeight);
 					})
-					.fail(function (data) { 
+					.fail(function (message) { 
 						alert('失敗');
 					});
 				});	

@@ -14,16 +14,17 @@ use App\Traits\AboutMessage;
 
 class MessageController extends Controller
 {
-    use AboutMessage;
+    
     public function __construct() {
-        $this->middleware('auth');
+       $this->middleware('auth');
     }
 
     public function store(Request $request) {
+        $postInput = file_get_contents('php://input');
+        $data = json_decode($postInput, true);
         $message = new Message;
-        $message = $message->storeMessage($request->user_id,$request->board_id,$request->msg,$request->msg_type);
-        $board = Board::find($request->board_id);
-        $messages = $board->messages()->orderby('id','asc')->get();
+        $message = $message->storeMessage($data['user_id'],$data['board_id'],$data['msg'],$data['msg_type']);
+        $board = Board::find($data['board_id']);
         if($request->ajax()){
             return json_encode($message);
         }

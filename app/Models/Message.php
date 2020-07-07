@@ -28,7 +28,7 @@ class Message extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $message->created_at)->format('n月j日 H:i');
     }
 
-    public function storeMessage($user_id,$board_id,$msg,$type) {
+    public function storeMessage(int $user_id,int $board_id,$msg,$type) {
         $message = new Message;
         $message->user_id = $user_id;
         $message->board_id = $board_id;
