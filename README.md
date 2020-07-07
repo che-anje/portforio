@@ -14,17 +14,17 @@
 ![./README_IMAGES/createCircle.gif](./README_IMAGES/createCircle.gif)
 
 ### ② サークルを探す
-    地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
-    ![./README_IMAGES/search_circle.gif](./README_IMAGES/search_circle.gif)
+地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
+![./README_IMAGES/search_circle.gif](./README_IMAGES/search_circle.gif)
 ### ③ メンバー申請する
-    申請後、サークル管理者に参加メッセージが送信されます。
-    承認されるとサークルのグループチャットに参加できます。
-    ![./README_IMAGES/apply_circle.gif](https://github.com/che-anje/portforio/blob/master/README_IMAGES/apply_circle.gif)
+申請後、サークル管理者に参加メッセージが送信されます。
+承認されるとサークルのグループチャットに参加できます。
+![./README_IMAGES/apply_circle.gif](https://github.com/che-anje/portforio/blob/master/README_IMAGES/apply_circle.gif)
 ### ④ サークルのグループチャットで打ち合わせる
-    チャット内で話し合う。
-    ![./README_IMAGES/message.gif](./README_IMAGES/message.gif)
+チャット内で話し合う。
+![./README_IMAGES/message.gif](./README_IMAGES/message.gif)
 ### ⑤ レスポンシブデザイン対応
-    スマートフォン、タブレットでも気軽にご利用いただけます。
+スマートフォン、タブレットでも気軽にご利用いただけます。
 
 ## 本番環境のURL
 https://suketto.herokuapp.com
