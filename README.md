@@ -11,7 +11,8 @@
 ### ① 誰でも簡単にサークルを作れます
     ログイン後、サークル作成へ進む から作成できます。
     ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
-    <img src="./README_GIFS/createCircle.gif" width="600px">
+    <img src="https://github.com/che-anje/portforio/blob/master/createCircle.gif" width="600px">
+
 ### ② サークルを探す
     地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
 ### ③ メンバー申請する
