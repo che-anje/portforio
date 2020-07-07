@@ -11,15 +11,18 @@
 ### ① 誰でも簡単にサークルを作れます
     ログイン後、サークル作成へ進む から作成できます。
     ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
-    <img src="https://github.com/che-anje/portforio/blob/master/createCircle.gif" width="600px">
+    <img src="./README_IMAGES/createCircle.gif" width="600px">
 
 ### ② サークルを探す
     地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
+    <img src="./README_IMAGES/search_circle.gif" width="600px">
 ### ③ メンバー申請する
     申請後、サークル管理者に参加メッセージが送信されます。
     承認されるとサークルのグループチャットに参加できます。
+    <img src="./README_IMAGES/apply_circle.gif" width="600px">
 ### ④ サークルのグループチャットで打ち合わせる
     チャット内で話し合う。
+    <img src="./README_IMAGES/message.gif" width="600px">
 ### ⑤ レスポンシブデザイン対応
     スマートフォン、タブレットでも気軽にご利用いただけます。
 
