@@ -19,7 +19,7 @@
 ### ③ メンバー申請する
     申請後、サークル管理者に参加メッセージが送信されます。
     承認されるとサークルのグループチャットに参加できます。
-    ![./README_IMAGES/apply_circle.gif](./README_IMAGES/apply_circle.gif)
+    ![./README_IMAGES/apply_circle.gif](https://github.com/che-anje/portforio/blob/master/README_IMAGES/apply_circle.gif)
 ### ④ サークルのグループチャットで打ち合わせる
     チャット内で話し合う。
     ![./README_IMAGES/message.gif](./README_IMAGES/message.gif)
