@@ -9,9 +9,9 @@
 
 ## 仕様・使い方
 ### ① 誰でも簡単にサークルを作れます
-<pre>  </pre>ログイン後、サークル作成へ進む から作成できます。
-<pre>  </pre>ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
-<pre>  </pre>![./README_IMAGES/createCircle.gif](./README_IMAGES/createCircle.gif)
+ログイン後、サークル作成へ進む から作成できます。
+ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
+![./README_IMAGES/createCircle.gif](./README_IMAGES/createCircle.gif)
 
 ### ② サークルを探す
     地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
