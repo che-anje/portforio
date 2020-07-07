@@ -11,7 +11,7 @@
 ### ① 誰でも簡単にサークルを作れます
     ログイン後、サークル作成へ進む から作成できます。
     ジャンルを３つまで選択し、必須項目を埋めたら「作成する」で作成完了。
-    <img src="Illuminate\Support\Facades\Storage::disk('s3')->url('README_GIF/createCircle.gif')" width="600px" height="auto">
+    <img src="https://sukettoimages.s3-ap-northeast-1.amazonaws.com/README_GIF/createCircle.gif" width="600px" height="auto">
 ### ② サークルを探す
     地域、カテゴリー、ジャンル、キーワードでの検索が可能です。
 ### ③ メンバー申請する
