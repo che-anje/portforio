@@ -61,7 +61,7 @@ https://suketto.herokuapp.com
 
 # データベース設計
 <br>
-<img src="./README_IMAGES/ER.jpeg" width="400px">
+<img src="./README_IMAGES/ER.jpeg" >
 
 # その他
 
