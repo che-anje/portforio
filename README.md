@@ -88,13 +88,13 @@
 |name|string|null: false|
 |introduction|string|null: false|
 |gender|int|null: false|
-|prefectureOfInterest|int|null: false|
-|cityOfInterest|int|null: false|
+|prefectureOfInterest|int|null: false, foreign_key: true|
+|cityOfInterest|int|null: false, foreign_key: true|
 |searchSettingByEmail|int|null: false|
 |birthdate_1i|int|null: false|
 |birthdate_2i|intg|null: false|
 |birthdate_3i|int|null: false|
-|user_id|int|null: false|
+|user_id|int|null: false, foreign_key: true|
 |user_image|string||
 
 ### アソシエーション
@@ -107,10 +107,10 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|admin_user_id|int|null: false|
+|admin_user_id|int|null: false, foreign_key: true|
 |introduction|string|null: false|
-|prefecture_id|int|null: false|
-|category_id|int|null: false|
+|prefecture_id|int|null: false, foreign_key: true|
+|category_id|int|null: false, foreign_key: true|
 |detailedArea|string||
 |ageGroup|int|null: false|
 |activityDay|string||
@@ -137,7 +137,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |type|string|null: false|
-|circle_id|int||
+|circle_id|int|foreign_key: true|
 
 ### アソシエーション
 - belongs_to_many :user
@@ -148,8 +148,8 @@
 メッセージ管理テーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|int||
-|board_id|int||
+|user_id|int|null: false, foreign_key: true|
+|board_id|int|null: false, foreign_key: true|
 |msg|string|null: false|
 |type|string|null: false|
 
@@ -161,7 +161,7 @@
 都道府県管理テーブル
 |Column|Type|Options|
 |------|----|-------|
-|area_id|int|null: false|
+|area_id|int|null: false, foreign_key: true|
 |name|string|null: false|
 |kana|string|null: false|
 
@@ -175,7 +175,7 @@
 市町村管理テーブル
 |Column|Type|Options|
 |------|----|-------|
-|prefecture_id|int|null: false|
+|prefecture_id|int|null: false, foreign_key: true|
 |name|string|null: false|
 |kana|string|null: false|
 
@@ -187,7 +187,7 @@
 カテゴリー管理テーブル
 |Column|Type|Options|
 |------|----|-------|
-|prefecture_id|int|null: false|
+|prefecture_id|int|null: false, foreign_key: true|
 |name|string|null: false|
 |image|string||
 
@@ -200,7 +200,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|category_id|int|null: false|
+|category_id|int|null: false, foreign_key: true|
 
 ### アソシエーション
 - belongs_to :category
@@ -212,8 +212,8 @@
 |------|----|-------|
 |ip_adress|int|null: false|
 |session_id|string|null: false|
-|circle_id|int|null: false|
-|user_id|int||
+|circle_id|int|null: false, foreign_key: true|
+|user_id|int|foreign_key: true|
 |point|int|null: false|
 
 ### アソシエーション
@@ -224,7 +224,7 @@
 サークルのランキングテーブル
 |Column|Type|Options|
 |------|----|-------|
-|circle_id|int|null: false|
+|circle_id|int|null: false, foreign_key: true|
 |total_point|int|null: false|
 |rank|int|null: false|
 
@@ -234,7 +234,7 @@
 ## email_resetテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|int|null: false|
+|user_id|int|null: false, foreign_key: true|
 |new_emailt|string|null: false|
 |token|string|null: false|
 
