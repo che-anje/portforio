@@ -18,7 +18,7 @@ class Category extends Model
 
     public function circles()
     {
-        return $this->belongsToMany('App\Models\Circle');
+        return $this->hasMany('App\Models\Circle');
     }
 
     public function getImagePathAttributes() {

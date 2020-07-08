@@ -62,7 +62,7 @@ class Circle extends Model
     }
 
     public function categories() {
-        return $this->belongsToMany('App\Models\Circle', 'category_circle', 'circle_id', 'category_id');
+        return $this->belongsTo('App\Models\Category', 'category_id');
         //->withPivot('id');
     }
 

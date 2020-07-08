@@ -21,12 +21,12 @@ class Prefecture extends Model
 
     public function profile()
     {
-        return $this->hasOne(Profile::class, 'prefectureOfInterest');
+        return $this->hasMany(Profile::class, 'prefectureOfInterest');
     }
 
     public function circle()
     {
-        return $this->hasOne(Circle::class);
+        return $this->hasMany(Circle::class);
     }
 
 

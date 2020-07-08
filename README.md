@@ -64,9 +64,10 @@ https://suketto.herokuapp.com
 <img src="./README_IMAGES/ER.jpeg" >
 
 ## usersテーブル
+ユーザー管理テーブル
 |Column|Type|Options|
 |------|----|-------|
-|email|string|null: false|
+|email|string|null: false, unique: true|
 |password|string|null: false|
 ### アソシエーション
 - has_one :profile , dependent: :destroy
@@ -78,6 +79,7 @@ https://suketto.herokuapp.com
 - has_many :point_log
 
 ## profileテーブル
+各ユーザーのプロフィール情報テーブル
 |Column|Type|Options|
 |------|----|-------|
 |familyName|string|null: false|
@@ -92,7 +94,7 @@ https://suketto.herokuapp.com
 |birthdate_2i|intg|null: false|
 |birthdate_3i|int|null: false|
 |user_id|int|null: false|
-|user_image|string|null: true|
+|user_image|string||
 
 ### アソシエーション
 - belongs_to :user
@@ -100,24 +102,143 @@ https://suketto.herokuapp.com
 - belongs_to :city
 
 ## circleテーブル
+サークル管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|admin_user_id|int|null: false|
+|introduction|string|null: false|
+|prefecture_id|int|null: false|
+|category_id|int|null: false|
+|detailedArea|string||
+|ageGroup|int|null: false|
+|activityDay|string||
+|cost|string||
+|image|string|null: false|
+|requruit_status|int|null: false|
+|descriptionTemplate|string||
+|request_required|int|null: false|
+|private_status|int|null: false|
+
+### アソシエーション
+- belongs_to :user
+- blongs_to_many :user
+- belongs_to_many :genre
+- blongs_to :prefecture
+- has_one :point_log
+- has_one :circle_ranking
+- belongs_to_many :genre
+- belongs_to :category
+- has_one :board
 
 ## boardテーブル
+チャットボード管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|type|string|null: false|
+|circle_id|int||
+
+### アソシエーション
+- belongs_to_many :user
+- has_many :message
+- belongs_to :circle
 
 ## messageテーブル
+メッセージ管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|int||
+|board_id|int||
+|msg|string|null: false|
+|type|string|null: false|
+
+### アソシエーション
+- belongs_to :user
+- belongs_to :board
 
 ## prefectureテーブル
+都道府県管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|area_id|int|null: false|
+|name|string|null: false|
+|kana|string|null: false|
+
+### アソシエーション
+- belongs_to :area
+- has_many :profile
+- has_many :circle
+- has_many :city
 
 ## cityテーブル
+市町村管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|prefecture_id|int|null: false|
+|name|string|null: false|
+|kana|string|null: false|
+
+### アソシエーション
+- belongs_to :prefecture
+- has_many :profile
 
 ## categoryテーブル
+カテゴリー管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|prefecture_id|int|null: false|
+|name|string|null: false|
+|image|string||
+
+### アソシエーション
+- has_many :circle
+- has_many :genre
 
 ## genreテーブル
+ジャンル管理テーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|category_id|int|null: false|
+
+### アソシエーション
+- belongs_to :category
+- belongs_to_many :circle
 
 ## point_logテーブル
+サークルのポイント履歴テーブル
+|Column|Type|Options|
+|------|----|-------|
+|ip_adress|int|null: false|
+|session_id|string|null: false|
+|circle_id|int|null: false|
+|user_id|int||
+|point|int|null: false|
+
+### アソシエーション
+- belongs_to :user
+- belongs_to :circle
 
 ## circle_rankingテーブル
+サークルのランキングテーブル
+|Column|Type|Options|
+|------|----|-------|
+|circle_id|int|null: false|
+|total_point|int|null: false|
+|rank|int|null: false|
+
+### アソシエーション
+- belongs_to :circle
 
 ## email_resetテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|int|null: false|
+|new_emailt|string|null: false|
+|token|string|null: false|
+
+### アソシエーション
+- belongs_to :user
 
 # その他
 

@@ -21,6 +21,10 @@ class EmailReset extends Authenticatable implements MustVerifyEmailContract
         'token',
     ];
 
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
      /**
      * メールアドレス確定メールを送信
      *
