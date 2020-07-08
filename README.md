@@ -60,6 +60,8 @@ https://suketto.herokuapp.com
 - AWS(S3)
 
 # データベース設計
+<br>
+<img src="./README_IMAGES/ER.jpeg" width="400px">
 
 # その他
 

@@ -8,7 +8,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <li class="carousel-item active">
             <div class="adjust-box adjust-box-2x1 d-block w-100" style="width: 100%;">
                 <div class="adjust-box-inner top-black-opacity"
-                    style="background-image: url('image/slide1.jpg');
+                    style="background-image: url({{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/jakob-owens-PiPZ2DHa3rE-unsplash.jpg') }});
                     background-size: cover;
                     background-position: center center;
                     background-repeat: no-repeat;
@@ -18,19 +18,15 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     align-items: center;
                     flex-direction: column;
                     ">
-                    <p class="text-center h4 text-white" style="font-size: .875rem;"></p>
-                    <p class="mv-copy text-center h4 ">サークルを作って仲間を集めよう！</p>
+                    <p class="text-center h4 text-white" style="font-size: 1rem;"></p>
+                    <p class="mv-copy text-center h4 text-in-image">サークルを作って仲間を集めよう！</p>
                 </div>
             </div>
         </li>
-        
-
-        
-
         <li class="carousel-item">
             <div class="adjust-box adjust-box-2x1 d-block w-100" style="width: 100%;">
                 <div class="adjust-box-inner top-black-opacity"
-                    style="background-image: url('image/slide2.jpg');
+                    style="background-image: url({{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/sarthak-navjivan-iTZOPe7BpTM-unsplash.jpg') }});
                     background-size: cover;
                     background-position: center center;
                     background-repeat: no-repeat;
@@ -40,8 +36,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     align-items: center;
                     flex-direction: column;
                     ">
-                    <p class="text-center h4 text-white" style="font-size: .875rem;"></p>
-                    <p class="mv-copy text-center h4 ">仲間を見つけて趣味を楽しもう！</p>
+                    <p class="text-center h4 text-white" style="font-size: 1rem;"></p>
+                    <p class="mv-copy text-center h4 text-in-image">仲間を見つけて趣味を楽しもう！</p>
                 </div>
             </div>
         </li>
@@ -58,7 +54,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
         </a>
-
     </div>
 </ul>
 </div>
@@ -186,22 +181,25 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
                                 <img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-                                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
-                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
+                                <div class="card-img-overlay--black card-img-overlay d-block align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span><br>「 {{ $recent->circle->name }} 」<br>
                                     <span class="text-fz-small" >を作成しました</span></h2>
                                 </div>
+                                <h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+                                <span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
                             </div>
-                            
                         </a>
                     </div>
                     <div class="mb-2 pl-1 pr-1">
                         <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
                                 <img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-                                <div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
-                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
+                                <div class="card-img-overlay--black card-img-overlay d-block align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                                    <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span><br>「 {{ $recent->Circle->name }} 」<br>
                                     <span class="text-fz-small" >に参加しました</span></h2>
                                 </div>
+                                <h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+                                <span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
                             </div>
                             
                         </a>
