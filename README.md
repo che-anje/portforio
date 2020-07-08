@@ -68,7 +68,7 @@ https://suketto.herokuapp.com
 |------|----|-------|
 |email|string|null: false|
 |password|string|null: false|
-#### アソシエーション
+### アソシエーション
 - has_one :profile , dependent: :destroy
 - has_many :emailresets
 - belongs_to_many :circle
@@ -78,6 +78,26 @@ https://suketto.herokuapp.com
 - has_many :point_log
 
 ## profileテーブル
+|Column|Type|Options|
+|------|----|-------|
+|familyName|string|null: false|
+|firstName|string|null: false|
+|name|string|null: false|
+|introduction|string|null: false|
+|gender|int|null: false|
+|prefectureOfInterest|int|null: false|
+|cityOfInterest|int|null: false|
+|searchSettingByEmail|int|null: false|
+|birthdate_1i|int|null: false|
+|birthdate_2i|intg|null: false|
+|birthdate_3i|int|null: false|
+|user_id|int|null: false|
+|user_image|string|null: true|
+
+### アソシエーション
+- belongs_to :user
+- blongs_to :prefecture
+- belongs_to :city
 
 ## circleテーブル
 
