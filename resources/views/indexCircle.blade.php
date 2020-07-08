@@ -217,6 +217,8 @@
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
                   <span class="text-fz-small" >を作成しました</span></h2>
                 </div>
+                <h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+                <span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
               </div>
             </a>
           </div>
@@ -228,6 +230,8 @@
                   <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
                   <span class="text-fz-small" >に参加しました</span></h2>
                 </div>
+                <h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+                <span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
               </div>
             </a>
           </div>
