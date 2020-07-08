@@ -97,7 +97,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function point_log()
     {
-        return $this->hasOne(Point_Log::class);
+        return $this->hasMany(Point_Log::class);
     }
 
     public function updateProfile(array $attributes)

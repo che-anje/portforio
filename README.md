@@ -63,6 +63,42 @@ https://suketto.herokuapp.com
 <br>
 <img src="./README_IMAGES/ER.jpeg" >
 
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|email|string|null: false|
+|password|string|null: false|
+#### アソシエーション
+- has_one :profile , dependent: :destroy
+- has_many :emailresets
+- belongs_to_many :circle
+- has_one :circle
+- has_many :message
+- belongs_to_many :board
+- has_many :point_log
+
+## profileテーブル
+
+## circleテーブル
+
+## boardテーブル
+
+## messageテーブル
+
+## prefectureテーブル
+
+## cityテーブル
+
+## categoryテーブル
+
+## genreテーブル
+
+## point_logテーブル
+
+## circle_rankingテーブル
+
+## email_resetテーブル
+
 # その他
 
 
