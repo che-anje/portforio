@@ -34,7 +34,7 @@
 スマートフォン、タブレットでも気軽にご利用いただけます。
 
 # 本番環境のURL
-<a href="https://suketto.herokuapp.com"></a>
+<a href="https://suketto.herokuapp.com">CIRCLE APPを開く</a>
 
 # 機能一覧
 - ユーザー機能
