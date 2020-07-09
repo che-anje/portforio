@@ -246,7 +246,7 @@
 - belongs_to :user
 
 # Author
-崔 央載(Che Anje)
+崔 央載(Che Anje)<br>
 wantedly: https://www.wantedly.com/users/125834360?ql=gaJpZM4Artrm
 
 

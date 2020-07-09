@@ -64,19 +64,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->notify(new CustomVerifyEmail());
     }
 
-    public function sendMail(Request $request) { 
-        $from     = new Email('From名', 'Fromアドレス');
-        $to       = new Email('To名', 'Toアドレス');
-        $subject  = 'テストタイトル';
-        $content  = new Content(
-            'text/plain',
-            'テスト本文'
-        );
-        $mail     = new Mail($from, $subject, $to, $content);
-        $sendGrid = new \SendGrid('APIキー');
-        $response = $sendGrid->client->mail()->send()->post($mail);
-    }
- 
+
+    
      public function sendPasswordResetNotification($token) {
          $this->notify(new CustomResetPassword($token));
  
