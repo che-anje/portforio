@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Circle;
 use App\Models\User;
 use App\Models\Board;
+use App\Models\Message;
 use Carbon\Carbon;
 
 class Board extends Model
@@ -80,5 +81,10 @@ class Board extends Model
         $board->circle_id = $circle_id;
         $board->save();
         return $board;
+    }
+
+    public function getNewMessages($board_id, $message_id) {
+        $newMessages = Message::where('board_id', $board_id)->where('id','>',$message_id)->orderby('id', 'asc')->get();
+        return $newMessages;
     }
 }

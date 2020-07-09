@@ -70,6 +70,7 @@ Route::get('/circle_user/{circle_id}/{user_id}', 'Circle_UserController@particip
 Route::get('/message', 'BoardController@index');
 Route::get('/message/board/{board_id}', 'BoardController@show')->name('message.show');
 Route::post('/message/store', 'MessageController@store')->name('message.store');
+Route::get('/message/update', 'BoardController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/etcetera', 'HomeController@etcetera')->middleware('auth');

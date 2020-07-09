@@ -17,6 +17,9 @@ use App\Models\Point_Log;
 use App\Models\EmailReset;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use SendGrid\Content;
+use SendGrid\Email;
+use SendGrid\Mail;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -59,6 +62,19 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     public function sendEmailVerificationNotification(){
         $this->notify(new CustomVerifyEmail());
+    }
+
+    public function sendMail(Request $request) { 
+        $from     = new Email('From名', 'Fromアドレス');
+        $to       = new Email('To名', 'Toアドレス');
+        $subject  = 'テストタイトル';
+        $content  = new Content(
+            'text/plain',
+            'テスト本文'
+        );
+        $mail     = new Mail($from, $subject, $to, $content);
+        $sendGrid = new \SendGrid('APIキー');
+        $response = $sendGrid->client->mail()->send()->post($mail);
     }
  
      public function sendPasswordResetNotification($token) {
