@@ -248,7 +248,6 @@
     </ul>
   </div>
 </section>
-<div class="cursor-pointer"><button type="button" class="mx-auto btn btn-primary--grad btn-success--grad--outline mb-4 text-white">サークルに問い合わせる</button></div>
 
 <!-- 興味のあることから探す -->
 <section class="bg-white mb-3 pt-4 pb-3">

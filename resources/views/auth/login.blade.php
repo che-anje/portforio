@@ -37,12 +37,7 @@
 
         <hr class="m-0">
 
-        <!-- ログインでお困りの方は -->
-        <div class="container-slim">
-            <p class="text-fz-14px text-black-50 pt-1 mb-2">
-                ログインでお困りの方は<a href="/users/password/new" class="link--green">こちら</a>
-            </p>
-        </div>
+        
 
         <!-- ログインする -->
         <button type="submit" name="commit" class="btn btn-primary btn-primary--grad 
