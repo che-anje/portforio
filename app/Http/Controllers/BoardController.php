@@ -62,11 +62,14 @@ class BoardController extends Controller
     }
 
     public function update(Request $request) {
-        /*$postInput = file_get_contents('php://input');
-        $data = json_decode($postInput, true);*/
+        $postInput = file_get_contents('php://input');
+        $data = json_decode($postInput, true);
         $board = new Board;
+        $message = new Message;
         $messages = $board->getNewMessages($request->board_id, $request->message_id);
-        return $messages;
+        $messages = $message->changeFormatMessagesDate($messages);
+        $messages = $message->addInformationToMessages($messages);
+        return json_encode($messages);
     }
 
     

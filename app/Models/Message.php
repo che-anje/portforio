@@ -64,4 +64,12 @@ class Message extends Model
         ]);
         return $template_msg;
     }
+
+    public function addInformationToMessages($messages) {
+        foreach($messages as $message) {
+            $message['profile'] = $message->user->profile;
+            $message['image_path'] = $message->user->profile->getImagePathAttributes();
+        }
+        return $messages;
+    }
 }

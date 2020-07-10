@@ -249,7 +249,6 @@ $(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
- 
     $('.order').click(function(event){
       event.preventDefault();
       var orderType = $(this).attr('data-value');

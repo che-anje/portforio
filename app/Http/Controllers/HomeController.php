@@ -37,8 +37,6 @@ class HomeController extends Controller
         $circle = new Circle;
         $n_circles = $circle->sortByNewArrival($my_prefecture->id);
         $p_circles = $circle->sortCirclesByPopularity($my_prefecture->id);
-        /*
-        dd(Storage::disk('s3')->url('0ADxDNvDStM91owHSDKYxBm8NzmFo4qcyRoXxbDO.jpeg'));*/
         /*サークルごとのジャンル・メンバー数・都道府県を取得する*/
         $circle->addInfomationToCircles($n_circles);
         $circle->addInfomationToCircles($p_circles);

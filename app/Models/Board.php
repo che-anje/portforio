@@ -62,11 +62,12 @@ class Board extends Model
 
     public function getAllMessages($board) {
         $messages = $board->messages()->orderby('id','asc')->get();
-        foreach($messages as $message) {
-            $message['image_path'] = $message->user->profile->getImagePathAttributes();
-        }
+        $message = new Message;
+        $messages = $message->addInformationToMessages($messages);
         return $messages;
     }
+
+    
 
     public function getOtherUser($user_id,$board_id) {
         $board_user = Board_User::where('board_id',$board_id)->where('user_id', '!=', $user_id)->first();

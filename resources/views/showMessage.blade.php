@@ -46,6 +46,7 @@
 			<link href="//fonts.googleapis.com/css?family=M+PLUS+1p:400,700,900|Roboto:400,700,900&display=swap&subset=japanese" rel="stylesheet">
 	</head>
 	<body role="document" style="word-break: break-all;" class="royal_preloader scrollreveal" style="height: 100%;">
+		<p class="auth_id" type="hidden" data-value="{{ Auth::id() }}"></p>
 		<div id="bg-boxed" style="height: 100%;">
 			<div class="boxed bg-gray" style="padding-top: 60px;height: 100%;">
 				<div class="fixed-top bg-white">
@@ -238,9 +239,9 @@
 						});
 					}
 				});	
-				/*
+				
 				$(function(){
-					setInterval(update, 1000000);
+					setInterval(update, 2500);
 					//10000ミリ秒ごとにupdateという関数を実行する
 				});
 				function update(){ //この関数では以下のことを行う
@@ -250,6 +251,8 @@
 						message_id: message_id,
 						board_id: board_id,
 					};
+					var auth = $('.auth_id').attr('data-value');
+
 					$.ajax({ //ajax通信で以下のことを行う
 					url: '/message/update', 
 					type: 'GET', //メソッドを指定
@@ -259,18 +262,94 @@
 					.done(function(messages) {
 						if(messages) {
 							$.each(messages, function(key, message) {
-									$('#message_list').append(
-										
-									);
-									window.scrollTo(0,document.body.scrollHeight);
+								if(message.type =='entry') {
+									$('#message_list').append(`
+										<li class="message" id="`+ message.id +`">
+											<div class="card bg-gray text-center border-0 bg-graydark pt-2_5 pb-3_5 mb-3 container col-10">
+												<p class="text-fz-xs text-black-20 mb-2_5">`+ message.date +`</p>
+												<p class="text-black-50 mb-0 text-fz-14px">`+ message.msg +`</p>
+											</div>
+										</li>
+									`);
+								}else if(message.user_id != auth && message.profile.user_image){
+									$('#message_list').append(`
+										<li class="message" id="`+ message.id +`">
+											<div class="row justify-content-around align-items-start mb-3">
+												<div class="col-2 pr-1">
+													<img src="`+ message.image_path +`" alt="" class="rounded-circle member-icon_48px">
+												</div>
+												<div class="col-7 pl-0 pr-1">
+													<div class="d-flex justify-content-between pl-1">
+														<a href="">
+															<div class="mb-0 pl-0">
+																<p class="text-fz-xs text-black-20 mb-0 line-1 p-0">
+																	`+ message.profile.familyName +`&nbsp;`+ message.profile.firstName +`
+																</p>
+																<p class="m-0 p-0 line-1" style="color: rgb(123, 176, 188); font-size: 9px;"><span >@</span>`+ message.profile.name +`</p>
+															</div>
+														</a>
+														<p class="text-fz-xs text-black-20 mb-0">`+ message.date +`</p>
+													</div>
+													<div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px">
+														<p class="mb-0">
+															`+ message.msg +`
+														</p>
+													</div>
+												</div>
+												<div class="col-2 p-0 align-self-end">
+													<p class="text-fz-xs mb-0 text-green">
+														<span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">
+														</span>
+													</p>
+												</div>
+											</div>
+										</li>
+									`);
+								
+								}else if(message.user_id != auth && !message.profile.user_image){
+									$('#message_list').append(`
+										<li class="message" id="`+ message.id +`">
+											<div class="row justify-content-around align-items-start mb-3">
+												<div class="col-2 pr-1">
+													<img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" alt="" class="rounded-circle member-icon_48px">
+												</div>
+												<div class="col-7 pl-0 pr-1">
+													<div class="d-flex justify-content-between pl-1">
+														<a href="">
+															<div class="mb-0 pl-0">
+																<p class="text-fz-xs text-black-20 mb-0 line-1 p-0">
+																	`+ message.profile.familyName +`&nbsp;`+ message.profile.firstName +`
+																</p>
+																<p class="m-0 p-0 line-1" style="color: rgb(123, 176, 188); font-size: 9px;"><span >@</span>`+ message.profile.name +`</p>
+															</div>
+														</a>
+														<p class="text-fz-xs text-black-20 mb-0">`+ message.date +`</p>
+													</div>
+													<div class="card border-0 shadow-sm bg-white mb-0 pt-3 pb-3 pr-2 pl-2 text-fz-14px">
+														<p class="mb-0">
+															`+ message.msg +`
+														</p>
+													</div>
+												</div>
+												<div class="col-2 p-0 align-self-end">
+													<p class="text-fz-xs mb-0 text-green">
+														<span class="block-message-icon2 glyphicon glyphicon-check icon-message-ok">
+														</span>
+													</p>
+												</div>
+											</div>
+										</li>
+									`);
+								}
+								window.scrollTo(0,document.body.scrollHeight);
 							});
 						}
+						
 					})
 					.fail(function (messages) { 
-						alert('失敗');
+						//alert('失敗');
 					});
 				}
-				*/
 			}); 
 			
 			window.scrollTo(0,document.body.scrollHeight);
