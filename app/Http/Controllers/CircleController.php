@@ -198,6 +198,7 @@ class CircleController extends Controller
                 'circles' => $circles,
                 'my_category' => $my_category,
                 'my_genre' => $my_genre,
+                'recent' => $recent,
                 'order' => $order
             ])->render();
             $response = response($html, 200);

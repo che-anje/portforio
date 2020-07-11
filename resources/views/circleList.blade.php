@@ -1,98 +1,247 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('layouts.app')
 
-    <title>{{ config('app.name', 'CIRCLE APP') }}</title>
-
-	<!-- Scripts -->
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	@if(app('env') == 'production')
-		<script src="{{ secure_asset('js/slick.js') }}" type="text/javascript"></script>
-		<script type="text/javascript" src="{{ secure_asset('js/slick.min.js') }}"></script>
-		<script src="{{ secure_asset('js/app.js') }}" defer></script>
-	@else
-		<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
-		<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
-		<script src="{{ asset('js/app.js') }}" defer></script>
-	@endif
-	
-	
-	
-
-	<!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-	<!-- Styles -->
-	@if(app('env') == 'production')
-		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
-		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
-		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="{{ secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
-	@else
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="{{ asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
-	@endif
-	
-	
-	
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
-</head>
+@section('edit-button')
+    <a href="javascript:history.back()" class="position-absolute position--backbtn text-black-20 text-fz-18px">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    @parent
+@endsection
+@section('content')
 <div>
-    @foreach($circles as $circle)
-    <div id="circle_item" class="bg-white search-shadow pt-3 mb-2">
-        <div class="container col-md-8 col-lg-6">
-            <div>
-                <a href="{{ route('circle.show', [ $circle->id ]) }}" class="hov--default">
-                    <div class="row">
-                        <div class="col-8">
-                            <h6 class="text-fw-bold mb-2 line-1 text-fz-14px false hov--default">
-                                <span class="badge badge-light text-fw-normal">サークル</span>
-                                {{ $circle->name }}
-                            </h6>
-                            <div class="scrollable-list">
-                            @foreach($circle->genres as $genre)
-                                <p class="btn btn-outline-success btn-sm btn-sm--expand mr-2 
-                                d-inline-block text-tz-xs">{{ $genre->name }}</p>
-                            @endforeach
-                            </div>
-                            <div class="row no-gutters">
-                                <i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture->name }}</p></i>
-                                <i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
-                            </div>
-                            <p class="text-black-50 line-2 mb-2_5 text-fz-14px">
-                                {{ $circle->introduction }}
-                            </p>
-                        </div>
-                        <div class="col-4 pl-0 mb-3">
-                            <div class="adjust-box adjust-box-4x3" style="width:100%;">
-                            @if($circle->image)
-                                <img src="{{ $circle->image_path }}" class="rounded w-100 object-fit-cover adjust-box-inner">
-                            @else
-                                <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="rounded w-100 object-fit-cover adjust-box-inner">
-                            @endif
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+	<div>
+		<nav aria-label="breadcrumb" class="bg-brown">
+			<ul class="mb-0 rounded-0 scrollable-list breadcrumb--scroll pt-1 pb-1 container col-md-8 col-lg-6">
+				<li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+					<a href="" class="nav-link--gray">TOP</a>
+				</li>
+				@if($my_category)
+				<li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+					<a href="/circle/{{ $my_category->id }}/{{ $my_prefecture->id }}" class="nav-link--gray">{{ $my_category->name }}</a>
+				</li>
+				@endif
+				@if($my_genre)
+				<li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+					<a href="" class="nav-link--gray">{{ $my_genre->name }}
+					</a>
+				</li>
+				@endif
+				<li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+					<a href="/circles_pref/48" class="nav-link--gray">全国</a>
+				</li>
+				@if($my_prefecture->name !== "全国")
+				<li class="breadcrumb-item breadcrumb-item--pattern text-fz-14px">
+					<a href="/circles_pref/{{ $my_prefecture->id }}" class="nav-link--gray">{{ $my_prefecture->name }}</a>
+				</li>
+				@endif
+			</ul>
+		</nav>
+	</div>
+  <hr class="m-0">
+    <div class="cursor-pointer">
+      <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
+        <div class="row align-items-center justify-content-between 
+        line-height-1 cursor-pointer">
+                
+					<a  href="javascript:void(0);" class="text-black-50 col-auto mb-0" style="font-size: .875rem;" 
+					data-toggle="modal" data-target="#myAreaModal">
+						自分の地域を設定する
+					</a>
+					<div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header bg-gray d-flex align-items-center">
+									<button type="button" class="close pl-0 pr-0" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									</button>
+									<h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
+								</div>
+													
+								<div class="modal-body card bg-white h-100">
+									<ul class="nav flex-column modal-pref">
+										@foreach($prefectures as $prefecture)
+											<li class="border-bottom nav-item p-3">
+												<input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" 
+												class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" 
+												@if($my_category) data-category="{{ $my_category->id }}" data-url="/circles_pref/{{ $prefecture->id }}/{{ $my_category->id }}" 
+												@else data-category="" data-url="/circles_pref/{{ $prefecture->id }}" @endif
+												@if($my_genre) data-genre="{{ $my_genre->id }}" @else data-genre="" @endif>
+												<label class="d-flex justify-content-between align-items-center 
+												mb-0 position-relative" for="{{ $prefecture->id }}">
+												<span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
+												<span class="checkbox__lg checkbox__noborder"></span>
+												</label>
+											</li>
+										@endforeach
+									</ul>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					@if($my_prefecture)
+					<p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+					value="{{  $my_prefecture->name  }}">
+							{{ $my_prefecture->name }}
+					</p>
+					@else
+					<p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+					value="0">
+							全国
+					</p>
+					@endif
+     		</div>
+      </div>
     </div>
-    @endforeach
-</div>
+    <div class="shadow-sm bg-white pt-3">
+			<div class="position-relative container col-md-8 col-lg-6">
+				<div class="row">
+					<div class="col-9 pr-0">
+						<input type="text" class="form-control mb-2 pl-5 keyword" data-old="" value placeholder="キーワードを入力">
+						<div class="input-icon position-absolute pl-3">
+							<i class="fas fa-search" style="font-size: 18px;"></i>
+						</div>
+					</div>
+					<div class="col-3 pl-2">
+						<button type="submit" class="btn btn-success btn-success--grad" 
+						id="keyword-submit-btn" data-value="popular" style="width: 100%;">
+						検索</button>
+					</div>
+				</div>
+			</div>
+    </div>
+    
+		<div class="pb-3 d-none d-sm-block"></div>
+	<div>
+    <div class="container col-md-8 col-lg-6">
+			<h1 style="font-size:20px; padding-left:0px; margin-bottom:8px; font-family:HiraKakuProN-W6" id="circles_count" class="left mt-4 h2--extend -event">
+			@if($my_category)
+				{{ $my_prefecture->name }}の{{ $my_category->name }}サークル一覧（{{ $circles->count() }}件）
+			@elseif($my_genre)
+				{{ $my_prefecture->name }}の{{ $my_genre->name }}サークル一覧（{{ $circles->count() }}件）
+			@else
+				{{ $my_prefecture->name }}のサークル一覧（{{ $circles->count() }}件）
+			@endif
+			</h1>
+			<div class="row justify-content-between">
+				<div class="col">
+					<ul id="sample" class="list-unstyled d-flex">
+						<li class="list-link">
+							<a id="" href="/index/{{ $my_prefecture->id }}?order=popular" class="nav-link--gray order @if($order==null) link--active @endif" data-value="popular" data-url="/index/{{ $my_prefecture->id }}?order=popular">人気順</a>
+						</li>
+						<li class="list-link">
+							<a id="" href="/index/{{ $my_prefecture->id }}?order=newer" class="nav-link--gray order @if($order=='new') link--active @endif" data-value="new" data-url="/index/{{ $my_prefecture->id }}?order=new">新着順</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="circle-list">
+			<div>
+				@foreach($circles as $circle)
+				<div id="circle_item" class="bg-white search-shadow pt-3 mb-2">
+					<div class="container col-md-8 col-lg-6">
+						<div>
+							<a href="{{ route('circle.show', [ $circle->id ]) }}" class="hov--default">
+								<div class="row">
+									<div class="col-8">
+										<h6 class="text-fw-bold mb-2 line-1 text-fz-14px false hov--default">
+											<span class="badge badge-light text-fw-normal">サークル</span>
+											{{ $circle->name }}
+										</h6>
+										<div class="scrollable-list">
+										@foreach($circle->genres as $genre)
+											<p class="btn btn-outline-success btn-sm btn-sm--expand mr-2 
+											d-inline-block text-tz-xs">{{ $genre->name }}</p>
+										@endforeach
+										</div>
+										<div class="row no-gutters">
+											<i class="fas fa-map-marker-alt mr-2 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->prefecture->name }}</p></i>
+											<i class="fas fa-user-friends mr-3 d-flex" style="font-size: 0.8em; color: mediumorchid;"><p class="ml-2 text-fz-small" style="font-weight:400; color:black;">{{ $circle->count }}</p></i>
+										</div>
+										<p class="text-black-50 line-2 mb-2_5 text-fz-14px">
+											{{ $circle->introduction }}
+										</p>
+									</div>
+									<div class="col-4 pl-0 mb-3">
+										<div class="adjust-box adjust-box-4x3" style="width:100%;">
+										@if($circle->image)
+											<img src="{{ $circle->image_path }}" class="rounded w-100 object-fit-cover adjust-box-inner">
+										@else
+											<img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="rounded w-100 object-fit-cover adjust-box-inner">
+										@endif
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				@endforeach
+			</div>
+		</div>
+	</div>
+	<!-- 興味のあることから探す -->
+	<section class="bg-white mb-3 pt-4 pb-3">
+		<div class="container col-md-8 col-lg-6">
+			<h2 class="h2 h2--extend">「興味・趣味」からサークルを探す</h2>
+			<div class="row pl-2 pr-2">
+				@foreach($categories as $category)
+				<div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
+					<a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
+						<div class="card text-white text-center rounded border-0 ">
+						@if($category->image)
+							<img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
+						@else
+							<img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
+						@endif
+							<div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
+								<h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>
+								<span class="text-fz-small">サークルを探す</span></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				@endforeach
+				<div class="col-12 mb-2">
+					<h2 class="h2 h2--extend mt-4 mb-3">
+						ピックアップ情報!!
+					</h2>
+					<div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
+						<div class="mb-2 pl-1 pr-1">
+							<a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
+								<div class="card text-white text-center rounded border-0 position-relative">
+									<img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+									<div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+										<h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span>「{{ $recent->circle->name }}」<br>
+										<span class="text-fz-small" >を作成しました</span></h2>
+									</div>
+									<h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+									<span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
+								</div>
+							</a>
+						</div>
+						<div class="mb-2 pl-1 pr-1">
+							<a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
+								<div class="card text-white text-center rounded border-0 position-relative">
+									<img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+									<div class="card-img-overlay--black card-img-overlay d-flex align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+										<h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span>「{{ $recent->Circle->name }}」<br>
+										<span class="text-fz-small" >に参加しました</span></h2>
+									</div>
+									<h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
+									<span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <script>
 
 </script>
-</html>
+@endsection

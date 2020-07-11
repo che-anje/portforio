@@ -11796,35 +11796,6 @@ ul.ib-list li {
   color: green;
 }
 
-/* line 164, app/assets/stylesheets/application2019/css/common.css */
-.h2--extend.-report::before {
-  background: url("/aseets2019/img/icon_report_blog.svg") no-repeat;
-  background-size: contain;
-}
-
-/* line 168, app/assets/stylesheets/application2019/css/common.css */
-.h2--extend.-plus::before {
-  background: url("/aseets2019/img/icon_plus.svg") no-repeat;
-  background-size: contain;
-}
-
-/* line 172, app/assets/stylesheets/application2019/css/common.css */
-.h2--extend.-app::before {
-  background: url("/aseets2019/img/icon_app.svg") no-repeat;
-  background-size: contain;
-}
-
-/* line 176, app/assets/stylesheets/application2019/css/common.css */
-.h2--extend.-member::before {
-  background: url("/aseets2019/img/icon_memer.svg") no-repeat;
-  background-size: contain;
-}
-
-/* line 180, app/assets/stylesheets/application2019/css/common.css */
-.h2--extend.-member2::before {
-  background: url("/aseets2019/img/icon-member2.svg") no-repeat;
-  background-size: contain;
-}
 
 /* line 185, app/assets/stylesheets/application2019/css/common.css */
 .h2--extend--noicon:before {

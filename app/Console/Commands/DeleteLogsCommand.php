@@ -41,10 +41,11 @@ class DeleteLogsCommand extends Command
      */
     public function handle()
     {
-        $point_log = new Point_Log;
-        $point_log->whereRaw('created_at < NOW() - INTERVAL 1 WEEK')
-        ->delete();
-            
+        DB::transaction(function () {
+            $point_log = new Point_Log;
+            $point_log->whereRaw('created_at < NOW() - INTERVAL 1 WEEK')
+            ->delete();
+        }); 
         
     }
 }

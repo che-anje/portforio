@@ -284,7 +284,9 @@ $(function(){
           dataType: 'html',
       })
       .done(function(response) {
-        $('.circle-list').html(response);
+        //$('.circle-list').html(response);
+        var circle_list = $($.parseHTML(response));//parse
+        $('.circle-list').empty().append(circle_list.find('.circle-list'));
         var count = $(response).find('#circle_item').length;
         if(keyword){
             $('#circles_count').text('\n{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
@@ -299,7 +301,7 @@ $(function(){
       .fail(function (response) { 
           alert('失敗');
       });
-  });
+    });
 
   $('#keyword-submit-btn').click(function(event){
       event.preventDefault();
@@ -329,7 +331,8 @@ $(function(){
           dataType: 'html',
       })
       .done(function(response) {
-        $('.circle-list').html(response);
+        var circle_list = $($.parseHTML(response));//parse
+        $('.circle-list').empty().append(circle_list.find('.circle-list'));
         var count = $(response).find('#circle_item').length;
         if(keyword){
             $('#circles_count').text('\n{{$my_prefecture->name}}の'+keyword+'サークル一覧（'+count+'件）');
