@@ -284,7 +284,6 @@ $(function(){
           dataType: 'html',
       })
       .done(function(response) {
-        //$('.circle-list').html(response);
         var circle_list = $($.parseHTML(response));//parse
         $('.circle-list').empty().append(circle_list.find('.circle-list'));
         var count = $(response).find('#circle_item').length;
