@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  deploy-prod:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      - run:
+          name: heroku deploy
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/suketto.git master
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - deploy-prod:
+          filters:
+            branches:
+              only: master
