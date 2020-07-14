@@ -51,7 +51,7 @@ class SuzukiResetCommand extends Command
         }
         DB::transaction(function () {
             
-            DB::table('messages')->where('_user_id',139)->delete();
+            DB::table('messages')->where('user_id',139)->delete();
         });
     }
 }
