@@ -8,6 +8,9 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use App\Models\Circle;
 use App\Models\Board;
+use App\Models\Circle_Genre;
+use App\Models\Circle_User;
+use App\Models\Message;
 use Illuminate\Support\Facades\Storage;
 
 class SuzukiResetCommand extends Command
@@ -49,10 +52,10 @@ class SuzukiResetCommand extends Command
             foreach($circles as $circle) {
                 Storage::disk('s3')->delete('CircleImages/' . $circle->image);
                 $circle->delete();
-                $board = Board::where('circle_id', $circle->id)->delete();
+                Board::where('circle_id', $circle->id)->delete();
             }
             
-            DB::table('messages')->where('user_id',139)->delete();
+            Message::where('user_id',139)->delete();
         });
     }
 }
