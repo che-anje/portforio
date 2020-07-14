@@ -8,7 +8,7 @@
 社会人になると会社の同僚以外で新たな友人を作りづらく、学生時代の友人は予定が合わず会えないことが多い。共通の趣味や休みの合う人たちと繋がれるアプリが欲しいと思い作成しました。
 
 # 本番環境のURL
-<a href="https://suketto.herokuapp.com">CIRCLE APPを開く</a>
+<a href="https://suketto.herokuapp.com">CIRCLE APPを開く</a><br>
 ※ログイン画面からゲストユーザーでログインできます。(プロフィールの編集はできません)
 
 # 仕様・使い方
