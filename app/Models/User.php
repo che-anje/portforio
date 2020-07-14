@@ -18,8 +18,8 @@ use App\Models\EmailReset;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use SendGrid\Content;
-use SendGrid\Email;
 use SendGrid\Mail;
+use SendGrid\Email;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
