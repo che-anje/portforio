@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Mosels\Prefecture;
+use Illuminate\Database\Eloquent\Model;
+
 
 class Area extends Model
 {
