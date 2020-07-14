@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('command:suzukiResetcommand')->daily();
         $schedule->command('command:logcommand')->daily();
         $schedule->command('command:deletelogscommand')->daily();
         

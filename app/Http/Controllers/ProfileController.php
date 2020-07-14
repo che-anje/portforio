@@ -91,45 +91,51 @@ class ProfileController extends Controller
     }
 
     public function showEditForm() {
-        
-        $user = Auth::user();
-        $my_profile = $user->profile ?: Profile::make();
-        $my_profile['image_path'] = $my_profile->getImagePathAttributes();
-        $prefectures = Prefecture::orderBy('id','asc')->get();
-        $cities = \App\Models\City::where('prefecture_id', $my_profile->prefectureOfInterest)->get();
-        return view('editProfile', [
-            'my_profile' => $my_profile,
-            'user' => $user,
-            'prefectures' => $prefectures,
-            'cities' => $cities,
-        ]);
+        if(Auth::id()!==139) {
+            $user = Auth::user();
+            $my_profile = $user->profile ?: Profile::make();
+            $my_profile['image_path'] = $my_profile->getImagePathAttributes();
+            $prefectures = Prefecture::orderBy('id','asc')->get();
+            $cities = \App\Models\City::where('prefecture_id', $my_profile->prefectureOfInterest)->get();
+            return view('editProfile', [
+                'my_profile' => $my_profile,
+                'user' => $user,
+                'prefectures' => $prefectures,
+                'cities' => $cities,
+            ]);
+        }else{
+            return back();
+        }
         
     }
 
     public function edit(EditProfileRequest $request) {
         $user = Auth::user();
-        try {
-            DB::beginTransaction();
+        if($user->id !== 139) {
+            try {
+                DB::beginTransaction();
 
-            $form = $request->validated();
-            [ $deleteImageUrl ] = $user->updateProfile($form);
-            if($deleteImageUrl) {
-                $disk = Storage::disk('s3');
-                $disk->delete('UserImages/' . $deleteImageUrl);
+                $form = $request->validated();
+                [ $deleteImageUrl ] = $user->updateProfile($form);
+                if($deleteImageUrl) {
+                    $disk = Storage::disk('s3');
+                    $disk->delete('UserImages/' . $deleteImageUrl);
+                }
+                DB::commit();
+                $response = redirect()
+                    ->route('profile.show', ['id' => (int) $user->profile->id ])
+                    ->with('flash_message', 'アカウントを更新しました。')
+                ;
+            } catch (\Exception $e) {
+                DB::rollback();
+                $response = redirect()
+                    ->route('profile.show', ['id' => (int) $user->profile->id ])
+                    ->with('flash_message', 'メール更新に失敗しました。');
             }
-            DB::commit();
-            $response = redirect()
-                ->route('profile.show', ['id' => (int) $user->profile->id ])
-                ->with('flash_message', 'アカウントを更新しました。')
-            ;
-        } catch (\Exception $e) {
-            DB::rollback();
-            $response = redirect()
-                ->route('profile.show', ['id' => (int) $user->profile->id ])
-                ->with('flash_message', 'メール更新に失敗しました。');
+            return $response;
+        }else{
+            return redirect(route('profile.show', [$user->profile->id]));
         }
-    
-        return $response;
     }
 
     

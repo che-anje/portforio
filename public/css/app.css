@@ -12534,3 +12534,32 @@ textarea.h-1em {
   -1.5px -1.5px 1.5px #343a40;
 }
 
+.fukidashi {
+  display: none;
+  width: 200px;
+  position: absolute;
+  left: 60%;
+  bottom: 30px;
+  padding: 16px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.85);
+  color: rgb(33, 37, 41);;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+.fukidashi:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  bottom: -20px;
+  margin-left: 10px;
+  border: solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.85);;
+  border-width: 10px;
+  pointer-events: none;
+  content: " ";
+}
+.suzuki:hover + .fukidashi {
+  display: block;
+}
