@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use App\Models\Circle;
+use App\Models\Board;
 
 class SuzukiResetCommand extends Command
 {
@@ -41,8 +42,15 @@ class SuzukiResetCommand extends Command
      */
     public function handle()
     {
+        $circles = DB::table('circles')->where('admin_user_id',139)->get();
+        foreach($circles as $circle) {
+            Storage::disk('s3')->delete('CircleImages/' . $circle->image);
+            $circle->delete();
+            $board = Board::where('circle_id', $circle->id)->delete();
+            return redirect('/');
+        }
         DB::transaction(function () {
-            DB::table('circles')->where('admin_user_id',139)->delete();
+            
             DB::table('messages')->where('_user_id',139)->delete();
         });
     }
