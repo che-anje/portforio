@@ -8,6 +8,7 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use App\Models\Circle;
 use App\Models\Board;
+use Illuminate\Support\Facades\Storage;
 
 class SuzukiResetCommand extends Command
 {
