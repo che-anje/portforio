@@ -295,7 +295,7 @@
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <input name="activityDay" id="activityDay" class="p-0 w-100 textarea--eventreport"
-                    placeholder="指定しない" value>
+                    placeholder="指定しない" >
                 </div>
             </div>
             <!-- 費用 -->
@@ -306,7 +306,7 @@
             <div class="shadow-sm mb-0 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <input name="cost" id="cost" class="p-0 w-100 textarea--eventreport"
-                    placeholder="無料" value>
+                    placeholder="無料" >
                 </div>
             </div>
         </div>

@@ -26,11 +26,19 @@ class CreateCircleRequest extends FormRequest
     {
         return [
             'name' => 'required|max:20',
+            'admin_user_id' => 'required',
             'introduction' => 'required',
             'prefecture_id' => 'required',
+            'detailedArea' => 'nullable',
+            'ageGroup' => 'nullable',
+            'activityDay' => 'nullable',
+            'cost' => 'nullable',
             'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'genres' => 'required',
-            'admin_user_id' => 'required',
+            'recruit_status' => 'nullable',
+            'description_template' => 'nullable',
+            'request_required' => 'nullable',
+            'private_status' => 'nullable',
+            'genres' => 'required',            
         ];
     }
 
