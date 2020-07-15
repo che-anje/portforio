@@ -53,7 +53,6 @@ class SuzukiResetCommand extends Command
                 Board::where('circle_id', $circle->id)->delete();
                 $circle->delete();
             }
-            
             Message::where('user_id',139)->delete();
         });
     }
