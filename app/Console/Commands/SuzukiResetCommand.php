@@ -20,7 +20,7 @@ class SuzukiResetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'command:suzukiresetcommand';
 
     /**
      * The console command description.
