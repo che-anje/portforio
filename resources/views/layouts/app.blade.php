@@ -30,7 +30,8 @@
 
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="icon" type="image/png" href="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('circle_app_logo.png') }}">
 	<!-- Styles -->
 	@if(app('env') == 'production')
 		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
