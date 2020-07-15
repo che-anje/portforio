@@ -68,6 +68,7 @@
 - JavaScript
 - Jquery
 - AWS(S3)
+- Circle CI(自動デプロイ)
 
 # データベース設計
 <br>
