@@ -47,12 +47,11 @@ class SuzukiResetCommand extends Command
     public function handle()
     {
         DB::transaction(function () {
-            $circle = new Circle;
             $circles = Circle::where('admin_user_id',139)->get();
             foreach($circles as $circle) {
                 Storage::disk('s3')->delete('CircleImages/' . $circle->image);
-                $circle->delete();
                 Board::where('circle_id', $circle->id)->delete();
+                $circle->delete();
             }
             
             Message::where('user_id',139)->delete();
