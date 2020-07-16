@@ -25,7 +25,8 @@
 
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="icon" type="image/png" href="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('circle_app_logo.png') }}">
     <!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
