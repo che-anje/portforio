@@ -63,7 +63,7 @@
         <!-- ログインする -->
         <div class="position-relative">
         <button  type="submit" name="commit" class="btn btn-primary btn-primary--grad 
-        mx-auto mb-1 mt-2 text-fw-bold suzuki position-relative">{{ __('ゲストユーザーでログイン') }}</button>
+        mx-auto mb-1 mt-2 text-fw-bold suzuki position-relative" style="font-size: 13px">{{ __('ゲストユーザーでログイン') }}</button>
         <p class="fukidashi">既存ユーザー：鈴木一郎でログインできます。<br><span style="font-size: 0.7rem;">※プロフィールは編集できません</span></p>
         </div>
     </form>
