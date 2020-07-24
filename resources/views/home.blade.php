@@ -93,10 +93,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,11 +216,20 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             <li class="d-inline-block mr-2 ">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
                     <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+                    <div class="position-relative ">
                     @if($circle->image)
-                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
+                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list" style="z-index: 10;">
+                        @if($loop->first)
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/gold.png') }}"  class="circle-rank position-absolute" >
+                        @elseif($loop->index == 1)
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/silver.png') }}"  class="circle-rank position-absolute" >
+                        @elseif($loop->index == 2)
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/bronze.png') }}"  class="circle-rank position-absolute" >
+                        @endif
                     @else
                         <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
+                    </div>
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)

@@ -12563,3 +12563,14 @@ textarea.h-1em {
 .suzuki:hover + .fukidashi {
   display: block;
 }
+
+.position-relative > .circle-rank {
+  position: absolute;
+  left: 0; 
+  top: -5px; 
+  z-index: 1000; 
+  height: 50px; 
+  width: auto;
+}
+
+
