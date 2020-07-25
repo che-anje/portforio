@@ -12567,7 +12567,7 @@ textarea.h-1em {
 .position-relative > .circle-rank {
   position: absolute;
   left: 0; 
-  top: -5px; 
+  top: -11px; 
   z-index: 1000; 
   height: 50px; 
   width: auto;

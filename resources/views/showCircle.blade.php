@@ -165,7 +165,7 @@
   </div>
   <hr class="m-0">
   <div class="container col-md-8 col-lg-6">
-    <ul class="mb-3_5 list-unstyled">
+    <ul class="scrollable-list list-group list-group--event mb-3_5 list-unstyled" style="max-height: 385px;">
     @foreach($members as $member) 
       @if($circle->admin_user_id == $member->id)
       <li>
@@ -208,7 +208,6 @@
       @endif
     @endforeach
     </ul>
-    <p class="text-center mb-0"><a href="/circle/34196/members" class="link--next text-black-20">メンバーをもっと見る</a></p>
   </div>
 </section>
 <section class="bg-white shadow-sm mb-3 pt-4 pb-3">

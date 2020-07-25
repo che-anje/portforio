@@ -215,7 +215,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($p_circles as $circle)
             <li class="d-inline-block mr-2 ">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0" >
-                    <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+                    <h4 class="mb-2_5 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     <div class="position-relative ">
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list" style="z-index: 10;">
@@ -265,7 +265,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($n_circles as $circle)
             <li class="d-inline-block mr-2">
                 <a href="{{ route('circle.show', [ $circle->id ]) }}" class="card card--circle hov--default border-0">
-                    <h4 class="mb-2 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
+                    <h4 class="mb-2_5 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     @if($circle->image)
                         <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list">
                     @else
