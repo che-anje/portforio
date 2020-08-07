@@ -14,7 +14,7 @@ class AddCategoryIdToCirclesTable extends Migration
     public function up()
     {
         Schema::table('circles', function (Blueprint $table) {
-            $table->string('category_id');
+            $table->Integer('category_id');
         });
     }
 

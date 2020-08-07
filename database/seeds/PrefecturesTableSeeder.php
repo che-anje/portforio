@@ -289,6 +289,12 @@ class PrefecturesTableSeeder extends Seeder
             "name" => "沖縄県",
             "kana" => "オキナワケン",
         ],
+        [
+            "id" => 48,
+            "area_id" => 8,
+            "name" => "全国",
+            "kana" => "ゼンコク",
+        ],
     ];
 
 

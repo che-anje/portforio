@@ -40,6 +40,7 @@ class CircleController extends Controller
         return DB::transaction(function () use ($request) {
             $circle = new Circle;
             $user = Auth::user();
+            dd($request->validated());
             $circle->fill($request->validated());
 
             $circle->category_id = Genre::find($request->genres[0])->category_id;

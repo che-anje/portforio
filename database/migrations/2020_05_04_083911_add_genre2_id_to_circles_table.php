@@ -14,8 +14,7 @@ class AddGenre2IdToCirclesTable extends Migration
     public function up()
     {
         Schema::table('circles', function (Blueprint $table) {
-            $table->Integer('genre2_id');
-            $table->Integer('genre3_id');
+            
         });
     }
 

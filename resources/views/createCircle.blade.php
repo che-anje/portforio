@@ -272,7 +272,7 @@
                                     @foreach(\App\Models\Circle::AGEGROUP as $key => $val)
                                     <li class="border-bottom nav-item p-3">
                                         <input type="radio" name="ageGroup" id="{{ $val }}" data-url=""
-                                        class="d-none checkbox__input checkbox__area" value="{{ $key }}">
+                                        class="d-none checkbox__input checkbox__area" value="{{ $key }}" @if($key==0) checked="checked" @endif>
                                         <label class="d-flex justify-content-between align-items-center 
                                         mb-0 position-relative" for="{{ $val }}">
                                         <span class="p-0 line-height-2 pl-3 mb-0">{{ $val }}</span>
@@ -360,7 +360,7 @@
             <div class="shadow-sm mb-2 bg-white">
                 <div class="container col-md-8 col-lg-6 p-3_5">
                     <select name="request_required" id="request_required" class="p-0 w-100 textarea--eventreport custom-select 
-                    custom-select--makecircle" placeholder="メンバーによるイベント作成の許可を選択">
+                    custom-select--makecircle" placeholder="メンバーによるイベント作成の許可を選択"  selected="selected">
                         <option value="0">必要（サークル参加時の承認が必要）</option>
                         <option value="1">不要（サークル参加時の承認が不要）</option>
                     </select>
