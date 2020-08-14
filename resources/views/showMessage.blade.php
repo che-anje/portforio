@@ -200,7 +200,6 @@
 						</div>
 					</div>
 				</div>
-				<div data-react-class="page_view_counter" data-react-props="{}"></div>
 	</body>
 	<footer>
 		<script>

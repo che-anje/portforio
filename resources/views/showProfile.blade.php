@@ -5,7 +5,7 @@
         <i class="fas fa-chevron-left"></i>
     </a>
     @parent
-    @if(Auth::user()->id === $my_profile->user_id)
+    @if(Auth::user()->id === $my_profile->user_id && Auth::user()->id != 139)
     <a href="/profile/edit" class="position-absolute position--headerright
      text-black-20 text-fz-14px">
         編集
