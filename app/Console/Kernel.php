@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:suzukiResetcommand')->daily();
         $schedule->command('command:logcommand')->daily();
         $schedule->command('command:deletelogscommand')->daily();
-        
+        $schedule->command('command:deleteTimeOverUsercommand')->everyMinute();
     }
 
     /**
