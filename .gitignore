@@ -12,6 +12,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+
 # docker file
 /docker/logs
 /docker/php/bash
