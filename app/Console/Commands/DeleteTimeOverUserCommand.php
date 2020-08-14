@@ -42,7 +42,8 @@ class DeleteTimeOverUserCommand extends Command
     {
         DB::transaction(function () {
             $user = new User;
-            $user->whereRaw('created_at < NOW() - INTERVAL 1 HOUR')
+            $user->whereNull('email_verified_at')
+            ->whereRaw('created_at < NOW() - INTERVAL 1 HOUR')
             ->delete();
         });
     }
