@@ -14,7 +14,7 @@ class DeleteTimeOverUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'command:deletetimeoverusercommand';
 
     /**
      * The console command description.

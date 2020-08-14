@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use App\Models\Circle;
+use App\Models\User;
 
 class Kernel extends ConsoleKernel
 {
@@ -33,7 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:suzukiResetcommand')->daily();
         $schedule->command('command:logcommand')->daily();
         $schedule->command('command:deletelogscommand')->daily();
-        $schedule->command('command:deleteTimeOverUsercommand')->daily();
+        $schedule->command('command:deletetimeoverusercommand')->daily();
     }
 
     /**
