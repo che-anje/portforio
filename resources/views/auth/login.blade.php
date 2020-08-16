@@ -44,7 +44,7 @@
         <input id="invite_activation_key" name="user[invite_activation_key]" type="hidden" value="" />
         <!-- メールアドレス -->
         <input autofocus="autofocus" id="email" type="hidden" name="email" placeholder="メールアドレス" 
-        class="form-control mb-0 rounded-0 border-0 pt-4_5 pb-4_5 @error('email') is-invalid @enderror" value="guest@desu" required autocomplete="email">
+        class="form-control mb-0 rounded-0 border-0 pt-4_5 pb-4_5" value="guest@desu" required autocomplete="email">
 
         @error('email')
             <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
         @enderror
         <!-- パスワード -->
         <input autocomplete="off" id="password" type="hidden" name="password" placeholder="パスワード" value="guestdesu"
-        class="form-control mb-0 rounded-0 border-0 pt-4_5 pb-4_5 @error('password') is-invalid @enderror" required autocomplete="new-password">
+        class="form-control mb-0 rounded-0 border-0 pt-4_5 pb-4_5" required autocomplete="new-password">
 
         @error('password')
             <span class="invalid-feedback" role="alert">

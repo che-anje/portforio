@@ -22,10 +22,10 @@ class Controller extends BaseController
 
     protected function getSelectedPrefectureId(): int
     {
+        
         if(Auth::check() && Auth::user()->profile->prefectureOfInterest != 0) {
             return Auth::user()->profile->prefectureOfInterest;
-        }
-        if(session()->exists('my_prefecture')) {
+        }elseif(session()->exists('my_prefecture')) {
             return session('my_prefecture');
         }
         return Prefecture::ALL_PREFECTURE;

@@ -10,6 +10,11 @@ use App\Models\Circle;
 
 class MyPageController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('has.profile');
+    }
+    
     public function show() {
         $user = Auth::user();
         $profile = $user->profile;

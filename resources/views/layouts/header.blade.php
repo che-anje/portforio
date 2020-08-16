@@ -47,7 +47,7 @@
 <body style="word-break: break-all;">
 
 	<div id="app">
-		<div class="boxed" style="height: auto !important">
+		<div class="boxed bg-white" style="height: auto !important">
 			
 			<header id="header" class="position-relative container col-lg-6 col-md-6">
 				<div class="container">
@@ -61,11 +61,11 @@
 			
 		
 
-			<main class="bg-gray h-100" style="padding-bottom: 15px;"> 
+			<main class="bg-brown h-100" style="padding-bottom: 15px;"> 
 				@yield('content')
             </main>
             <!-- 画面下部固定のメニュー -->
-			<nav class="bg-gray fixed-bottom pt-2_5 pb-3">
+			<nav class="bg-brown fixed-bottom pt-2_5 pb-3">
 				<div class="container col-md-8 col-lg-6">
 					<ul class="nav align-items-center justify-content-between">
 						@guest
@@ -107,13 +107,7 @@
 									<span class="nav-item_text">お知らせ</span>
 								</a>
 							</li>
-							<li class="postion-relative">
-								<a href="{{ route('login') }}" class="nav-link nav-link_sp -aleart">
-									<i class="fas fa-ticket-alt" style="font-size:35px;
-									color:rgba(0,0,0,0.24);"></i>
-									<span class="nav-item_text">チケット</span>
-								</a>
-							</li>
+							
 							<li class="postion-relative">
 								<a href="{{ route('register') }}" class="nav-link nav-link_sp -message">
 									<i class="far fa-comment-alt" ></i>
@@ -131,7 +125,7 @@
 				</div>
             </nav>
 			<!-- footer -->
-			<footer id="footer" class="bg-gray " 
+			<footer id="footer" class="bg-brown " 
 				style="padding-bottom: 150px;">
 				
             </footer>
