@@ -8,7 +8,7 @@
         <a href="/users/edit" class="btn btn-primary btn-primary--grad mx-auto mb-1 text-fw-bold">
         <span style="font-size: 12px;">メールをチェックしたら</span>&nbsp;次へ
       </a>
-      <p class="text-center text-fz-14px mb-4 text-white mt-4"><a href="/users/confirmation/new" class="text-white">確認メールの再送信はこちら</a></p>
+      <p class="text-center text-fz-14px mb-4 text-white mt-4"><a href="/users/confirmation/new" class="text-white">※１時間以内にチェックされない場合<br>会員情報は破棄されます。</a></p>
     </div>
 </div>
 @endsection
