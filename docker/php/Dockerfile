@@ -1,25 +1,8 @@
 FROM php:7.4-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
-# timezone environment
-ENV TZ=UTC \
-  # locale
-  LANG=en_US.UTF-8 \
-  LANGUAGE=en_US:en \
-  LC_ALL=en_US.UTF-8 \
-  # composer environment
-  COMPOSER_ALLOW_SUPERUSER=1 \
-  COMPOSER_HOME=/composer \
-  # Laravel environment
-  DB_CONNECTION=mysql \
-  DB_HOST=db \
-  DB_PORT=3306 \
-  DB_DATABASE=laravel_local \
-  DB_USERNAME=phper \
-  DB_PASSWORD=secret \
-  LOG_CHANNEL=stderr
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+  
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer 
 
 RUN apt-get update && \
   apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \

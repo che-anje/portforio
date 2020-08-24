@@ -44,6 +44,7 @@ class HomeController extends Controller
         $circle_user = new Circle_User;
         $recent = $circle_user->getRecent();
         $recent['circle'] = $circle_user->getRecentCircle();
+        $data = session()->all();
         return view('home',  [
             'my_prefecture' => $my_prefecture,
             'n_circles' => $n_circles,

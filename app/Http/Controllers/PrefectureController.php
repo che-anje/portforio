@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
 use App\Models\User;
 use App\Models\Prefecture;
+use Illuminate\Support\Facades\Session;
 
 class PrefectureController extends Controller
 
@@ -14,8 +15,17 @@ class PrefectureController extends Controller
 
     public function change(int $id) {
         $prefecture = new Prefecture;
-        $this->changeMyPrefecture($id);
+        if($user = Auth::user()) {
+            $user->profile->prefectureOfInterest = $id;
+            $user->profile->cityOfInterest = 0;
+            $user->profile->save();
+            return;
+        }
+        Session::put('my_prefecture', $id);
+        Session::save();
         return redirect('/');
+        //$this->changeMyPrefecture($id);
+        
     }
 
     public function categoryPrefChange(int $pref_id, $category_id) {

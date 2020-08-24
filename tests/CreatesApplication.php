@@ -17,6 +17,19 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        $this->setUpDatabase();
+
         return $app;
+    }
+
+    protected function setUpDatabase(): void
+    {
+        if ($this->isSetUpDatabase) {
+            return;
+        }
+
+        Artisan::call('migrate:fresh');
+
+        $this->isSetUpDatabase = true;
     }
 }

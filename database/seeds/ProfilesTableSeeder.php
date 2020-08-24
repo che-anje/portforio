@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ProfilesTableSeeder extends Seeder
 {
@@ -11,23 +14,22 @@ class ProfilesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Profiles')->insert([
-            'surName' => '崔',
-            'familyName' => '央載',
-            'name' => 'あんじぇ',
-            'gender' => '1',
-            'genderPublishState' => '1',
-            'birthday' => '19960225',
-            'birthdayPublishState' => '1',
-            'prefectureOfInterest1' => '1',
-            'cityOfInterest1' => '1',
-            'prefectureOfInterest2' => '1',
-            'cityOfInterest2' => '2',
-            'prefectureOfInterest3' => '1',
-            'cityOfInterest3' => '3',
-            'searchSettingByEmail' => '1',
+        DB::table('profiles')->insert([
+            'familyName' => '鈴木',
+            'firstName' => '一郎',
+            'name' => '@guest',
+            'gender' => 1,
+            'prefectureOfInterest' => 48,
+            'cityOfInterest' => 0,
+            'searchSettingByEmail' => 1,
             'introduction' => 'よろしくお願いします。',
-            'myArea' => '1',
+            'birthdate_1i' => 1995,
+            'birthdate_2i' => 7,
+            'birthdate_3i' => 5,
+            'user_id' => 1,
+            'user_image' => '7Rgwv8r9If4LdbjHduMDyvrTsk8s8aL06xP7eb4T.jpeg',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
         ]);
     }
 }

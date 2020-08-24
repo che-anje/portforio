@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,13 +15,15 @@ use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use Illuminate\Http\Request;
 
+    
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     const ALL_PREFECTURE = 48;
 
-    protected function getSelectedPrefectureId(): int
+    public function getSelectedPrefectureId(): int
     {
         
         if(Auth::check() && Auth::user()->profile->prefectureOfInterest != 0) {
@@ -28,7 +31,9 @@ class Controller extends BaseController
         }elseif(session()->exists('my_prefecture')) {
             return session('my_prefecture');
         }
-        return Prefecture::ALL_PREFECTURE;
+        return self::ALL_PREFECTURE;
+        
+        
     }
 
     public function changeMyPrefecture(int $id) {
@@ -39,7 +44,10 @@ class Controller extends BaseController
             $user->profile->save();
             return;
         }
-        session()->put(['my_prefecture' => $id]);
+        Session::put('my_prefecture', $id);
+        
+        return $data;
+        
     }
 
     public function insertLogOfShow($circle_id, $user_id=null) {

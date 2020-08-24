@@ -55,6 +55,7 @@ $('.modal-pref').on('change',function(e) {
 */
 $(function(){
   //selectタグ（親） が変更された場合
+  
   $('[name=prefectureOfInterest]').on('change', function(e) {
     var $select = $(e.target);
     var key = $select.find('option:selected').attr('value');
@@ -64,6 +65,7 @@ $(function(){
       type: "GET",
     })
     .done(function(data){
+      
       $('.cityOfInterest option').remove();
       if(key == '0') {
         $('.cityOfInterest').append($('<option>').text('選択してください').attr('value', 0));
@@ -78,6 +80,8 @@ $(function(){
       console.log("失敗");
     });
   });
+  
+  
 });
 
 $(function(){

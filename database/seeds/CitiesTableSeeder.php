@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\City;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CitiesTableSeeder extends Seeder
 {

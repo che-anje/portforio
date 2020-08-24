@@ -172,7 +172,9 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 <h2 class="h2 h2--extend mt-4 mb-3">
                     ピックアップ情報!!
                 </h2>
+                
                 <div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
+                    @if($recent->circle)
                     <div class="mb-2 pl-1 pr-1">
                         <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
@@ -186,6 +188,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                             </div>
                         </a>
                     </div>
+                    @endif
+                    @if($recent->Circle)
                     <div class="mb-2 pl-1 pr-1">
                         <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
@@ -200,6 +204,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                             
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

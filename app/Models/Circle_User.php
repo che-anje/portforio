@@ -91,11 +91,19 @@ class Circle_User extends Model
     public function getRecent() {
         $circle_user = new Circle_User;
         $circle = $circle_user->getRecentCircle();
-        $recent = Circle_User::where('approval', 2)->where('user_id', '!=', $circle->admin_user_id)->orderby('id','desc')->first();
-        $recent['user'] = User::find($recent->user_id);
-        $recent['Circle'] = Circle::find($recent->circle_id);
-        $circle->addInfomationToCircle($recent['Circle']);
-        return $recent;
+        if($recent = Circle_User::where('approval', 2)->where('user_id', '!=', $circle->admin_user_id)->orderby('id','desc')->first()){
+            $recent['user'] = User::find($recent->user_id);
+            $recent['Circle'] = Circle::find($recent->circle_id);
+            $circle->addInfomationToCircle($recent['Circle']);
+            return $recent;
+        }else{
+            $recent = Circle_User::where('approval', 2)->orderby('id','desc')->first();
+            $recent['user'] = User::find($recent->user_id);
+            $recent['Circle'] = Circle::find($recent->circle_id);
+            $circle->addInfomationToCircle($recent['Circle']);
+            return $recent;
+        }
+        
     }
 
     public function getRecentCircle() {
