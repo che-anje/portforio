@@ -14,18 +14,8 @@ class PrefectureController extends Controller
 {
 
     public function change(int $id) {
-        $prefecture = new Prefecture;
-        if($user = Auth::user()) {
-            $user->profile->prefectureOfInterest = $id;
-            $user->profile->cityOfInterest = 0;
-            $user->profile->save();
-            return;
-        }
-        Session::put('my_prefecture', $id);
-        Session::save();
+        $this->changeMyPrefecture($id);
         return redirect('/');
-        //$this->changeMyPrefecture($id);
-        
     }
 
     public function categoryPrefChange(int $pref_id, $category_id) {

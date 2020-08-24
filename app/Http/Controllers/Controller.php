@@ -45,9 +45,7 @@ class Controller extends BaseController
             return;
         }
         Session::put('my_prefecture', $id);
-        
-        return $data;
-        
+        return;
     }
 
     public function insertLogOfShow($circle_id, $user_id=null) {
