@@ -140,6 +140,11 @@
 			<footer id="footer" class="bg-brown pt-3" 
 				style="padding-bottom: 150px;">
 				<div class="container col-md-6 col-lg-6 pb-5">
+					<div class="mb-5">
+						<a href="https://github.com/che-anje/CIRCLE-APP" class="d-inline-block mr-4" target="_blank">
+							<img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('GitHub-Mark.png') }}" alt="" style="height: 64px;">
+						</a>
+					</div>
 					<h2 class="h2 h2--extend h2--extend--notion">
 						CIRCLE APPについて
 					</h2>
