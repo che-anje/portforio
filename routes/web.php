@@ -10,9 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'HomeController@index');
-Route::get('/{id}', 'PrefectureController@change')->name('prefecture.change')->where('id', '[0-9]+');
+Route::get('prefecture/{id}', 'PrefectureController@change')->name('prefecture.change')->where('id', '[0-9]+');
 
 Route::get('genre', 'Homecontroller@insert')->name('genre.insert');
 

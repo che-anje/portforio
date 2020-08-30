@@ -24,10 +24,6 @@
 		<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}" defer></script>
 	@endif
-	
-	
-	
-
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

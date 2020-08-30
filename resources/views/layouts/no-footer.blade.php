@@ -14,29 +14,35 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script src="js/slick.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/slick.min.js"></script>
+	
 	@if(app('env') == 'production')
 		<script src="{{ secure_asset('js/app.js') }}" defer></script>
+		<script src="{{ secure_asset('js/slick.js') }}" type="text/javascript"></script>
+		<script type="text/javascript" src="{{ secure_asset('js/slick.min.js') }}"></script>
 	@else
 		<script src="{{ asset('js/app.js') }}" defer></script>
+		<script src="{{ asset('js/slick.js') }}" type="text/javascript"></script>
+		<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
 	@endif
 	<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<link rel="icon" type="image/png" href="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('circle_app_logo.png') }}">
     <!-- Styles -->
-	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
-	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+	
 	
 	@if(app('env') == 'production')
 		<link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="{{ secure_asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ secure_asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ secure_asset('css/slick-theme.css') }}"/>
 	@else
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="{{ asset('css/remodal.css') }}" media="screen" rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="{{ asset('css/remodal-default-theme.css') }}" media="screen" rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}"/>
 	@endif
 
 	

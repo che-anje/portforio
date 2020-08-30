@@ -35,8 +35,8 @@ class Controller extends BaseController
         
         
     }
-
-    public function changeMyPrefecture(int $id) {
+    
+    public function changeMyPrefecture(int $id){
         $prefecture = new Prefecture;
         if($user = Auth::user()) {
             $user->profile->prefectureOfInterest = $id;
@@ -44,7 +44,8 @@ class Controller extends BaseController
             $user->profile->save();
             return;
         }
-        Session::put('my_prefecture', $id);
+        session(['my_prefecture' => $id]);
+        
         return;
     }
 

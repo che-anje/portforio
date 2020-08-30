@@ -278,30 +278,7 @@ $('.circle-delete').click(function(){
 });*/
 
 
-//サークル編集
-$(document).ready(function(){
-  var url = $('.genres').attr('data-url');
-  $.ajax({
-    url: url,
-    type: "GET",
-  })
-  .done(function(data){
-    $.each(data, function(index, value){
-      var val = value;
-      var $input_genre = $("input[name='genre_record'][value="+val+"]");
-      var $genreHiddenTag = $('#genreHiddenTag');
-      $('<input>').attr({
-        'type': 'hidden',
-        'id': 'genre',
-        'name': 'genres[]',
-        'value': val,
-      }).appendTo(genreHiddenTag);
-    });
-  })
-  .fail(function(){
-    console.log("失敗");
-  });
-});
+
 
 function getParam(name, url) {
   if (!url) url = window.location.href;
