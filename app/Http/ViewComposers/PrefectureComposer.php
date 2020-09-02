@@ -20,7 +20,7 @@ class PrefectureComposer {
     {
         $this->prefectures = Prefecture::orderBy('id','asc')->get();
         $this->my_prefecture = Prefecture::find($this->getSelectedPrefectureId());
-         
+
     }
 
     /**

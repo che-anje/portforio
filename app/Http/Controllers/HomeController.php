@@ -12,6 +12,7 @@ use App\Models\Genre;
 use App\Models\Circle;
 use App\Models\Circle_User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -66,7 +67,7 @@ class HomeController extends Controller
 
     public function create(Request $request)
   {
-      
+
       $form = $request->all();
 
       //s3アップロード開始
@@ -78,5 +79,5 @@ class HomeController extends Controller
 
       return redirect('/');
   }
-    
+
 }

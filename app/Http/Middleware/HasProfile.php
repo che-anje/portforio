@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
-class HasProfile 
+class HasProfile
 {
     /**
      * Handle an incoming request.

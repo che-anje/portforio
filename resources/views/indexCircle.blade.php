@@ -41,7 +41,6 @@
         <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
             <div class="row align-items-center justify-content-between 
             line-height-1 cursor-pointer">
-                
                 <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0" style="font-size: .875rem;" 
                 data-toggle="modal" data-target="#myAreaModal">
                     自分の地域を設定する
@@ -55,17 +54,16 @@
                                 </button>
                                 <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
                             </div>
-                            
                             <div class="modal-body card bg-white h-100">
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
-                                                <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" 
-                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" 
-                                                @if($my_category) data-category="{{ $my_category->id }}" data-url="/circles_pref/{{ $prefecture->id }}/{{ $my_category->id }}" 
+                                                <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}"
+                                                class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}"
+                                                @if($my_category) data-category="{{ $my_category->id }}" data-url="/circles_pref/{{ $prefecture->id }}/{{ $my_category->id }}"
                                                 @else data-category="" data-url="/circles_pref/{{ $prefecture->id }}" @endif
                                                 @if($my_genre) data-genre="{{ $my_genre->id }}" @else data-genre="" @endif>
-                                            <label class="d-flex justify-content-between align-items-center 
+                                            <label class="d-flex justify-content-between align-items-center
                                             mb-0 position-relative" for="{{ $prefecture->id }}">
                                             <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
                                             <span class="checkbox__lg checkbox__noborder"></span>
@@ -82,12 +80,12 @@
                     </div>
                 </div>
                 @if($my_prefecture)
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture"
                 value="{{  $my_prefecture->name  }}">
                     {{ $my_prefecture->name }}
                 </p>
                 @else
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture"
                 value="0">
                     全国
                 </p>

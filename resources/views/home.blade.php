@@ -45,7 +45,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
         <li data-target="#carouselTopIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselTopIndicators" data-slide-to="1"></li>
         </ol>
-        
         <a class="carousel-control-prev" href="#carouselTopIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -60,13 +59,11 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <div class="">
     <div class="cursor-pointer">
         <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
-            <div class="row align-items-center justify-content-between 
+            <div class="row align-items-center justify-content-between
             line-height-1 cursor-pointer">
-                
                 <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0 nav-link--gray" style="font-size: .875rem;" 
                 data-toggle="modal" data-target="#myAreaModal">
                     自分の地域を設定する
-                    
                 </a>
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -77,7 +74,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                                 </button>
                                 <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
                             </div>
-                            
                             <div class="modal-body card bg-white h-100">
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
@@ -109,7 +105,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 @endif
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 <!-- 新規登録・ログイン -->
 @guest
@@ -153,7 +149,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             @foreach($categories as $category)
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-2 pl-1 pr-1">
                 <a href="/circle/{{ $category->id }}/{{ $my_prefecture->id }}" class="display-block">
-                    <div class="card text-white text-center 
+                    <div class="card text-white text-center
                     rounded border-0 ">
                     @if($category->image)
                         <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
@@ -172,7 +168,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 <h2 class="h2 h2--extend mt-4 mb-3">
                     ピックアップ情報!!
                 </h2>
-                
                 <div class="row pl-0 info-slide slider display-block" style="justify-content: center; align-items: center;">
                     @if($recent->circle)
                     <div class="mb-2 pl-1 pr-1">
@@ -201,7 +196,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                                 <h3 class="card-title card-title--extend-s mb-0" style="position: absolute; bottom: 0; left: 0; right: 0;">
                                 <span class="badge badge-danger mb-0 border border-white" style="font-size: .7rem;">最新サークルをチェック</span></h3>
                             </div>
-                            
                         </a>
                     </div>
                     @endif
@@ -280,7 +274,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
-                            <p class="btn btn-outline-success 
+                            <p class="btn btn-outline-success
                             btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>

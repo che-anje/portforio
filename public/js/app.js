@@ -26,7 +26,6 @@ $('.modal-pref').on('change',function(e) {
   var key = $(e.target).val();
   var url = $(e.target).attr('data-url');
   location.href = url;
-  
 });
 
 

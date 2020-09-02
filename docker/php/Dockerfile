@@ -1,8 +1,8 @@
 FROM php:7.4-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
-  
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer 
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
   apt-get -y install git libicu-dev libonig-dev libzip-dev unzip locales && \

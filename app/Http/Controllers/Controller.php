@@ -14,8 +14,9 @@ use App\Models\User;
 use App\Models\Point_Log;
 use App\Models\Circle_Ranking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
-    
+
 
 class Controller extends BaseController
 {
@@ -25,17 +26,14 @@ class Controller extends BaseController
 
     public function getSelectedPrefectureId(): int
     {
-        
         if(Auth::check() && Auth::user()->profile->prefectureOfInterest != 0) {
             return Auth::user()->profile->prefectureOfInterest;
         }elseif(session()->exists('my_prefecture')) {
             return session('my_prefecture');
         }
         return self::ALL_PREFECTURE;
-        
-        
     }
-    
+
     public function changeMyPrefecture(int $id){
         $prefecture = new Prefecture;
         if($user = Auth::user()) {
@@ -45,8 +43,7 @@ class Controller extends BaseController
             return;
         }
         session(['my_prefecture' => $id]);
-        
-        return;
+        return session('my_prefecture');
     }
 
     public function insertLogOfShow($circle_id, $user_id=null) {

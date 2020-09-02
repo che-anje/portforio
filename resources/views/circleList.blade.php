@@ -55,7 +55,6 @@
 									</button>
 									<h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
 								</div>
-													
 								<div class="modal-body card bg-white h-100">
 									<ul class="nav flex-column modal-pref">
 										@foreach($prefectures as $prefecture)

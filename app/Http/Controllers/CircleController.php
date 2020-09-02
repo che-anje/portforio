@@ -32,7 +32,6 @@ class CircleController extends Controller
     }
 
     public function showCreateForm() {
-        
         return view('createCircle');
     }
 
