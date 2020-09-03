@@ -59,12 +59,20 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <div class="">
     <div class="cursor-pointer">
         <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
-            <div class="row align-items-center justify-content-between
-            line-height-1 cursor-pointer">
-                <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0 nav-link--gray" style="font-size: .875rem;" 
-                data-toggle="modal" data-target="#myAreaModal">
-                    自分の地域を設定する
-                </a>
+            <div class="row align-items-center justify-content-between line-height-1 cursor-pointer"
+            data-toggle="modal" data-target="#myAreaModal">
+                <p class="mb-0 text-black-50 col-auto text-fz-14px">自分の地域を設定する</p>
+                @if($my_prefecture)
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture"
+                value="{{  $my_prefecture->name  }}">
+                    {{ $my_prefecture->name }}
+                </p>
+                @else
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture"
+                value="0">
+                    全国
+                </p>
+                @endif
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -92,17 +100,6 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                         </div>
                     </div>
                 </div>
-                @if($my_prefecture)
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
-                value="{{  $my_prefecture->name  }}">
-                    {{ $my_prefecture->name }}
-                </p>
-                @else
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
-                value="0">
-                    全国
-                </p>
-                @endif
             </div>
         </div>
     </div>
@@ -232,7 +229,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <div class="card-body card-body--narrow border rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
-                            <p class="btn btn-outline-success 
+                            <p class="btn btn-outline-success
                             btn-sm btn-sm--expand mr-2">{{ $genre->name }}</p>
                         @endforeach
                         </div>

@@ -10904,6 +10904,10 @@ a.text-dark:focus {
   color: rgba(0, 0, 0, 0.5) !important;
 }
 
+.text-black-80 {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
 .text-fw-bold {
   font-family: HiraKakuProN-W6;
 }

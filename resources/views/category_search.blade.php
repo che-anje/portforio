@@ -21,12 +21,17 @@
     <div class="cursor-pointer">
         <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
             <div class="row align-items-center justify-content-between 
-            line-height-1 cursor-pointer">
-                
-                <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0" style="font-size: .875rem;" 
-                data-toggle="modal" data-target="#myAreaModal">
-                    自分の地域を設定する
-                </a>
+            line-height-1 cursor-pointer" data-toggle="modal" data-target="#myAreaModal">
+                <p class="mb-0 text-black-50 col-auto text-fz-14px">自分の地域を設定する</p>
+                @if($my_prefecture)
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" value="{{  $my_prefecture->name  }}">
+                  {{ $my_prefecture->name }}
+                </p>
+                @else
+                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" value="0">
+                  全国
+                </p>
+                @endif
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -36,7 +41,6 @@
                                 </button>
                                 <h6 class="text-fw-bold text-center m-0 mx-auto align-middle" id="exampleModalLabel">地域を選択してください</h6>
                             </div>
-                            
                             <div class="modal-body card bg-white h-100">
                                 <ul class="nav flex-column modal-pref">
                                     @foreach($prefectures as $prefecture)
@@ -59,17 +63,7 @@
                         </div>
                     </div>
                 </div>
-                @if($my_prefecture)
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
-                value="{{  $my_prefecture->name  }}">
-                    {{ $my_prefecture->name }}
-                </p>
-                @else
-                <p class="text-black-80 text-reset col-auto mb-0 icon icon-area icon-area-gray" id="my_prefecture" 
-                value="0">
-                    全国
-                </p>
-                @endif
+                
             </div>
         </div>
     </div>    

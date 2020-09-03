@@ -40,11 +40,8 @@
     <div class="cursor-pointer">
         <div class="search-box bg-brown p-3 container col-md-8 col-lg-6">
             <div class="row align-items-center justify-content-between 
-            line-height-1 cursor-pointer">
-                <a  href="javascript:void(0);" class="text-black-50 col-auto mb-0" style="font-size: .875rem;" 
-                data-toggle="modal" data-target="#myAreaModal">
-                    自分の地域を設定する
-                </a>
+            line-height-1 cursor-pointer" data-toggle="modal" data-target="#myAreaModal">
+            <p class="mb-0 text-black-50 col-auto text-fz-14px">自分の地域を設定する</p>
                 <div class="modal fade" id="myAreaModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
