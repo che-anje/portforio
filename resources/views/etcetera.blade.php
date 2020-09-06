@@ -5,7 +5,6 @@
         <i class="fas fa-chevron-left"></i>
     </a>
     @parent
-    
 @endsection
 
 

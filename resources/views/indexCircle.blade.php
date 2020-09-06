@@ -107,7 +107,6 @@
             </div>
         </div>
     </div>
-    
     <div class="pb-3 d-none d-sm-block"></div>
 <div>
     <div class="container col-md-8 col-lg-6">

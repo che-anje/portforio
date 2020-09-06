@@ -109,7 +109,7 @@
         <select class="d-block w-100" selected="selected" style="border: none;background-color: #fff;height: 24px;"
          name="gender" id="gender">
         @foreach(\App\Models\Profile::GENDER as $key => $val)
-            <option value="{{ $key }}" 
+            <option value="{{ $key }}"
                 {{ $key == old('gender', $my_profile->gender) ? 'selected' : '' }}>
                 {{ $val }}
             </option>
@@ -130,7 +130,7 @@
         <select id="birthdate_1i" name="birthdate_1i" class="form-control birthdate_1i" 
         style="width: 30%; display: inline-block;border: none;background-color: #fff;">
         @foreach(\App\Models\Profile::BIRTHDATE_1I as $key => $val)
-            <option value="{{ $key }}"  
+            <option value="{{ $key }}"
                 {{ $val == old('birthdate_1i', $my_profile->birthdate_1i) ? 'selected' : '' }}>
                 {{ $val }}
             </option>
@@ -139,7 +139,7 @@
         <select id="birthdate_2i" name="birthdate_2i" class="form-control birthdate_2i" 
         style="width: 30%; display: inline-block;border: none;background-color: #fff;">
         @foreach(\App\Models\Profile::BIRTHDATE_2I as $key => $val)
-            <option value="{{ $key }}"  
+            <option value="{{ $key }}"
                 {{ $val == old('birthdate_2i', $my_profile->birthdate_2i) ? 'selected' : '' }}>
                 {{ $val }}
             </option>
@@ -184,7 +184,7 @@
                     name="cityOfInterest" id="cityOfInterest">
                         <option value="0">選択してください</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city->id }}"  
+                            <option value="{{ $city->id }}"
                                 {{ $city->id == old('cityOfInterest', 
                                     $my_profile->cityOfInterest) ? 'selected' : '' }}>
                                 {{ $city->name }}
