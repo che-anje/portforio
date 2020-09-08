@@ -63,10 +63,9 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
   <section class="bg-white shadow-sm mb-3 pt-4 pb-3">
@@ -81,7 +80,6 @@
             </a>
             @endforeach
         @endif
-        
     </div>
   </section>
 

@@ -260,7 +260,7 @@
     </div>
 </div>
 <p class="container col-md-8 col-lg-6 small g-color-gray-dark-v4">
-    <i class="fa fa-question-circle" aria-hidden="true"></i> 
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
     パスワードを変更しない場合、空欄のままでOKです
 </p>
 <!-- クレジットカード 余裕があれば
