@@ -87,8 +87,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                                     @foreach($prefectures as $prefecture)
                                         <li class="border-bottom nav-item p-3">
                                             <input type="radio" name="prefectureOfInterest" id="{{ $prefecture->id }}" data-url="{{ route('prefecture.change', [ $prefecture->id ]) }}"
-                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}">
-                                            <label class="d-flex justify-content-between align-items-center 
+                                            class="d-none checkbox__input checkbox__area" value="{{ $prefecture->id }}" aria-label="pref.{{ $prefecture->id }}">
+                                            <label class="d-flex justify-content-between align-items-center
                                             mb-0 position-relative" for="{{ $prefecture->id }}">
                                             <span class="p-0 line-height-2 pl-3 mb-0">{{ $prefecture->name }}</span>
                                             <span class="checkbox__lg checkbox__noborder"></span>
@@ -112,7 +112,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             "サークル探しと仲間づくりのサイト"<br>
             <span style="font-size: .9rem;">まずは会員登録から!!</span>
         </h1>
-        <a href="{{ route('register') }}" class="btn btn-primary btn-primary--grad 
+        <a href="{{ route('register') }}" class="btn btn-primary btn-primary--grad
         mx-auto mb-1 text-fw-bold mt-3">新規登録・ログイン</a>
     </div>
 </section>
@@ -127,15 +127,15 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             <div class="position-relative">
                 <div class="row">
                     <div class="col-9 pr-0">
-                        <input class="form-control mb-2 pl-5 search_form" 
-                        type="text" placeholder="キーワードを入力" 
+                        <input class="form-control mb-2 pl-5 search_form"
+                        type="text" placeholder="キーワードを入力" aria-label="keyword-text"
                         id="keyword-text" data-pref="{{ $my_prefecture->id }}">
                         <div class="input-icon position-absolute pl-3">
                             <i class="fas fa-search" style="font-size: 18px;"></i>
                         </div>
                     </div>
                     <div class="col-3 pl-2">
-                        <button type="submit" class="btn btn-success btn-success--grad" 
+                        <button type="submit" class="btn btn-success btn-success--grad"
                         id="keyword-submit-btn" style="width: 100%;" data-url="/index/{{ $my_prefecture->id }}">
                         検索</button>
                     </div>
@@ -149,9 +149,9 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <div class="card text-white text-center
                     rounded border-0 ">
                     @if($category->image)
-                        <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px">
+                        <img class="picture card-img" src="{{ $category->image_path }}" style="height: 90px" >
                     @else
-                        <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);">
+                        <img class="picture card-img" src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" style="height: 90px; filter:brightness(10%);" >
                     @endif
                         <div class="card-img-overlay card-img-overlay--black" style="height: 90px;">
                             <h3 class="card-title card-title--extend mb-0 text-in-image">{{ $category->name }}<br>
@@ -170,8 +170,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <div class="mb-2 pl-1 pr-1">
                         <a  href="{{ route('circle.show', [ $recent->circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
-                                <img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
-                                <div class="card-img-overlay--black card-img-overlay d-block align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
+                                <img src="{{ $recent->circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;" >
+                                <div class="card-img-overlay--black card-img-overlay d-block align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
                                     <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->circle->user->profile->familyName }}{{ $recent->circle->user->profile->firstName }}さんが</span><br>「 {{ $recent->circle->name }} 」<br>
                                     <span class="text-fz-small" >を作成しました</span></h2>
                                 </div>
@@ -185,7 +185,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <div class="mb-2 pl-1 pr-1">
                         <a  href="{{ route('circle.show', [ $recent->Circle->id ]) }}" class="display-block" >
                             <div class="card text-white text-center rounded border-0 position-relative">
-                                <img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;">
+                                <img src="{{ $recent->Circle->image_path }}" class="picture card-img" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover;" >
                                 <div class="card-img-overlay--black card-img-overlay d-block align-items-center justify-content-center shadow" style="max-width: 350px; max-height: 138px; height: 30vw; object-fit: cover; ">
                                     <h2 class="card-title card-title--extend mb-0 text-in-image" ><span class="text-fz-small">{{ $recent->user->profile->familyName }}{{ $recent->user->profile->firstName }}さんが</span><br>「 {{ $recent->Circle->name }} 」<br>
                                     <span class="text-fz-small" >に参加しました</span></h2>
@@ -214,13 +214,13 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     <h4 class="mb-2_5 line-1 hov--default" style="font-size: 13px; font-weight: bold;">{{ $circle->genres[0]->name }}サークル</h4>
                     <div class="position-relative ">
                     @if($circle->image)
-                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list" style="z-index: 10;">
+                        <img src="{{ $circle->image_path }}" class="card-img-top card-img-top--list" style="z-index: 10;" >
                         @if($loop->first)
-                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/gold.png') }}"  class="circle-rank position-absolute" >
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/gold.png') }}"  class="circle-rank position-absolute" alt="first_image">
                         @elseif($loop->index == 1)
-                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/silver.png') }}"  class="circle-rank position-absolute" >
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/silver.png') }}"  class="circle-rank position-absolute" alt="second_image">
                         @elseif($loop->index == 2)
-                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/bronze.png') }}"  class="circle-rank position-absolute" >
+                            <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('CircleImages/bronze.png') }}"  class="circle-rank position-absolute" alt="third_image">
                         @endif
                     @else
                         <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
@@ -248,7 +248,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
             </li>
             @endforeach
         </ul>
-        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-success w-100 
+        <p class="text-center mb-0"><a href="{{ route('circle.index', [ $my_prefecture->id ]) }}" class="btn btn-outline-success w-100
         text-fw-bold mb-2" style="font-size: 15px;">「人気順」のサークルをもっと見る</a></p>
     </div>
 </section>
@@ -267,7 +267,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                     @else
                         <img src="{{ Illuminate\Support\Facades\Storage::disk('s3')->url('UserImages/no_image.jpeg') }}" class="card-img-top card-img-top--list">
                     @endif
-                    <div class="card-body card-body--narrow border 
+                    <div class="card-body card-body--narrow border
                     rounded-bottom border-top-0 pb-4">
                         <div class="d-flex scrollable-list">
                         @foreach($circle->genres as $genre)
@@ -296,7 +296,7 @@ data-ride="carousel" data-interval="4000" data-touch="true">
                 「新着順」のサークルをもっと見る
                 </a>
             </p>
-            <input type="hidden" name="order" value="new">
+            <input type="hidden" name="order" value="new" aria-label="new">
         </form>
     </div>
 </section>
@@ -305,8 +305,8 @@ data-ride="carousel" data-interval="4000" data-touch="true">
 <section class="bg-white shadow-sm mb-0 pt-4 pb-4">
     <div class="container col-md-8 col-lg-6">
         <h2 class="h2 h2--extend -plus mb-4">サークルを作ろう！</h2>
-        <a href="circles/new" class="btn btn-primary btn-primary--grad 
-        mx-auto text-fw-bold line-height-2_45 mt-2"><span class="text-fz-24px 
+        <a href="circles/new" class="btn btn-primary btn-primary--grad
+        mx-auto text-fw-bold line-height-2_45 mt-2"><span class="text-fz-24px
         position-relative">+</span>サークル作成へ進む</a>
     </div>
 </section>
