@@ -21,4 +21,7 @@ class ProfileTest extends TestCase
 
     public function testGetUsersImagePath_【条件】_【期待する結果】() {
     }
+
+    public function testGetImagePathAttributes_【条件】_【期待する結果】() {
+    }
 }

@@ -41,7 +41,6 @@ class Profile extends Model
     }
 
     public function getUsersImagePath($users) {
-        
         foreach($users as $userRecord) {
             $userRecord->image_path = $userRecord->profile->getImagePathAttributes();
         }
@@ -51,7 +50,6 @@ class Profile extends Model
     public function getImagePathAttributes() {
         return Storage::disk('s3')->url('UserImages/' . $this->user_image);
     }
-    
 
     const SEARCHSETTINGBYEMAIL = [
         1 => '許可する',
