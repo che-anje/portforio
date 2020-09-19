@@ -23,7 +23,7 @@ class Profile extends Model
         'birthdate_2i',
         'birthdate_3i',
         'user_id',
-        'user_image'  
+        'user_image'
     ];
 
     public function user()
