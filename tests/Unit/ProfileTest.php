@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use App\Enums\Gender;
 
 class ProfileTest extends TestCase
@@ -17,7 +17,7 @@ class ProfileTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testGetGenderDescription_【1の場合】_【男性】() {
+    /*public function testGetGenderDescription_【1の場合】_【男性】() {
         $this->assertEquals("男性",Gender::getDescription(1));
     }
 
@@ -26,6 +26,6 @@ class ProfileTest extends TestCase
     }
 
     public function testGetImagePathAttributes_【条件】_【期待する結果】() {
-        
-    }
+
+    }*/
 }

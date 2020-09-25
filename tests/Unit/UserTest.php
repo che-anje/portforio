@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -16,6 +16,7 @@ class UserTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testUpdateProfile_【条件】_【期待する結果】() {
-    }
+    /*public function testUpdateProfile_【条件】_【期待する結果】() {
+
+    }*/
 }

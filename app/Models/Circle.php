@@ -29,7 +29,8 @@ class Circle extends Model
         'description_template',
         'request_required',
         'private_status',
-        'admin_user_id',        
+        'admin_user_id',
+        'category_id',
     ];
 
     public function prefecture() {
@@ -72,6 +73,10 @@ class Circle extends Model
 
     public function board() {
         return $this->hasOne('App\Models\Board');
+    }
+
+    public function createCircle(array $attributes) {
+        $this->fill($attributes)->save();
     }
 
     public function updateCircle(array $attributes)
@@ -136,7 +141,6 @@ class Circle extends Model
     }
 
     public function getRecommendedCircles($genre,$prefecture_id) {
-        
         $circles = Circle::where('prefecture_id',$prefecture_id)->genre($genre->id)->sortByPopularity()->get();
         $circle = new Circle;
         $circle->addInfomationToCircles($circles);
@@ -155,11 +159,9 @@ class Circle extends Model
 
     public function getCircleMembers($circle) {
         return $circle->users()->where('circle_user.approval', '=', 2);
-        
     }
 
     public function addInfomationToCircles($circles) {
-        
         foreach($circles as $circleRecord) {
             $circleRecord = Circle::addInfomationToCircle($circleRecord);
         }
@@ -175,8 +177,6 @@ class Circle extends Model
         $circle['rank'] = $circle->circle_ranking->rank;
         return $circle;
     }
-
-    
 
     public function getImagePathAttributes() {
         return Storage::disk('s3')->url('CircleImages/' . $this->image);

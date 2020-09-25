@@ -21,7 +21,7 @@ class CreateCirclesTable extends Migration
             $table->tinyInteger('prefecture_id');
             $table->string('detailedArea')->nullable();
             $table->tinyInteger('ageGroup')->nullable();
-            $table->string('activeDay')->nullable();
+            $table->string('activityDay')->nullable();
             $table->string('cost')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('recruit_status')->nullable();

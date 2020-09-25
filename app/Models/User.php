@@ -52,8 +52,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email_verified_at' => 'datetime',
     ];
 
-    
-
     public function getData(){
     $data = DB::table($this->table)->get();
 
@@ -64,11 +62,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->notify(new CustomVerifyEmail());
     }
 
-
-    
      public function sendPasswordResetNotification($token) {
          $this->notify(new CustomResetPassword($token));
- 
+
     }
 
     /* リレーション*/

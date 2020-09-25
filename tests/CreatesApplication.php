@@ -24,12 +24,12 @@ trait CreatesApplication
 
     protected function setUpDatabase(): void
     {
-        if ($this->isSetUpDatabase) {
+        /*if ($this->isSetUpDatabase) {
             return;
         }
 
         Artisan::call('migrate:fresh');
 
-        $this->isSetUpDatabase = true;
+        $this->isSetUpDatabase = true;*/
     }
 }

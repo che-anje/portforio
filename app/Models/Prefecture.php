@@ -36,10 +36,6 @@ class Prefecture extends Model
         return $this->hasMany(City::class);
     } 
 
-    public static function getPrefectures() {
-        
-        return Prefecture::orderBy('id','asc')->get();
-    }
 
     
 

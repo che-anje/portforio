@@ -22,7 +22,7 @@ class CirclesTableSeeder extends Seeder
             'category_id' => 1,
             'detailedArea' => '鶴舞公園テニスコート',
             'ageGroup' => '2',
-            'activeDay' => '毎週水曜日',
+            'activityDay' => '毎週水曜日',
             'cost' => 'なし',
             'image' => 'OjsgvLxU77J5SvlkVdYzF6Tpn2AIKXV2XHuMprXK.jpeg',
             'recruit_status' => 0,
