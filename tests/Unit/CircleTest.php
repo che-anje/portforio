@@ -48,8 +48,8 @@ class CircleTest extends TestCase
 
     public function testUpdateCircle_成功() {
         $attributes = [
-            'name' => "テストくん",
-            'introduction' => "宜しくお願いします。",
+            'name' => "テストサークル",
+            'introduction' => "楽しいよ。",
             'prefecture_id' => 1,
             'detailedArea' => "札幌",
             'category_id' => 1,
@@ -66,7 +66,7 @@ class CircleTest extends TestCase
         $circle = new Circle;
         $circle->createCircle($attributes);
         $new_data = [
-            'name' => "変更くん",
+            'name' => "変更サークル",
             'introduction' => "Hello,world",
             'prefecture_id' => 2,
             'detailedArea' => "青森",
