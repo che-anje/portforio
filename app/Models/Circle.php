@@ -33,6 +33,7 @@ class Circle extends Model
         'category_id',
     ];
 
+    //Relations
     public function prefecture() {
         return $this->belongsTo(Prefecture::class);
     }
@@ -75,6 +76,7 @@ class Circle extends Model
         return $this->hasOne('App\Models\Board');
     }
 
+    //メソッド
     public function createCircle(array $attributes) {
         $this->fill($attributes)->save();
     }
@@ -92,52 +94,6 @@ class Circle extends Model
         $this->save();
 
         return [$deleteImage];
-    }
-
-    public function scopeKeyword($query, $keyword) {
-        if ($keyword) {
-            $query->where(function($query) use($keyword){
-                $query->where('name', 'LIKE', "%{$keyword}%");
-                $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
-                $query->orWhereHas('genre', function($query) use ($keyword) {
-                    $query->where('name',"%{$keyword}%");
-                });
-            });
-        }
-        return $query;
-    }
-
-    public function scopePrefecture($query,$prefecture_id) {
-        if($prefecture_id!=null && $prefecture_id!=48) {
-        $query->where('prefecture_id', $prefecture_id);
-        }
-        return $query;
-    }
-
-    public function scopeGenre($query,$genre_id) {
-        if($genre_id){
-            $query->whereHas('genre', function($query) use ($genre_id) {
-                $query->where('genres.id', $genre_id);
-            });
-        }
-        return $query;
-    }
-
-    public function scopeCategory($query,$category_id) {
-        if($category_id) {
-            $query->where('category_id',$category_id);
-        }
-        return $query;
-    }
-
-    public function scopeAsc($query) {
-        $query->orderby('id', 'asc');
-        return $query;
-    }
-
-    public function scopeDesc($query) {
-        $query->orderby('id','desc');
-        return $query;
     }
 
     public function getRecommendedCircles($genre,$prefecture_id) {
@@ -211,6 +167,53 @@ class Circle extends Model
             $circles = Circle::orderby('id', 'desc')->get();
         }
         return $circles;
+    }
+
+    //scope
+    public function scopeKeyword($query, $keyword) {
+        if ($keyword) {
+            $query->where(function($query) use($keyword){
+                $query->where('name', 'LIKE', "%{$keyword}%");
+                $query->orWhere('introduction', 'LIKE', "%{$keyword}%");
+                $query->orWhereHas('genre', function($query) use ($keyword) {
+                    $query->where('name',"%{$keyword}%");
+                });
+            });
+        }
+        return $query;
+    }
+
+    public function scopePrefecture($query,$prefecture_id) {
+        if($prefecture_id!=null && $prefecture_id!=48) {
+        $query->where('prefecture_id', $prefecture_id);
+        }
+        return $query;
+    }
+
+    public function scopeGenre($query,$genre_id) {
+        if($genre_id){
+            $query->whereHas('genre', function($query) use ($genre_id) {
+                $query->where('genres.id', $genre_id);
+            });
+        }
+        return $query;
+    }
+
+    public function scopeCategory($query,$category_id) {
+        if($category_id) {
+            $query->where('category_id',$category_id);
+        }
+        return $query;
+    }
+
+    public function scopeAsc($query) {
+        $query->orderby('id', 'asc');
+        return $query;
+    }
+
+    public function scopeDesc($query) {
+        $query->orderby('id','desc');
+        return $query;
     }
 
     public function scopeSortCircles($query, $request) {
