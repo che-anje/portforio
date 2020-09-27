@@ -72,7 +72,7 @@ class CircleTest extends TestCase
             'detailedArea' => "青森",
             'category_id' => 2,
             'ageGroup' => 1,
-            'activityDay' => "土曜日",
+            'activityDay' => "土曜日、日曜日",
             'cost' => "2000円",
             'image' => "画像２",
             'recruit_status' => 1,
