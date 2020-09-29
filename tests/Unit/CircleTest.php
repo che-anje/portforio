@@ -87,4 +87,8 @@ class CircleTest extends TestCase
         $this->assertEquals([$attributes['image']], $delete_image);
         $circle->where($new_data)->delete();
     }
+
+    public function testGetRecommendedCircles_成功() {
+        $this->assertTrue(true);
+    }
 }
