@@ -95,4 +95,8 @@ class CircleTest extends TestCase
     public function testGetCircleList_成功() {
         $this->assertTrue(true);
     }
+
+    public function testGetCircleMembers() {
+        $this->assertTrue(true);
+    }
 }
