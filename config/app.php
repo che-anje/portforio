@@ -227,4 +227,6 @@ return [
 
     ],
 
+    'faker_locale' => env('APP_FAKER_LOCALE', 'ja_JP'),
+
 ];

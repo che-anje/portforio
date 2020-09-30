@@ -103,20 +103,6 @@ class Circle extends Model
         return $circles;
     }
 
-    public function getCircleList($my_prefecture,$request,$genre_id,$category_id) {
-        $query = Circle::query();
-        return $query->prefecture($my_prefecture->id)
-        ->keyword($request->keyword)
-        ->category($category_id)
-        ->genre($genre_id)
-        ->sortCircles($request)
-        ->get();
-    }
-
-    public function getCircleMembers($circle) {
-        return $circle->users()->where('circle_user.approval', '=', 2);
-    }
-
     public function addInfomationToCircles($circles) {
         foreach($circles as $circleRecord) {
             $circleRecord = Circle::addInfomationToCircle($circleRecord);
@@ -136,6 +122,20 @@ class Circle extends Model
 
     public function getImagePathAttributes() {
         return Storage::disk('s3')->url('CircleImages/' . $this->image);
+    }
+
+    public function getCircleList($my_prefecture,$request,$genre_id,$category_id) {
+        $query = Circle::query();
+        return $query->prefecture($my_prefecture->id)
+        ->keyword($request->keyword)
+        ->category($category_id)
+        ->genre($genre_id)
+        ->sortCircles($request)
+        ->get();
+    }
+
+    public function getCircleMembers($circle) {
+        return $circle->users()->where('circle_user.approval', '=', 2);
     }
 
     public function getCheckedGenres($circle) {

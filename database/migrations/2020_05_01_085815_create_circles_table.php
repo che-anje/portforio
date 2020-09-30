@@ -15,15 +15,15 @@ class CreateCirclesTable extends Migration
     {
         Schema::create('circles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name',191);
             $table->Integer('admin_user_id');
-            $table->string('introduction');
+            $table->string('introduction',191);
             $table->tinyInteger('prefecture_id');
-            $table->string('detailedArea')->nullable();
+            $table->string('detailedArea',191)->nullable();
             $table->tinyInteger('ageGroup')->nullable();
-            $table->string('activityDay')->nullable();
-            $table->string('cost')->nullable();
-            $table->string('image')->nullable();
+            $table->string('activityDay',191)->nullable();
+            $table->string('cost',191)->nullable();
+            $table->string('image',191)->nullable();
             $table->tinyInteger('recruit_status')->nullable();
             $table->string('description_template')->nullable();
             $table->tinyInteger('request_required')->nullable();

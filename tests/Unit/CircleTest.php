@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use App\Models\Circle;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
 class CircleTest extends TestCase
@@ -16,6 +18,8 @@ class CircleTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        factory(\App\Models\Circle::class, 10)->create();
+        
     }
 
     public function testExample()
@@ -89,6 +93,19 @@ class CircleTest extends TestCase
     }
 
     public function testGetRecommendedCircles_成功() {
+        $circle = new Circle;
+        $this->assertTrue(true);
+    }
+
+    public function testAddInfomationToCircles_成功() {
+        $this->assertTrue(true);
+    }
+
+    public function testGetImagePathAttributes_成功() {
+        $this->assertTrue(true);
+    }
+
+    public function testAddInfomationToCircle_成功() {
         $this->assertTrue(true);
     }
 
@@ -96,7 +113,29 @@ class CircleTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testGetCircleMembers() {
+    public function testGetCircleMembers_成功() {
         $this->assertTrue(true);
+    }
+
+    public function testGetCheckedGenres() {
+        $this->assertTrue(true);
+    }
+
+    public function testGetPopGenres() {
+        $this->assertTrue(true);
+    }
+
+    public function testSortCirclesByPopularity() {
+        $this->assertTrue(true);
+    }
+
+    public function testSortByNewArrival() {
+        $this->assertTrue(true);
+    }
+
+    public function tearDown(): void
+    {
+        Artisan::call('migrate:refresh');
+        parent::tearDown();
     }
 }

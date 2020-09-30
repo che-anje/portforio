@@ -220,6 +220,4 @@ class CircleController extends Controller
         return $circle->getCheckedGenres($circle);
     }
 
-    
-
 }
