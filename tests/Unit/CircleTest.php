@@ -3,6 +3,9 @@
 namespace Tests\Unit;
 
 use App\Models\Circle;
+use App\Models\Genre;
+use App\Models\Circle_Genre;
+use GenresTableSeeder;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,6 +13,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CircleTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *
@@ -18,8 +22,6 @@ class CircleTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        factory(\App\Models\Circle::class, 10)->create();
-        
     }
 
     public function testExample()
@@ -92,8 +94,30 @@ class CircleTest extends TestCase
         $circle->where($new_data)->delete();
     }
 
-    public function testGetRecommendedCircles_成功() {
+    /*public function getRecommendedCircles($genre,$prefecture_id) {
+        $circles = Circle::where('prefecture_id',$prefecture_id)->genre($genre->id)->sortByPopularity()->get();
         $circle = new Circle;
+        $circle->addInfomationToCircles($circles);
+        return $circles;
+    }*/
+
+    public function testGetRecommendedCircles_成功() {
+        $this->seed();
+        $circle = new Circle;
+        $genre = new Genre;
+        $genres = $genre->all();
+        factory(\App\Models\Circle::class, 10)
+            ->create()
+            ->each(function($circle) use ($genres) {
+                $circle->genre()->attach(
+                    $genres->random(rand(1,3))->pluck("id")->toArray()
+                );
+            });
+        $exist_circle = $circle->inRandomOrder()->first();
+        $genre = $exist_circle->genre()->first();
+        $prefecture_id = $exist_circle->prefecture_id;
+        $circles = $circle->getRecommendedCircles($genre,$prefecture_id);
+        dd($circles);
         $this->assertTrue(true);
     }
 
@@ -133,7 +157,7 @@ class CircleTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function tearDown(): void
+   public function tearDown(): void
     {
         Artisan::call('migrate:refresh');
         parent::tearDown();
