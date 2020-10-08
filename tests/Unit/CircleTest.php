@@ -116,8 +116,8 @@ class CircleTest extends TestCase
         $exist_circle = $circle->inRandomOrder()->first();
         $genre = $exist_circle->genre()->first();
         $prefecture_id = $exist_circle->prefecture_id;
-        $circles = $circle->getRecommendedCircles($genre,$prefecture_id);
-        dd($circles);
+        //$circles = $circle->getRecommendedCircles($genre,$prefecture_id);
+        //dd($circles);
         $this->assertTrue(true);
     }
 
