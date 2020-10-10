@@ -16,7 +16,7 @@ $factory->define(Circle::class, function (Faker $faker) {
         'ageGroup' => $faker->numberBetween(0,5),
         'activityDay' => $faker->realText(191),
         'cost' => $faker->realText(191),
-        'image' => $faker->text(191),
+        'image' => 'dummy.jpg',
         'recruit_status' => $faker->numberBetween(0,1),
         'description_template' => $faker->realText(191),
         'request_required' => $faker->numberBetween(0,1),

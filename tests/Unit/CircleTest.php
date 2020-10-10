@@ -9,6 +9,8 @@ use GenresTableSeeder;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 
 class CircleTest extends TestCase
@@ -116,8 +118,11 @@ class CircleTest extends TestCase
         $exist_circle = $circle->inRandomOrder()->first();
         $genre = $exist_circle->genre()->first();
         $prefecture_id = $exist_circle->prefecture_id;
-        //$circles = $circle->getRecommendedCircles($genre,$prefecture_id);
-        //dd($circles);
+        Storage::fake('s3');
+        $dummy = UploadedFile::fake()->create('dummy.jpg');
+        $dummy->storeAs('', 'dummy.jpg', ['disk' => 's3']);
+        $circles = $circle->getRecommendedCircles($genre,$prefecture_id);
+        Storage::disk('s3')->assertExists('dummy.jpg');
         $this->assertTrue(true);
     }
 
