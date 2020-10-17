@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Circle;
 use App\Models\Genre;
 use App\Models\Circle_Genre;
+use App\Models\Circle_Ranking;
 use GenresTableSeeder;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
@@ -108,13 +109,31 @@ class CircleTest extends TestCase
         $circle = new Circle;
         $genre = new Genre;
         $genres = $genre->all();
-        factory(\App\Models\Circle::class, 10)
+        factory(\App\Models\Circle::class, 1000)
             ->create()
             ->each(function($circle) use ($genres) {
                 $circle->genre()->attach(
                     $genres->random(rand(1,3))->pluck("id")->toArray()
                 );
             });
+
+        $circles = Circle::all();
+        foreach($circles as $circle) {
+            $circle_rank = new Circle_Ranking;
+            $circle_rank->circle_id = $circle->id;
+            $circle_rank->total_point = rand(0,10);
+            $circle_rank->save();
+        }
+        $a = Circle_Ranking::orderby('total_point', 'desc')->get()->pluck('total_point')->toArray();
+        rsort($a);
+        $rank = 1;
+        foreach (array_count_values($a) as $point => $count) {
+            for ($i = 0; $i < $count; $i++) {
+                Circle_Ranking::where('total_point', $point)->update(['rank' => $rank]);
+            }
+            $rank += $count;
+        }
+
         $exist_circle = $circle->inRandomOrder()->first();
         $genre = $exist_circle->genre()->first();
         $prefecture_id = $exist_circle->prefecture_id;
