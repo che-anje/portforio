@@ -123,7 +123,6 @@ class CircleTest extends TestCase
         $dummy->storeAs('', 'dummy.jpg', ['disk' => 's3']);
         $circles = $circle->getRecommendedCircles($genre,$prefecture_id);
         Storage::disk('s3')->assertExists('dummy.jpg');
-        $this->assertTrue(true);
     }
 
     public function testAddInfomationToCircles_成功() {
