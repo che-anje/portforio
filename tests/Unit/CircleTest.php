@@ -108,39 +108,32 @@ class CircleTest extends TestCase
         $this->seed();
         $circle = new Circle;
         $genre = new Genre;
-        $genres = $genre->all();
-        factory(\App\Models\Circle::class, 1000)
+        $genres = $genre->inRandomOrder()->take(3)->get();
+        factory(\App\Models\Circle::class, 5)
             ->create()
             ->each(function($circle) use ($genres) {
                 $circle->genre()->attach(
-                    $genres->random(rand(1,3))->pluck("id")->toArray()
+                    $genres->pluck("id")->toArray()
                 );
             });
 
         $circles = Circle::all();
-        foreach($circles as $circle) {
+        $count = $circles->count();
+        foreach($circles as $key => $circle) {
             $circle_rank = new Circle_Ranking;
             $circle_rank->circle_id = $circle->id;
-            $circle_rank->total_point = rand(0,10);
+            $circle_rank->total_point = $key;
+            $circle_rank->rank = $count - $key;
             $circle_rank->save();
         }
-        $a = Circle_Ranking::orderby('total_point', 'desc')->get()->pluck('total_point')->toArray();
-        rsort($a);
-        $rank = 1;
-        foreach (array_count_values($a) as $point => $count) {
-            for ($i = 0; $i < $count; $i++) {
-                Circle_Ranking::where('total_point', $point)->update(['rank' => $rank]);
-            }
-            $rank += $count;
-        }
+        Circle_Ranking::select(['circle_id','total_point','rank'])->get();
 
         $exist_circle = $circle->inRandomOrder()->first();
         $genre = $exist_circle->genre()->first();
-        $prefecture_id = $exist_circle->prefecture_id;
         Storage::fake('s3');
         $dummy = UploadedFile::fake()->create('dummy.jpg');
         $dummy->storeAs('', 'dummy.jpg', ['disk' => 's3']);
-        $circles = $circle->getRecommendedCircles($genre,$prefecture_id);
+        $circles = $circle->getRecommendedCircles($genre,$exist_circle->prefecture_id);
         Storage::disk('s3')->assertExists('dummy.jpg');
     }
 
