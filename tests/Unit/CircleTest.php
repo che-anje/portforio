@@ -117,24 +117,26 @@ class CircleTest extends TestCase
                 );
             });
 
-        $circles = Circle::all();
+        $circles = Circle::where('id', '<>', 1)->get();
         $count = $circles->count();
         foreach($circles as $key => $circle) {
             $circle_rank = new Circle_Ranking;
             $circle_rank->circle_id = $circle->id;
-            $circle_rank->total_point = $key;
-            $circle_rank->rank = $count - $key;
+            $circle_rank->total_point = $count - $key;
+            $circle_rank->rank = $key + 1;
             $circle_rank->save();
         }
-        Circle_Ranking::select(['circle_id','total_point','rank'])->get();
 
         $exist_circle = $circle->inRandomOrder()->first();
         $genre = $exist_circle->genre()->first();
         Storage::fake('s3');
         $dummy = UploadedFile::fake()->create('dummy.jpg');
         $dummy->storeAs('', 'dummy.jpg', ['disk' => 's3']);
-        $circles = $circle->getRecommendedCircles($genre,$exist_circle->prefecture_id);
+        $recomended_circles = $circle->getRecommendedCircles($genre,$exist_circle->prefecture_id);
         Storage::disk('s3')->assertExists('dummy.jpg');
+        $recomended_order = $recomended_circles->pluck('id')->toArray();
+        $circles_order = $circles->pluck('id')->toArray();
+        $this->assertEquals($recomended_order, $circles_order);
     }
 
     public function testAddInfomationToCircles_成功() {
